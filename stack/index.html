@@ -124,14 +124,15 @@
     <a class="homelink" href="/">← BrewVenue</a>
     <div class="kicker">Builders &amp; Brews · Hack Edition · H2 2026</div>
     <h1>How the stack works</h1>
-    <div class="sub">Every venue page on BrewVenue is researched by multi-agent pipelines.
-      This is the infrastructure, contracts, and honesty rules that make it trustworthy —
-      not a pitch deck, just what we actually run.</div>
+    <div class="sub">BrewVenue's venue pages come from the venue-scout pipeline — SF and LA as
+      hand-driven runs, the multi-city rollout as autonomous agents on the stack below.
+      This is the infrastructure, contracts, and honesty rules that make the output trustworthy,
+      with what runs today marked apart from what's the rollout target.</div>
   </header>
 
   <div class="section">
     <h2>The seven layers</h2>
-    <p>Each layer does one job well; together they replace manual venue research with an auditable, fetch-verified pipeline. The request flow is: <b>Claude Code (harness) → Kimi Relay (router) → Nebius Token Factory (host) → Kimi K3 (model)</b>, with Tavily tools and Tenki sandboxes around the edges.</p>
+    <p>Each layer does one job well; together they replace manual venue research with an auditable, fetch-verified pipeline. The request flow today, operator-driven from one machine, is: <b>Claude Code (harness) → Kimi Relay (router) → Nebius Token Factory (host) → Kimi K3 (model)</b>, with Tavily tools and Tenki sandboxes around the edges. The rollout target (<a href="https://github.com/opencolin/brewvenue/blob/main/docs/multicity-research-plan.md">plan</a> §6) moves the same stages into a slimmer OpenAI-compatible agent loop running inside Tenki sandboxes.</p>
     <div class="grid">
       <div class="card">
         <span class="badge a">Harness</span>
@@ -159,28 +160,28 @@
         <div class="name">☁️ Nebius Token Factory</div>
         <div class="role">Inference platform · OpenAI-compatible API</div>
         <div class="body">Token Factory hosts Kimi K3 behind an OpenAI-compatible endpoint. It handles streaming, billing, and rate-limiting — with Kimi credits part of the tour's partner program, so per-city agent runs stay cheap.</div>
-        <div class="src">Reached through the Kimi Relay router; documented in the <a href="../docs/multicity-research-plan.md">multi-city research plan</a>.</div>
+        <div class="src">Reached through the Kimi Relay router; documented in the <a href="https://github.com/opencolin/brewvenue/blob/main/docs/multicity-research-plan.md">multi-city research plan</a>.</div>
       </div>
       <div class="card">
         <span class="badge a">Search &amp; Verify</span>
         <div class="name">🔍 Tavily</div>
         <div class="role">Web search + extraction · MCP tools</div>
         <div class="body">Tavily <code>search</code> finds neighborhoods and venue candidates; Tavily <code>extract</code> fetches each venue's events page to confirm it actually covers private events and isn't a 404. Every tool call is logged line-by-line.</div>
-        <div class="src">Injected per session; 103 tool calls across the Toronto dry-run pilot alone. <a href="../docs/pilots/toronto/evidence.jsonl">Evidence log ↗</a></div>
+        <div class="src">Injected per session; 103 tool calls across the Toronto dry-run pilot alone. <a href="https://github.com/opencolin/brewvenue/blob/main/docs/pilots/toronto/evidence.jsonl">Evidence log ↗</a></div>
       </div>
       <div class="card">
         <span class="badge b">Runtime</span>
         <div class="name">🛡️ Tenki</div>
         <div class="role">Disposable Linux sandboxes · per-city VMs</div>
         <div class="body">Tenki provides clean, killable, parallelizable VMs for autonomous city runs. The dry-run used local subagents for speed; Tenki is the target runtime for wave-deploying 3–5 cities in parallel as we approach the Sep 1 APJ deadline.</div>
-        <div class="src">Target platform per the <a href="../docs/multicity-research-plan.md">multi-city research plan</a> §3.</div>
+        <div class="src">Target platform per the <a href="https://github.com/opencolin/brewvenue/blob/main/docs/multicity-research-plan.md">multi-city research plan</a> §3.</div>
       </div>
       <div class="card">
         <span class="badge c">Review</span>
-        <div class="name">✅ Tenki Reviewer</div>
-        <div class="role">Human-facing QA stage · runs in sandbox</div>
-        <div class="body">A fresh agent in a Tenki VM adversarially re-checks sampled "dedicated events page" claims, then builds a review card (top picks, closures, low-confidence flags) for the human sign-off that precedes any public page flip.</div>
-        <div class="src">QA stage per the <a href="../docs/multicity-research-plan.md">multi-city research plan</a> §6; first real output is the <a href="../docs/pilots/toronto/review-card.md">Toronto pilot review card</a>.</div>
+        <div class="name">✅ Adversarial QA</div>
+        <div class="role">Fresh-context re-check · target: Tenki sandbox</div>
+        <div class="body">A fresh agent with no research context adversarially re-checks sampled "dedicated events page" claims, then a review card (top picks, closures, low-confidence flags) goes to a human for the sign-off that precedes any public page flip. In the dry run this card was built by the orchestrating session; a fresh-context reviewer in a Tenki VM is the rollout target.</div>
+        <div class="src">QA stage per the <a href="https://github.com/opencolin/brewvenue/blob/main/docs/multicity-research-plan.md">multi-city research plan</a> §4 (stage 6); the <a href="https://github.com/opencolin/brewvenue/blob/main/docs/pilots/toronto/review-card.md">Toronto pilot review card</a> shows the deliverable shape.</div>
       </div>
     </div>
   </div>
@@ -205,14 +206,14 @@
     <ul style="color:var(--ink-2); font-size:14px; padding-left:20px; display:grid; gap:8px; margin-top:10px;">
       <li><b>Zero unverified links.</b> Any venue whose <code>link</code> lacks a successful fetch in <code>evidence.jsonl</code> is dropped by <code>assemble_city_config.py</code> with a nonzero exit.</li>
       <li><b>Closed venues surface, not disappear.</b> They get their own "Gone" footnote with a fetched source or an <code>[UNVERIFIED]</code> flag — never silently removed.</li>
-      <li><b>Capacities are marked.</b> Published numbers get <code>&lt;b&gt;</code>; estimates get a <code>~</code> and "(est)" so nobody overbooks.</li>
+      <li><b>Capacities are marked.</b> Published numbers get <code>&lt;b&gt;</code> (script-checked); estimates carry a <code>~</code> and "(est)" per the skill's research rules, so nobody overbooks.</li>
       <li><b>Review cards exist.</b> Every city gets a human-facing review card flagging top picks, low-confidence items, and what to re-check.</li>
       <li><b>Deterministic build.</b> <code>build.py</code> guards against template drift with <code>assert</code>. Re-running produces byte-identical output.</li>
     </ul>
   </div>
 
   <footer>
-    <div class="fnote"><b>See the details:</b> the <a href="../docs/pilots/toronto/review-card.md">Toronto pilot review card</a> is the best example of what a real city run produces (framing, evidence log, normalized venues, and unverified items flagged).</div>
+    <div class="fnote"><b>See the details:</b> the <a href="https://github.com/opencolin/brewvenue/blob/main/docs/pilots/toronto/review-card.md">Toronto pilot review card</a> is the best example of what a real city run produces (framing, evidence log, normalized venues, and unverified items flagged).</div>
     <div class="prov">Last updated Aug 2026 · BrewVenue is a plain-static site: no build step, no external dependencies, no CDNs except venue photo hotlinks with automatic fallback · <a href="/">Back to BrewVenue →</a></div>
   </footer>
 </div>
