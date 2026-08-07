@@ -45,8 +45,8 @@ const VENUES = [
     "linkText": "CIC Cambridge Event Spaces",
     "email": "events@cic.com",
     "note": "CreativeMornings/Boston hosted its Nov 2025 breakfast lecture at CIC Cambridge (1 Broadway) — proven coffee-and-100+-crowd room-shape fit; the wood-paneled Venture Café space is literally Kendall Sq's weekly innovation-coffee gathering spot (Thursday Gatherings, 20K visitors/yr), with terrace, bar space, breakouts, and translation services via LinguaSmart for a bilingual tech-week day.",
-    "img": null,
-    "alt": "Wood-paneled Venture Cafe event hall with terrace access at One Broadway",
+    "img": "https://venturecafecambridge.org/wp-content/uploads/sites/6/2021/05/IMG_1861-1.jpg",
+    "alt": "Venture Café Cambridge Thursday Gathering crowd at CIC",
     "top": false
   },
   {
@@ -61,8 +61,8 @@ const VENUES = [
     "linkText": "Event Rentals",
     "email": null,
     "note": "1890 industrial creative hub 0.4 mi from Kendall/MIT T actively recruiting a cafe operator; maker-space DNA (Design Lab built for hackathons), sliding-scale pricing for community events, and a three-story atrium Community Hall that fits the 50-200 hack-day band at public-event rates.",
-    "img": null,
-    "alt": "Three-story atrium Community Hall with 19th-century wooden beams and skylights",
+    "img": "https://cdn.prod.website-files.com/6266e76b1797370598592b60/63952408e4a413f5de1a01e8_Community%20Hall%2008.22.22.jpg",
+    "alt": "The Foundry Community Hall tall wood-beam interior",
     "top": false
   },
   {
@@ -77,8 +77,8 @@ const VENUES = [
     "linkText": "Kendall Square Private Events",
     "email": "Victoria@AreaFour.com",
     "note": "Technology Square cafe-bar directly facing the MIT campus edge with an on-site A4 Café for coffee service, two private rooms and outdoor space; published private-room capacity (40 cocktail) sits below the 50-200 band, so this works only as a full-venue buyout play — events coordinator published by name.",
-    "img": null,
-    "alt": "Wood-fired cafe and bar dining room at 500 Technology Square",
+    "img": "https://images.getbento.com/accounts/6797956624a9674f3b0f27765887f7df/media/images/10177Area_Four_Cambridge_Interior_2_Melissa_Ostrow.jpg?w=1800&fit=max&auto=compress,format&cs=origin&h=1800",
+    "alt": "Area Four Cambridge dining room at 500 Technology Square",
     "top": false
   },
   {
@@ -205,8 +205,8 @@ const VENUES = [
     "linkText": "Daily Provisions Seaport location",
     "email": "info@dailyprovisions.co",
     "note": "Danny Meyer / Union Square Hospitality Group's all-day café that just opened on Commonwealth Pier (steps from ICA + BCEC); crullers + coffee morning trade, evening beer/wine crowd, USHG hospitality pedigree — group buyout email goes through the home office (info@dailyprovisions.co). Best for a <100-person format or as catering anchor for a nearby room.",
-    "img": null,
-    "alt": "Daily Provisions Seaport pastry display and coffee bar at Commonwealth Pier",
+    "img": "https://images.getbento.com/accounts/421fdbfaa020a606991e0319ff8084f3/media/images/54101081825_dailyprov_dupont_lifestyle-0020.JPG?w=1200&fit=crop&auto=compress,format&cs=origin&h=600",
+    "alt": "Daily Provisions cafe interior, Seaport",
     "top": false
   },
   {
@@ -221,8 +221,8 @@ const VENUES = [
     "linkText": "GrubStreet's Café / Fabulist",
     "email": null,
     "note": "New (2025-26) coffee shop inside Seaport's creative-writing nonprofit, co-run with Travelmug; harbor-view tables, next door to Porter Square Books, with GrubStreet's Writers' Stage used for monthly literary events — already set up for seated talk + reception formats. Café + stage combo fits an intimate builder coffee day of ~50-80; booking goes through GrubStreet's main line (617-695-0075).",
-    "img": null,
-    "alt": "Travelmug Café interior inside GrubStreet's Fabulist space with harbor windows",
+    "img": "https://media.thebostoncalendar.com/images/q_auto,fl_lossy/v1746883674/h8hzowhbxkajdx3trz71/travel-mug-cafe.jpg",
+    "alt": "Travelmug Cafe inside GrubStreet Fabulist",
     "top": false
   },
   {
@@ -301,8 +301,8 @@ const VENUES = [
     "linkText": "Meeting & Event Venues",
     "email": "seaportsales@seaportboston.com",
     "note": "Independent waterfront hotel with a public capacity chart across 13 spaces, harbor-view ballrooms, on-site catering/AV, and a direct meetings sales inbox — a safe scale-up option if the hack day pushes past 200.",
-    "img": null,
-    "alt": "Plaza Ballroom with floor-to-ceiling harbor windows",
+    "img": "https://assets.milestoneinternet.com/cdn-cgi/image/f=auto/seaport-hotel-and-world-trade-center-parent/seaport-hotel-boston/siteimages/meetings-seaport-ballroom-reception.jpg?width=1800&height=600",
+    "alt": "Seaport Hotel Boston Plaza Ballroom",
     "top": false
   },
   {
@@ -370,7 +370,7 @@ const VENUES = [
     "top": false
   },
   {
-    "k": "cic_boston_cambridge",
+    "k": "cic_boston_cambridge_50milk",
     "name": "CIC Boston (Cambridge Innovation Center)",
     "area": "Downtown Boston / Financial District (incl. CIC Boston @ 50 Milk St, Downtown Crossing edge)",
     "type": "cowork",

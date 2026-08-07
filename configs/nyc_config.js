@@ -189,8 +189,8 @@ const VENUES = [
     "linkText": "blenderworkspace.com/event-space",
     "email": null,
     "note": "Best all-around fit: 15,000 sq ft NoMad floor with a 5,000 sq ft auditorium and separate Event Suite sized exactly for a 50-200-person coffee/hack day, in-house hospitality bar, coffee, AV and catering, and a published client list (Google, Netflix, JPMorgan) that proves corporate tech events land here.",
-    "img": null,
-    "alt": "Wide view of Blender Workspace's sunlit open floor with lounge seating and long communal tables",
+    "img": "https://blenderworkspace.com/event-space/",
+    "alt": "Blender Workspace 5000 sq ft window-lit auditorium on Madison Ave",
     "top": true
   },
   {
@@ -205,8 +205,8 @@ const VENUES = [
     "linkText": "betaworks.com/event-rentals",
     "email": "eventsny@betaworks.com",
     "note": "Pre-vetted builder room: hosted AI Tinkerers OpenClaw Demo Night (Feb 2026) and the ClawHack NY 12-hour hackathon (Feb 28, 2026) — proven hack-day layout with stage, 160-inch projector, mics, bar, check-in lobby and back-of-house coffee prep. Tour-trace seed via AI Tinkerers NYC.",
-    "img": null,
-    "alt": "Betaworks stage hero shot facing the presentation wall in the street-level lounge",
+    "img": "https://cdn.prod.website-files.com/6022fac80367ca7c9121c178/63ead9e92d440b265944d6c1_Betaworks_stage_hero.jpg",
+    "alt": "Betaworks stage hero shot in the Meatpacking venue",
     "top": false
   },
   {
@@ -221,8 +221,8 @@ const VENUES = [
     "linkText": "nycseminarcenter.com/forms",
     "email": "salesteam@nycseminarcenter.com",
     "note": "20-year Flatiron workhorse with combinable event halls up to ~2,300 sq ft, online Tripleseat booking, in-house catering and value pricing — a practical mid-budget room that comfortably swallows a 100-200-person day of hacking plus coffee service.",
-    "img": null,
-    "alt": "NYC Seminar & Conference Center exterior entrance at 114 West 26th Street",
+    "img": "https://i0.wp.com/nycseminarcenter.com/wp-content/uploads/2024/04/NYCSCC_Misc-Room-Collage-Medium.jpg?resize=768%2C768&ssl=1",
+    "alt": "NYC Seminar & Conference Center event rooms",
     "top": false
   },
   {
@@ -237,8 +237,8 @@ const VENUES = [
     "linkText": "themalin.co/locations/flatiron",
     "email": null,
     "note": "Design-forward coworking floor one block off Union Square whose private-events section offers hires from offsites to full buyouts; AI/VC-heavy member base is the exact crowd for a tech-week coffee day. Bookable-capacity details only via inquiry, hence contact flag.",
-    "img": null,
-    "alt": "The Malin Flatiron bright communal lounge with velvet seating and artwork",
+    "img": "https://themalin.co/locations/flatiron/",
+    "alt": "The Malin Flatiron lounge",
     "top": false
   },
   {
@@ -253,8 +253,8 @@ const VENUES = [
     "linkText": "unionsquareloft.com",
     "email": null,
     "note": "Intimate all-inclusive Flatiron loft with 13-ft ceilings, pro Fulcrum sound and everything included (furniture, lighting, AV) — a plug-and-play room for the 50-60-person end of the range; partners with neighboring spaces for larger builds.",
-    "img": null,
-    "alt": "Open loft interior at Union Square Loft with tall windows and exposed industrial ceiling",
+    "img": "https://unionsquareloft.com/wp-content/uploads/2026/03/Open-loft.jpg",
+    "alt": "Union Square Loft open-floor hero",
     "top": false
   },
   {
@@ -306,7 +306,7 @@ const VENUES = [
     "top": false
   },
   {
-    "k": "brooklyn_roasting_company",
+    "k": "brooklyn_roasting_company_200flu",
     "name": "Brooklyn Roasting Company — 200 Flushing Ave Outpost",
     "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
     "type": "coffee",
@@ -317,8 +317,8 @@ const VENUES = [
     "linkText": "BRC blog — 200 Flushing outpost open",
     "email": "info@brooklynroasting.com",
     "note": "BRC's newest full-service outpost sits at the Navy Yard edge right by Newlab, open 6am–7pm daily — best as an overflow/day-two brew base for smaller workshop pods (est. 40 seats) while the roastery hosts the main room. Same published contact as HQ: info@brooklynroasting.com / (718) 855-1000.",
-    "img": null,
-    "alt": "Brooklyn Roasting Company 200 Flushing Ave cafe storefront at the Brooklyn Navy Yard",
+    "img": "https://www.brooklynroasting.com/cdn/shop/articles/photo_90733193-9078-4e49-a541-79b7b1275afb.jpg?v=1692852057&width=1066",
+    "alt": "Brooklyn Roasting Company 200 Flushing Ave outpost",
     "top": false
   },
   {
@@ -381,8 +381,8 @@ const VENUES = [
     "linkText": "littlefield home",
     "email": "booking@littlefieldnyc.com",
     "note": "Converted 6,200 sq ft Gowanus warehouse with stage, EAW A/V, gallery/bar front room; 300-capacity performance room or movable-partition 100-cap gallery + bar. Day-time coffee-hack friendly industrial shape in the heart of the target zone.",
-    "img": null,
-    "alt": "littlefield Gowanus industrial performance room with stage",
+    "img": "https://littlefieldnyc.com/wp-content/uploads/2021/02/Exterior_mural-scaled.jpg",
+    "alt": "littlefield exterior mural wall",
     "top": false
   },
   {
