@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amsterdam — Venue Options</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<!--
+  COMPUTE CAFE EXPLORER TEMPLATE
+  Edit ONLY the CONFIG, TYPE_META, and VENUES blocks in the <script> at the
+  bottom (plus <title> above). Filter chips, section headers, and header stats
+  all derive from the data — no markup edits needed for a new city or venue mix.
+  Keep the file self-contained: no external CSS/JS/fonts beyond Leaflet from unpkg;
+  geocoding caches per-browser via the browser Cache API (works without localStorage).
+-->
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --ink-1: #0b0b0b;
+    --ink-2: #52514e;
+    --ink-3: #898781;
+    --hairline: rgba(11,11,11,0.10);
+    --grid: #e1e0d9;
+    --accent-a: #eb6834;
+    --accent-a-soft: rgba(235,104,52,0.12);
+    --accent-b: #2a78d6;
+    --accent-b-soft: rgba(42,120,214,0.12);
+    --accent-c: #6f4fce;
+    --accent-c-soft: rgba(111,79,206,0.12);
+    --good: #0ca30c;
+    --good-soft: rgba(12,163,12,0.10);
+    --chip-on: #0b0b0b;
+    --chip-on-ink: #fcfcfb;
+    --ph-a: #f3e7dc;
+    --ph-b: #e8d5c2;
+    --ph-c: #dde8f3;
+    --ph-d: #c9d9ec;
+    --ph-e: #e7ddf3;
+    --ph-f: #d6c8ec;
+    --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+      --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+      --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+      --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+      --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+      --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+      --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+      --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+      --ph-e: #291f38; --ph-f: #382a4e;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19;
+    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+    --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+    --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+    --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+    --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+    --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+    --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+    --ph-e: #291f38; --ph-f: #382a4e;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page); color: var(--ink-1);
+    line-height: 1.45; padding: 28px 20px 40px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  header.hero { margin-bottom: 18px; }
+  .kicker {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent-a); margin-bottom: 6px;
+  }
+  h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+  .sub { color: var(--ink-2); font-size: 14px; margin-top: 6px; max-width: 70ch; }
+  .statrow { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 16px; }
+  .stat .n { font-size: 22px; font-weight: 700; }
+  .stat .l { font-size: 12px; color: var(--ink-3); }
+  .themebtn {
+    float: right; margin-top: -2px; font-size: 12px; color: var(--ink-2);
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  }
+  .themebtn:hover { color: var(--ink-1); }
+  .mapbtn {
+    position: absolute; top: 34px; right: 20px; z-index: 11; float: none;
+    font-size: 12px; color: var(--ink-2); background: var(--surface);
+    border: 1px solid var(--hairline); border-radius: 999px; padding: 6px 12px;
+    cursor: pointer;
+  }
+  .mapbtn:hover { color: var(--ink-1); }
+  .mapbtn.open { color: var(--accent-a); border-color: var(--accent-a); }
+  .starh { display: inline-flex; align-items: center; gap: 4px; font-size: 13px;
+    border: 1px solid var(--hairline); background: var(--surface);
+    border-radius: 999px; padding: 3px 9px; cursor: pointer; user-select: none; }
+  .starh:hover { background: var(--accent-a-soft); }
+  .starh .cnt { font-size: 11.5px; color: var(--ink-2); }
+  .starh.on { color: #c2570f; border-color: #c2570f; }
+  .starh.on .cnt { color: var(--ink-1); font-weight: 600; }
+
+  .submitbtn {
+    position: absolute; top: 34px; right: 130px; z-index: 11; float: none;
+    font-size: 12px; font-weight: 600; color: var(--accent-b);
+    background: var(--accent-b-soft);
+    border: 1px solid var(--accent-b); border-radius: 999px; padding: 6px 12px;
+    cursor: pointer;
+  }
+  .submitbtn:hover { color: var(--ink-1); }
+  .submission-modal {
+    display: none; position: fixed; inset: 0; z-index: 20;
+    background: rgba(0,0,0,0.45); align-items: center; justify-content: center;
+  }
+  .submission-modal.open { display: flex; }
+  .submission-modal .dialog {
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 16px; padding: 24px; width: min(480px, 92vw);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .submission-modal h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+  .submission-modal label { display: block; font-size: 12px; color: var(--ink-3); margin: 10px 0 4px; }
+  .submission-modal input, .submission-modal textarea, .submission-modal select {
+    width: 100%; padding: 8px 10px; font-size: 13px;
+    background: var(--page); color: var(--ink-1);
+    border: 1px solid var(--hairline); border-radius: 8px;
+    font-family: inherit;
+  }
+  .submission-modal .foot { margin-top: 16px; display: flex; gap: 10px; align-items: center; }
+  .submission-modal .status { font-size: 12px; color: var(--ink-3); margin-left: auto; }
+  .submission-modal .error { color: #d65a4a; }
+  .submission-modal .success { color: var(--good); }
+  #mapbox {
+    display: none; position: fixed; top: 0; right: 0;
+    width: 50vw; height: 100vh; z-index: 10;
+    border-left: 1px solid var(--hairline);
+    background: var(--page);
+    box-shadow: -8px 0 24px rgba(0,0,0,0.15);
+  }
+  #mapbox .leaflet-container { height: 100%; }
+  @media (max-width: 860px) {
+    #mapbox { width: 100vw; }
+    .mapbtn { top: 108px; }
+  }
+  .filters {
+    position: sticky; top: 0; z-index: 5; background: var(--page);
+    padding: 12px 0 10px; margin: 8px 0 6px;
+    border-bottom: 1px solid var(--grid);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .fgroup { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 999px; padding: 3px; }
+  .chip {
+    font-size: 12.5px; font-weight: 500; color: var(--ink-2);
+    padding: 5px 12px; border-radius: 999px; border: none; background: transparent;
+    cursor: pointer; white-space: nowrap;
+  }
+  .chip:hover { color: var(--ink-1); }
+  .chip.on { background: var(--chip-on); color: var(--chip-on-ink); font-weight: 600; }
+  .count { margin-left: auto; font-size: 12px; color: var(--ink-3); }
+  .section-h { display: flex; align-items: baseline; gap: 10px; margin: 26px 2px 12px; }
+  .section-h h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-h .hint { font-size: 12px; color: var(--ink-3); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  .imgbox { position: relative; aspect-ratio: 16/9.5; overflow: hidden; }
+  .imgbox img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ph {
+    position: absolute; inset: 0; z-index: 0; display: flex;
+    align-items: center; justify-content: center; flex-direction: column; gap: 6px;
+  }
+  .card.noimg img { display: none; }
+  .ph.t0 { background: linear-gradient(135deg, var(--ph-a), var(--ph-b)); }
+  .ph.t1 { background: linear-gradient(135deg, var(--ph-c), var(--ph-d)); }
+  .ph.t2 { background: linear-gradient(135deg, var(--ph-e), var(--ph-f)); }
+  .ph .mono { font-size: 30px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-2); opacity: 0.85; }
+  .ph .icn { font-size: 22px; }
+  .toppick {
+    position: absolute; top: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 700; background: rgba(11,11,11,0.78); color: #fff;
+    padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .areatag {
+    position: absolute; bottom: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 600; background: rgba(11,11,11,0.62); color: #fff;
+    padding: 3px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .body { padding: 14px 16px 15px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .titlerow { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .vname { font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .typechip { flex: none; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; margin-top: 1px; }
+  .typechip.t0 { color: var(--accent-a); background: var(--accent-a-soft); }
+  .typechip.t1 { color: var(--accent-b); background: var(--accent-b-soft); }
+  .typechip.t2 { color: var(--accent-c); background: var(--accent-c-soft); }
+  .addr { font-size: 12.5px; }
+  .addr a { color: var(--ink-3); text-decoration: none; }
+  .addr a:hover { color: var(--ink-1); text-decoration: underline; }
+  .cap { font-size: 12.5px; color: var(--ink-2); }
+  .cap b { color: var(--ink-1); font-weight: 600; }
+  .flag {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 7px; align-self: flex-start;
+  }
+  .flag.dedicated { color: var(--good); background: var(--good-soft); }
+  .flag.contact { color: var(--ink-2); background: var(--page); border: 1px solid var(--hairline); }
+  .note { font-size: 13px; color: var(--ink-2); flex: 1; }
+  .links { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+  .btn { font-size: 12.5px; font-weight: 600; text-decoration: none; padding: 7px 13px; border-radius: 8px; }
+  .btn.pri { background: var(--ink-1); color: var(--page); }
+  .btn.pri:hover { opacity: 0.85; }
+  .btn.sec { color: var(--ink-2); border: 1px solid var(--hairline); }
+  .btn.sec:hover { color: var(--ink-1); border-color: var(--ink-3); }
+  .empty { color: var(--ink-3); font-size: 14px; padding: 40px 0; text-align: center; }
+  footer { margin-top: 34px; border-top: 1px solid var(--grid); padding-top: 18px; display: grid; gap: 14px; }
+  .fnote { font-size: 13px; color: var(--ink-2); max-width: 90ch; }
+  .fnote b { color: var(--ink-1); }
+  .prov { font-size: 11.5px; color: var(--ink-3); }
+  @media (max-width: 640px) {
+    body { padding: 18px 12px 30px; }
+    h1 { font-size: 22px; }
+    .count { flex-basis: 100%; margin-left: 2px; }
+  }
+  .homelink { font-size: 12.5px; font-weight: 600; color: var(--ink-3); text-decoration: none; display: inline-block; margin-bottom: 8px; }
+  .homelink:hover { color: var(--ink-1); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <button class="themebtn" id="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <button class="mapbtn" id="mapbtn" onclick="toggleCityMap()">🗺️ View Map</button>
+    <button class="submitbtn" id="submitbtn" onclick="toggleSubmitModal(true)">＋ Submit Venue</button>
+    <a class="homelink" href="/">← ComputeCafe</a>
+    <div class="kicker" id="kicker"></div>
+    <h1 id="title"></h1>
+    <div class="sub" id="subtitle"></div>
+    <div class="statrow" id="stats"></div>
+  </header>
+  <div class="filters">
+    <div class="fgroup" id="f-area"></div>
+    <div class="fgroup" id="f-type"></div>
+    <div class="fgroup" id="f-flag">
+      <button class="chip" data-v="dedicated">✓ Dedicated events page only</button>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+  <div id="content"></div>
+  <div id="mapbox" aria-hidden="true"></div>
+  <div class="submission-modal" id="submission-modal" role="dialog" aria-modal="true" aria-labelledby="submission-title">
+    <div class="dialog">
+      <h3 id="submission-title">Suggest a venue for <span id="submit-city-name"></span></h3>
+      <form id="venue-form" novalidate>
+        <label>Name * <input name="name" required maxlength="80"></label>
+        <label>Address * <input name="addr" required maxlength="120" placeholder="e.g. 123 Main St, City"></label>
+        <label>Capacity * <input name="cap" required maxlength="60" placeholder="e.g. ~100 standing / 150"></label>
+        <label>Private-events URL * <input name="link" required type="url" maxlength="240" placeholder="https://…"></label>
+        <label>Type * <select name="type"><option value="coffee">Coffee shop</option><option value="cowork">Coworking / event space</option><option value="event">Event space</option></select></label>
+        <label>Area <input name="area" maxlength="60" placeholder="neighborhood (optional)"></label>
+        <label>Events email <input name="email" type="email" maxlength="80" placeholder="events@… (optional)"></label>
+        <label>Photo URL <input name="img" type="url" maxlength="240" placeholder="hotlinked interior/patio (optional)"></label>
+        <label>Why it works for a 50–200 coffee/hack * <textarea name="note" required rows="2" maxlength="400"></textarea></label>
+        <label>What's the photo of? <input name="alt" maxlength="80" placeholder="short photo caption"></label>
+        <div class="foot">
+          <button type="submit" class="btn pri" id="submit-send">Submit.</button>
+          <button type="button" class="btn sec" onclick="toggleSubmitModal(false)">Cancel</button>
+          <span class="status" id="submit-status"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+  <footer id="foot"></footer>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+/* Map primitives — Leaflet helpers (also used by index.html) */
+(function () {
+  const ACCENT = { live: "#0ca30c", rsvp: "#2a78d6", soon: "#898781" };
+  const NOMINATIM = "https://nominatim.openstreetmap.org/search?format=json&limit=1&q=";
+  const CACHE_NS = "venue-coords:";
+
+  window.initMap = function (container, data) {
+    const L = window.L;
+    if (!L) return null;
+    const el = container;
+    el.innerHTML = "";
+    const map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+    const pts = [];
+    (data.venues || []).forEach(v => pts.push(v));
+    (data.cities || []).forEach(c => pts.push(c));
+    const latLngs = [];
+    pts.forEach(it => {
+      const isCity = !!it.kind && it.kind === "city";
+      const color = isCity ? (ACCENT[it.status] || ACCENT.soon) : ACCENT.live;
+      const m = L.circleMarker([it.lat, it.lng], {
+        radius: isCity ? 7 : 6, color, weight: 2, fillColor: color, fillOpacity: 0.55,
+      });
+      const href = it.href;
+      const label = it.name;
+      const sub = it.area || it.date || "";
+      const popup = `<div style="max-width:220px"><b>${label}</b><div style="font-size:12px;color:#666">${sub}</div>${href ? `<div style="margin-top:6px"><a href="${href}" ${href.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>Open →</a></div>` : ""}</div>`;
+      m.bindPopup(popup);
+      m.addTo(map);
+      if (href) m.on("click", () => m.openPopup());
+      latLngs.push(m.getLatLng());
+    });
+    if (latLngs.length === 1) map.setView(latLngs[0], 12);
+    else if (latLngs.length > 1) map.fitBounds(L.latLngBounds(latLngs), { padding: [30, 30] });
+    else map.setView([0, 0], 2);
+    return map;
+  };
+
+  window.toggleMap = function (container, data) {
+    const el = container;
+    if (el.style.display === "block") {
+      el.style.display = "none";
+      el.setAttribute("aria-hidden", "true");
+      return false;
+    }
+    el.style.display = "block";
+    el.setAttribute("aria-hidden", "false");
+    if (!el.dataset.mounted) {
+      el.dataset.mounted = "1";
+      window.__map = window.initMap(el, data);
+      requestAnimationFrame(() => window.__map.invalidateSize());
+    }
+    return true;
+  };
+
+  window.__geoCache = {};
+  function cacheKeyForCities() { return CACHE_NS + "cities:1"; }
+  function getCityCenters() { return window.__citiesCache || null; }
+
+  window.toggleCityMap = async function () {
+    const el = document.getElementById("mapbox");
+    if (el.style.display === "block") {
+      el.style.display = "none";
+      document.getElementById("mapbtn").textContent = "🗺️ View Map";
+      return;
+    }
+    document.getElementById("mapbtn").textContent = "🗺️ Loading…";
+    if (!el.dataset.mounted) {
+      el.dataset.mounted = "1";
+      const cache = caches && caches.open ? await caches.open("compute-cafe") : null;
+      const cachedCoords = cache ? await cache.match(CACHE_NS + "venues") : null;
+      let out;
+      if (cachedCoords) {
+        try { out = await cachedCoords.json(); } catch {}
+      }
+      if (!out) {
+        out = [];
+        const batch = VENUES.slice(0, 50);
+        await Promise.all(batch.map(async v => {
+          if (!v.addr) { out.push({...v, lat: null, lng: null}); return; }
+          try {
+            const resp = await fetch(NOMINATIM + encodeURIComponent(v.addr));
+            const arr = await resp.json();
+            const first = arr[0] || {};
+            out.push({...v, lat: first.lat ? parseFloat(first.lat) : null, lng: first.lon ? parseFloat(first.lon) : null});
+          } catch {
+            out.push({...v, lat: null, lng: null});
+          }
+        }));
+        if (cache) await cache.put(CACHE_NS + "venues", new Response(JSON.stringify(out)));
+      }
+      const pts = out.filter(v => v.lat !== null && v.lng !== null);
+      window.__map = window.initMap(el, { venues: pts });
+      requestAnimationFrame(() => window.__map.invalidateSize());
+    }
+    el.style.display = "block";
+    el.setAttribute("aria-hidden", "false");
+    document.getElementById("mapbtn").textContent = "🗺️ Hide Map";
+  };
+})();
+
+
+/* ============================ EDIT BELOW ============================ */
+
+// Page copy — CONFIG + TYPE_META + VENUES
+const CONFIG = {
+  kicker: "Amsterdam Tech Week · Venue Scout",
+  title: "Amsterdam — Venue Options",
+  subtitle: "Venue scout — researched Aug 2026, event 2026-09-25.",
+  extraStat: {"n":"2026-09-25","l":"Amsterdam event date, 2026"},
+  footnotes: [
+  ],
+  provenance: "Researched Aug 2026 · all links verified in evidence.jsonl · capacities published or estimated.",
+};
+
+const TYPE_META = {
+  coffee: { label: "Coffee shop", icon: "☕" },
+  cowork: { label: "Coworking / event space", icon: "🏢" },
+};
+
+const VENUES = [
+  {
+    "k": "nio_house_amsterdam",
+    "name": "NIO House Amsterdam",
+    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "type": "coffee",
+    "addr": "Leidsestraat 32-34 (Metz Building, hoek Keizersgracht), 1017 PB Amsterdam",
+    "cap": "<b><b>75</b></b> plenary / <b>120</b> party / <b>335</b> max across 19 spaces",
+    "flag": "dedicated",
+    "link": "https://vermaatevents.nl/en/venues/nio-house",
+    "linkText": "NIO House events (Vermaat Events)",
+    "email": "info@vermaatevents.nl",
+    "note": "Tour-trace seed via AI Tinkerers Amsterdam (hosted the May 2026 MotherDuck demo night) — a pre-vetted builder crowd in a café-cum-event house: first-floor NIO Café, Forum for workshops, sixth-floor event floor plus Rietveld rooftop pavilion. Open loft-like rooms with coffee service in-house fit a 50–200 bilingual coffee/hack day exactly; events run through Vermaat Events with catering on site.",
+    "img": "https://api.mvrdv.com/media/uploads/project/926/MVRDV NIO House Amsterdam 3 © Ossip van Duivenbode.jpg?width=1920",
+    "alt": "NIO House Amsterdam café and event floors, MVRDV-renovated Metz building",
+    "top": true
+  },
+  {
+    "k": "caf_de_jaren",
+    "name": "Café de Jaren",
+    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "type": "coffee",
+    "addr": "Nieuwe Doelenstraat 20-22, 1012 CP Amsterdam",
+    "cap": "<b><b>220</b></b> reception max; Event Loft <b>180</b> reception; Backhouse/Annex ~<b>45</b>",
+    "flag": "dedicated",
+    "link": "https://cafedejaren.nl/en/parties-and-events/",
+    "linkText": "Parties and events at De Jaren",
+    "email": "events@cafedejaren.nl",
+    "note": "Iconic high-ceiling grand café on the Amstel between Muntplein and Stopera with a private Event Loft + balcony terrace (306 m²); they routinely host 80–150-guest networking and corporate events, and the café floor and reading table are built for all-day laptop lingers — natural bilingual NL/EN crowd.",
+    "img": "https://cafedejaren.nl/wp-content/uploads/cdj_events_white.jpg",
+    "alt": "Event Loft with balcony over the Amstel at Café de Jaren",
+    "top": false
+  },
+  {
+    "k": "mindspace_dam",
+    "name": "Mindspace Dam",
+    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "type": "coffee",
+    "addr": "Nieuwezijds Voorburgwal 162, 1012 SJ Amsterdam",
+    "cap": "~<b><b>100</b></b> event space (est; multi-billion listing band), boardroom 20",
+    "flag": "dedicated",
+    "link": "https://www.mindspace.me/amsterdam/dam/event-spaces",
+    "linkText": "Event spaces at Mindspace Dam",
+    "email": null,
+    "note": "Tour-trace seed via AI Tinkerers Amsterdam (Nov 2025 meetup, +130 RSVPs, venue sponsor Mindspace) — a café-styled coworking floor with lounges, coffee bar and terrace inside a former bank by Dam Square; hack-day layout (open coworking + breakouts) is its native shape. Booking via the on-page form, no published events email.",
+    "img": "https://www.mindspace.me/wp-content/uploads/2025/06/Mindspace-Dam-Amsterdam-Wouter-van-der-Wolk-43.jpg",
+    "alt": "Coworking lounge with coffee bar in the former bank at Mindspace Dam",
+    "top": false
+  },
+  {
+    "k": "bimhuis_bimhuis_caf",
+    "name": "BIMHUIS (Bimhuis Café)",
+    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "type": "coffee",
+    "addr": "Piet Heinkade 3, 1019 BR Amsterdam",
+    "cap": "<b><b>250</b></b> seated hall / <b>150</b> cocktail foyer / up to <b>400</b> reception",
+    "flag": "dedicated",
+    "link": "https://www.bimhuis.nl/en/venue-rental",
+    "linkText": "Venue rental at BIMHUIS",
+    "email": null,
+    "note": "IJ-waterfront music house with a daytime café/restaurant and broad windows over the water; foyer and hall rent for day conferences, summits and receptions with in-house catering — flexible 40–400 layouts suit a 50–200 builder day. Daytime rental enquiries via the venue-rental contact form (no published direct email on the page).",
+    "img": "https://backend.bimhuis.nl/app/uploads/2019/02/2016-Bimhuis-Amsterdam-c-John-Post.jpg",
+    "alt": "Bimhuis hall and foyer overlooking the IJ waterfront",
+    "top": false
+  },
+  {
+    "k": "the_hoxton_amsterdam",
+    "name": "The Hoxton, Amsterdam (The Apartment)",
+    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "type": "coffee",
+    "addr": "Herengracht 255, 1016 BJ Amsterdam",
+    "cap": "<b><b>80</b></b> exclusive hire; Living Room <b>50</b>, Pantry <b>30</b>",
+    "flag": "dedicated",
+    "link": "https://thehoxton.com/amsterdam/herengracht/parties-and-celebrations",
+    "linkText": "Parties & celebrations at The Hoxton Amsterdam",
+    "email": null,
+    "note": "Canal-house hotel in the 9 Straatjes edge of the Canal Belt whose Apartment (Pantry kitchen, Living Room, Games Room, courtyard) runs as a coffee-house-style suite; Lotti's lobby café keeps the brews flowing. Right size for an intimate 50–80-person hack day; enquiries via form or phone +31 (0)20 888 5555.",
+    "img": "https://thehoxton.com/wp-content/uploads/sites/5/2020/06/Amsterdam_Mez.jpg?w=848",
+    "alt": "Mezzanine lounge with bookcases and armchairs at The Hoxton Amsterdam",
+    "top": false
+  },
+  {
+    "k": "bimhuis",
+    "name": "Bimhuis",
+    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "type": "cowork",
+    "addr": "Piet Heinkade 3, 1019 BR Amsterdam",
+    "cap": "Concert Hall <b><b>250</b></b> seated / <b>385</b> mixed; Café <b>150</b> reception; Foyer up to <b>400</b>",
+    "flag": "dedicated",
+    "link": "https://www.bimhuis.nl/en/venue-rental",
+    "linkText": "Venue rental — Bimhuis",
+    "email": "verhuur@bimhuis.nl",
+    "note": "Waterfront jazz landmark with a glass-walled concert hall plus a café/foyer perfect for coffee service and hack-style breakouts. Dedicated venue-rental team, bilingual rental brochures, and full AV already in-house.",
+    "img": "https://backend.bimhuis.nl/app/uploads/2025/07/2-Concertzaal-c-Marie-Broeckman-1200x630.jpg",
+    "alt": "Wooden concert hall with tiered seating and harbour views",
+    "top": false
+  },
+  {
+    "k": "mindspace_herengracht",
+    "name": "Mindspace Herengracht",
+    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "type": "cowork",
+    "addr": "Herengracht 168, 1016 BP Amsterdam",
+    "cap": "~<b><b>80</b></b> seated / <b>150</b> reception (est — two event rooms plus garden; published numbers not listed)",
+    "flag": "dedicated",
+    "link": "https://www.mindspace.me/amsterdam/herengracht/event-spaces/",
+    "linkText": "Event spaces — Mindspace Herengracht",
+    "email": null,
+    "note": "UNESCO canal-house coworking brand with a dedicated event-spaces page, marble halls and a hidden garden — good for an intimate coffee/hack day of 50-100 rather than the full 200. Direct events contact form and phone on the page.",
+    "img": "https://www.mindspace.me/wp-content/uploads/2025/06/2.event-showstopper_1.jpg",
+    "alt": "Historic canal-house event room with frescoed ceilings and garden",
+    "top": false
+  },
+  {
+    "k": "spaces_herengracht",
+    "name": "Spaces Herengracht",
+    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "type": "cowork",
+    "addr": "Herengracht 124-128, 1015 BT Amsterdam",
+    "cap": "~<b><b>60–120</b></b> standing (est — event spaces offered but capacities not published)",
+    "flag": "contact",
+    "link": "https://www.spacesworks.com/en/nl/3177",
+    "linkText": "Spaces Herengracht 124-128",
+    "email": null,
+    "note": "Canal-belt coworking flagship with event spaces explicitly listed among its products; suitable for mid-size hack/coffee events in a light-filled historic building. Capacity scarce online — treat as a qualified backup once a site recce confirms size.",
+    "img": "https://assets.iwgplc.com/image/upload/c_fill,f_auto,q_auto,w_1000,h_667//CentreImagery/3177/3177_13.jpg",
+    "alt": "Bright canal-side coworking lounge with communal tables",
+    "top": false
+  },
+  {
+    "k": "pllek",
+    "name": "Pllek",
+    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "type": "coffee",
+    "addr": "T.T. Neveritaweg 59, 1033 WB Amsterdam (NDSM-werf)",
+    "cap": "~<b><b>175</b></b> theater / <b>200</b> reception / <b>350</b> standing (est)",
+    "flag": "dedicated",
+    "link": "https://pllek.nl/en/private-events",
+    "linkText": "pllek.nl/en/private-events",
+    "email": "info@pllek.nl",
+    "note": "Raw industrial events space in upcycled shipping containers right on the NDSM dock, with private terrace and beach on the IJ; 198 m² private room fits our full 50-200 band and hosts meetings, congresses and launches, with in-house catering and tech included. The most turnkey coffee-and-hack day room on the wharf.",
+    "img": "https://pllek.nl/wp-content/uploads/2022/02/pllek-evenement-1024x647.jpg",
+    "alt": "Wide interior of Pllek's private events room set for a large gathering",
+    "top": true
+  },
+  {
+    "k": "ijver",
+    "name": "IJver",
+    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "type": "coffee",
+    "addr": "Scheepsbouwkade 72, 1033 WM Amsterdam (NDSM-werf)",
+    "cap": "<b><b>150</b></b> plenary in NDSM-Theater; rooms <b>24-130</b> (published)",
+    "flag": "dedicated",
+    "link": "https://ijveramsterdam.nl/evenementen/",
+    "linkText": "ijveramsterdam.nl/evenementen",
+    "email": "info@ijveramsterdam.nl",
+    "note": "Cafe-restaurant in a converted shipyard shed with a purpose-built 150 m² NDSM-Theater plus three smaller rooms (Boeg 60-130, Achtersteven 24-50, Ruim 20-50) and its own bar; explicitly hosts seminars, presentations and custom events with full catering and tech, so a hack day with coffee service slots in cleanly.",
+    "img": null,
+    "alt": "Industrial cafe interior at IJver with long tables and 19 beer taps",
+    "top": false
+  },
+  {
+    "k": "the_coffee_virus",
+    "name": "The Coffee Virus @ A Lab",
+    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "type": "coffee",
+    "addr": "Overhoeksplein 1, 1031 KS Amsterdam (A Lab)",
+    "cap": "~<b><b>130</b></b> theater / <b>70</b> workshop / <b>60</b> terrace (est)",
+    "flag": "dedicated",
+    "link": "https://thecoffeevirus.nl/meetingrooms",
+    "linkText": "thecoffeevirus.nl/meetingrooms",
+    "email": "alab@thecoffeevirus.nl",
+    "note": "Specialty-coffee bar embedded in A Lab, the former Shell Lab startup hub, with The Playground basement event space (up to 130), a 60-person terrace and explicitly 'hackathon-proof' superfast wifi; built for meetups, workshops and hackathons with the coffee crowd on the doorstep, one ferry stop from CS.",
+    "img": "https://thecoffeevirus.nl/img/alab/locationslider/thecoffeevirus-alab-ahk-grootlab-cafe.jpg",
+    "alt": "Open cafe hall of The Coffee Virus inside A Lab with bar and tables",
+    "top": false
+  },
+  {
+    "k": "noorderlicht",
+    "name": "Noorderlicht",
+    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "type": "coffee",
+    "addr": "NDSM-Plein 102, 1033 WB Amsterdam",
+    "cap": "~<b><b>80</b></b> seated / <b>150</b> standing (est)",
+    "flag": "dedicated",
+    "link": "https://www.noorderlichtndsm.nl/en/page/zakelijke-events-exclusieve-groepen",
+    "linkText": "noorderlichtndsm.nl corporate events",
+    "email": "Nathalie@noorderlichtndsm.nl",
+    "note": "Beloved cultural greenhouse-cafe on the wharf offering exclusive venue hire, presentations and networking events with live music and barbecues possible; flexible indoor-plus-garden setting that reads like a creative clubhouse and suits a casual bilingual builder day.",
+    "img": "https://www.noorderlichtndsm.nl/api/uploads/foto's%20jur/3780a71ef6c2e1c64387291ae406ba30.webp?w=1920",
+    "alt": "Greenhouse interior of Noorderlicht filled with plants, lamps and long tables",
+    "top": false
+  },
+  {
+    "k": "bar_restaurant_van",
+    "name": "Bar Restaurant Van de Werf",
+    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "type": "coffee",
+    "addr": "NDSM-Kade 2, 1033 PG Amsterdam",
+    "cap": "~<b><b>60</b></b> inside / <b>100</b> incl. panorama deck (est)",
+    "flag": "contact",
+    "link": "https://vandewerf.amsterdam",
+    "linkText": "vandewerf.amsterdam",
+    "email": "info@vandewerf.amsterdam",
+    "note": "Waterside bar-restaurant opposite the NDSM ferry with long indoor tables, a panorama deck, €1 morning coffee and advertised laptop-friendly work spots with good wifi; 'space for groups of almost any size', booked via the site contact route rather than a dedicated events page, so best for the smaller end of the band.",
+    "img": null,
+    "alt": "Panorama deck of Van de Werf overlooking the IJ",
+    "top": false
+  },
+  {
+    "k": "ndsm_loods",
+    "name": "NDSM Loods",
+    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "type": "cowork",
+    "addr": "NDSM-Plein 85, 1033 WC Amsterdam",
+    "cap": "<b><b>250–9,000</b></b> guests; rooms up to <b>6,000</b> reception (published)",
+    "flag": "dedicated",
+    "link": "https://ndsmloods.nl/verhuur/",
+    "linkText": "ndsmloods.nl/verhuur",
+    "email": "verhuur@ndsmloods.nl",
+    "note": "The monumental shipyard warehouse with rentable halls (Noordstrook, Underskate, Upperskate, NDSM Theater) for congresses, fairs and company events. Right at the corridor's NDSM-Plein end; scale is overshoot, but smaller sections fit 200.",
+    "img": "https://www.ndsmloods.nl/wp-content/uploads/2019/02/main-8-1800x1200.jpg",
+    "alt": "Vast industrial interior of the former NDSM shipbuilding hall",
+    "top": false
+  },
+  {
+    "k": "tolhuistuin",
+    "name": "Tolhuistuin",
+    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "type": "cowork",
+    "addr": "IJpromenade 2, 1031 KT Amsterdam",
+    "cap": "Club <b><b>220</b></b> seated / <b>550</b> standing; Galerij to <b>250</b> (published)",
+    "flag": "dedicated",
+    "link": "https://tolhuistuin.nl/en/venue-rental/",
+    "linkText": "tolhuistuin.nl/en/venue-rental",
+    "email": "verhuur@tht.nl",
+    "note": "Cultural complex across the IJ from Centraal (Noord end of the corridor) with a dozen rentable halls full-AV, in-house veg catering and garden. Dedicated brochure PDF and verhuur email; conference and festival proven.",
+    "img": null,
+    "alt": "Club concert hall at the Tolhuistuin cultural complex",
+    "top": false
+  },
+  {
+    "k": "spaces_mt_lincolnweg",
+    "name": "Spaces Mt. Lincolnweg (NDSM-werf)",
+    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "type": "cowork",
+    "addr": "Mt. Lincolnweg 38-40, 1033 SN Amsterdam",
+    "cap": "~<b><b>50–100</b></b> event-style (est)",
+    "flag": "contact",
+    "link": "https://www.spacesworks.com/en/nl/8483",
+    "linkText": "spacesworks.com/en/nl/8483",
+    "email": null,
+    "note": "Global cowork operator physically on the NDSM-werf listing 'offices, cowork and meeting rooms' with bookable common areas. Office-box rather than café soul, but an on-corridor professional fallback bookable via their site form.",
+    "img": null,
+    "alt": "Coworking lounge at Spaces Mt. Lincolnweg on the NDSM-werf",
+    "top": false
+  },
+  {
+    "k": "matrix_one_caf",
+    "name": "Matrix ONE (Café NEO)",
+    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "type": "coffee",
+    "addr": "Matrix ONE, Science Park 301, 1098 XH Amsterdam",
+    "cap": "Auditorium <b><b>100</b></b> seated; Cafe NEO restaurant + terrace for receptions (est. ~<b>150</b> standing)",
+    "flag": "dedicated",
+    "link": "https://www.matrixic.nl/en/matrix-one",
+    "linkText": "Matrix ONE — Matrix Innovation Center",
+    "email": "catering@cafeneo.nl",
+    "note": "Seed: AI Tinkerers/ElevenLabs traced to Science Park cluster; Matrix ONE's open social area + Cafe NEO catering is purpose-built for bilingual tech meetups. Room-shape fit: 100-seat auditorium plus open atrium adjacent to cafe = classic coffee+hack layout at 50-150 pax.",
+    "img": "https://www.matrixic.nl/wp-content/uploads/2023/05/10-©-Daria--scaled.jpg",
+    "alt": "Matrix ONE atrium and social staircase with cafe seating",
+    "top": true
+  },
+  {
+    "k": "startup_village_cantine",
+    "name": "Startup Village Cantine / Venture Studio",
+    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "type": "coffee",
+    "addr": "Science Park 608, 1098 XH Amsterdam",
+    "cap": "Eventspace up to <b><b>150</b></b> (<b>200-300</b> via connected halls, est); Coffee Virus catering",
+    "flag": "dedicated",
+    "link": "https://www.startupvillage.nl/catering",
+    "linkText": "Startup Village — Catering & Cantine",
+    "email": "hello@startupvillage.nl",
+    "note": "Deep-tech AI/quantum hub at Science Park; Coffee Virus runs a hackathon-proof 150-pax eventspace and cantine with free-cowork Fridays. Room-shape fit: cafe cantine + break-out rooms + outdoor village square in campus heart.",
+    "img": "https://images.squarespace-cdn.com/content/v1/60701561519ce6103b1c7c2d/95fe95c5-db76-4c5b-8b32-2b75f2933e55/DCSA-IATA-multimodal-hackathon-BFF-Visuals-0099.jpg",
+    "alt": "Startup Village eventspace during a hackathon",
+    "top": false
+  },
+  {
+    "k": "eetcaf_oerknal_usc",
+    "name": "Eetcafé Oerknal (USC Universum)",
+    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "type": "coffee",
+    "addr": "Science Park 306, 1098 XH Amsterdam",
+    "cap": "<b><b>200–300</b></b> for private events; <b>60</b> terrace",
+    "flag": "dedicated",
+    "link": "https://www.uscsport.nl/en/rent/eetcafe-oerknal",
+    "linkText": "USC — Eetcafé Oerknal rental page",
+    "email": "oerknal@uscsport.nl",
+    "note": "Sports cafe with dedicated rental page (stage, beamer, glass-walled Komeet room). Room-shape fit: real cafe floor + AV + dedicated events email; student-crowd pricing helps a free community hack day.",
+    "img": "https://eetcafeoerknal.nl/wp-content/uploads/2023/11/5A8B0933-Bew-scaled.jpg",
+    "alt": "Oerknal cafe interior during an event",
+    "top": false
+  },
+  {
+    "k": "the_coffee_virus",
+    "name": "The Coffee Virus — A Lab locations & Startup Village",
+    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "type": "coffee",
+    "addr": "Multiple; A Lab: Overhoeksplein 2, 1031 KS Amsterdam (Noord) and Startup Village Science Park 608, 1098 XH Amsterdam",
+    "cap": "<b>5</b>to <b>500</b> indoor+outdoor; The Playground (A Lab) up to <b>130</b>, Terrace <b>60</b>",
+    "flag": "dedicated",
+    "link": "https://thecoffeevirus.nl/thecoffeevirus-meetingrooms",
+    "linkText": "The Coffee Virus — Meetingrooms",
+    "email": null,
+    "note": "Coffee-catering company that runs the cafe inside both A Lab (Shell's startup campus) and Startup Village. Room-shape fit: 'hackathon-proof wifi' advertised, 130-pax workshop space, cafe-first floor plan — the most event-shape-matched cafe operator in Amsterdam.",
+    "img": "https://images.squarespace-cdn.com/content/v1/60701561519ce6103b1c7c2d/a0ebb1ce-4046-4f86-a99f-eb7da4f0bd83/Afbeelding+3.jpg",
+    "alt": "Coffee Virus cantine floor at Startup Village",
+    "top": false
+  },
+  {
+    "k": "impact_hub_amsterdam",
+    "name": "Impact Hub Amsterdam",
+    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "type": "coffee",
+    "addr": "Marineterrein Gebouw 27A, Kattenburgerstraat 5, 1018 JA Amsterdam",
+    "cap": "Unknown on site; estimate ~<b><b>80–150</b></b> across bookable rooms (est)",
+    "flag": "contact",
+    "link": "https://amsterdam.impacthub.net/about-us/contact",
+    "linkText": "Impact Hub Amsterdam — Contact",
+    "email": null,
+    "note": "Builder/impact-meetup hub now located on the Marineterrein (moved from Linnaeusstraat). Room-shape fit: proven hack-event host network with cafe-style incubator layout; routing goes through a form, no public events page fetched this session.",
+    "img": "https://app.thefeedfactory.nl/api/assets/695e2e4d9481831098febbbe/Grote_Zaal_1.webp",
+    "alt": "Pakhuis de Zwijger main hall auditorium with stage and projection screen",
+    "top": false
+  },
+  {
+    "k": "startup_village_amsterdam",
+    "name": "Startup Village Amsterdam — Venture Studio",
+    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "type": "cowork",
+    "addr": "Science Park 608, 1098 XH Amsterdam",
+    "cap": "up to <b><b>180</b></b> seated / <b>300</b> standing (combined Day+Night); Night room <b>120</b>, Day room <b>50</b>",
+    "flag": "dedicated",
+    "link": "https://www.startupvillage.nl/meetings-event-spaces",
+    "linkText": "Meetings & event spaces",
+    "email": "hello@startupvillage.nl",
+    "note": "Self-described hub for AI & quantum computing; sliding-wall Day+Night event space, foyer bar for coffee/check-in, and an events calendar full of AI meetups. Perfect shape-size match for a 50-200 bilingual hack/coffee day.",
+    "img": "https://images.squarespace-cdn.com/content/v1/60701561519ce6103b1c7c2d/35470c9d-18b5-4344-b793-5ffc2a935017/thecoffeevirus-startupvillage-coworkingspace-space_barviewwide-slider.jpg",
+    "alt": "Venture Studio bar and open event space",
+    "top": true
+  },
+  {
+    "k": "codam_coding_college",
+    "name": "Codam Coding College — Codam Spaces (Auditorium + Open Space)",
+    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "type": "cowork",
+    "addr": "Kattenburgerstraat 7, Gebouw 039, Marineterrein, 1018 JA Amsterdam",
+    "cap": "Auditorium <b><b>100</b></b> seated; Open Space <b>45</b> seated / <b>120</b> standing",
+    "flag": "dedicated",
+    "link": "https://www.codam.nl/en/rent-codam-spaces-for-events",
+    "linkText": "Rent Codam Spaces for events",
+    "email": "rene@codam.nl",
+    "note": "Peer-to-peer coding school (École 42 network) on Marineterrein; auditorium has 4K livestream/mixing kit, Open Space has terrace access, Kanteen25 catering. Non-profit — rental income funds free tuition, a story hack-day crowds like.",
+    "img": "https://www.codam.nl/wp-content/uploads/2025/02/Codam_auditorium1.jpg",
+    "alt": "Codam auditorium with tiered seating and stage",
+    "top": false
+  },
+  {
+    "k": "lab42_uva_ai",
+    "name": "LAB42 — UvA AI & digital-innovation hub",
+    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "type": "cowork",
+    "addr": "Science Park 900, 1098 XH Amsterdam",
+    "cap": "~<b><b>60</b></b> (est) per seminar room; hosted 36+ AI Tinkerers June 2024 (est)",
+    "flag": "contact",
+    "link": "https://www.amsterdamsciencepark.nl/locate/conferences-and-meeting-facilities",
+    "linkText": "Amsterdam Science Park meeting facilities (incl. LAB42)",
+    "email": "lab42@uva.nl",
+    "note": "Tour-trace seed: hosted AI Tinkerers Amsterdam June 2024 (room 36, 3rd floor, demos + 36+ practitioners) — proven willingness to host builder meetups. Book via UvA Lab42 / Science & Business org; open circular building with atrium for coffee networking.",
+    "img": "https://www.amsterdamsciencepark.nl/wp-content/uploads/2022/09/918_UVA_Science_Park_N95_websitenew-960x640.jpg",
+    "alt": "LAB42 circular building atrium and facade",
+    "top": false
+  },
+  {
+    "k": "matrix_one_one",
+    "name": "Matrix ONE — ONE Auditorium + SustainaLab",
+    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "type": "cowork",
+    "addr": "Science Park 301, 1098 XH Amsterdam",
+    "cap": "ONE Auditorium <b><b>100</b></b> seats; SustainaLab <b>40</b>; Cafe NEO catering on-site",
+    "flag": "contact",
+    "link": "https://www.amsterdamsciencepark.nl/locate/conferences-and-meeting-facilities",
+    "linkText": "Science Park conference & meeting facilities (Matrix ONE)",
+    "email": "info@matrixic.nl",
+    "note": "MVRDV's 2023-opened circular innovation hub (social staircase, restaurant NEO). Auditorium + SustainaLab combo covers plenary + breakouts; the campus' flagship room for a polished bilingual tech-week crowd.",
+    "img": "https://www.amsterdamsciencepark.nl/wp-content/uploads/2023/10/Auditorium-Matrix-ONE_meeting-rooms-1280x800.jpg",
+    "alt": "Matrix ONE auditorium with tiered seating",
+    "top": false
+  },
+  {
+    "k": "eetcaf_oerknal_sports",
+    "name": "Eetcafé Oerknal (Sports Café, Universum)",
+    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "type": "cowork",
+    "addr": "Science Park 306, 1098 XH Amsterdam",
+    "cap": "<b><b>200</b>-300</b> persons (published); cafe with stage, beamer, LED lights",
+    "flag": "contact",
+    "link": "https://eetcafeoerknal.nl",
+    "linkText": "Eetcafé Oerknal — contact & reservations",
+    "email": "oerknal@uscsport.nl",
+    "note": "The campus' living-room: stage, beamer and hot/cold catering, bookable up to 200-300 — the best pure coffee/hack-day room shape on the park. Still operating (event listed Oct 2026); student-budget pricing.",
+    "img": "https://eetcafeoerknal.nl/wp-content/uploads/2023/11/tom3-scaled.jpg",
+    "alt": "Oerknal cafe interior with long tables and bar",
+    "top": false
+  },
+  {
+    "k": "polderzaal_cafrestaurant_polder",
+    "name": "Polderzaal — Café-Restaurant Polder",
+    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "type": "cowork",
+    "addr": "Science Park 201, 1098 XH Amsterdam",
+    "cap": "Theater <b><b>75</b></b> / carré <b>30</b> / reception <b>100</b> (published)",
+    "flag": "contact",
+    "link": "https://www.amsterdamsciencepark.nl/locate/conferences-and-meeting-facilities",
+    "linkText": "Science Park facilities — Polderzaal",
+    "email": "info@cafe-restaurantpolder.nl",
+    "note": "Free-standing cafe-restaurant room with its own terrace and kitchen, sound system and screen — a self-contained coffee-day room for the ~50-100 end of the range, inside the park's leafy quads.",
+    "img": "https://www.amsterdamsciencepark.nl/wp-content/uploads/2019/05/Polderzaal-e1646920242839.jpg",
+    "alt": "Polderzaal freestanding event pavilion with terrace",
+    "top": false
+  }
+];
+
+/* ============================ EDIT ABOVE ============================ */
+
+const state = { area: "all", type: "all", dedicatedOnly: false };
+const AREAS = [...new Set(VENUES.map(v => v.area))];
+const typeKeys = Object.keys(TYPE_META);
+const tcls = t => "t" + (typeKeys.indexOf(t) % 3);
+
+function initials(name){
+  return name.replace(/[^a-zA-Z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join("");
+}
+function mapsUrl(v){
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(v.name + " " + v.addr);
+}
+function card(v){
+  const t = TYPE_META[v.type] || { label: v.type, icon: "📍" };
+  const flagHtml = v.flag === "dedicated"
+    ? '<span class="flag dedicated">✓ Dedicated events page</span>'
+    : '<span class="flag contact">✉ Events contact only</span>';
+  const imgHtml = v.img
+    ? `<img src="${v.img}" alt="${v.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.card').classList.add('noimg')">`
+    : "";
+  const emailBtn = v.email ? `<a class="btn sec" href="mailto:${v.email}">${v.email}</a>` : "";
+  return `<div class="card${v.img ? "" : " noimg"}">
+    <div class="imgbox">
+      ${imgHtml}
+      <div class="ph ${tcls(v.type)}"><span class="icn">${t.icon}</span><span class="mono">${initials(v.name)}</span></div>
+      ${v.top ? '<div class="toppick">★ Top pick</div>' : ""}
+      <div class="areatag">${v.area}</div>
+    </div>
+    <div class="body">
+      <div class="titlerow"><div class="vname">${v.name}</div><span class="typechip ${tcls(v.type)}">${t.icon} ${t.label}</span></div>
+      <div class="addr"><a href="${mapsUrl(v)}" target="_blank" rel="noopener">📍 ${v.addr}</a></div>
+      <div class="cap">${v.cap}</div>
+      ${flagHtml}
+      <div class="note">${v.note}</div>
+      <div class="links"><a class="btn pri" href="${v.link}" target="_blank" rel="noopener">${v.linkText} ↗</a>${emailBtn}<button class="starh" data-k="${v.k}" data-city="${CITY_SLUG}"></button></div>
+    </div>
+  </div>`;
+}
+function render(){
+  const match = v =>
+    (state.area === "all" || v.area === state.area) &&
+    (state.type === "all" || v.type === state.type) &&
+    (!state.dedicatedOnly || v.flag === "dedicated");
+  const shown = VENUES.filter(match);
+  const areas = AREAS.filter(a => state.area === "all" || a === state.area);
+  let html = "";
+  for (const a of areas){
+    const items = shown.filter(v => v.area === a);
+    if (!items.length) continue;
+    const hint = typeKeys.map(k => {
+      const n = items.filter(v => v.type === k).length;
+      return n ? `${n} ${TYPE_META[k].label.toLowerCase()}` : null;
+    }).filter(Boolean).join(" · ");
+    html += `<div class="section-h"><h2>${a}</h2><span class="hint">${hint}</span></div>
+             <div class="grid">${items.map(card).join("")}</div>`;
+  }
+  document.getElementById("content").innerHTML = html || '<div class="empty">No venues match these filters.</div>';
+  document.getElementById("count").textContent = `Showing ${shown.length} of ${VENUES.length} venues`;
+}
+function buildChips(el, values, key){
+  el.innerHTML = `<button class="chip on" data-v="all">All ${key === "area" ? "areas" : "types"}</button>` +
+    values.map(v => `<button class="chip" data-v="${v.v}">${v.label}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(btn => btn.addEventListener("click", () => {
+    el.querySelectorAll(".chip").forEach(b => b.classList.remove("on"));
+    btn.classList.add("on");
+    state[key] = btn.dataset.v;
+    render();
+  }));
+}
+function init(){
+  if (document.title === "Compute Cafe") document.title = CONFIG.title; // standalone use only; built pages keep their spliced title
+  document.getElementById("kicker").textContent = CONFIG.kicker;
+  document.getElementById("title").textContent = CONFIG.title;
+  document.getElementById("subtitle").textContent = CONFIG.subtitle;
+  const dedicated = VENUES.filter(v => v.flag === "dedicated").length;
+  const stats = [
+    { n: String(VENUES.length), l: "venues vetted" },
+    { n: String(dedicated), l: "with dedicated events pages" },
+    { n: String(AREAS.length), l: AREAS.length === 1 ? "neighborhood" : "neighborhoods" },
+  ];
+  if (CONFIG.extraStat) stats.push(CONFIG.extraStat);
+  document.getElementById("stats").innerHTML =
+    stats.map(s => `<div class="stat"><div class="n">${s.n}</div><div class="l">${s.l}</div></div>`).join("");
+  document.getElementById("foot").innerHTML =
+    CONFIG.footnotes.map(f => `<div class="fnote">${f}</div>`).join("") +
+    `<div class="prov">${CONFIG.provenance}</div>`;
+  buildChips(document.getElementById("f-area"), AREAS.map(a => ({v:a, label:a})), "area");
+  buildChips(document.getElementById("f-type"), typeKeys.map(k => ({v:k, label:`${TYPE_META[k].icon} ${TYPE_META[k].label}s`})), "type");
+  const flagBtn = document.querySelector('#f-flag .chip');
+  flagBtn.addEventListener("click", () => {
+    state.dedicatedOnly = !state.dedicatedOnly;
+    flagBtn.classList.toggle("on", state.dedicatedOnly);
+    render();
+  });
+  render();
+}
+function cycleTheme(){
+  const r = document.documentElement;
+  const cur = r.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : cur === "light" ? "dark"
+    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
+  r.setAttribute("data-theme", next);
+}
+
+/* star-venue wiring */
+const STAR_KEY = (c,k) => 'starred:'+c+':'+k;
+async function hydrateStars(){
+  const btns = document.querySelectorAll('.starh');
+  const city = CITY_SLUG || 'unknown';
+  for (const b of btns) {
+    const k = b.dataset.k;
+    if (!k) continue;
+    // hydrate per-browser star state
+    try {
+      if (localStorage.getItem(STAR_KEY(city,k)) === '1') b.classList.add('on');
+    } catch{}
+    // display count from KV if available
+    try {
+      const r = await fetch('/api/star-venue/'+encodeURIComponent(city)+'/'+encodeURIComponent(k));
+      if (r.ok) {
+        const j = await r.json();
+        b.innerHTML = '<span class="star">★</span><span class="cnt">'+(j.newCount||j.count||0)+'</span>';
+      } else {
+        b.innerHTML = '<span class="star">☆</span>';
+      }
+    } catch {
+      b.innerHTML = '<span class="star">☆</span>';
+    }
+    b.addEventListener('click', async () => {
+      const key = STAR_KEY(city,k);
+      let saved = false;
+      try { saved = localStorage.getItem(key) === '1'; } catch{}
+      if (saved) return; // already starred on this browser
+      try { localStorage.setItem(key,'1'); saved = true; } catch{}
+      b.classList.add('on');
+      try {
+        const resp = await fetch('/api/star-venue', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({k, city})
+        });
+        const j = await resp.json();
+        if (j.ok && j.newCount != null) b.querySelector('.cnt').textContent = j.newCount;
+      } catch {}
+    });
+  }
+}
+init();
+hydrateStars();
+
+
+/* Submit Venue modal + GitHub Issues-backed pipeline */
+const cityNames = (CONFIG.title || "").replace(/— Venue Options|,.*$/, "").trim();
+document.getElementById("submit-city-name").textContent = cityNames || CONFIG.kicker;
+function toggleSubmitModal(open) {
+  const m = document.getElementById("submission-modal");
+  m.classList.toggle("open", open);
+  m.setAttribute("aria-hidden", String(!open));
+  if (open) setTimeout(() => m.querySelector("input[name='name']")?.focus(), 0);
+}
+window.toggleSubmitModal = toggleSubmitModal;
+
+function renderSubmissionCard(venue) {
+  const t = TYPE_META[venue.type] || { label: venue.type, icon: "📍" };
+  const flagHtml = venue.flag === "dedicated"
+    ? '<span class="flag dedicated">✓ Dedicated events page</span>'
+    : '<span class="flag contact">✉ Events contact only</span>';
+  const imgHtml = venue.img
+    ? `<img src="${venue.img}" alt="${venue.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.card').classList.add('noimg')">`
+    : "";
+  const emailBtn = venue.email ? `<a class="btn sec" href="mailto:${venue.email}">${venue.email}</a>` : "";
+  return `<div class="card${venue.img ? "" : " noimg"}">
+    <div class="imgbox">
+      ${imgHtml}
+      <div class="ph"><span class="icn">${t.icon}</span><span class="mono">${venue.name.replace(/[^a-zA-Z ]/g,"").split(" ").slice(0,2).map(w=>w[0].toUpperCase()).join("")}</span></div>
+      <div class="areatag">${venue.area || "Submitted"}</div>
+    </div>
+    <div class="body">
+      <div class="titlerow"><div class="vname">${venue.name}</div><span class="typechip">${t.icon} ${t.label}</span></div>
+      <div class="addr"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venue.name + " " + (venue.addr || ""))}" target="_blank" rel="noopener">📍 ${venue.addr}</a></div>
+      <div class="cap">${venue.cap}</div>
+      ${flagHtml}
+      <div class="note">${venue.note}</div>
+      <div class="links"><a class="btn pri" href="${venue.link}" target="_blank" rel="noopener">${venue.linkText || "Visit"} ↗</a>${emailBtn}</div>
+    </div>
+  </div>`;
+}
+
+document.getElementById("venue-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const status = document.getElementById("submit-status");
+  const send = document.getElementById("submit-send");
+  send.disabled = true;
+  status.textContent = "Checking link…";
+  status.className = "status";
+  const data = Object.fromEntries(new FormData(form).entries());
+  data.city = (CONFIG.title || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "unknown";
+  data.flag = data.flag || "contact";
+  try {
+    const resp = await fetch("/api/submit-venue", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    const json = await resp.json();
+    if (!resp.ok || !json.ok) {
+      status.textContent = json.error === "dead_link" ? "That URL did not respond — please double-check it." : (json.detail || "Submission failed.");
+      status.className = "status error";
+      send.disabled = false;
+      return;
+    }
+    status.textContent = "Published — it's in " + (CONFIG.title || "the grid") + " now. Issue #" + json.issue.number + " tracks the review.";
+    status.className = "status success";
+    form.reset();
+    toggleSubmitModal(false);
+    // auto-publish: append the returned venue card into the first area section (no re-fetch)
+    const content = document.getElementById("content");
+    const sectors = content.querySelectorAll(".grid section");
+    if (sectors.length === 0) {
+      content.insertAdjacentHTML("beforeend", renderSubmissionCard(json.venue));
+    } else {
+      sectors[0].insertAdjacentHTML("afterbegin", renderSubmissionCard(json.venue));
+    }
+  } catch (err) {
+    status.textContent = "Network error — try again.";
+    status.className = "status error";
+    send.disabled = false;
+  }
+});
+</script>
+</body>
+</html>

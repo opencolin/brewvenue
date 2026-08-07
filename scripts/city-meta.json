@@ -193,5 +193,15 @@
       "<b>Pairing tip:</b> going with a coworking venue? goodboybob, Intelligentsia, and Menotti's all run mobile espresso / coffee-truck service you can bring in-house."
     ],
     "provenance": "Researched & links verified Aug 2026 · LA Tech Week 2026: Oct 12–18 (SF Tech Week runs Oct 5–11) · Photos load from each venue's own website; placeholder appears where no photo was published. Capacities are published or estimated figures — confirm when booking."
+  },
+  "amsterdam": {
+    "title": "Amsterdam — Venue Options",
+    "subtitle": "Venue scout — researched Aug 2026, event 2026-09-25.",
+    "extraStat": {
+      "n": "2026-09-25",
+      "l": "Amsterdam event date, 2026"
+    },
+    "footnotes": [],
+    "provenance": "Researched Aug 2026 · all links verified in evidence.jsonl · capacities published or estimated."
   }
 }
