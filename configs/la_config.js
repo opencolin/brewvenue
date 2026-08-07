@@ -1,6 +1,6 @@
 // Page copy
 const CONFIG = {
-  kicker: "LA Tech Week · Venue Scout",
+  kicker: "LA Tech Week · Compute Cafe",
   title: "LA Tech Week — Venue Options",
   subtitle: "Large coffee shops & coworking spaces in Santa Monica and Venice that can host an all-day, " +
             "Tech Week-style coffee event (~50–200+ people). Links point to each venue's private-events " +

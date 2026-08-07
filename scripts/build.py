@@ -33,7 +33,7 @@ def build(config_path: str, title: str, slug: str) -> str:
     cfg = open(config_path, encoding="utf-8").read()
     i, j = tpl.index(START), tpl.index(END) + len(END)
     out = tpl[:i] + START + "\n\n" + cfg + "\n" + END + tpl[j:]
-    out = splice(out, "<title>Venue Scout</title>", f"<title>{title}</title>")
+    out = splice(out, "<title>Compute Cafe</title>", f"<title>{title}</title>")
     out = splice(out, "</style>", HOMELINK_CSS + "</style>")
     out = splice(out, '<div class="kicker" id="kicker"></div>', HOMELINK_A + '<div class="kicker" id="kicker"></div>')
     dest = os.path.join(REPO_ROOT, slug, "index.html")

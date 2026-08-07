@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BrewVenue — Venue Scouting HQ</title>
-<meta property="og:title" content="BrewVenue ☕ — Venue Scouting HQ">
-<meta property="og:description" content="Venue scouting HQ for the global hackathon tour — 17 cities, 3 regions, Sep–Oct 2026. Pick a city to see its vetted venues.">
+<title>BrewVenue — Compute Cafe HQ</title>
+<meta property="og:title" content="BrewVenue ☕ — Compute Cafe HQ">
+<meta property="og:description" content="Compute Cafe HQ for the global hackathon tour — 17 cities, 3 regions, Sep–Oct 2026. Pick a city to see its vetted venues.">
 <style>
   :root {
     color-scheme: light;
@@ -65,6 +65,7 @@
   h1 { font-size: 34px; font-weight: 800; letter-spacing: -0.03em; }
   h1 .cup { font-size: 26px; }
   .sub { color: var(--ink-2); font-size: 14.5px; margin-top: 8px; max-width: 72ch; }
+  .sub a { color: var(--ink-1); font-weight: 600; }
   .statrow { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 18px; padding-bottom: 22px; border-bottom: 1px solid var(--grid); }
   .stat .n { font-size: 22px; font-weight: 700; }
   .stat .l { font-size: 12px; color: var(--ink-3); }
@@ -118,9 +119,10 @@
     <button class="themebtn" onclick="cycleTheme()">◐ Theme</button>
     <div class="kicker">Global Hackathon Tour · H2 2026</div>
     <h1>BrewVenue <span class="cup">☕</span></h1>
-    <div class="sub">Venue scouting HQ for our <b>global hackathon tour</b>.
-      Pick a city to open its venue scout — vetted cafes, coworking, and event spaces with verified booking links —
-      or RSVP where the event page is already live. More city scouts light up as the tour approaches.</div>
+    <div class="sub"><b>Compute Cafe</b> HQ for our global hackathon tour.
+      Pick a city to open its Compute Cafe — vetted cafes, coworking, and event spaces with verified booking links —
+      or RSVP where the event page is already live. More cities light up as the tour approaches.
+      <a href="/events/">See all upcoming events →</a></div>
     <div class="statrow" id="stats"></div>
   </header>
 
@@ -129,7 +131,7 @@
   <footer>
     <div class="fnote"><b>Satellite / stretch cities under consideration:</b> Washington DC, Vilnius, Warsaw, Rome / Milan, and Lisbon — cards will appear here if they're confirmed.</div>
     <div class="fnote"><b>Tour shape:</b> three focused regional weeks — Asia-Pacific (early Sep), Europe &amp; Middle East (mid–late Sep), North America (late Sep–mid Oct) — anchored around major AI events where possible, wrapping with SF Tech Week (Oct 5–11) and LA Tech Week (Oct 12–18).</div>
-    <div class="prov">City lineup from the tour plan · Venue scouts researched Aug 2026 · City photos via Wikimedia Commons; venue photos load from each venue's own site. <a href="/stack/">How the stack works →</a></div>
+    <div class="prov">City lineup from the tour plan · Compute Cafe guides researched Aug 2026 · City photos via Wikimedia Commons; venue photos load from each venue's own site. <a href="/events/">Upcoming events →</a> · <a href="/stack/">How the stack works →</a></div>
   </footer>
 </div>
 
@@ -178,9 +180,9 @@ const REGIONS = [
 ];
 
 const STATUS_META = {
-  live: { chip: "● Venue scout live", cta: "Open venue scout →" },
+  live: { chip: "● Compute Cafe live", cta: "Open Compute Cafe →" },
   rsvp: { chip: "✓ Event confirmed", cta: "RSVP on Luma ↗" },
-  soon: { chip: "Coming soon", cta: "Venue scout in the works" },
+  soon: { chip: "Coming soon", cta: "Compute Cafe in the works" },
 };
 
 function initials(name){
@@ -210,7 +212,7 @@ function init(){
     { n: String(total), l: "tour cities" },
     { n: String(REGIONS.length), l: "regions" },
     { n: "Sep 9 – Oct 18", l: "tour window, 2026" },
-    { n: String(live), l: "venue scouts live" },
+    { n: String(live), l: "Compute Cafes live" },
   ].map(s => `<div class="stat"><div class="n">${s.n}</div><div class="l">${s.l}</div></div>`).join("");
   document.getElementById("content").innerHTML = REGIONS.map(r => `
     <div class="region-h"><h2>${r.name}</h2><span class="hint">${r.cities.length} cities</span></div>

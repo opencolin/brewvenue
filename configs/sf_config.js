@@ -1,6 +1,6 @@
 // Page copy
 const CONFIG = {
-  kicker: "SF Tech Week · Venue Scout",
+  kicker: "SF Tech Week · Compute Cafe",
   title: "SF Tech Week — Venue Options",
   subtitle: "Cafes, coffee shops, event spaces, and coworking across San Francisco's Tech Week core — " +
             "SoMa/2nd St, downtown, and the standouts beyond. Built for ~50–300 person events during " +

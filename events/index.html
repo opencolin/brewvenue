@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upcoming Events · BrewVenue</title>
+<meta property="og:title" content="BrewVenue ☕ — Upcoming Events">
+<meta property="og:description" content="Every stop on the global hackathon tour, Sep 9 – Oct 18, 2026 — RSVP where registration is open, and browse each city's Compute Cafe.">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb;
+    --ink-1: #0b0b0b; --ink-2: #52514e; --ink-3: #716f68;
+    --hairline: rgba(11,11,11,0.10); --grid: #e1e0d9;
+    --accent-a: #c5481a; --accent-a-soft: rgba(197,72,26,0.12);
+    --accent-b: #1c5db2; --accent-b-soft: rgba(28,93,178,0.12);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.10);
+    --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+      --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+      --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+      --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+      --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19;
+    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+    --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+    --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+    --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page); color: var(--ink-1);
+    line-height: 1.5; padding: 34px 20px 44px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  .themebtn {
+    float: right; font-size: 12px; color: var(--ink-2);
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  }
+  .themebtn:hover { color: var(--ink-1); }
+  .homelink { font-size: 12.5px; font-weight: 600; color: var(--ink-3); text-decoration: none; display: inline-block; margin-bottom: 8px; }
+  .homelink:hover { color: var(--ink-1); }
+  .kicker {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent-a); margin-bottom: 8px;
+  }
+  h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; }
+  .sub { color: var(--ink-2); font-size: 14.5px; margin-top: 8px; max-width: 68ch; }
+  .month-h { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin: 28px 2px 10px; }
+  .list { display: grid; gap: 10px; }
+  .ev {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 12px; padding: 13px 16px; box-shadow: var(--shadow);
+  }
+  .ev .date {
+    flex: none; width: 92px; font-size: 13px; font-weight: 700;
+    color: var(--ink-1); letter-spacing: -0.01em;
+  }
+  .ev .who { flex: 1; min-width: 0; }
+  .ev .city { font-size: 15.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .ev .region { font-size: 11.5px; color: var(--ink-3); margin-top: 1px; }
+  .ev .links { flex: none; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .ev a.act {
+    font-size: 12.5px; font-weight: 600; text-decoration: none;
+    padding: 5px 11px; border-radius: 999px;
+  }
+  .ev a.rsvp { color: var(--accent-b); background: var(--accent-b-soft); }
+  .ev a.cafe { color: var(--accent-a); background: var(--accent-a-soft); }
+  .ev a.act:hover { filter: brightness(1.1); text-decoration: underline; text-underline-offset: 2px; }
+  .ev .soon { font-size: 12px; color: var(--ink-3); }
+  footer { margin-top: 34px; border-top: 1px solid var(--grid); padding-top: 18px; display: grid; gap: 12px; }
+  .fnote { font-size: 13px; color: var(--ink-2); max-width: 90ch; }
+  .fnote b { color: var(--ink-1); }
+  .prov { font-size: 11.5px; color: var(--ink-3); }
+  .prov a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 2px; }
+  @media (max-width: 540px) {
+    body { padding: 22px 12px 32px; }
+    h1 { font-size: 24px; }
+    .ev { flex-wrap: wrap; }
+    .ev .date { width: auto; }
+    .ev .links { flex-direction: row; width: 100%; justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <button class="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <a class="homelink" href="/">← BrewVenue</a>
+    <div class="kicker">Global Hackathon Tour · H2 2026</div>
+    <h1>Upcoming events</h1>
+    <div class="sub">Every stop on the tour, in order — Sep 9 to Oct 18, 2026.
+      RSVP where registration is open; each city's <b>Compute Cafe</b> lists its vetted venues.</div>
+  </header>
+
+  <div id="content"></div>
+
+  <footer>
+    <div class="fnote"><b>More RSVP pages are coming:</b> registration links appear here as each city's event page goes live. Satellite / stretch cities (Washington DC, Vilnius, Warsaw, Rome / Milan, Lisbon) join the list if confirmed.</div>
+    <div class="prov">Dates from the tour plan · <a href="/">City lineup →</a> · <a href="/stack/">How the stack works →</a></div>
+  </footer>
+</div>
+
+<script>
+// sort: YYYYMMDD of the (first) event day. rsvp = registration link; cafe = the city's Compute Cafe.
+const EVENTS = [
+  { sort: 20260909, date: "Sep 9",       city: "Tokyo",         region: "Asia-Pacific",         rsvp: null, cafe: "/tokyo/" },
+  { sort: 20260909, date: "Sep 9–11",    city: "Stockholm",     region: "Europe & Middle East", rsvp: null, cafe: null },
+  { sort: 20260910, date: "Sep 10·17·24", city: "Berlin",       region: "Europe & Middle East", rsvp: null, cafe: null },
+  { sort: 20260911, date: "Sep 11",      city: "Seoul",         region: "Asia-Pacific",         rsvp: null, cafe: null },
+  { sort: 20260912, date: "Sep 12",      city: "Kuala Lumpur",  region: "Asia-Pacific",         rsvp: null, cafe: null },
+  { sort: 20260914, date: "Sep 14",      city: "Singapore",     region: "Asia-Pacific",         rsvp: null, cafe: null },
+  { sort: 20260915, date: "Sep 15",      city: "London",        region: "Europe & Middle East", rsvp: null, cafe: null },
+  { sort: 20260916, date: "Sep 16",      city: "Tel Aviv",      region: "Europe & Middle East", rsvp: null, cafe: null },
+  { sort: 20260916, date: "Sep 16",      city: "Zurich",        region: "Europe & Middle East", rsvp: null, cafe: null },
+  { sort: 20260918, date: "Sep 18",      city: "Paris",         region: "Europe & Middle East", rsvp: null, cafe: null },
+  { sort: 20260921, date: "Sep 21",      city: "Barcelona",     region: "Europe & Middle East", rsvp: null, cafe: null },
+  { sort: 20260925, date: "Sep 25",      city: "New York City", region: "North America",        rsvp: "https://luma.com/tavily-nnzl", cafe: null },
+  { sort: 20260925, date: "Sep 25",      city: "Amsterdam",     region: "Europe & Middle East", rsvp: null, cafe: null },
+  { sort: 20260929, date: "Sep 29",      city: "Toronto",       region: "North America",        rsvp: null, cafe: null },
+  { sort: 20261002, date: "Oct 2",       city: "Boston",        region: "North America",        rsvp: "https://luma.com/emee7xtr", cafe: null },
+  { sort: 20261005, date: "Oct 5–11",    city: "San Francisco", region: "North America",        rsvp: null, cafe: "/san-francisco/" },
+  { sort: 20261012, date: "Oct 12–18",   city: "Los Angeles",   region: "North America",        rsvp: null, cafe: "/los-angeles/" },
+];
+
+function row(e){
+  const links = [];
+  if (e.rsvp) links.push(`<a class="act rsvp" href="${e.rsvp}" target="_blank" rel="noopener">RSVP on Luma ↗</a>`);
+  if (e.cafe) links.push(`<a class="act cafe" href="${e.cafe}">Compute Cafe →</a>`);
+  const linksHtml = links.length ? links.join("") : `<span class="soon">Details soon</span>`;
+  return `<div class="ev">
+    <div class="date">${e.date}</div>
+    <div class="who"><div class="city">${e.city}</div><div class="region">${e.region}</div></div>
+    <div class="links">${linksHtml}</div>
+  </div>`;
+}
+function init(){
+  const sorted = [...EVENTS].sort((a, b) => a.sort - b.sort);
+  const months = [["September", 20260900, 20260999], ["October", 20261000, 20261099]];
+  document.getElementById("content").innerHTML = months.map(([name, lo, hi]) => {
+    const evs = sorted.filter(e => e.sort >= lo && e.sort <= hi);
+    return evs.length ? `<div class="month-h">${name} 2026</div><div class="list">${evs.map(row).join("")}</div>` : "";
+  }).join("");
+}
+init();
+function cycleTheme(){
+  const r = document.documentElement;
+  const cur = r.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : cur === "light" ? "dark"
+    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
+  r.setAttribute("data-theme", next);
+}
+</script>
+</body>
+</html>
