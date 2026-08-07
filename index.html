@@ -79,7 +79,10 @@
     border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
     transition: transform .15s ease, box-shadow .15s ease;
   }
-  a.citycard:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  a.citycard:hover, .citycard.dual:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .citycard .go { color: var(--ink-1); font-weight: 600; text-decoration: none; }
+  .citycard .go:hover { text-decoration: underline; text-underline-offset: 2px; }
+  .citycard .go.rsvp { color: var(--accent-b); font-size: 12.5px; }
   .imgbox { position: relative; aspect-ratio: 16/10; overflow: hidden; }
   .imgbox img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
   .ph {
@@ -144,9 +147,9 @@ const REGIONS = [
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Hollywood_sign_%288485145044%29.jpg/960px-Hollywood_sign_%288485145044%29.jpg" },
     { city: "Toronto", date: "Sep 29", status: "soon", href: null,
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Toronto_Skyline_from_Olympic_Island%2C_June_20_2026_%285-3_cropped%29.jpg/960px-Toronto_Skyline_from_Olympic_Island%2C_June_20_2026_%285-3_cropped%29.jpg" },
-    { city: "New York City", date: "Sep 25", status: "rsvp", href: "https://luma.com/tavily-nnzl",
+    { city: "New York City", date: "Sep 25", status: "live", href: "/new-york/", rsvp: "https://luma.com/tavily-nnzl",
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg/960px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg" },
-    { city: "Boston", date: "Oct 2", status: "rsvp", href: "https://luma.com/emee7xtr",
+    { city: "Boston", date: "Oct 2", status: "live", href: "/boston/", rsvp: "https://luma.com/emee7xtr",
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/ISH_WC_Boston4.jpg/960px-ISH_WC_Boston4.jpg" },
   ]},
   { name: "Europe & Middle East", cities: [
@@ -190,12 +193,23 @@ function initials(name){
 }
 function card(c){
   const m = STATUS_META[c.status];
-  const inner = `
+  const media = `
     <div class="imgbox">
       ${c.img ? `<img src="${c.img}" alt="${c.city}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.citycard').classList.add('noimg')">` : ""}
       <div class="ph"><span class="mono">${initials(c.city)}</span></div>
       <div class="datechip">${c.date}</div>
-    </div>
+    </div>`;
+  if (c.href && c.rsvp) {
+    // both a Compute Cafe page and an open RSVP: two links, so the card can't be one <a>
+    return `<div class="citycard dual${c.img ? "" : " noimg"}">${media}
+    <div class="body">
+      <div class="cname">${c.city}</div>
+      <span class="status ${c.status}">${m.chip}</span>
+      <span class="cta"><a class="go" href="${c.href}">${m.cta}</a></span>
+      <span class="cta"><a class="go rsvp" href="${c.rsvp}" target="_blank" rel="noopener">RSVP on Luma ↗</a></span>
+    </div></div>`;
+  }
+  const inner = `${media}
     <div class="body">
       <div class="cname">${c.city}</div>
       <span class="status ${c.status}">${m.chip}</span>

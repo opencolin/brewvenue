@@ -789,7 +789,7 @@ function buildChips(el, values, key){
   }));
 }
 function init(){
-  document.title = CONFIG.title;
+  if (document.title === "Compute Cafe") document.title = CONFIG.title; // standalone use only; built pages keep their spliced title
   document.getElementById("kicker").textContent = CONFIG.kicker;
   document.getElementById("title").textContent = CONFIG.title;
   document.getElementById("subtitle").textContent = CONFIG.subtitle;
