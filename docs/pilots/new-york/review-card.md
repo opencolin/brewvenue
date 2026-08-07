@@ -36,3 +36,8 @@ Colin confirmed the Sep 25 event runs at **First Round's on Me — Cafe Social C
 All four NYC traces dead-ended for *venues* (Cafe Cursor gated; ClawCon → Ideal Glass, West Village, out of cell; AI Tinkerers → sponsor offices; Dabl/Pilot → undisclosed 28-person social) — but produced three partner leads (Betaworks, ElevenLabs office, Pilot) and confirmed the neighborhoods. NYC is the counterexample to Boston: tour traces here inform framing more than they seed venues.
 
 *Artifacts: `research.json` · `evidence.jsonl` (51 lines) · `nyc_config_draft.js` (generated) · final config at `configs/nyc_config.js` · page at `/new-york/`.*
+
+
+## Union pass (PR #9 resolution)
+
+The wave-3 NYC/Boston regen proposed replacing these configs; review found it re-added District Hall (closed since winter 2023, adjudicated in this card) and dropped the confirmed host + curated entries. Resolution: **union** — the 13 curated entries stay as shipped, 22 net-new contract-passing venues from the wave research were appended (total 35), District Hall stayed excluded, and every addition required a successful fetch in the evidence log.
