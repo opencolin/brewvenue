@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berlin — Venue Options · BrewVenue</title>
+<!--
+  COMPUTE CAFE EXPLORER TEMPLATE
+  Edit ONLY the CONFIG, TYPE_META, and VENUES blocks in the <script> at the
+  bottom (plus <title> above). Filter chips, section headers, and header stats
+  all derive from the data — no markup edits needed for a new city or venue mix.
+  Keep the file self-contained: no external CSS/JS/fonts, no localStorage.
+-->
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --ink-1: #0b0b0b;
+    --ink-2: #52514e;
+    --ink-3: #898781;
+    --hairline: rgba(11,11,11,0.10);
+    --grid: #e1e0d9;
+    --accent-a: #eb6834;
+    --accent-a-soft: rgba(235,104,52,0.12);
+    --accent-b: #2a78d6;
+    --accent-b-soft: rgba(42,120,214,0.12);
+    --accent-c: #6f4fce;
+    --accent-c-soft: rgba(111,79,206,0.12);
+    --good: #0ca30c;
+    --good-soft: rgba(12,163,12,0.10);
+    --chip-on: #0b0b0b;
+    --chip-on-ink: #fcfcfb;
+    --ph-a: #f3e7dc;
+    --ph-b: #e8d5c2;
+    --ph-c: #dde8f3;
+    --ph-d: #c9d9ec;
+    --ph-e: #e7ddf3;
+    --ph-f: #d6c8ec;
+    --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+      --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+      --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+      --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+      --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+      --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+      --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+      --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+      --ph-e: #291f38; --ph-f: #382a4e;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19;
+    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+    --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+    --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+    --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+    --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+    --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+    --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+    --ph-e: #291f38; --ph-f: #382a4e;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page); color: var(--ink-1);
+    line-height: 1.45; padding: 28px 20px 40px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  header.hero { margin-bottom: 18px; }
+  .kicker {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent-a); margin-bottom: 6px;
+  }
+  h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+  .sub { color: var(--ink-2); font-size: 14px; margin-top: 6px; max-width: 70ch; }
+  .statrow { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 16px; }
+  .stat .n { font-size: 22px; font-weight: 700; }
+  .stat .l { font-size: 12px; color: var(--ink-3); }
+  .themebtn {
+    float: right; margin-top: -2px; font-size: 12px; color: var(--ink-2);
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  }
+  .themebtn:hover { color: var(--ink-1); }
+  .filters {
+    position: sticky; top: 0; z-index: 5; background: var(--page);
+    padding: 12px 0 10px; margin: 8px 0 6px;
+    border-bottom: 1px solid var(--grid);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .fgroup { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 999px; padding: 3px; }
+  .chip {
+    font-size: 12.5px; font-weight: 500; color: var(--ink-2);
+    padding: 5px 12px; border-radius: 999px; border: none; background: transparent;
+    cursor: pointer; white-space: nowrap;
+  }
+  .chip:hover { color: var(--ink-1); }
+  .chip.on { background: var(--chip-on); color: var(--chip-on-ink); font-weight: 600; }
+  .count { margin-left: auto; font-size: 12px; color: var(--ink-3); }
+  .section-h { display: flex; align-items: baseline; gap: 10px; margin: 26px 2px 12px; }
+  .section-h h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-h .hint { font-size: 12px; color: var(--ink-3); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  .imgbox { position: relative; aspect-ratio: 16/9.5; overflow: hidden; }
+  .imgbox img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ph {
+    position: absolute; inset: 0; z-index: 0; display: flex;
+    align-items: center; justify-content: center; flex-direction: column; gap: 6px;
+  }
+  .card.noimg img { display: none; }
+  .ph.t0 { background: linear-gradient(135deg, var(--ph-a), var(--ph-b)); }
+  .ph.t1 { background: linear-gradient(135deg, var(--ph-c), var(--ph-d)); }
+  .ph.t2 { background: linear-gradient(135deg, var(--ph-e), var(--ph-f)); }
+  .ph .mono { font-size: 30px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-2); opacity: 0.85; }
+  .ph .icn { font-size: 22px; }
+  .toppick {
+    position: absolute; top: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 700; background: rgba(11,11,11,0.78); color: #fff;
+    padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .areatag {
+    position: absolute; bottom: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 600; background: rgba(11,11,11,0.62); color: #fff;
+    padding: 3px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .body { padding: 14px 16px 15px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .titlerow { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .vname { font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .typechip { flex: none; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; margin-top: 1px; }
+  .typechip.t0 { color: var(--accent-a); background: var(--accent-a-soft); }
+  .typechip.t1 { color: var(--accent-b); background: var(--accent-b-soft); }
+  .typechip.t2 { color: var(--accent-c); background: var(--accent-c-soft); }
+  .addr { font-size: 12.5px; }
+  .addr a { color: var(--ink-3); text-decoration: none; }
+  .addr a:hover { color: var(--ink-1); text-decoration: underline; }
+  .cap { font-size: 12.5px; color: var(--ink-2); }
+  .cap b { color: var(--ink-1); font-weight: 600; }
+  .flag {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 7px; align-self: flex-start;
+  }
+  .flag.dedicated { color: var(--good); background: var(--good-soft); }
+  .flag.contact { color: var(--ink-2); background: var(--page); border: 1px solid var(--hairline); }
+  .note { font-size: 13px; color: var(--ink-2); flex: 1; }
+  .links { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+  .btn { font-size: 12.5px; font-weight: 600; text-decoration: none; padding: 7px 13px; border-radius: 8px; }
+  .btn.pri { background: var(--ink-1); color: var(--page); }
+  .btn.pri:hover { opacity: 0.85; }
+  .btn.sec { color: var(--ink-2); border: 1px solid var(--hairline); }
+  .btn.sec:hover { color: var(--ink-1); border-color: var(--ink-3); }
+  .empty { color: var(--ink-3); font-size: 14px; padding: 40px 0; text-align: center; }
+  footer { margin-top: 34px; border-top: 1px solid var(--grid); padding-top: 18px; display: grid; gap: 14px; }
+  .fnote { font-size: 13px; color: var(--ink-2); max-width: 90ch; }
+  .fnote b { color: var(--ink-1); }
+  .prov { font-size: 11.5px; color: var(--ink-3); }
+  @media (max-width: 640px) {
+    body { padding: 18px 12px 30px; }
+    h1 { font-size: 22px; }
+    .count { flex-basis: 100%; margin-left: 2px; }
+  }
+  .homelink { font-size: 12.5px; font-weight: 600; color: var(--ink-3); text-decoration: none; display: inline-block; margin-bottom: 8px; }
+  .homelink:hover { color: var(--ink-1); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <button class="themebtn" id="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <a class="homelink" href="/">← ComputeCafe</a>
+    <div class="kicker" id="kicker"></div>
+    <h1 id="title"></h1>
+    <div class="sub" id="subtitle"></div>
+    <div class="statrow" id="stats"></div>
+  </header>
+  <div class="filters">
+    <div class="fgroup" id="f-area"></div>
+    <div class="fgroup" id="f-type"></div>
+    <div class="fgroup" id="f-flag">
+      <button class="chip" data-v="dedicated">✓ Dedicated events page only</button>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+  <div id="content"></div>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+/* ============================ EDIT BELOW ============================ */
+
+// Page copy — CONFIG + TYPE_META + VENUES
+const CONFIG = {
+  kicker: "Berlin Tech Week · Venue Scout",
+  title: "Berlin — Venue Options",
+  subtitle: "Event-capable cafes, coworking & event halls in Mitte / Kreuzberg / Friedrichshain — for a Sept 10 · 17 · 24, 2026 bilingual (DE/EN) tech-week coffee/hack event (~50–200 people). Links verified.",
+  extraStat: {"n":"Sep 10 · 17 · 24","l":"Berlin event dates, 2026"},
+  footnotes: [
+    "<b>Neighborhood analysis:</b> Mitte (St. Oberholz Rosenthaler, Factory Berlin Mitte) is where AI Tinkerers + PyData actually ran; Kreuzberg (betahaus Moritzplatz) is the community spine; Friedrichshain (Thoughtworks at Revaler Str 31) carried the largest monthly dev meetups (170-188 RSVPs).",
+    "<b>Gone / don't route inquiries here:</b> 21 closure/discards logged (e.g., Factory Berlin Görlitzer Park closed Apr 2024).",
+  ],
+  provenance: "Researched Aug 2026 · Bilingual DE/EN · 27 → 25 shipped after contract (drops: St. Oberholz Café Rosenthaler, St. Oberholz Café Zehdenicker) · Capacities published or estimated.",
+};
+
+const TYPE_META = {
+  coffee: { label: "Coffee shop", icon: "☕" },
+  cowork: { label: "Coworking / event space", icon: "🏢" },
+};
+
+const VENUES = [
+  {
+    "k": "factory_berlin_mitte",
+    "name": "Factory Berlin (Mitte)",
+    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str (incl. Factory Berlin Mitte at Rheinsberger Str 76/77 and the Wedding-border edge)",
+    "type": "coffee",
+    "addr": "Rheinsberger Str. 76/77, 10115 Berlin (Mitte, Bernauer Str edge)",
+    "cap": "<b>~250–400</b>(est; Cvent/Eventup listings show First Floor 250, Basement 400, Volta room 350)",
+    "flag": "dedicated",
+    "link": "https://factory.network/host-an-event",
+    "linkText": "Host an Event → Request form (factory.network)",
+    "email": null,
+    "note": "Purpose-built innovation campus at the Wedding border with in-house restaurant, AV/lighting crew and production team; hosted Forbes 30 Under 30 DACH (300+ guests) — built exactly for tech-week formats. Booking runs through a request form; contact email is Cloudflare-obfuscated on the page.",
+    "img": "https://factory.network/img/articles/Article_Entertainment_1.jpeg",
+    "alt": "Event crowd inside the Factory Berlin venue during a hosted evening format",
+    "top": false
+  },
+  {
+    "k": "the_barn_rosenthaler",
+    "name": "THE BARN Rosenthaler Platz",
+    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str (incl. Factory Berlin Mitte at Rheinsberger Str 76/77 and the Wedding-border edge)",
+    "type": "coffee",
+    "addr": "Weinbergsweg 1, 10119 Berlin (at Rosenthaler Platz / Torstraße)",
+    "cap": "<b>~40–60</b>(est; street-level café, seating across front bar + quiet back room)",
+    "flag": "dedicated",
+    "link": "https://thebarn.de/pages/host-an-event",
+    "linkText": "Host an Event form (thebarn.de)",
+    "email": null,
+    "note": "World-renowned specialty roastery's newest flagship on car-free Weinbergsweg; global 'Host an Event' page offers their spaces for workshops, tastings and corporate events. Best as an off-peak/evening takeover given public hours until 18:00 daily.",
+    "img": "https://thebarn.de/cdn/shop/files/cafes_ROSENTHALER_PLATZ_1.webp?v=1705567247&width=3200",
+    "alt": "Wide interior shot of THE BARN café at Rosenthaler Platz, Weinbergsweg 1",
+    "top": false
+  },
+  {
+    "k": "distrikt_coffee",
+    "name": "Distrikt Coffee",
+    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str (incl. Factory Berlin Mitte at Rheinsberger Str 76/77 and the Wedding-border edge)",
+    "type": "coffee",
+    "addr": "Bergstraße 68, 10115 Berlin (Mitte, between Nordbahnhof and Rosenthaler Platz)",
+    "cap": "<b>~50</b>(est; corner café with indoor room + sidewalk seating)",
+    "flag": "contact",
+    "link": "https://www.distriktcoffee.de/contact",
+    "linkText": "Contact page — 'event hire' email (distriktcoffee.de)",
+    "email": "info@distriktcoffee.de",
+    "note": "Third-wave café with exposed-brick gallery room and a documented event history (comedy nights, small operas) on a quiet side street between Nordbahnhof and Rosenthaler Platz — after-hours hire fits a 50-person hack-day base camp; enquiry email is published for events.",
+    "img": null,
+    "alt": "Distrikt Coffee interior",
+    "top": false
+  },
+  {
+    "k": "soho_house_berlin",
+    "name": "Soho House Berlin",
+    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str (incl. Factory Berlin Mitte at Rheinsberger Str 76/77 and the Wedding-border edge)",
+    "type": "cowork",
+    "addr": "Torstrasse 1, 10119 Berlin",
+    "cap": "Politbüro: <b>60</b>seated / 150 standing; Torstrasse I + II: 180 seated / 400 standing (published)",
+    "flag": "dedicated",
+    "link": "https://www.sohohouse.com/houses/soho-house-berlin/event-spaces",
+    "linkText": "sohohouse.com/houses/soho-house-berlin/event-spaces",
+    "email": null,
+    "note": "Directly on Torstraße with a dedicated event-spaces page + enquiry flow, open to non-members; the Politbüro (circular bar, balcony over Torstraße, 150 standing) hits the 50–200 sweet spot and Torstrasse I/II scales to 400 for the largest hack day. English-native operation, German contracts on request; phone +49 (0)30 405 0440.",
+    "img": "https://media.fastly.sohohousedigital.com/f_auto,q_auto,fl_progressive:steep,w_1200/t_dc_base/sitecore-prod/images/from-the-houses/01_politburo_berlin.jpg",
+    "alt": "Politbüro room with circular bar and balcony overlooking Torstrasse and Alexanderplatz.",
+    "top": false
+  },
+  {
+    "k": "the_lovers_leaders",
+    "name": "The Lovers & Leaders Space",
+    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str (incl. Factory Berlin Mitte at Rheinsberger Str 76/77 and the Wedding-border edge)",
+    "type": "cowork",
+    "addr": "Torstraße 101, 10119 Berlin",
+    "cap": "Up to <b>50</b>people, 101 m² divisible into 2 rooms (published by operator St. Oberholz)",
+    "flag": "dedicated",
+    "link": "https://sanktoberholz.de/en/meeting-and-events/the-lovers-and-leaders-space",
+    "linkText": "sanktoberholz.de/en/meeting-and-events/the-lovers-and-leaders-space",
+    "email": "space@theloversandleaders.net",
+    "note": "Ground-floor, barrier-free 'mindful' studio right on Torstraße with full kitchen and modular set-up — a clean fit for the 50-person end of the coffee/hack-day series, splittable into two breakout rooms for bilingual tracks. Run by Yasmine Orth with booking via its own space@ email plus the St. Oberholz events desk.",
+    "img": "https://b341092.assetcdn.net/2.0/341092/wp-content/uploads/2025/02/TheLoversandLeadersSpace_Oberholz-2.jpg",
+    "alt": "Bright curated studio interior with plants, modular furniture and wooden floors on Torstrasse.",
+    "top": false
+  },
+  {
+    "k": "artloftberlin",
+    "name": "artloft.berlin",
+    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str (incl. Factory Berlin Mitte at Rheinsberger Str 76/77 and the Wedding-border edge)",
+    "type": "cowork",
+    "addr": "Gerichtstr. 23, Hof 3 | Aufgang 2, 13347 Berlin (Wedding, Mitte border)",
+    "cap": "Up to <b>~280</b>people (est) — capacity cited by venue guides; official location page lists spaces without a figure",
+    "flag": "dedicated",
+    "link": "https://artloft.berlin/location/",
+    "linkText": "artloft.berlin/location",
+    "email": "info@artloft.berlin",
+    "note": "Industrial art-loft in the Gerichtstraße creative corridor right at the Wedding–Mitte border called out in the brief; three raw, white-washed gallery spaces in a historic factory courtyard, marketed for 'Kulturproduktion, Firmen-, Industrie- und Privatevents' with full event management — roomy enough for the 200-person upper end with a distinctly Berlin edge. German-first site, team handles English bookings via info@.",
+    "img": "https://artloft.berlin/wp-content/uploads/sites/2/JV2A2655-3c_LuxFaber-scaled.jpg",
+    "alt": "White-washed industrial gallery loft with exposed factory elements in a Gerichtstrasse courtyard.",
+    "top": false
+  },
+  {
+    "k": "caf_luzia",
+    "name": "Café Luzia",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "type": "coffee",
+    "addr": "Oranienstr. 34, 10999 Berlin (Kreuzberg)",
+    "cap": "<b>~120</b>(est) — Top10Berlin cites ~250 m² ground-floor bar/café with high ceilings",
+    "flag": "dedicated",
+    "link": "http://luzia.tc/events-2",
+    "linkText": "Café Luzia — Events",
+    "email": "event@luzia.tc",
+    "note": "Independent Kreuzberg institution two blocks from Moritzplatz. Day-time café, evening bar; vinyl/DJ infrastructure already in-house; bilingual crowd; dedicated events page with published events inbox. Perfect stomping ground for a bilingual tech-week hack day that wants character over coworking polish.",
+    "img": "http://relaunch.luzia.tc/wp-content/uploads/2019/10/1_bm-1.jpg",
+    "alt": "Café Luzia interior",
+    "top": true
+  },
+  {
+    "k": "st_oberholz_caf",
+    "name": "St. Oberholz Café Oranienstr.",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "type": "coffee",
+    "addr": "Oranienstr. 10/11 (Heinrich-Höfe), 10997 Berlin (Kreuzberg)",
+    "cap": "Up to <b>50</b>people, 130 m² (published)",
+    "flag": "dedicated",
+    "link": "https://sanktoberholz.de/en/meeting-and-events/st-oberholz-oranienstr",
+    "linkText": "St. Oberholz — Café Oranienstr. event location",
+    "email": "event@sanktoberholz.de",
+    "note": "Ground-floor laptop café inside the Heinrich-Höfe backyard with a listening-bar sound system (JLB 4350b) and a quiet rear terrace. Fits the small end of the headcount, but the sibling event room GRACE at Luckenwalder Str. 6B (up to 100, 86 m², café attached) gives a same-operator upgrade path — both share the published event@sanktoberholz.de inbox.",
+    "img": "https://sanktoberholz.coffee/wp-content/uploads/2025/02/Oberholz_ORA_cafe_lina_zangers_3-2-3.jpg",
+    "alt": "St. Oberholz Café Oranienstr. interior",
+    "top": false
+  },
+  {
+    "k": "betahaus_innospace_kreuzberg",
+    "name": "betahaus Innospace | Kreuzberg",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "type": "coffee",
+    "addr": "Rudi-Dutschke-Str. 23, 10969 Berlin (Kreuzberg)",
+    "cap": "<b>100</b>theatre / 20 classroom (66 m² + 96 m²) — published",
+    "flag": "dedicated",
+    "link": "https://www.betahaus.com/spaces-berlin/innospace",
+    "linkText": "betahaus Innospace — book event space",
+    "email": "event@betahaus.de",
+    "note": "The anchor venue the brief is built around. betahaus runs an in-house café, German/English bilingual booking team, and an explicit hackathon track record (GitHub, Microsoft, N26 on the client wall). Liability insurance is enforced via on-site staff requirement — strictest contract language in this list, so plan for that.",
+    "img": "https://cdn.prod.website-files.com/58b05372820eae3152b7065a/670ce250e9e241b80c8f869f_ducks-lead-singer-at-betahaus-event.avif",
+    "alt": "betahaus Innospace | Kreuzberg interior",
+    "top": false
+  },
+  {
+    "k": "markthalle_neun_kaffee",
+    "name": "Markthalle Neun (Kaffee 9 / Markthalle events)",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "type": "coffee",
+    "addr": "Eisenbahnstr. 42/43, 10997 Berlin (Kreuzberg); Kaffee 9 at the Eisenbahnstraße entrance",
+    "cap": "Kaffee Neun room <b>up to 40</b>(published); whole hall 20–1,200 (published)",
+    "flag": "dedicated",
+    "link": "https://markthalleneun.de/en/catering-events",
+    "linkText": "Markthalle Neun — Catering & Events",
+    "email": null,
+    "note": "Historic 1891 market hall a stone's throw from Kottbusser Tor. Kaffee 9 supplies the espresso program inside; the hall's catering/events arm handles 20-1,200 guests with dedicated enquiry form. Best fit if you need to scale past 150 and want a real coffee operator embedded.",
+    "img": null,
+    "alt": "Markthalle Neun (Kaffee 9 / Markthalle events) interior",
+    "top": false
+  },
+  {
+    "k": "the_visit_coffee",
+    "name": "The Visit Coffee Roastery",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "type": "coffee",
+    "addr": "Adalbertstr. 9, 10999 Berlin (Kreuzberg, one block from Kottbusser Tor)",
+    "cap": "<b>~60</b>(est) — backyard roastery café, multiple rooms; capacity not published",
+    "flag": "contact",
+    "link": "https://thevisit.coffee",
+    "linkText": "The Visit Coffee Roastery — homepage",
+    "email": "kontakt@visit-coffee.com",
+    "note": "Specialty roastery tucked into a quiet backyard off Adalbertstraße — big windows, communal tables, indoor/outdoor seating. No dedicated events page, but the roastery regularly hosts cuppings and takeovers and publishes a contact address. Good fit for a smaller hack-day spillover or satellite coffee-program anchor.",
+    "img": null,
+    "alt": "The Visit Coffee Roastery interior",
+    "top": false
+  },
+  {
+    "k": "betahaus_kreuzberg_checkpoint",
+    "name": "betahaus | Kreuzberg (Checkpoint Charlie)",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "type": "cowork",
+    "addr": "Rudi-Dutschke-Str. 23, 10969 Berlin (U6 Kochstraße)",
+    "cap": "Innospace: <b>100</b>theater / Loft: 50 / Arena & Bungalow: 70 with rooftop (FAQ: up to 160 combined)",
+    "flag": "dedicated",
+    "link": "https://www.betahaus.com/event-space-berlin",
+    "linkText": "Book an event space",
+    "email": "event@betahaus.de",
+    "note": "Berlin's original coworking house (taz building) explicitly markets hackathons — the newly renovated Innospace holds 100 theater-style, with Arena+Bungalow and rooftop for spillover. Note: betahaus requires at least one staff member on site for insurance reasons; drinks must be ordered in-house.",
+    "img": "https://cdn.prod.website-files.com/58b05372820eae3152b7065a/6a16e1d035ca38900bb849f1_Innospace%20Event%20Space%20Renovated.avif",
+    "alt": "Innospace event space at betahaus Kreuzberg, bright industrial room with huge windows and rows of chairs",
+    "top": true
+  },
+  {
+    "k": "techspace_kreuzberg_the",
+    "name": "Techspace Kreuzberg — The Annex",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "type": "cowork",
+    "addr": "Lobeckstraße 36-40, 10969 Berlin (U8 Moritzplatz, 4 min walk)",
+    "cap": "<b>100</b>standing / 60 theater seated (150 m²)",
+    "flag": "dedicated",
+    "link": "https://www.techspace.co/locations/kreuzberg/events-at-the-annex",
+    "linkText": "The Annex event venue",
+    "email": null,
+    "note": "Private 150 m² venue with 4 m ceilings, outdoor courtyard terrace (4 picnic tables + ping pong), 98\" 4K screen, mics and 1 Gbps WiFi — a ready-made hack-day room. No published email; enquire via form or Kreuzberg ops +49 30 5557 3474.",
+    "img": "https://cdn.prod.website-files.com/5e185d81b1025a75a986bb6a/6a70a0ad7c308db0c8b17b49_LOB%20Annex%20Event.jpg",
+    "alt": "The Annex at Techspace Kreuzberg set up for an event, high-ceiling room with AV screen and cafe tables",
+    "top": false
+  },
+  {
+    "k": "betahaus_moritzplatz_panorama",
+    "name": "betahaus | Moritzplatz — Panorama Hub & Kitchen Lounge",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "type": "cowork",
+    "addr": "Entrance H, 2nd floor, Lobeckstraße 30, 10969 Berlin (U8 Moritzplatz)",
+    "cap": "Panorama Hub: <b>50</b>seated (150 m²) / Kitchen Lounge: 60 (evenings + weekends)",
+    "flag": "dedicated",
+    "link": "https://www.betahaus.com/spaces-berlin/panorama-hub",
+    "linkText": "Panorama Hub space page",
+    "email": "event@betahaus.de",
+    "note": "A 2-minute walk from Techspace in the same GSG Aqua-Höfe block — pairs perfectly as a second room for a 100+ split format or a self-contained 50-person hack day. Wraparound windows, quirky terrace, fully equipped kitchen; Berlin AI Meetup already runs here.",
+    "img": "https://cdn.prod.website-files.com/58b05372820eae3152b7065a/67bdce2b998e19ed0946b028_betahaus-Lobeckstra%C3%9Fe-BrandFrameMedia-web-9.avif",
+    "alt": "Panorama Bar event space at betahaus Moritzplatz with terrace access, greenery and natural light",
+    "top": false
+  },
+  {
+    "k": "st_oberholz_grace",
+    "name": "St. Oberholz GRACE — B-Part am Gleisdreieck",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "type": "cowork",
+    "addr": "B-PART am Gleisdreieck, Luckenwalder Str. 6B, 10963 Berlin (U1/U2 Gleisdreieck)",
+    "cap": "Up to <b>100, 86</b>m² (B-Part events venue: up to 120)",
+    "flag": "dedicated",
+    "link": "https://sanktoberholz.de/meeting-und-events/grace",
+    "linkText": "GRACE room page (DE)",
+    "email": "event@sanktoberholz.de",
+    "note": "Barrier-free ground-floor room in the striking wooden B-Part pavilion right on the park, with direct wraparound terrace access, beamer/TV, whiteboards and community-event tradition. Slightly west of the Moritzplatz axis but still Kreuzberg — a parkside option for the 100-person end of the brief.",
+    "img": null,
+    "alt": "GRACE ground-floor event room in the wooden B-Part building, terrace overlooking Park am Gleisdreieck",
+    "top": false
+  },
+  {
+    "k": "michelberger_hotel_caf",
+    "name": "Michelberger Hotel — Café & Backstage",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "type": "coffee",
+    "addr": "Warschauer Straße 39–40, 10243 Berlin",
+    "cap": "<b>100</b>standing / 50 seated (Backstage); Underlook 160 m² for larger setups",
+    "flag": "dedicated",
+    "link": "https://www.michelbergerhotel.com/en/spaces",
+    "linkText": "Meetings & Events at Michelberger",
+    "email": "reservations@michelbergerhotel.com",
+    "note": "Iconic indie hotel 200 m from Warschauer Str S-Bahn; ground-floor café/restaurant serves specialty coffee and the Backstage room is purpose-built for 100-person cocktail / 50-seat events with private courtyard terrace. English-native operations with a Berlin-based events team; liability/Versicherung handled through their standard rental contract.",
+    "img": "https://www.datocms-assets.com/5494/1547836343-backstage041v1rgbl.jpg?auto=format",
+    "alt": "Michelberger Cafe und Backstage, Warschauer Str, Hotel-Café mit eigenem Veranstaltungsraum",
+    "top": true
+  },
+  {
+    "k": "house_of_music",
+    "name": "House of Music Berlin — HoM Stage & Café",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "type": "coffee",
+    "addr": "Revaler Str. 99 / Halle 20 (RAW-Gelände), 10245 Berlin",
+    "cap": "<b>150+</b>standing / 90 seated (HoM Stage, 120 m², 6 m ceiling)",
+    "flag": "dedicated",
+    "link": "https://www.houseofmusic.berlin",
+    "linkText": "House of Music — Event Location & Café",
+    "email": null,
+    "note": "Purpose-built HoM Stage on the RAW-Gelände barista café during the day, 150-cap stage downstairs. Same gate as Thoughtworks at Revaler 31 — walk across the yard. Amendment: venue uses a Wix form on the landing page rather than a published mailto; bookings routed through their intake form.",
+    "img": "https://static.wixstatic.com/media/6a7071_ce197f4fa05048a2b2cc01db03126e7b~mv2.jpg/v1/fill/w_980,h_401,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6a7071_ce197f4fa05048a2b2cc01db03126e7b~mv2.jpg",
+    "alt": "House of Music Berlin, Café und Stage-Halle auf dem RAW-Gelände",
+    "top": false
+  },
+  {
+    "k": "kult_caf_galerie",
+    "name": "KULT — Café, Galerie & Coworking",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "type": "coffee",
+    "addr": "Altes Lager, Revaler Str. 99 (RAW-Gelände), 10245 Berlin",
+    "cap": "<b>65</b>standing",
+    "flag": "dedicated",
+    "link": "https://www.kult-berlin.de",
+    "linkText": "mieten — der ganze Laden für dich",
+    "email": "kontakt@kult-berlin.de",
+    "note": "Independent specialty-coffee + coworking + gallery in the old RAW warehouse (since 2022). Explicit rental format „mieten“ for workshops, team days, popups up to 65 standing — strongest pure-coffee fit for a smaller coder-coffee day; bilingual staff, German booking via short mail-in form. Cap below 200-min so pair with House of Music next door if attendance spikes.",
+    "img": "https://www.kult-berlin.de/og-image.png?v=3",
+    "alt": "KULT Café Berlin Friedrichshain, Café Galerie Coworking RAW",
+    "top": false
+  },
+  {
+    "k": "urban_spree_galerie",
+    "name": "Urban Spree — Galerie, Café & Biergarten",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "type": "coffee",
+    "addr": "Revaler Str. 99 (RAW-Gelände), 10245 Berlin",
+    "cap": "<b>1700</b>m² campus; Galerie ~200 (est), Biergarten + Food Court several hundred",
+    "flag": "contact",
+    "link": "https://www.urbanspree.com/about",
+    "linkText": "About Urban Spree — contact & office phone",
+    "email": null,
+    "note": "1.700 m² urban-culture compound with Galerie, Bookshop, Café/Biergarten on the same RAW site as Thoughtworks. No published event-hire page — published contact is Office Phone +49 30 740 78 597 and the about-page form; hire routed through office email. Strong bilingual (EN/DE) art-community audience matches a tech-week hack day.",
+    "img": "https://www.urbanspree.com/assets/components/phpthumbof/cache/biergarten-01_1000px_nometa.1f44965636f814a6b9e151aba3c6e437.c65432bb47ab3da89cca0bbdff214c22.jpg",
+    "alt": "Urban Spree Berlin RAW-Gelände, Biergarten und Galerie",
+    "top": false
+  },
+  {
+    "k": "house_of_music",
+    "name": "House of Music (HoM Stage)",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "type": "cowork",
+    "addr": "Revaler Str. 99 / Halle 20 (RAW-Gelände), 10245 Berlin",
+    "cap": "<b>150+</b>standing / 90 seated (published); plus 900 m² of noisy Rooms floorspace for overflow",
+    "flag": "dedicated",
+    "link": "https://www.houseofmusic.berlin",
+    "linkText": "hosuemofmusic.berlin — EVENT LOCATION + venue specs",
+    "email": "mail@noisy-rooms.com",
+    "note": "Dead-center on the RAW-Gelände with a dedicated event-location offer (stage, pro sound/light, 6m ceilings) plus a café-coworking floor — perfect for a bilingual coffee/hack day that shifts from daytime hacking to evening panels. Booking runs through the on-site operator noisy Rooms; expect German-language Mietvertrag with defined Haftung clauses.",
+    "img": "https://static.wixstatic.com/media/6a7071_fcd23a1f94a447689f862341f5efee48~mv2.jpg/v1/fill/w_980,h_530,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/DSC06047_edited_edited.jpg",
+    "alt": "House of Music café and lounge interior on the RAW-Gelände",
+    "top": true
+  },
+  {
+    "k": "motionlabberlin_halle_20",
+    "name": "MotionLab.Berlin — Halle 20 Campus Alt-Treptow",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "type": "cowork",
+    "addr": "Bouchéstraße 12, Halle 20, 12435 Berlin (Alt-Treptow, one stop east of Ostkreuz)",
+    "cap": "Up to <b>300</b>(published, Main Event Space); Hackerspace 20; Blue Bus 6",
+    "flag": "dedicated",
+    "link": "https://motionlab.berlin/events",
+    "linkText": "motionlab.berlin/events — Event Spaces, Packages & contact form",
+    "email": "info@motionlab.berlin",
+    "note": "Germany's hardtech innovation hub explicitly hosts hackathons and demo days in a former industrial hall, with a full events crew for staging, AV, catering and moderation — the most production-ready fit for a tech-week hack day. Just outside the RAW corridor but surrounded by the Ostkreuz/Warschauer crowd; German site + contracts available (de/veranstaltungen).",
+    "img": "https://motionlab.berlin/wp-content/uploads/2026/06/20250523_ML_DemoDay_JW-136-4010-full.jpg",
+    "alt": "MotionLab.Berlin main event space during a demo day, wide shot",
+    "top": false
+  },
+  {
+    "k": "urban_spree",
+    "name": "Urban Spree",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "type": "cowork",
+    "addr": "Revaler Straße 99, 10245 Berlin",
+    "cap": "<b>~250</b>(est, concert room) + large Biergarten and 1,700 m² total compound",
+    "flag": "contact",
+    "link": "https://www.urbanspree.com/about",
+    "linkText": "urbanspree.com/about — office phone +49 30 740 78 597",
+    "email": null,
+    "note": "Indie art/complex with a gallery, bookshop, concert room and the RAW area's most social beer garden — natural blistering venue for a casual coffee/hack crowd spilling between indoor and outdoor. No dedicated hire page; book via published office phone, and expect informal German-side paperwork rather than the Werksgelände-style lease you'd get at HoM.",
+    "img": "https://www.urbanspree.com/assets/components/phpthumbof/cache/biergarten-01_1000px_nometa.1f44965636f814a6b9e151aba3c6e437.c65432bb47ab3da89cca0bbdff214c22.jpg",
+    "alt": "Urban Spree Biergarten under graffiti-covered walls",
+    "top": false
+  },
+  {
+    "k": "wework_warschauer_platz",
+    "name": "WeWork Warschauer Platz 11–13",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "type": "cowork",
+    "addr": "Warschauer Platz 11-13, 10245 Berlin",
+    "cap": "<b>~100</b>(est) — lounge conversions with sound systems and lighting controls; roof terrace",
+    "flag": "contact",
+    "link": "https://www.wework.com/buildings/warschauer-platz-11-13--berlin",
+    "linkText": "wework.com — building page with tour/event inquiry form",
+    "email": null,
+    "note": "Three floors of lounges plus a 7th-floor roof terrace literally at Warschauer Str station, with barista bar and event-ready lounges — lowest-friction booking for repeat Sep 10/17/24 dates. No German events page here; inquiries go through the English web form, and their event-space microsite URL 404s, so expect heavier contract vs. indie venues.",
+    "img": "https://cdn-images.wework.com/images/28861214-6227-11EB-9220-0E6A5DC689CD/28861214-6227-11eb-9220-0e6a5dc689cd_4.jpg?width=800",
+    "alt": "WeWork Warschauer Platz coworking lounge with long shared tables",
+    "top": false
+  },
+  {
+    "k": "werkhain",
+    "name": "werkhain",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "type": "cowork",
+    "addr": "Frankfurter Allee 108, Fabrikgebäude 2. Hof, 10247 Berlin",
+    "cap": "<b>~100</b>(est) — event space on request inside a 1,400 m² coworking floor + green rooftop terrace",
+    "flag": "contact",
+    "link": "https://www.werkhain.de",
+    "linkText": "werkhain.de — event space REQUEST + contact email",
+    "email": "werkhain@leucht-one.de",
+    "note": "New industrial-charm coworking space between Frankfurter Tor and Ostkreuz with a dedicated 'event space' line item, rooftop terrace for after-work spillover and bilingual site (DE/EN toggle). Small local operator, so expect to negotiate a bilingual Anfrage — good value vs. WeWork for a daytime September buyout.",
+    "img": "https://static.wixstatic.com/media/0783c4_b5366dd2acfc455bbe87c7e4f95fff29~mv2.jpg/v1/fill/w_980,h_806,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/werkhain-coworkingspace1.jpg",
+    "alt": "werkhain coworking hall with height-adjustable desks and monitors",
+    "top": false
+  },
+  {
+    "k": "techtelmechtel_coworking_eventlocation",
+    "name": "Techtelmechtel — Coworking & Eventlocation am Ostkreuz",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "type": "cowork",
+    "addr": "Gürtelstr. 25, 10247 Berlin",
+    "cap": "<b>~50</b>-80 (est) for full 330 m² loft buyout; two conference rooms 2–12 people (published)",
+    "flag": "contact",
+    "link": "https://techtelmechtel.space/en",
+    "linkText": "techtelmechtel.space/en — request form + conference/event rooms",
+    "email": "hello@techtelmechtel.space",
+    "note": "Deep-work tech loft that explicitly brands itself as event venue, hosts regular tech/entrepreneurship meetups and includes premium coffee in bookings — suits the smaller end (50–80) of the crowd, e.g. the Sep 17 mid-series date. German site is primary (English toggle exists); expect classic German Nebenpflichten and damage deposit rather than US-style liability waivers.",
+    "img": "https://techtelmechtel.space/wp-content/uploads/2025/12/FTWK-Coworking-Event-Space-Berlin-Friedrichshain-Kreuzberg-Ostkreuz.png",
+    "alt": "Techtelmechtel industrial loft coworking with long communal tables",
+    "top": false
+  }
+];
+
+/* ============================ EDIT ABOVE ============================ */
+
+const state = { area: "all", type: "all", dedicatedOnly: false };
+const AREAS = [...new Set(VENUES.map(v => v.area))];
+const typeKeys = Object.keys(TYPE_META);
+const tcls = t => "t" + (typeKeys.indexOf(t) % 3);
+
+function initials(name){
+  return name.replace(/[^a-zA-Z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join("");
+}
+function mapsUrl(v){
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(v.name + " " + v.addr);
+}
+function card(v){
+  const t = TYPE_META[v.type] || { label: v.type, icon: "📍" };
+  const flagHtml = v.flag === "dedicated"
+    ? '<span class="flag dedicated">✓ Dedicated events page</span>'
+    : '<span class="flag contact">✉ Events contact only</span>';
+  const imgHtml = v.img
+    ? `<img src="${v.img}" alt="${v.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.card').classList.add('noimg')">`
+    : "";
+  const emailBtn = v.email ? `<a class="btn sec" href="mailto:${v.email}">${v.email}</a>` : "";
+  return `<div class="card${v.img ? "" : " noimg"}">
+    <div class="imgbox">
+      ${imgHtml}
+      <div class="ph ${tcls(v.type)}"><span class="icn">${t.icon}</span><span class="mono">${initials(v.name)}</span></div>
+      ${v.top ? '<div class="toppick">★ Top pick</div>' : ""}
+      <div class="areatag">${v.area}</div>
+    </div>
+    <div class="body">
+      <div class="titlerow"><div class="vname">${v.name}</div><span class="typechip ${tcls(v.type)}">${t.icon} ${t.label}</span></div>
+      <div class="addr"><a href="${mapsUrl(v)}" target="_blank" rel="noopener">📍 ${v.addr}</a></div>
+      <div class="cap">${v.cap}</div>
+      ${flagHtml}
+      <div class="note">${v.note}</div>
+      <div class="links"><a class="btn pri" href="${v.link}" target="_blank" rel="noopener">${v.linkText} ↗</a>${emailBtn}</div>
+    </div>
+  </div>`;
+}
+function render(){
+  const match = v =>
+    (state.area === "all" || v.area === state.area) &&
+    (state.type === "all" || v.type === state.type) &&
+    (!state.dedicatedOnly || v.flag === "dedicated");
+  const shown = VENUES.filter(match);
+  const areas = AREAS.filter(a => state.area === "all" || a === state.area);
+  let html = "";
+  for (const a of areas){
+    const items = shown.filter(v => v.area === a);
+    if (!items.length) continue;
+    const hint = typeKeys.map(k => {
+      const n = items.filter(v => v.type === k).length;
+      return n ? `${n} ${TYPE_META[k].label.toLowerCase()}` : null;
+    }).filter(Boolean).join(" · ");
+    html += `<div class="section-h"><h2>${a}</h2><span class="hint">${hint}</span></div>
+             <div class="grid">${items.map(card).join("")}</div>`;
+  }
+  document.getElementById("content").innerHTML = html || '<div class="empty">No venues match these filters.</div>';
+  document.getElementById("count").textContent = `Showing ${shown.length} of ${VENUES.length} venues`;
+}
+function buildChips(el, values, key){
+  el.innerHTML = `<button class="chip on" data-v="all">All ${key === "area" ? "areas" : "types"}</button>` +
+    values.map(v => `<button class="chip" data-v="${v.v}">${v.label}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(btn => btn.addEventListener("click", () => {
+    el.querySelectorAll(".chip").forEach(b => b.classList.remove("on"));
+    btn.classList.add("on");
+    state[key] = btn.dataset.v;
+    render();
+  }));
+}
+function init(){
+  if (document.title === "Compute Cafe") document.title = CONFIG.title; // standalone use only; built pages keep their spliced title
+  document.getElementById("kicker").textContent = CONFIG.kicker;
+  document.getElementById("title").textContent = CONFIG.title;
+  document.getElementById("subtitle").textContent = CONFIG.subtitle;
+  const dedicated = VENUES.filter(v => v.flag === "dedicated").length;
+  const stats = [
+    { n: String(VENUES.length), l: "venues vetted" },
+    { n: String(dedicated), l: "with dedicated events pages" },
+    { n: String(AREAS.length), l: AREAS.length === 1 ? "neighborhood" : "neighborhoods" },
+  ];
+  if (CONFIG.extraStat) stats.push(CONFIG.extraStat);
+  document.getElementById("stats").innerHTML =
+    stats.map(s => `<div class="stat"><div class="n">${s.n}</div><div class="l">${s.l}</div></div>`).join("");
+  document.getElementById("foot").innerHTML =
+    CONFIG.footnotes.map(f => `<div class="fnote">${f}</div>`).join("") +
+    `<div class="prov">${CONFIG.provenance}</div>`;
+  buildChips(document.getElementById("f-area"), AREAS.map(a => ({v:a, label:a})), "area");
+  buildChips(document.getElementById("f-type"), typeKeys.map(k => ({v:k, label:`${TYPE_META[k].icon} ${TYPE_META[k].label}s`})), "type");
+  const flagBtn = document.querySelector('#f-flag .chip');
+  flagBtn.addEventListener("click", () => {
+    state.dedicatedOnly = !state.dedicatedOnly;
+    flagBtn.classList.toggle("on", state.dedicatedOnly);
+    render();
+  });
+  render();
+}
+function cycleTheme(){
+  const r = document.documentElement;
+  const cur = r.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : cur === "light" ? "dark"
+    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
+  r.setAttribute("data-theme", next);
+}
+init();
+</script>
+</body>
+</html>
