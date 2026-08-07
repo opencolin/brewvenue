@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Venue Scout</title>
+<!--
+  VENUE SCOUT EXPLORER TEMPLATE
+  Edit ONLY the CONFIG, TYPE_META, and VENUES blocks in the <script> at the
+  bottom (plus <title> above). Filter chips, section headers, and header stats
+  all derive from the data — no markup edits needed for a new city or venue mix.
+  Keep the file self-contained: no external CSS/JS/fonts, no localStorage.
+-->
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --ink-1: #0b0b0b;
+    --ink-2: #52514e;
+    --ink-3: #898781;
+    --hairline: rgba(11,11,11,0.10);
+    --grid: #e1e0d9;
+    --accent-a: #eb6834;
+    --accent-a-soft: rgba(235,104,52,0.12);
+    --accent-b: #2a78d6;
+    --accent-b-soft: rgba(42,120,214,0.12);
+    --good: #0ca30c;
+    --good-soft: rgba(12,163,12,0.10);
+    --chip-on: #0b0b0b;
+    --chip-on-ink: #fcfcfb;
+    --ph-a: #f3e7dc;
+    --ph-b: #e8d5c2;
+    --ph-c: #dde8f3;
+    --ph-d: #c9d9ec;
+    --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+      --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+      --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+      --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+      --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+      --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+      --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19;
+    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+    --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+    --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+    --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+    --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+    --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page); color: var(--ink-1);
+    line-height: 1.45; padding: 28px 20px 40px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  header.hero { margin-bottom: 18px; }
+  .kicker {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent-a); margin-bottom: 6px;
+  }
+  h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+  .sub { color: var(--ink-2); font-size: 14px; margin-top: 6px; max-width: 70ch; }
+  .statrow { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 16px; }
+  .stat .n { font-size: 22px; font-weight: 700; }
+  .stat .l { font-size: 12px; color: var(--ink-3); }
+  .themebtn {
+    float: right; margin-top: -2px; font-size: 12px; color: var(--ink-2);
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  }
+  .themebtn:hover { color: var(--ink-1); }
+  .filters {
+    position: sticky; top: 0; z-index: 5; background: var(--page);
+    padding: 12px 0 10px; margin: 8px 0 6px;
+    border-bottom: 1px solid var(--grid);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .fgroup { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 999px; padding: 3px; }
+  .chip {
+    font-size: 12.5px; font-weight: 500; color: var(--ink-2);
+    padding: 5px 12px; border-radius: 999px; border: none; background: transparent;
+    cursor: pointer; white-space: nowrap;
+  }
+  .chip:hover { color: var(--ink-1); }
+  .chip.on { background: var(--chip-on); color: var(--chip-on-ink); font-weight: 600; }
+  .count { margin-left: auto; font-size: 12px; color: var(--ink-3); }
+  .section-h { display: flex; align-items: baseline; gap: 10px; margin: 26px 2px 12px; }
+  .section-h h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-h .hint { font-size: 12px; color: var(--ink-3); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  .imgbox { position: relative; aspect-ratio: 16/9.5; overflow: hidden; }
+  .imgbox img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ph {
+    position: absolute; inset: 0; z-index: 0; display: flex;
+    align-items: center; justify-content: center; flex-direction: column; gap: 6px;
+  }
+  .card.noimg img { display: none; }
+  .ph.t0 { background: linear-gradient(135deg, var(--ph-a), var(--ph-b)); }
+  .ph.t1 { background: linear-gradient(135deg, var(--ph-c), var(--ph-d)); }
+  .ph .mono { font-size: 30px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-2); opacity: 0.85; }
+  .ph .icn { font-size: 22px; }
+  .toppick {
+    position: absolute; top: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 700; background: rgba(11,11,11,0.78); color: #fff;
+    padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .areatag {
+    position: absolute; bottom: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 600; background: rgba(11,11,11,0.62); color: #fff;
+    padding: 3px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .body { padding: 14px 16px 15px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .titlerow { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .vname { font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .typechip { flex: none; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; margin-top: 1px; }
+  .typechip.t0 { color: var(--accent-a); background: var(--accent-a-soft); }
+  .typechip.t1 { color: var(--accent-b); background: var(--accent-b-soft); }
+  .addr { font-size: 12.5px; }
+  .addr a { color: var(--ink-3); text-decoration: none; }
+  .addr a:hover { color: var(--ink-1); text-decoration: underline; }
+  .cap { font-size: 12.5px; color: var(--ink-2); }
+  .cap b { color: var(--ink-1); font-weight: 600; }
+  .flag {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 7px; align-self: flex-start;
+  }
+  .flag.dedicated { color: var(--good); background: var(--good-soft); }
+  .flag.contact { color: var(--ink-2); background: var(--page); border: 1px solid var(--hairline); }
+  .note { font-size: 13px; color: var(--ink-2); flex: 1; }
+  .links { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+  .btn { font-size: 12.5px; font-weight: 600; text-decoration: none; padding: 7px 13px; border-radius: 8px; }
+  .btn.pri { background: var(--ink-1); color: var(--page); }
+  .btn.pri:hover { opacity: 0.85; }
+  .btn.sec { color: var(--ink-2); border: 1px solid var(--hairline); }
+  .btn.sec:hover { color: var(--ink-1); border-color: var(--ink-3); }
+  .empty { color: var(--ink-3); font-size: 14px; padding: 40px 0; text-align: center; }
+  footer { margin-top: 34px; border-top: 1px solid var(--grid); padding-top: 18px; display: grid; gap: 14px; }
+  .fnote { font-size: 13px; color: var(--ink-2); max-width: 90ch; }
+  .fnote b { color: var(--ink-1); }
+  .prov { font-size: 11.5px; color: var(--ink-3); }
+  @media (max-width: 640px) {
+    body { padding: 18px 12px 30px; }
+    h1 { font-size: 22px; }
+    .count { flex-basis: 100%; margin-left: 2px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <button class="themebtn" id="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <div class="kicker" id="kicker"></div>
+    <h1 id="title"></h1>
+    <div class="sub" id="subtitle"></div>
+    <div class="statrow" id="stats"></div>
+  </header>
+  <div class="filters">
+    <div class="fgroup" id="f-area"></div>
+    <div class="fgroup" id="f-type"></div>
+    <div class="fgroup" id="f-flag">
+      <button class="chip" data-v="dedicated">✓ Dedicated events page only</button>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+  <div id="content"></div>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+/* ============================ EDIT BELOW ============================ */
+
+// Page copy. footnotes render as footer paragraphs — use them for the
+// closed-venues warning and any pairing tips. Keep provenance honest:
+// research date + "confirm capacities when booking".
+const CONFIG = {
+  kicker: "Venue Scout",                              // e.g. "LA Tech Week · Venue Scout"
+  title: "Sample City — Venue Options",               // deliverable headline
+  subtitle: "Replace CONFIG, TYPE_META, and VENUES with researched data. " +
+            "Links must point to pages verified during research.",
+  extraStat: null,                                    // optional {n:"3,000", l:"max standing capacity"}
+  footnotes: [
+    "<b>Gone since last year:</b> list closed venues here so nobody routes an inquiry to them.",
+    "<b>Pairing tip:</b> optional extra guidance (e.g. mobile espresso vendors for coworking venues).",
+  ],
+  provenance: "Researched & links verified [DATE] · Photos load from each venue's own website; " +
+              "a placeholder appears where no photo was published. Capacities are published or " +
+              "estimated figures — confirm when booking.",
+};
+
+// Up to ~3 venue types. Key order controls chip order; t0/t1 alternate the
+// accent color + placeholder gradient (types beyond two reuse t0/t1 styles).
+const TYPE_META = {
+  coffee: { label: "Coffee shop", icon: "☕" },
+  cowork: { label: "Coworking",  icon: "🏢" },
+};
+
+// One object per venue. Fields:
+//   k: unique key · name · area: neighborhood (drives area chips + sections)
+//   type: a TYPE_META key · top: true for ⭐ Top pick (use sparingly, ~5 max)
+//   addr: street address (auto-links to Google Maps)
+//   cap: capacity line, <b> the numbers, mark estimates with ~
+//   flag: "dedicated" (verified events page) | "contact" (published contact only)
+//   link: VERIFIED url · linkText: button label · email: published events email or null
+//   note: 1-2 lines on why it works — layout, vibe, logistics, caveats
+//   img: hotlinked photo url found during research, or null for placeholder
+//   alt: what the photo shows
+const VENUES = [
+  {k:"sample-1", name:"Sample Roasters", area:"Northside", type:"coffee", top:true,
+   addr:"123 Main St, Sample City", cap:"Espresso service up to <b>200</b> · patio",
+   flag:"dedicated", link:"https://example.com/events", linkText:"Events page", email:null,
+   note:"Big patio plus an adjoining studio — the kind of venue this card format was built for.",
+   img:null, alt:"Sample Roasters patio"},
+  {k:"sample-2", name:"The Workshop", area:"Northside", type:"cowork",
+   addr:"456 Center Ave, Sample City", cap:"<b>150</b> seated / <b>300</b> standing",
+   flag:"contact", link:"https://example.com/contact", linkText:"Contact", email:"events@example.com",
+   note:"Open floor with rooftop. No dedicated events page — published events email instead.",
+   img:null, alt:"The Workshop floor"},
+  {k:"sample-3", name:"Harbor Cafe", area:"Dockside", type:"coffee",
+   addr:"789 Pier Rd, Sample City", cap:"~<b>50–100</b> · two floors",
+   flag:"dedicated", link:"https://example.com/private-events", linkText:"Private events", email:null,
+   note:"Waterfront two-story room; only works as a full buyout.",
+   img:null, alt:"Harbor Cafe interior"},
+];
+
+/* ============================ EDIT ABOVE ============================ */
+
+const state = { area: "all", type: "all", dedicatedOnly: false };
+const AREAS = [...new Set(VENUES.map(v => v.area))];
+const typeKeys = Object.keys(TYPE_META);
+const tcls = t => "t" + (typeKeys.indexOf(t) % 2);
+
+function initials(name){
+  return name.replace(/[^a-zA-Z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join("");
+}
+function mapsUrl(v){
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(v.name + " " + v.addr);
+}
+function card(v){
+  const t = TYPE_META[v.type] || { label: v.type, icon: "📍" };
+  const flagHtml = v.flag === "dedicated"
+    ? '<span class="flag dedicated">✓ Dedicated events page</span>'
+    : '<span class="flag contact">✉ Events contact only</span>';
+  const imgHtml = v.img
+    ? `<img src="${v.img}" alt="${v.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.card').classList.add('noimg')">`
+    : "";
+  const emailBtn = v.email ? `<a class="btn sec" href="mailto:${v.email}">${v.email}</a>` : "";
+  return `<div class="card${v.img ? "" : " noimg"}">
+    <div class="imgbox">
+      ${imgHtml}
+      <div class="ph ${tcls(v.type)}"><span class="icn">${t.icon}</span><span class="mono">${initials(v.name)}</span></div>
+      ${v.top ? '<div class="toppick">★ Top pick</div>' : ""}
+      <div class="areatag">${v.area}</div>
+    </div>
+    <div class="body">
+      <div class="titlerow"><div class="vname">${v.name}</div><span class="typechip ${tcls(v.type)}">${t.icon} ${t.label}</span></div>
+      <div class="addr"><a href="${mapsUrl(v)}" target="_blank" rel="noopener">📍 ${v.addr}</a></div>
+      <div class="cap">${v.cap}</div>
+      ${flagHtml}
+      <div class="note">${v.note}</div>
+      <div class="links"><a class="btn pri" href="${v.link}" target="_blank" rel="noopener">${v.linkText} ↗</a>${emailBtn}</div>
+    </div>
+  </div>`;
+}
+function render(){
+  const match = v =>
+    (state.area === "all" || v.area === state.area) &&
+    (state.type === "all" || v.type === state.type) &&
+    (!state.dedicatedOnly || v.flag === "dedicated");
+  const shown = VENUES.filter(match);
+  const areas = AREAS.filter(a => state.area === "all" || a === state.area);
+  let html = "";
+  for (const a of areas){
+    const items = shown.filter(v => v.area === a);
+    if (!items.length) continue;
+    const hint = typeKeys.map(k => {
+      const n = items.filter(v => v.type === k).length;
+      return n ? `${n} ${TYPE_META[k].label.toLowerCase()}` : null;
+    }).filter(Boolean).join(" · ");
+    html += `<div class="section-h"><h2>${a}</h2><span class="hint">${hint}</span></div>
+             <div class="grid">${items.map(card).join("")}</div>`;
+  }
+  document.getElementById("content").innerHTML = html || '<div class="empty">No venues match these filters.</div>';
+  document.getElementById("count").textContent = `Showing ${shown.length} of ${VENUES.length} venues`;
+}
+function buildChips(el, values, key){
+  el.innerHTML = `<button class="chip on" data-v="all">All ${key === "area" ? "areas" : "types"}</button>` +
+    values.map(v => `<button class="chip" data-v="${v.v}">${v.label}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(btn => btn.addEventListener("click", () => {
+    el.querySelectorAll(".chip").forEach(b => b.classList.remove("on"));
+    btn.classList.add("on");
+    state[key] = btn.dataset.v;
+    render();
+  }));
+}
+function init(){
+  document.title = CONFIG.title;
+  document.getElementById("kicker").textContent = CONFIG.kicker;
+  document.getElementById("title").textContent = CONFIG.title;
+  document.getElementById("subtitle").textContent = CONFIG.subtitle;
+  const dedicated = VENUES.filter(v => v.flag === "dedicated").length;
+  const stats = [
+    { n: String(VENUES.length), l: "venues vetted" },
+    { n: String(dedicated), l: "with dedicated events pages" },
+    { n: String(AREAS.length), l: AREAS.length === 1 ? "neighborhood" : "neighborhoods" },
+  ];
+  if (CONFIG.extraStat) stats.push(CONFIG.extraStat);
+  document.getElementById("stats").innerHTML =
+    stats.map(s => `<div class="stat"><div class="n">${s.n}</div><div class="l">${s.l}</div></div>`).join("");
+  document.getElementById("foot").innerHTML =
+    CONFIG.footnotes.map(f => `<div class="fnote">${f}</div>`).join("") +
+    `<div class="prov">${CONFIG.provenance}</div>`;
+  buildChips(document.getElementById("f-area"), AREAS.map(a => ({v:a, label:a})), "area");
+  buildChips(document.getElementById("f-type"), typeKeys.map(k => ({v:k, label:`${TYPE_META[k].icon} ${TYPE_META[k].label}s`})), "type");
+  const flagBtn = document.querySelector('#f-flag .chip');
+  flagBtn.addEventListener("click", () => {
+    state.dedicatedOnly = !state.dedicatedOnly;
+    flagBtn.classList.toggle("on", state.dedicatedOnly);
+    render();
+  });
+  render();
+}
+function cycleTheme(){
+  const r = document.documentElement;
+  const cur = r.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : cur === "light" ? "dark"
+    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
+  r.setAttribute("data-theme", next);
+}
+init();
+</script>
+</body>
+</html>

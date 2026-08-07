@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrewVenue — Builders & Brews: Hack Edition</title>
+<meta property="og:title" content="BrewVenue ☕ — Builders & Brews: Hack Edition">
+<meta property="og:description" content="Venue scouting HQ for the global Hack Edition tour — 17 cities, 3 regions, Sep–Oct 2026. Pick a city to see its vetted venues.">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb;
+    --ink-1: #0b0b0b; --ink-2: #52514e; --ink-3: #898781;
+    --hairline: rgba(11,11,11,0.10); --grid: #e1e0d9;
+    --accent-a: #eb6834; --accent-a-soft: rgba(235,104,52,0.12);
+    --accent-b: #2a78d6; --accent-b-soft: rgba(42,120,214,0.12);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.10);
+    --ph-a: #f3e7dc; --ph-b: #e8d5c2;
+    --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
+    --shadow-hover: 0 2px 4px rgba(11,11,11,0.08), 0 10px 28px rgba(11,11,11,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+      --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+      --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+      --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+      --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+      --ph-a: #33281f; --ph-b: #453425;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+      --shadow-hover: 0 2px 4px rgba(0,0,0,0.5), 0 10px 28px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19;
+    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+    --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+    --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+    --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+    --ph-a: #33281f; --ph-b: #453425;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+    --shadow-hover: 0 2px 4px rgba(0,0,0,0.5), 0 10px 28px rgba(0,0,0,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page); color: var(--ink-1);
+    line-height: 1.45; padding: 34px 20px 44px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  .themebtn {
+    float: right; font-size: 12px; color: var(--ink-2);
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  }
+  .themebtn:hover { color: var(--ink-1); }
+  .kicker {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent-a); margin-bottom: 8px;
+  }
+  h1 { font-size: 34px; font-weight: 800; letter-spacing: -0.03em; }
+  h1 .cup { font-size: 26px; }
+  .sub { color: var(--ink-2); font-size: 14.5px; margin-top: 8px; max-width: 72ch; }
+  .statrow { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 18px; padding-bottom: 22px; border-bottom: 1px solid var(--grid); }
+  .stat .n { font-size: 22px; font-weight: 700; }
+  .stat .l { font-size: 12px; color: var(--ink-3); }
+  .region-h { display: flex; align-items: baseline; gap: 10px; margin: 30px 2px 14px; }
+  .region-h h2 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+  .region-h .hint { font-size: 12px; color: var(--ink-3); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+  .citycard {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  a.citycard:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .imgbox { position: relative; aspect-ratio: 16/10; overflow: hidden; }
+  .imgbox img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ph {
+    position: absolute; inset: 0; z-index: 0; display: flex;
+    align-items: center; justify-content: center; flex-direction: column; gap: 6px;
+    background: linear-gradient(135deg, var(--ph-a), var(--ph-b));
+  }
+  .ph .mono { font-size: 28px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-2); opacity: 0.85; }
+  .citycard.noimg img { display: none; }
+  .datechip {
+    position: absolute; top: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 700; background: rgba(11,11,11,0.78); color: #fff;
+    padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; }
+  .cname { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .status { font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+  .status.live { color: var(--good); }
+  .status.rsvp { color: var(--accent-b); }
+  .status.soon { color: var(--ink-3); font-weight: 500; }
+  .cta { font-size: 12.5px; color: var(--ink-2); }
+  a.citycard .cta { color: var(--ink-1); font-weight: 600; }
+  footer { margin-top: 36px; border-top: 1px solid var(--grid); padding-top: 18px; display: grid; gap: 12px; }
+  .fnote { font-size: 13px; color: var(--ink-2); max-width: 90ch; }
+  .fnote b { color: var(--ink-1); }
+  .prov { font-size: 11.5px; color: var(--ink-3); }
+  @media (max-width: 640px) {
+    body { padding: 22px 12px 32px; }
+    h1 { font-size: 27px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <button class="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <div class="kicker">Builders &amp; Brews · Hack Edition · H2 2026</div>
+    <h1>BrewVenue <span class="cup">☕</span></h1>
+    <div class="sub">Venue scouting HQ for the <b>Builders &amp; Brews: Hack Edition</b> global hackathon tour.
+      Pick a city to open its venue scout — vetted cafes, coworking, and event spaces with verified booking links —
+      or RSVP where the event page is already live. More city scouts light up as the tour approaches.</div>
+    <div class="statrow" id="stats"></div>
+  </header>
+
+  <div id="content"></div>
+
+  <footer>
+    <div class="fnote"><b>Satellite / stretch cities under consideration:</b> Washington DC, Vilnius, Warsaw, Rome / Milan, and Lisbon — cards will appear here if they're confirmed.</div>
+    <div class="fnote"><b>Tour shape:</b> three focused regional weeks — Asia-Pacific (early Sep), Europe &amp; Middle East (mid–late Sep), North America (late Sep–mid Oct) — anchored around major AI events where possible, wrapping with SF Tech Week (Oct 5–11) and LA Tech Week (Oct 12–18).</div>
+    <div class="prov">City lineup from the Hack Edition tour plan · Venue scouts researched Aug 2026 · City photos via Wikimedia Commons; venue photos load from each venue's own site.</div>
+  </footer>
+</div>
+
+<script>
+const REGIONS = [
+  { name: "North America", cities: [
+    { city: "San Francisco", date: "Oct 5", status: "live", href: "/san-francisco/",
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Zeppelin-ride-020100925-195_%285029394846%29.jpg/960px-Zeppelin-ride-020100925-195_%285029394846%29.jpg" },
+    { city: "Los Angeles", date: "Oct 12", status: "live", href: "/los-angeles/",
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Hollywood_sign_%288485145044%29.jpg/960px-Hollywood_sign_%288485145044%29.jpg" },
+    { city: "Toronto", date: "Sep 29", status: "soon", href: null,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Toronto_Skyline_from_Olympic_Island%2C_June_20_2026_%285-3_cropped%29.jpg/960px-Toronto_Skyline_from_Olympic_Island%2C_June_20_2026_%285-3_cropped%29.jpg" },
+    { city: "New York City", date: "Sep 25", status: "rsvp", href: "https://luma.com/tavily-nnzl",
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg/960px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg" },
+    { city: "Boston", date: "Oct 2", status: "rsvp", href: "https://luma.com/emee7xtr",
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/ISH_WC_Boston4.jpg/960px-ISH_WC_Boston4.jpg" },
+  ]},
+  { name: "Europe & Middle East", cities: [
+    { city: "Stockholm", date: "Sep 9–11", status: "soon", href: null,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Royal_Dramatic_Theatre_Stockholm.jpg/960px-Royal_Dramatic_Theatre_Stockholm.jpg" },
+    { city: "Berlin", date: "Sep 10 · 17 · 24", status: "soon", href: null,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Museumsinsel_Berlin_Juli_2021_1_%28cropped%29_b.jpg/960px-Museumsinsel_Berlin_Juli_2021_1_%28cropped%29_b.jpg" },
+    { city: "London", date: "Sep 15", status: "soon", href: null,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/London_Skyline_%28125508655%29.jpeg/960px-London_Skyline_%28125508655%29.jpeg" },
+    { city: "Tel Aviv", date: "Sep 16", status: "soon", href: null,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Sarona_CBD_01_%28cropped%29.jpg/960px-Sarona_CBD_01_%28cropped%29.jpg" },
+    { city: "Zurich", date: "Sep 16", status: "soon", href: null,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Altstadt_Z%C3%BCrich_2015.jpg/960px-Altstadt_Z%C3%BCrich_2015.jpg" },
+    { city: "Paris", date: "Sep 18", status: "soon", href: null,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg/960px-La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg" },
+    { city: "Barcelona", date: "Sep 21", status: "soon", href: null,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Evening_light_over_Barcelona.jpg/960px-Evening_light_over_Barcelona.jpg" },
+    { city: "Amsterdam", date: "Sep 25", status: "soon", href: null,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg/800px-South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg" },
+  ]},
+  { name: "Asia-Pacific", cities: [
+    { city: "Tokyo", date: "Sep 9", status: "soon", href: null,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg/960px-Skyscrapers_of_Shinjuku_2009_January.jpg" },
+    { city: "Seoul", date: "Sep 11", status: "soon", href: null,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/%EC%A4%91%ED%99%94%EC%A0%84%EC%9D%98_%EB%82%AE.jpg/960px-%EC%A4%91%ED%99%94%EC%A0%84%EC%9D%98_%EB%82%AE.jpg" },
+    { city: "Kuala Lumpur", date: "Sep 12", status: "soon", href: null,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Bukit_Bintang_junction_in_2024_2.jpg/960px-Bukit_Bintang_junction_in_2024_2.jpg" },
+    { city: "Singapore", date: "Sep 14", status: "soon", href: null,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Marina_Bay%2C_Financial_District_and_Singapore_River_%2835622190292%29.jpg/960px-Marina_Bay%2C_Financial_District_and_Singapore_River_%2835622190292%29.jpg" },
+  ]},
+];
+
+const STATUS_META = {
+  live: { chip: "● Venue scout live", cta: "Open venue scout →" },
+  rsvp: { chip: "✓ Event confirmed", cta: "RSVP on Luma ↗" },
+  soon: { chip: "Coming soon", cta: "Venue scout in the works" },
+};
+
+function initials(name){
+  return name.replace(/[^a-zA-Z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join("");
+}
+function card(c){
+  const m = STATUS_META[c.status];
+  const inner = `
+    <div class="imgbox">
+      ${c.img ? `<img src="${c.img}" alt="${c.city}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.citycard').classList.add('noimg')">` : ""}
+      <div class="ph"><span class="mono">${initials(c.city)}</span></div>
+      <div class="datechip">${c.date}</div>
+    </div>
+    <div class="body">
+      <div class="cname">${c.city}</div>
+      <span class="status ${c.status}">${m.chip}</span>
+      <span class="cta">${m.cta}</span>
+    </div>`;
+  return c.href
+    ? `<a class="citycard${c.img ? "" : " noimg"}" href="${c.href}"${c.href.startsWith("http") ? ' target="_blank" rel="noopener"' : ""}>${inner}</a>`
+    : `<div class="citycard${c.img ? "" : " noimg"}">${inner}</div>`;
+}
+function init(){
+  const total = REGIONS.reduce((n, r) => n + r.cities.length, 0);
+  const live = REGIONS.flatMap(r => r.cities).filter(c => c.status === "live").length;
+  document.getElementById("stats").innerHTML = [
+    { n: String(total), l: "tour cities" },
+    { n: String(REGIONS.length), l: "regions" },
+    { n: "Sep 9 – Oct 12", l: "tour window, 2026" },
+    { n: String(live), l: "venue scouts live" },
+  ].map(s => `<div class="stat"><div class="n">${s.n}</div><div class="l">${s.l}</div></div>`).join("");
+  document.getElementById("content").innerHTML = REGIONS.map(r => `
+    <div class="region-h"><h2>${r.name}</h2><span class="hint">${r.cities.length} cities</span></div>
+    <div class="grid">${r.cities.map(card).join("")}</div>`).join("");
+}
+function cycleTheme(){
+  const r = document.documentElement;
+  const cur = r.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : cur === "light" ? "dark"
+    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
+  r.setAttribute("data-theme", next);
+}
+init();
+</script>
+</body>
+</html>

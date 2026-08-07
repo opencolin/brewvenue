@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SF Tech Week — Venue Options · BrewVenue</title>
+<!--
+  VENUE SCOUT EXPLORER TEMPLATE
+  Edit ONLY the CONFIG, TYPE_META, and VENUES blocks in the <script> at the
+  bottom (plus <title> above). Filter chips, section headers, and header stats
+  all derive from the data — no markup edits needed for a new city or venue mix.
+  Keep the file self-contained: no external CSS/JS/fonts, no localStorage.
+-->
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --ink-1: #0b0b0b;
+    --ink-2: #52514e;
+    --ink-3: #898781;
+    --hairline: rgba(11,11,11,0.10);
+    --grid: #e1e0d9;
+    --accent-a: #eb6834;
+    --accent-a-soft: rgba(235,104,52,0.12);
+    --accent-b: #2a78d6;
+    --accent-b-soft: rgba(42,120,214,0.12);
+    --good: #0ca30c;
+    --good-soft: rgba(12,163,12,0.10);
+    --chip-on: #0b0b0b;
+    --chip-on-ink: #fcfcfb;
+    --ph-a: #f3e7dc;
+    --ph-b: #e8d5c2;
+    --ph-c: #dde8f3;
+    --ph-d: #c9d9ec;
+    --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+      --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+      --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+      --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+      --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+      --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+      --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19;
+    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+    --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+    --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+    --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+    --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+    --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page); color: var(--ink-1);
+    line-height: 1.45; padding: 28px 20px 40px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  header.hero { margin-bottom: 18px; }
+  .kicker {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent-a); margin-bottom: 6px;
+  }
+  h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+  .sub { color: var(--ink-2); font-size: 14px; margin-top: 6px; max-width: 70ch; }
+  .statrow { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 16px; }
+  .stat .n { font-size: 22px; font-weight: 700; }
+  .stat .l { font-size: 12px; color: var(--ink-3); }
+  .themebtn {
+    float: right; margin-top: -2px; font-size: 12px; color: var(--ink-2);
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  }
+  .themebtn:hover { color: var(--ink-1); }
+  .filters {
+    position: sticky; top: 0; z-index: 5; background: var(--page);
+    padding: 12px 0 10px; margin: 8px 0 6px;
+    border-bottom: 1px solid var(--grid);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .fgroup { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 999px; padding: 3px; }
+  .chip {
+    font-size: 12.5px; font-weight: 500; color: var(--ink-2);
+    padding: 5px 12px; border-radius: 999px; border: none; background: transparent;
+    cursor: pointer; white-space: nowrap;
+  }
+  .chip:hover { color: var(--ink-1); }
+  .chip.on { background: var(--chip-on); color: var(--chip-on-ink); font-weight: 600; }
+  .count { margin-left: auto; font-size: 12px; color: var(--ink-3); }
+  .section-h { display: flex; align-items: baseline; gap: 10px; margin: 26px 2px 12px; }
+  .section-h h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-h .hint { font-size: 12px; color: var(--ink-3); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  .imgbox { position: relative; aspect-ratio: 16/9.5; overflow: hidden; }
+  .imgbox img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ph {
+    position: absolute; inset: 0; z-index: 0; display: flex;
+    align-items: center; justify-content: center; flex-direction: column; gap: 6px;
+  }
+  .card.noimg img { display: none; }
+  .ph.t0 { background: linear-gradient(135deg, var(--ph-a), var(--ph-b)); }
+  .ph.t1 { background: linear-gradient(135deg, var(--ph-c), var(--ph-d)); }
+  .ph .mono { font-size: 30px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-2); opacity: 0.85; }
+  .ph .icn { font-size: 22px; }
+  .toppick {
+    position: absolute; top: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 700; background: rgba(11,11,11,0.78); color: #fff;
+    padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .areatag {
+    position: absolute; bottom: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 600; background: rgba(11,11,11,0.62); color: #fff;
+    padding: 3px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .body { padding: 14px 16px 15px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .titlerow { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .vname { font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .typechip { flex: none; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; margin-top: 1px; }
+  .typechip.t0 { color: var(--accent-a); background: var(--accent-a-soft); }
+  .typechip.t1 { color: var(--accent-b); background: var(--accent-b-soft); }
+  .addr { font-size: 12.5px; }
+  .addr a { color: var(--ink-3); text-decoration: none; }
+  .addr a:hover { color: var(--ink-1); text-decoration: underline; }
+  .cap { font-size: 12.5px; color: var(--ink-2); }
+  .cap b { color: var(--ink-1); font-weight: 600; }
+  .flag {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 7px; align-self: flex-start;
+  }
+  .flag.dedicated { color: var(--good); background: var(--good-soft); }
+  .flag.contact { color: var(--ink-2); background: var(--page); border: 1px solid var(--hairline); }
+  .note { font-size: 13px; color: var(--ink-2); flex: 1; }
+  .links { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+  .btn { font-size: 12.5px; font-weight: 600; text-decoration: none; padding: 7px 13px; border-radius: 8px; }
+  .btn.pri { background: var(--ink-1); color: var(--page); }
+  .btn.pri:hover { opacity: 0.85; }
+  .btn.sec { color: var(--ink-2); border: 1px solid var(--hairline); }
+  .btn.sec:hover { color: var(--ink-1); border-color: var(--ink-3); }
+  .empty { color: var(--ink-3); font-size: 14px; padding: 40px 0; text-align: center; }
+  footer { margin-top: 34px; border-top: 1px solid var(--grid); padding-top: 18px; display: grid; gap: 14px; }
+  .fnote { font-size: 13px; color: var(--ink-2); max-width: 90ch; }
+  .fnote b { color: var(--ink-1); }
+  .prov { font-size: 11.5px; color: var(--ink-3); }
+  @media (max-width: 640px) {
+    body { padding: 18px 12px 30px; }
+    h1 { font-size: 22px; }
+    .count { flex-basis: 100%; margin-left: 2px; }
+  }
+  .homelink { font-size: 12.5px; font-weight: 600; color: var(--ink-3); text-decoration: none; display: inline-block; margin-bottom: 8px; }
+  .homelink:hover { color: var(--ink-1); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <button class="themebtn" id="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <a class="homelink" href="/">← BrewVenue</a>
+    <div class="kicker" id="kicker"></div>
+    <h1 id="title"></h1>
+    <div class="sub" id="subtitle"></div>
+    <div class="statrow" id="stats"></div>
+  </header>
+  <div class="filters">
+    <div class="fgroup" id="f-area"></div>
+    <div class="fgroup" id="f-type"></div>
+    <div class="fgroup" id="f-flag">
+      <button class="chip" data-v="dedicated">✓ Dedicated events page only</button>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+  <div id="content"></div>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+/* ============================ EDIT BELOW ============================ */
+
+// Page copy
+const CONFIG = {
+  kicker: "SF Tech Week · Venue Scout",
+  title: "SF Tech Week — Venue Options",
+  subtitle: "Cafes, coffee shops, event spaces, and coworking across San Francisco's Tech Week core — " +
+            "SoMa/2nd St, downtown, and the standouts beyond. Built for ~50–300 person events during " +
+            "SF Tech Week (Oct 5–11, 2026). Links point to verified private-events pages or best booking contacts.",
+  extraStat: { n: "Oct 5–11", l: "SF Tech Week 2026 dates" },
+  footnotes: [
+    "<b>Neighborhood analysis (SFTW 2025 data):</b> SoMa — including the 2nd St / South Park corridor and East Cut — hosted ~40% of last year's events, roughly 2× FiDi (#2). The \"SoMa near 2nd Street\" hypothesis is confirmed: a16z sits at 2nd & Townsend, South Park is VC row, Anthropic is at 500 Howard. Watch Jackson Square/FiDi — the fastest-rising cluster for VC dinner formats.",
+    "<b>Gone or not bookable — don't route inquiries here:</b> Bespoke (Westfield) and Galvanize (44 Tehama) are closed; so are Blue Bottle Mint Plaza, Vega Coffee (Folsom St), and Bluestone Lane 685 Market. WeWork and Industrious SF locations have no public event-rental program, and South Park Commons is members-only — a partnership ask, not a rental.",
+    "<b>Seed-venue corrections:</b> Motoring Coffee is at 1525 Union St (Cow Hollow), not Russian Hill. SOHN is in Dogpatch (2535 3rd St). TIAT is at 151 Powell (Union Square), not SoMa. Bluestone Lane has no 101 California or Levi's Plaza café — its real downtown trio is 55 2nd St, 227 Front St, and 420 Folsom. Corgi Cafe hosting is free (attendees buy café items, or you set an F&B budget).",
+  ],
+  provenance: "Researched & links verified Aug 6, 2026 · SF Tech Week 2026: Oct 5–11 (LA Tech Week follows Oct 12–18) · " +
+              "Photos load from each venue's own website; a placeholder appears where no photo was published. " +
+              "Capacities are published or estimated figures — confirm when booking.",
+};
+
+const TYPE_META = {
+  coffee: { label: "Coffee & café", icon: "☕" },
+  cowork: { label: "Coworking",     icon: "🏢" },
+  event:  { label: "Event space",   icon: "✨" },
+};
+
+const VENUES = [
+  // ---------- SOMA / 2ND ST ----------
+  {k:"sightglass", name:"Sightglass Coffee", area:"SoMa / 2nd St", type:"coffee",
+   addr:"270 7th St, San Francisco", cap:"~<b>50–150</b> · two-story roastery (SF caps unpublished)",
+   flag:"dedicated", link:"https://sightglasscoffee.com/pages/host-your-next-event-at-sightglass", linkText:"Events page", email:"events@sightglasscoffee.com",
+   note:"The SoMa roastery flagship — working Probat roaster, open bar, upstairs community/training lab. Their Hollywood buyout runs 150; confirm SF numbers with the events team.",
+   img:"https://sightglasscoffee.com/cdn/shop/files/Sightglass-7th-Street-Community.jpg", alt:"Sightglass 7th St community space"},
+  {k:"delah", name:"Delah Coffee", area:"SoMa / 2nd St", type:"coffee",
+   addr:"370 4th St, San Francisco", cap:"~<b>50–100</b> · open 6am–11pm daily",
+   flag:"contact", link:"https://delahcoffee.com/contact/", linkText:"Contact", email:"info@delahcoffee.com",
+   note:"Big lounge-style Yemeni coffeehouse with the best hours in SoMa — the only café here that natively covers an all-day-into-evening format. Second location at 450 Sansome (FiDi).",
+   img:null, alt:"Delah Coffee interior"},
+  {k:"bluestone", name:"Bluestone Lane (3 downtown cafés)", area:"SoMa / 2nd St", type:"coffee",
+   addr:"55 2nd St · 227 Front St · 420 Folsom St", cap:"~<b>40–70</b> per café · venue hire via TripleSeat",
+   flag:"dedicated", link:"https://bluestonelane.com/private-events/", linkText:"Private events", email:null,
+   note:"Polished Aussie cafés on the 2nd St corridor, FiDi, and East Cut (Avery Lane has the patio). Turnkey corporate-events program; each room suits ~50, not 150.",
+   img:"https://bluestonelane.com/wp-content/uploads/2021/05/BL_Web_LocationImage_TheAvery02-1600x600.jpg", alt:"Bluestone Lane Avery Lane café and patio"},
+  {k:"minna", name:"111 Minna Gallery", area:"SoMa / 2nd St", type:"event", top:true,
+   addr:"111 Minna St, San Francisco", cap:"<b>450</b> · 4,300 sq ft gallery + two bars",
+   flag:"dedicated", link:"https://111minnagallery.com/booking/", linkText:"Booking", email:null,
+   note:"Two decades of SF tech launch parties, two blocks off 2nd St. 16-ft ceilings, theater lighting, daily Red Door Coffee service — a proven all-day buyout. ☎ (415) 974-1719",
+   img:"https://111minnagallery.com/wp-content/uploads/2025/02/111-Minna-Gallery-2nd-Street-Gallery-Crowd.jpeg", alt:"Event crowd inside 111 Minna Gallery"},
+  {k:"dg717", name:"DG717 (Digital Garage)", area:"SoMa / 2nd St", type:"event",
+   addr:"717 Market St, San Francisco", cap:"<b>80</b> seated / <b>200</b> standing · $2.5k half-day, $5k full-day",
+   flag:"contact", link:"https://dg717.com/spaces/", linkText:"Spaces + inquiry", email:null,
+   note:"Digital Garage's longtime hackathon and pitch-event hall at Market & 3rd — flexible ground floor, projector + mics included, some of the best all-day value downtown.",
+   img:"https://images.squarespace-cdn.com/content/v1/69f3b2388b24d50047412ff2/cf6f1f92-0b69-4ac2-977a-95c542f42ef0/christmas_2025-172.jpg", alt:"Event in the DG717 main hall"},
+  {k:"spur", name:"SPUR Urban Center", area:"SoMa / 2nd St", type:"event",
+   addr:"654 Mission St, San Francisco", cap:"Up to <b>425</b> · 3 floors, from $20k/12hr",
+   flag:"dedicated", link:"https://www.spur.org/facilityrental", linkText:"Facility rental", email:null,
+   note:"Full-building takeover option a block from 2nd St — penthouse patio, house AV included. Its FAQ literally has conference-week minimums (GDC, Disrupt, Dreamforce). ☎ (415) 781-8726",
+   img:null, alt:"SPUR Urban Center"},
+  {k:"cityview", name:"City View at Metreon", area:"SoMa / 2nd St", type:"event",
+   addr:"135 Fourth St, San Francisco", cap:"<b>200–2,000</b> · 31k sq ft + terrace",
+   flag:"dedicated", link:"https://www.cityviewmetreon.com/services-and-pricing", linkText:"Services & pricing", email:"cityviewsales@byskylight.com",
+   note:"The big-format option: divisible floor, skyline glass, 11,000 sq ft outdoor terrace next to Moscone. Overkill under ~150; ideal for a flagship day.",
+   img:null, alt:"City View at Metreon"},
+
+  // ---------- EAST CUT / SALESFORCE PARK ----------
+  {k:"salesforcepark", name:"Salesforce Park × Andytown", area:"East Cut / Salesforce Park", type:"event",
+   addr:"Salesforce Transit Center rooftop (Beale–2nd St)", cap:"Central Lawn <b>150</b> ($6.5k base) · Wetlands <b>50</b> ($4.5k)",
+   flag:"dedicated", link:"https://www.tjpa.org/node/6647", linkText:"Park rentals", email:"info@tjpa.org",
+   note:"Outdoor rooftop-park events with Andytown's kiosk on-site for coffee (they also cater off-site). Book via TJPA: 21-day lead, COI required; free group-outing permit exists for casual 26–150. October weather risk.",
+   img:"https://www.tjpa.org/files/styles/rectangle/public/images/2024-10/Central_Lawn5.jpg", alt:"Central Lawn at Salesforce Park"},
+
+  // ---------- FIDI / JACKSON SQUARE ----------
+  {k:"corgi", name:"Corgi Cafe", area:"FiDi / Jackson Square", type:"coffee", top:true,
+   addr:"9 Claude Ln, San Francisco", cap:"Café ~<b>50</b>; form takes <b>100+</b> (uses their upstairs) · FREE hosting",
+   flag:"dedicated", link:"https://www.corgicafe.com/host", linkText:"Host with us", email:"cafe@corgi.insure",
+   note:"SF's first 24/7 café, built for founders — no venue fee (attendees buy café items or you set an F&B budget), <12hr response. The only all-night option in town; pressure-test real headcount.",
+   img:"https://mma.prnewswire.com/media/2905117/Corgi_24_7_Cafe.jpg", alt:"Corgi Cafe on Claude Lane"},
+  {k:"andytown-kearny", name:"Andytown Coffee — 66 Kearny", area:"FiDi / Jackson Square", type:"coffee",
+   addr:"66 Kearny St, San Francisco", cap:"~<b>50–60</b> · 2,200 sq ft, weekdays only",
+   flag:"contact", link:"https://andytownsf.com/pages/events", linkText:"Events/catering", email:null,
+   note:"Andytown's newest downtown café (opened spring 2026) — right-sized for a small takeover or as your event's coffee partner; they run off-site event coffee catering too.",
+   img:null, alt:"Andytown 66 Kearny"},
+  {k:"canopy", name:"Canopy — Jackson Square", area:"FiDi / Jackson Square", type:"cowork",
+   addr:"595 Pacific Ave, San Francisco", cap:"~<b>50–100</b> · boutique receptions, 6am–10pm windows",
+   flag:"dedicated", link:"https://www.canopy.space/book-an-event/", linkText:"Book an event", email:"membership@canopy.space",
+   note:"Design-forward coworking in the neighborhood VCs are moving into — the right room for a polished salon or founder dinner. Also FiDi (353 Kearny) and Fillmore locations.",
+   img:null, alt:"Canopy Jackson Square"},
+  {k:"mindspace", name:"Mindspace — 575 Market", area:"FiDi / Jackson Square", type:"cowork",
+   addr:"575 Market St, San Francisco", cap:"~<b>50–100</b> · three bookable floors",
+   flag:"dedicated", link:"https://www.mindspace.me/event-city/san-francisco/", linkText:"Events page", email:null,
+   note:"Coworking floors bookable for offsites, panels, and pitch nights on mid-Market. ☎ (415) 982-9395",
+   img:"https://www.mindspace.me/wp-content/uploads/2025/06/galelry-with-text-5.png", alt:"Mindspace SF event space"},
+
+  // ---------- UNION SQ / MID-MARKET ----------
+  {k:"frontier", name:"Frontier Tower", area:"Union Sq / Mid-Market", type:"cowork", top:true,
+   addr:"995 Market St, San Francisco", cap:"\"Spaceship\" <b>200</b> standing / <b>120</b> seated + sky lounge",
+   flag:"contact", link:"https://frontiertower.io/events", linkText:"Events + contact", email:"support@frontiertower.io",
+   note:"The 16-floor deep-tech \"vertical village\" — 50+ events a month, hackathons to robot fights. The most Tech Week-native venue in SF; multi-floor takeovers possible.",
+   img:"https://frontiertower.io/office/space_1.webp", alt:"Frontier Tower interior"},
+  {k:"tiat", name:"TIAT", area:"Union Sq / Mid-Market", type:"event",
+   addr:"151 Powell St, San Francisco", cap:"<b>150</b> standing / ~<b>35</b> seated · gallery floor",
+   flag:"contact", link:"https://www.tiat.place/", linkText:"Site + contact", email:"email@tiat.place",
+   note:"Nonprofit art×tech gallery (opened Nov 2025) that actively solicits event proposals — salons, demos, performances. Best evening-format room on this list; note it's Union Square, not SoMa.",
+   img:"https://cdn.sfstation.com/wp-content/uploads/2025/11/IMG_2859.jpg", alt:"TIAT gallery interior"},
+  {k:"convene", name:"Convene — 100 Stockton", area:"Union Sq / Mid-Market", type:"event",
+   addr:"100 Stockton, San Francisco", cap:"Up to <b>468</b> · 53k sq ft, 7 rooms, turnkey AV + catering",
+   flag:"dedicated", link:"https://convene.com/locations/san-francisco/100-stockton/", linkText:"Venue page", email:null,
+   note:"The plug-and-play conference option: staffing, AV, and catering in-house. The most polished (and priced-accordingly) way to run an all-day 100–300 program.",
+   img:"https://images.ctfassets.net/rpinqlxtcitg/1Dz77MyvthFXwYGejOwVLA/6fe1bba7270367a0ab766cea61e87a78/100-stockton-4th-floor-gallery.webp", alt:"Convene 100 Stockton gallery space"},
+
+  // ---------- FERRY BUILDING ----------
+  {k:"shack15", name:"Shack15", area:"Ferry Building", type:"cowork", top:true,
+   addr:"1 Ferry Building, Suite 201", cap:"<b>400</b> standing / <b>350</b> seated · entire 2nd floor",
+   flag:"dedicated", link:"https://www.shack15.com/events", linkText:"Events page", email:"info@shack15.com",
+   note:"SF's founder clubhouse, with Bay Bridge views — conferences, founder talks, LP days, live podcasts. The marquee non-SoMa option; books via PerfectVenue.",
+   img:"https://images.squarespace-cdn.com/content/v1/6656358bbb9e8644fd94bfa1/1716925865207-DNDUSHCDPDIAEN051065/home+hero.png", alt:"Shack15 in the Ferry Building"},
+
+  // ---------- BEYOND THE CORE ----------
+  {k:"sohn", name:"SOHN", area:"Beyond the core", type:"coffee", top:true,
+   addr:"2535 3rd St, San Francisco (Dogpatch)", cap:"Up to <b>160</b> · café + gathering space",
+   flag:"dedicated", link:"https://www.sohnsf.com/privateevents", linkText:"Private events", email:"hello@sohnsf.com",
+   note:"Deuki Hong's Korean-American café built exactly for this: corporate events, late-night coworking sessions, full buyouts. The best pure coffee-venue match in the city.",
+   img:"https://images.squarespace-cdn.com/content/v1/684047fe6e7f3956c21a071e/2e27a206-75ef-4399-89fb-d20e2e2a369e/Sohn+%26+TAAF-61.jpg", alt:"Event inside SOHN"},
+  {k:"motoring", name:"Motoring Coffee / The Motoring Club", area:"Beyond the core", type:"coffee",
+   addr:"1525 Union St, San Francisco (Cow Hollow)", cap:"<b>150</b> · 7,000 sq ft art-deco warehouse",
+   flag:"dedicated", link:"https://themotoringclub.com/host-an-event", linkText:"Host an event", email:"hello@themotoringclub.com",
+   note:"Café up front, car-club warehouse behind — rotating car displays, 20-ft bar, conference room. A memorable buyout with a built-in demo-floor vibe; books via TripleSeat.",
+   img:"https://images.squarespace-cdn.com/content/v1/59b08988b07869a1bea88310/63d66b94-8d01-4332-ad58-01d305309950/Motoring+Coffee+Club+House_026.jpg", alt:"The Motoring Club clubhouse with cars"},
+  {k:"pearl", name:"The Pearl", area:"Beyond the core", type:"event",
+   addr:"601 19th St, San Francisco (Dogpatch)", cap:"Up to <b>800</b> across 3 levels + rooftop",
+   flag:"dedicated", link:"https://www.thepearlsf.com/spaces", linkText:"Spaces", email:"info@thepearlsf.com",
+   note:"Premium three-level venue with SF's best rooftop — main floor, mezzanine, and after-party built into one buyout. ☎ (415) 269-7171",
+   img:"https://cdn.prod.website-files.com/65a4812aa633aa799a12bd1e/65d436eefb16aa901ae5584c_10740_MP_-12.jpg", alt:"The Pearl main floor"},
+  {k:"grayarea", name:"Gray Area (Grand Theater)", area:"Beyond the core", type:"event",
+   addr:"2665 Mission St, San Francisco", cap:"Grand Theater <b>800</b> / <b>450</b> seated · Half Theater 400",
+   flag:"dedicated", link:"https://grayarea.org/services/venue-rental/", linkText:"Venue rental", email:null,
+   note:"Historic theater run by SF's art-and-technology institution — full AV rig, fiber, nonprofit discounts. The right stage for a keynote/screening-format day.",
+   img:"https://grayarea.org/wp-content/uploads/2023/06/endofyou-openingnight.jpg", alt:"Opening night inside Gray Area's theater"},
+];
+
+/* ============================ EDIT ABOVE ============================ */
+
+const state = { area: "all", type: "all", dedicatedOnly: false };
+const AREAS = [...new Set(VENUES.map(v => v.area))];
+const typeKeys = Object.keys(TYPE_META);
+const tcls = t => "t" + (typeKeys.indexOf(t) % 2);
+
+function initials(name){
+  return name.replace(/[^a-zA-Z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join("");
+}
+function mapsUrl(v){
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(v.name + " " + v.addr);
+}
+function card(v){
+  const t = TYPE_META[v.type] || { label: v.type, icon: "📍" };
+  const flagHtml = v.flag === "dedicated"
+    ? '<span class="flag dedicated">✓ Dedicated events page</span>'
+    : '<span class="flag contact">✉ Events contact only</span>';
+  const imgHtml = v.img
+    ? `<img src="${v.img}" alt="${v.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.card').classList.add('noimg')">`
+    : "";
+  const emailBtn = v.email ? `<a class="btn sec" href="mailto:${v.email}">${v.email}</a>` : "";
+  return `<div class="card${v.img ? "" : " noimg"}">
+    <div class="imgbox">
+      ${imgHtml}
+      <div class="ph ${tcls(v.type)}"><span class="icn">${t.icon}</span><span class="mono">${initials(v.name)}</span></div>
+      ${v.top ? '<div class="toppick">★ Top pick</div>' : ""}
+      <div class="areatag">${v.area}</div>
+    </div>
+    <div class="body">
+      <div class="titlerow"><div class="vname">${v.name}</div><span class="typechip ${tcls(v.type)}">${t.icon} ${t.label}</span></div>
+      <div class="addr"><a href="${mapsUrl(v)}" target="_blank" rel="noopener">📍 ${v.addr}</a></div>
+      <div class="cap">${v.cap}</div>
+      ${flagHtml}
+      <div class="note">${v.note}</div>
+      <div class="links"><a class="btn pri" href="${v.link}" target="_blank" rel="noopener">${v.linkText} ↗</a>${emailBtn}</div>
+    </div>
+  </div>`;
+}
+function render(){
+  const match = v =>
+    (state.area === "all" || v.area === state.area) &&
+    (state.type === "all" || v.type === state.type) &&
+    (!state.dedicatedOnly || v.flag === "dedicated");
+  const shown = VENUES.filter(match);
+  const areas = AREAS.filter(a => state.area === "all" || a === state.area);
+  let html = "";
+  for (const a of areas){
+    const items = shown.filter(v => v.area === a);
+    if (!items.length) continue;
+    const hint = typeKeys.map(k => {
+      const n = items.filter(v => v.type === k).length;
+      return n ? `${n} ${TYPE_META[k].label.toLowerCase()}` : null;
+    }).filter(Boolean).join(" · ");
+    html += `<div class="section-h"><h2>${a}</h2><span class="hint">${hint}</span></div>
+             <div class="grid">${items.map(card).join("")}</div>`;
+  }
+  document.getElementById("content").innerHTML = html || '<div class="empty">No venues match these filters.</div>';
+  document.getElementById("count").textContent = `Showing ${shown.length} of ${VENUES.length} venues`;
+}
+function buildChips(el, values, key){
+  el.innerHTML = `<button class="chip on" data-v="all">All ${key === "area" ? "areas" : "types"}</button>` +
+    values.map(v => `<button class="chip" data-v="${v.v}">${v.label}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(btn => btn.addEventListener("click", () => {
+    el.querySelectorAll(".chip").forEach(b => b.classList.remove("on"));
+    btn.classList.add("on");
+    state[key] = btn.dataset.v;
+    render();
+  }));
+}
+function init(){
+  document.title = CONFIG.title;
+  document.getElementById("kicker").textContent = CONFIG.kicker;
+  document.getElementById("title").textContent = CONFIG.title;
+  document.getElementById("subtitle").textContent = CONFIG.subtitle;
+  const dedicated = VENUES.filter(v => v.flag === "dedicated").length;
+  const stats = [
+    { n: String(VENUES.length), l: "venues vetted" },
+    { n: String(dedicated), l: "with dedicated events pages" },
+    { n: String(AREAS.length), l: AREAS.length === 1 ? "neighborhood" : "neighborhoods" },
+  ];
+  if (CONFIG.extraStat) stats.push(CONFIG.extraStat);
+  document.getElementById("stats").innerHTML =
+    stats.map(s => `<div class="stat"><div class="n">${s.n}</div><div class="l">${s.l}</div></div>`).join("");
+  document.getElementById("foot").innerHTML =
+    CONFIG.footnotes.map(f => `<div class="fnote">${f}</div>`).join("") +
+    `<div class="prov">${CONFIG.provenance}</div>`;
+  buildChips(document.getElementById("f-area"), AREAS.map(a => ({v:a, label:a})), "area");
+  buildChips(document.getElementById("f-type"), typeKeys.map(k => ({v:k, label:`${TYPE_META[k].icon} ${TYPE_META[k].label}s`})), "type");
+  const flagBtn = document.querySelector('#f-flag .chip');
+  flagBtn.addEventListener("click", () => {
+    state.dedicatedOnly = !state.dedicatedOnly;
+    flagBtn.classList.toggle("on", state.dedicatedOnly);
+    render();
+  });
+  render();
+}
+function cycleTheme(){
+  const r = document.documentElement;
+  const cur = r.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : cur === "light" ? "dark"
+    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
+  r.setAttribute("data-theme", next);
+}
+init();
+</script>
+</body>
+</html>
