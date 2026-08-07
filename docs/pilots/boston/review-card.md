@@ -35,3 +35,8 @@ The cowork cell shipped **District Hall (Seaport) as a top pick — "verified op
 ClawCon Boston + ElevenLabs hackathon venues are registration-gated (partner leads, not venues); AI Tinkerers' Microsoft NERD trace **landed a shipped venue**; CreativeMornings' trace surfaced the District Hall closure; Venture Café/CIC institutional traces produced the two Kendall anchors. Seeding worked — 4 of 10 shipped venues came from traces.
 
 *Artifacts: `research.json` · `evidence.jsonl` (51 lines) · `boston_config_draft.js` (generated) · final config at `configs/boston_config.js` · page at `/boston/`.*
+
+
+## Union pass (PR #9 resolution)
+
+The wave-3 NYC/Boston regen proposed replacing these configs; review found it re-added District Hall (closed since winter 2023, adjudicated in this card) and dropped the confirmed host + curated entries. Resolution: **union** — the 10 curated entries stay as shipped, 19 net-new contract-passing venues from the wave research were appended (total 29), District Hall stayed excluded, and every addition required a successful fetch in the evidence log.
