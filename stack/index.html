@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrewVenue — How the stack works</title>
+<meta property="og:title" content="BrewVenue — How the stack works">
+<meta property="og:description" content="The open-weights agent pipeline behind BrewVenue's venue research: Kimi Relay, Kimi K3 on Nebius Token Factory, Tavily, and Tenki sandboxes.">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb;
+    --ink-1: #0b0b0b; --ink-2: #52514e; --ink-3: #716f68;
+    --hairline: rgba(11,11,11,0.10); --grid: #e1e0d9;
+    --accent-a: #c5481a; --accent-a-soft: rgba(197,72,26,0.12);
+    --accent-b: #1c5db2; --accent-b-soft: rgba(28,93,178,0.12);
+    --accent-c: #5436c4; --accent-c-soft: rgba(84,54,196,0.12);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.10);
+    --ph-a: #f3e7dc; --ph-b: #e8d5c2;
+    --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
+    --shadow-hover: 0 2px 4px rgba(11,11,11,0.08), 0 10px 28px rgba(11,11,11,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #716f68;
+      --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+      --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+      --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+      --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+      --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+      --ph-a: #33281f; --ph-b: #453425;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+      --shadow-hover: 0 2px 4px rgba(0,0,0,0.5), 0 10px 28px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19;
+    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #716f68;
+    --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+    --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+    --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+    --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+    --ph-a: #33281f; --ph-b: #453425;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+    --shadow-hover: 0 2px 4px rgba(0,0,0,0.5), 0 10px 28px rgba(0,0,0,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page); color: var(--ink-1);
+    line-height: 1.55; padding: 34px 20px 44px;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  .themebtn {
+    float: right; font-size: 12px; color: var(--ink-2);
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  }
+  .themebtn:hover { color: var(--ink-1); }
+  .kicker {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent-a); margin-bottom: 8px;
+  }
+  h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; }
+  .sub { color: var(--ink-2); font-size: 14.5px; margin-top: 8px; max-width: 72ch; }
+
+  .homelink { font-size: 12.5px; font-weight: 600; color: var(--ink-3); text-decoration: none; display: inline-block; margin-bottom: 8px; }
+  .homelink:hover { color: var(--ink-1); }
+
+  .section { margin-top: 30px; }
+  .section h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .section p { color: var(--ink-2); font-size: 14px; margin-bottom: 10px; max-width: 72ch; }
+  .section p a { color: var(--ink-1); }
+  .section p a:hover { text-decoration: underline; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 18px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 14px; padding: 18px 16px 16px;
+    box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px;
+  }
+  .card .badge {
+    font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px;
+    align-self: flex-start;
+  }
+  .card .badge.a { color: var(--accent-a); background: var(--accent-a-soft); }
+  .card .badge.b { color: var(--accent-b); background: var(--accent-b-soft); }
+  .card .badge.c { color: var(--accent-c); background: var(--accent-c-soft); }
+  .card .name { font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .card .role { font-size: 12.5px; color: var(--ink-3); font-weight: 600; }
+  .card .body { font-size: 13.5px; color: var(--ink-2); flex: 1; line-height: 1.55; }
+  .card .src {
+    font-size: 11.5px; color: var(--ink-3); border-top: 1px solid var(--grid);
+    padding-top: 10px; margin-top: 4px;
+  }
+  .card .src a { color: var(--ink-3); }
+  .card .src a:hover { color: var(--ink-1); }
+
+  .pipe {
+    margin-top: 28px; padding: 18px; border: 1px solid var(--grid);
+    border-radius: 12px; background: var(--surface);
+  }
+  .pipe ol { padding-left: 26px; color: var(--ink-2); font-size: 14px; display: block; list-style: decimal outside; }
+  .pipe ol li::marker { color: var(--accent-a); font-weight: 700; }
+
+  footer { margin-top: 34px; border-top: 1px solid var(--grid); padding-top: 18px; display: grid; gap: 12px; }
+  .fnote { font-size: 13px; color: var(--ink-2); max-width: 90ch; }
+  .fnote b { color: var(--ink-1); }
+  .prov { font-size: 11.5px; color: var(--ink-3); }
+  @media (max-width: 640px) {
+    body { padding: 22px 12px 32px; }
+    h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <button class="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <a class="homelink" href="/">← BrewVenue</a>
+    <div class="kicker">Builders &amp; Brews · Hack Edition · H2 2026</div>
+    <h1>How the stack works</h1>
+    <div class="sub">BrewVenue's venue pages come from the venue-scout pipeline — SF and LA as
+      hand-driven runs, the multi-city rollout as autonomous agents on the stack below.
+      This is the infrastructure, contracts, and honesty rules that make the output trustworthy,
+      with what runs today marked apart from what's the rollout target.</div>
+  </header>
+
+  <div class="section">
+    <h2>The seven layers</h2>
+    <p>Each layer does one job well; together they replace manual venue research with an auditable, fetch-verified pipeline. The request flow today, operator-driven from one machine, is: <b>Claude Code (harness) → Kimi Relay (router) → Nebius Token Factory (host) → Kimi K3 (model)</b>, with Tavily tools and Tenki sandboxes around the edges. The rollout target (<a href="https://github.com/opencolin/brewvenue/blob/main/docs/multicity-research-plan.md">plan</a> §6) moves the same stages into a slimmer OpenAI-compatible agent loop running inside Tenki sandboxes.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="badge a">Harness</span>
+        <div class="name">🧰 Claude Code</div>
+        <div class="role">Anthropic · agent harness / CLI</div>
+        <div class="body">Anthropic's agent harness is what actually runs each venue scout: it drives the subagent fan-out (one agent per neighborhood × venue type), the tool loop, skills, permissioning, and the long-horizon research session. Everything on this page happens <em>inside</em> Claude Code.</div>
+        <div class="src">The harness running this pipeline; subagents, skills, and the tool loop are Claude Code primitives.</div>
+      </div>
+      <div class="card">
+        <span class="badge b">Router</span>
+        <div class="name">🔄 Kimi Relay</div>
+        <div class="role">klaude · local CLI wrapper</div>
+        <div class="body">A local wrapper (the <code>klaude</code> command) that points Claude Code at Kimi K3 inference endpoints instead of Anthropic's API. It injects the Tavily MCP tools per-session and forwards auth to Nebius Token Factory — the bridge between the harness and the open-weight model.</div>
+        <div class="src">Self-described by <code>klaude --help</code> as "<em>Kimi Relay ▸ Routing Claude Code → Nebius Token Factory</em>."</div>
+      </div>
+      <div class="card">
+        <span class="badge b">Model</span>
+        <div class="name">🧠 Kimi K3</div>
+        <div class="role">Moonshot AI · open-weight frontier</div>
+        <div class="body">The reasoning engine inside every agent. Up to 1-million-token context means a whole city's neighborhood research, venue fetches, and link verification fit in one coherent session without aggressive summarization.</div>
+        <div class="src">Model confirmed in-session as <code>nebius-kimi-k3</code>; Kimi API docs list <code>kimi-k3[1m]</code>.</div>
+      </div>
+      <div class="card">
+        <span class="badge c">Host</span>
+        <div class="name">☁️ Nebius Token Factory</div>
+        <div class="role">Inference platform · OpenAI-compatible API</div>
+        <div class="body">Token Factory hosts Kimi K3 behind an OpenAI-compatible endpoint. It handles streaming, billing, and rate-limiting — with Kimi credits part of the tour's partner program, so per-city agent runs stay cheap.</div>
+        <div class="src">Reached through the Kimi Relay router; documented in the <a href="https://github.com/opencolin/brewvenue/blob/main/docs/multicity-research-plan.md">multi-city research plan</a>.</div>
+      </div>
+      <div class="card">
+        <span class="badge a">Search &amp; Verify</span>
+        <div class="name">🔍 Tavily</div>
+        <div class="role">Web search + extraction · MCP tools</div>
+        <div class="body">Tavily <code>search</code> finds neighborhoods and venue candidates; Tavily <code>extract</code> fetches each venue's events page to confirm it actually covers private events and isn't a 404. Every tool call is logged line-by-line.</div>
+        <div class="src">Injected per session; 103 tool calls across the Toronto dry-run pilot alone. <a href="https://github.com/opencolin/brewvenue/blob/main/docs/pilots/toronto/evidence.jsonl">Evidence log ↗</a></div>
+      </div>
+      <div class="card">
+        <span class="badge b">Runtime</span>
+        <div class="name">🛡️ Tenki</div>
+        <div class="role">Disposable Linux sandboxes · per-city VMs</div>
+        <div class="body">Tenki provides clean, killable, parallelizable VMs for autonomous city runs. The dry-run used local subagents for speed; Tenki is the target runtime for wave-deploying 3–5 cities in parallel as we approach the Sep 1 APJ deadline.</div>
+        <div class="src">Target platform per the <a href="https://github.com/opencolin/brewvenue/blob/main/docs/multicity-research-plan.md">multi-city research plan</a> §3.</div>
+      </div>
+      <div class="card">
+        <span class="badge c">Review</span>
+        <div class="name">✅ Adversarial QA</div>
+        <div class="role">Fresh-context re-check · target: Tenki sandbox</div>
+        <div class="body">A fresh agent with no research context adversarially re-checks sampled "dedicated events page" claims, then a review card (top picks, closures, low-confidence flags) goes to a human for the sign-off that precedes any public page flip. In the dry run this card was built by the orchestrating session; a fresh-context reviewer in a Tenki VM is the rollout target.</div>
+        <div class="src">QA stage per the <a href="https://github.com/opencolin/brewvenue/blob/main/docs/multicity-research-plan.md">multi-city research plan</a> §4 (stage 6); the <a href="https://github.com/opencolin/brewvenue/blob/main/docs/pilots/toronto/review-card.md">Toronto pilot review card</a> shows the deliverable shape.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>What research actually looks like</h2>
+    <div class="pipe">
+      <ol>
+        <li><b>Frame:</b> Tavily searches for where recent tech events in the city actually clustered — not where a blog says they should, but where TechTO, AI Tinkerers, and Elevate satellite events were held.</li>
+        <li><b>Discover:</b> One agent per neighborhood × type (cafes, coworking, event spaces) — parallel, so no single context drowns. Each agent returns candidate venues with fetched URLs.</li>
+        <li><b>Verify:</b> The core gate. Every candidate's events page is fetched. If it 404s or doesn't mention private events, the venue is dropped — not silently, but logged. Closures go to a "Gone" footnote.</li>
+        <li><b>Photos:</b> From pages already extracted, agents pick one wide interior/patio shot per venue. If a site blocks images or the shot is a logo, the template shows a clean monogram placeholder instead.</li>
+        <li><b>Build:</b> A deterministic Python script assembles the city page from the config + the explorer template — no LLM in this step, nothing to hallucinate.</li>
+        <li><b>QA:</b> <code>validate_config.py</code> enforces the schema and data-honesty rules (required fields, verified links, bolded capacities, photo-caption alts). A review card flags what a human must confirm.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Honesty rules we enforce in code</h2>
+    <p>These are not aspirational — they're checked by scripts, not by promises.</p>
+    <ul style="color:var(--ink-2); font-size:14px; padding-left:26px; display:block; list-style:disc outside; margin-top:10px;">
+      <li><b>Zero unverified links.</b> Any venue whose <code>link</code> lacks a successful fetch in <code>evidence.jsonl</code> is dropped by <code>assemble_city_config.py</code> with a nonzero exit.</li>
+      <li><b>Closed venues surface, not disappear.</b> They get their own "Gone" footnote with a fetched source or an <code>[UNVERIFIED]</code> flag — never silently removed.</li>
+      <li><b>Capacities are marked.</b> Published numbers get <code>&lt;b&gt;</code> (script-checked); estimates carry a <code>~</code> and "(est)" per the skill's research rules, so nobody overbooks.</li>
+      <li><b>Review cards exist.</b> Every city gets a human-facing review card flagging top picks, low-confidence items, and what to re-check.</li>
+      <li><b>Deterministic build.</b> <code>build.py</code> guards against template drift with <code>assert</code>. Re-running produces byte-identical output.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <div class="fnote"><b>See the details:</b> the <a href="https://github.com/opencolin/brewvenue/blob/main/docs/pilots/toronto/review-card.md">Toronto pilot review card</a> is the best example of what a real city run produces (framing, evidence log, normalized venues, and unverified items flagged).</div>
+    <div class="prov">Last updated Aug 2026 · BrewVenue is a plain-static site: no build step, no external dependencies, no CDNs except venue photo hotlinks with automatic fallback · <a href="/">Back to BrewVenue →</a></div>
+  </footer>
+</div>
+
+<script>
+function cycleTheme(){
+  const r = document.documentElement;
+  const cur = r.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : cur === "light" ? "dark"
+    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
+  r.setAttribute("data-theme", next);
+}
+</script>
+</body>
+</html>
