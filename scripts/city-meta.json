@@ -2,131 +2,196 @@
   "singapore": {
     "title": "Singapore — Venue Options",
     "subtitle": "Event-capable cafes, coworking & event halls in Tanjong Pagar / Bugis / one-north — for a Sept 14, 2026 bilingual tech-week coffee/hack event (~50–200 people). Links point to verified private-events pages or booking contacts.",
-    "extraStat": { "n": "Sep 14", "l": "Singapore event date, 2026" },
+    "extraStat": {
+      "n": "Sep 14",
+      "l": "Singapore event date, 2026"
+    },
     "footnotes": [
       "<b>Neighborhood analysis:</b> Tanjong Pagar/Telok Ayer is where AI Tinkerers Singapore + Lorong AI actually ran; Bugis/Prinsep is the Antler corridor; one-north (BLOCK71 + JTC) is the research/lab fallback.",
       "<b>Gone / don't route inquiries here:</b> 19 closure/discards logged in evidence.jsonl (see docs/pilots/singapore/research.json for the full list)."
     ],
-    "provenance": "Researched Aug 2026 \u00b7 Bilingual EN / Malay-Chinese queries used \u00b7 Evidence: {ev} \u00b7 {rawN} venues researched \u2192 {keptN} shipped after the evidence-contract gate (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) \u00b7 Capacities are published or estimated \u2014 confirm when booking."
+    "provenance": "Researched Aug 2026 · Bilingual EN / Malay-Chinese queries used · Evidence: {ev} · {rawN} venues researched → {keptN} shipped after the evidence-contract gate (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) · Capacities are published or estimated — confirm when booking."
   },
   "berlin": {
     "title": "Berlin — Venue Options",
     "subtitle": "Event-capable cafes, coworking & event halls in Mitte / Kreuzberg / Friedrichshain — for a Sept 10 · 17 · 24, 2026 bilingual (DE/EN) tech-week coffee/hack event (~50–200 people). Links verified.",
-    "extraStat": { "n": "Sep 10 · 17 · 24", "l": "Berlin event dates, 2026" },
+    "extraStat": {
+      "n": "Sep 10 · 17 · 24",
+      "l": "Berlin event dates, 2026"
+    },
     "footnotes": [
       "<b>Neighborhood analysis:</b> Mitte (St. Oberholz Rosenthaler, Factory Berlin Mitte) is where AI Tinkerers + PyData actually ran; Kreuzberg (betahaus Moritzplatz) is the community spine; Friedrichshain (Thoughtworks at Revaler Str 31) carried the largest monthly dev meetups (170-188 RSVPs).",
       "<b>Gone / don't route inquiries here:</b> 21 closure/discards logged (e.g., Factory Berlin Görlitzer Park closed Apr 2024)."
     ],
-    "provenance": "Researched Aug 2026 \u00b7 Bilingual DE/EN \u00b7 {rawN} \u2192 {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) \u00b7 Capacities published or estimated."
+    "provenance": "Researched Aug 2026 · Bilingual DE/EN · {rawN} → {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) · Capacities published or estimated."
   },
   "kuala-lumpur": {
     "title": "Kuala Lumpur — Venue Options",
     "subtitle": "Event-capable cafes, coworking & event halls in Bangsar South / TRX / Bukit Jalil — for a Sept 12, 2026 bilingual (BM/EN) tech-week coffee/hack event (~50–200 people). Links verified.",
-    "extraStat": { "n": "Sep 12", "l": "Kuala Lumpur event date, 2026" },
+    "extraStat": {
+      "n": "Sep 12",
+      "l": "Kuala Lumpur event date, 2026"
+    },
     "footnotes": [
       "<b>Neighborhood analysis:</b> Bangsar South (WORQ KL Gateway, Connexion @ Nexus) is where test/automation/AI meetups cluster; TRX (Access Group) hosts AI Tinkerers KL + PyLadies; Bukit Jalil (APU campus) anchors the Great Malaysia AI Hackathon (1,741 participants).",
       "<b>Gone / don't route inquiries here:</b> 18 closure/discards logged. On many KL venues, WhatsApp is the faster booking path — emails and forms still exist but response times differ."
     ],
-    "provenance": "Researched Aug 2026 \u00b7 Bilingual BM/EN \u00b7 {rawN} \u2192 {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) \u00b7 Capacities published or estimated."
+    "provenance": "Researched Aug 2026 · Bilingual BM/EN · {rawN} → {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) · Capacities published or estimated."
   },
   "seoul": {
     "title": "Seoul — Venue Options",
     "subtitle": "Event-capable cafes & event halls in Gangnam / Seongsu / Sinchon-Hongdae — for a Sept 11, 2026 bilingual (KR/EN) tech-week coffee/hack event (~50–200 people). Links verified (Korean scripts preserved).",
-    "extraStat": { "n": "Sep 11", "l": "Seoul event date, 2026" },
+    "extraStat": {
+      "n": "Sep 11",
+      "l": "Seoul event date, 2026"
+    },
     "footnotes": [
       "<b>Neighborhood analysis:</b> Gangnam-Teheran-ro (Hashed Lounge, Maru180, AMD Aloft) is where AI Tinkerers Seoul + Cursor Meetups actually ran; Seongsu-dong warehouse conversions (Elice Lab, Seoul Startup Hub Seongsu) are Seoul's hackable cafe-district; Sinchon/Hongdae (Yonsei, SKYST consortium) anchors the bilingual student/indie-builder crowd.",
       "<b>Gone / don't route inquiries here:</b> 29 closure/discards logged. Many booking paths are via ShareIt (shareit.kr) or SpaceCloud (spacecloud.kr) — KakaoTalk channels surface when venues list them."
     ],
-    "provenance": "Researched Aug 2026 \u00b7 Bilingual KR/EN \u00b7 {rawN} \u2192 {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) \u00b7 Capacities published or estimated."
+    "provenance": "Researched Aug 2026 · Bilingual KR/EN · {rawN} → {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) · Capacities published or estimated."
   },
   "london": {
     "title": "London — Venue Options",
     "subtitle": "Event-capable cafes & event spaces in Shoreditch / Spitalfields / Soho-Fitzrovia — for a Sept 15, 2026 bilingual tech-week coffee/hack event (~50–200 people). Links verified.",
-    "extraStat": { "n": "Sep 15", "l": "London event date, 2026" },
+    "extraStat": {
+      "n": "Sep 15",
+      "l": "London event date, 2026"
+    },
     "footnotes": [
       "<b>Neighborhood analysis:</b> Shoreditch/Old Street (cursor-eBoldhammer AI Playground, London AI Hub at Techspace Farringdon) is the anchor; Spitalfields/Aldgate East (Potter & Reid Toynbee St) is where Cafe Cursor London actually ran Dec 2025; Soho/Fitzrovia (Dawn Capital Manette St) holds AI Tinkerers London.",
       "<b>Gone / don't route inquiries here:</b> 19 closure/discards logged. Many London venues quote by minimum-spend or per-hour hire — expect a rate card, not a flat fee."
     ],
-    "provenance": "Researched Aug 2026 \u00b7 English-local \u00b7 {rawN} \u2192 {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) \u00b7 Capacities published or estimated."
+    "provenance": "Researched Aug 2026 · English-local · {rawN} → {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) · Capacities published or estimated."
   },
   "stockholm": {
     "title": "Stockholm — Venue Options",
     "subtitle": "Event-capable cafes & event spaces in Norrmalm / Södermalm / Östermalm — for a Sept 9–11, 2026 bilingual tech-week coffee/hack event (~50–200 people). Overlaps Nordic Tech Week Sep 7–11.",
-    "extraStat": { "n": "Sep 9–11", "l": "Stockholm event dates, 2026" },
+    "extraStat": {
+      "n": "Sep 9–11",
+      "l": "Stockholm event dates, 2026"
+    },
     "footnotes": [
       "<b>Neighborhood analysis:</b> Norrmalm (Founders House + Epicenter at Malmskillnadsgatan) is where AI Tinkerers Stockholm + {Tech: Europe}'s first AI Hackathon actually ran; Södermalm (Goto10 / Foo Café) is the engineer-first spine; Östermalm (Norrsken House) hosts the VC-adjacent impact crowd.",
       "<b>Gone / don't route inquiries here:</b> 12 closure/discards logged. Note Epicenter's first venue hire is package-priced, not per-hour."
     ],
-    "provenance": "Researched Aug 2026 \u00b7 Bilingual SE/EN \u00b7 {rawN} \u2192 {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) \u00b7 Capacities published or estimated."
+    "provenance": "Researched Aug 2026 · Bilingual SE/EN · {rawN} → {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) · Capacities published or estimated."
   },
   "paris": {
     "title": "Paris — Venue Options",
     "subtitle": "Event-capable cafes & event spaces in 13th (Station F / Bibliothèque) / 9th / 12th — for a Sept 18, 2026 bilingual (FR/EN) tech-week coffee/hack event (~50–200 people). Links verified.",
-    "extraStat": { "n": "Sep 18", "l": "Paris event date, 2026" },
+    "extraStat": {
+      "n": "Sep 18",
+      "l": "Paris event date, 2026"
+    },
     "footnotes": [
       "<b>Neighborhood analysis:</b> 13th arrondissement (Station F Founders Café) is where AI Tinkerers Paris launched + the Anthropic AI Agents Hackathon actually ran; 9th (Neon Noir) is the builder community's home; 12th (Ground Control) holds AI Tinkerers' summer networking + apéro formats.",
       "<b>Gone / don't route inquiries here:</b> 24 closure/discards logged. Note some venues carry license-restricted hours (License III/IV) — verify before booking after 22:30."
     ],
-    "provenance": "Researched Aug 2026 \u00b7 Bilingual FR/EN \u00b7 {rawN} \u2192 {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) \u00b7 Capacities published or estimated."
+    "provenance": "Researched Aug 2026 · Bilingual FR/EN · {rawN} → {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) · Capacities published or estimated."
   },
   "tel-aviv": {
     "title": "Tel Aviv — Venue Options",
     "subtitle": "Event-capable cafes & event spaces in Sarona / Rothschild–Lev Ha'ir / Tel Aviv Port — for a Sept 16, 2026 bilingual (HE/EN) tech-week coffee/hack event (~50–200 people). Links verified (Hebrew scripts preserved).",
-    "extraStat": { "n": "Sep 16", "l": "Tel Aviv event date, 2026" },
+    "extraStat": {
+      "n": "Sep 16",
+      "l": "Tel Aviv event date, 2026"
+    },
     "footnotes": [
       "<b>Neighborhood analysis:</b> Sarona / Begin corridor (Azrieli Sarona, Microsoft Reactor Dubnov, AWS Floor28) is where AI Tinkerers Tel Aviv's main series actually ran; Rothschild–Lev Ha'ir (monday.com HQ, Mindspace Rothschild) is the startup spine; Tel Aviv Port (Wix campus) is the third cluster.",
       "<b>Gone / don't route inquiries here:</b> 22 closure/discards logged. Many event spaces require a security badge (sponsor-host relationship) — cold booking is rare; surface that on the cards."
     ],
-    "provenance": "Researched Aug 2026 \u00b7 Bilingual HE/EN \u00b7 {rawN} \u2192 {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) \u00b7 Capacities published or estimated."
+    "provenance": "Researched Aug 2026 · Bilingual HE/EN · {rawN} → {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) · Capacities published or estimated."
   },
   "barcelona": {
     "title": "Barcelona — Venue Options",
     "subtitle": "Event-capable cafes & event spaces in Poblenou / Dreta de l'Eixample / Port Vell — for a Sept 21, 2026 bilingual (CA/ES/EN) tech-week coffee/hack event (~50–200 people). Overlaps Barcelona AI Summit Sep 22–23.",
-    "extraStat": { "n": "Sep 21", "l": "Barcelona event date, 2026" },
+    "extraStat": {
+      "n": "Sep 21",
+      "l": "Barcelona event date, 2026"
+    },
     "footnotes": [
       "<b>Neighborhood analysis:</b> Poblenou/22@ (Itnig Spaces, Valkiria, SB Glow + Norrsken House) is where HackBarna and AI Tinkerers Barcelona actually ran; Dreta de l'Eixample (Alice Secret Garden, eDreams) is the recurring-weekly social core; Port Vell (Norrsken + Pier01) anchors AI Week.",
       "<b>Gone / don't route inquiries here:</b> 37 closure/discards logged — highest churn among our 13 cities (Poblenou industrial conversions + post-port F&B reshuffles)."
     ],
-    "provenance": "Researched Aug 2026 \u00b7 Bilingual CA/ES/EN \u00b7 {rawN} \u2192 {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) \u00b7 Capacities published or estimated."
+    "provenance": "Researched Aug 2026 · Bilingual CA/ES/EN · {rawN} → {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) · Capacities published or estimated."
   },
   "zurich": {
     "title": "Zurich — Venue Options",
     "subtitle": "Event-capable cafes & event spaces in Zurich West (Kreis 5) / City·Selnau / Oerlikon — for a Sept 16, 2026 bilingual (DE/EN) tech-week coffee/hack event (~50–200 people). Links verified. Hostpoint/Host2Co venues cap early.",
-    "extraStat": { "n": "Sep 16", "l": "Zurich event date, 2026" },
+    "extraStat": {
+      "n": "Sep 16",
+      "l": "Zurich event date, 2026"
+    },
     "footnotes": [
       "<b>Neighborhood analysis:</b> Kreis 5/Zurich West (Frau Gerolds Garten, Impact Hub Kraftwerk, Bluelion) is where Zurich AI Club + the Swiss {ai} Weeks events actually ran; City/Selnau (Kraftwerk at Selnaustrasse) is the flagship hackathon address; Oerlikon (ETH AI Center/StageOne) anchors the research-side summits.",
       "<b>Gone / don't route inquiries here:</b> 43 closure/discards logged — a very high count, including many conversions in 2024-2026 (e.g., Hive Sihlcity)."
     ],
-    "provenance": "Researched Aug 2026 \u00b7 Bilingual DE/EN \u00b7 {rawN} \u2192 {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) \u00b7 Capacities published or estimated."
+    "provenance": "Researched Aug 2026 · Bilingual DE/EN · {rawN} → {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) · Capacities published or estimated."
   },
   "toronto-v2": {
     "title": "Toronto — Venue Options",
     "subtitle": "Event-capable cafes & event spaces in King West / King East / East Bayfront — for a Sept 29, 2026 bilingual tech-week coffee/hack event (~50–200 people). Supersedes the Aug 6 dry-run; MaRS + downtown core now covered.",
-    "extraStat": { "n": "Sep 29", "l": "Toronto event date, 2026" },
+    "extraStat": {
+      "n": "Sep 29",
+      "l": "Toronto event date, 2026"
+    },
     "footnotes": [
       "<b>Neighborhood analysis:</b> King West/Spadina is where AI Tinkerers Toronto's main series + Shopify 620 King W hackathons actually ran; King East (Google 65 King E) is the corporate-anchor corridor; East Bayfront (MaRS Waterfront, History) hosts Toronto Tech Week's marquee events.",
       "<b>Gone / don't route inquiries here:</b> 43 closure/discards logged (the dry-run's 16 → 32 more venues surfaced)."
     ],
-    "provenance": "Researched Aug 2026 \u00b7 EN + tour-trace seeding + pilot re-scout \u00b7 {rawN} researched \u2192 {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) \u00b7 Capacities published or estimated."
+    "provenance": "Researched Aug 2026 · EN + tour-trace seeding + pilot re-scout · {rawN} researched → {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) · Capacities published or estimated."
   },
   "nyc": {
     "title": "New York City — Venue Options",
     "subtitle": "Event-capable cafes & event spaces in SoHo / Flatiron / Gowanus — for a Sept 25, 2026 bilingual tech-week coffee/hack event (~50–200 people). Links verified.",
-    "extraStat": { "n": "Sep 25", "l": "NYC event date, 2026" },
+    "extraStat": {
+      "n": "Sep 25",
+      "l": "NYC event date, 2026"
+    },
     "footnotes": [
       "<b>Neighborhood analysis:</b> SoHo/NoLita (Cursor Cafe takeover Oct 2025, Anthropic Claude Cafe Air Mail residency) is the cafe-takeover anchor; Flatiron/Union Sq (Civic Hall NY Tech Meetup, SOSA NYC) is the recurring-community spine; Gowanus/Downtown Brooklyn (ZeroSpace, Newlab) hosts the bigger-format hackathons.",
       "<b>Gone / don't route inquiries here:</b> 44 closure/discards logged."
     ],
-    "provenance": "Researched Aug 2026 \u00b7 EN \u00b7 {rawN} \u2192 {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) \u00b7 Capacities published or estimated."
+    "provenance": "Researched Aug 2026 · EN · {rawN} → {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) · Capacities published or estimated."
   },
   "boston": {
     "title": "Boston — Venue Options",
     "subtitle": "Event-capable cafes & event spaces in Kendall Sq / Seaport / Downtown — for a Oct 2, 2026 bilingual tech-week coffee/hack event (~50–200 people). Overlaps Boston AI Week (Sep 24–Oct 2 centered in the Seaport).",
-    "extraStat": { "n": "Oct 2", "l": "Boston event date, 2026" },
+    "extraStat": {
+      "n": "Oct 2",
+      "l": "Boston event date, 2026"
+    },
     "footnotes": [
       "<b>Neighborhood analysis:</b> Kendall Sq/MIT (Microsoft NERD, MIT IHQ, The Foundry, CIC 1 Broadway) is the bilingual AI/home-base; Seaport (Island Creek Raw Bar anchoring AI Week parties, 88 Seaport, Westin) is the event-district; Downtown/Fidi (CIC Boston at 50 Milk St, Venture Lane at 55 Court) conveniently bridges the two.",
       "<b>Gone / don't route inquiries here:</b> 45 closure/discards logged — District Hall (75 Northern Ave) has been shuttered since 2023; do not plan around it."
     ],
-    "provenance": "Researched Aug 2026 \u00b7 EN \u00b7 {rawN} \u2192 {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) \u00b7 Capacities published or estimated."
+    "provenance": "Researched Aug 2026 · EN · {rawN} → {keptN} shipped after contract (drops: {dropcount_l ? drops.map(d=>d.name).join(', ') : 'none'}) · Capacities published or estimated."
+  },
+  "san-francisco": {
+    "title": "SF Tech Week — Venue Options",
+    "subtitle": "Cafes, coffee shops, event spaces, and coworking across San Francisco's Tech Week core — SoMa/2nd St, downtown, and beyond — for ~50–300 person events during SF Tech Week (Oct 5–11, 2026). Links verified.",
+    "extraStat": {
+      "n": "Oct 5–11",
+      "l": "SF Tech Week 2026 dates"
+    },
+    "footnotes": [
+      "<b>Neighborhood analysis (SFTW 2025 data):</b> SoMa — including the 2nd St / South Park corridor and East Cut — hosted ~40% of last year's events, roughly 2× FiDi (#2). The \"SoMa near 2nd Street\" hypothesis is confirmed: a16z sits at 2nd & Townsend, South Park is VC row, Anthropic is at 500 Howard. Watch Jackson Square/FiDi — the fastest-rising cluster for VC dinner formats.",
+      "<b>Gone or not bookable:</b> Bespoke (Westfield) and Galvanize (44 Tehama) closed. WeWork and Industrious SF locations have no public event-rental program. South Park Commons is members-only — a partnership ask, not a rental."
+    ],
+    "provenance": "Researched & links verified Aug 2026 · SF Tech Week 2026: Oct 5–11 (LA Tech Week follows Oct 12–18) · Photos load from each venue's own website; a placeholder appears where no photo was published. Capacities are published or estimated figures — confirm when booking."
+  },
+  "los-angeles": {
+    "title": "LA Tech Week — Venue Options",
+    "subtitle": "Large coffee shops & coworking spaces in Santa Monica and Venice that can host an all-day, Tech Week-style coffee event (~50–200+ people). Links point to each venue's verified private-events page or booking contact.",
+    "extraStat": {
+      "n": "Oct 12–18",
+      "l": "LA Tech Week 2026 dates"
+    },
+    "footnotes": [
+      "<b>Gone since last Tech Week:</b> Rose Café (closed Dec 2024), NeueHouse Venice Beach (closed Sept 2025), Cross Campus (closed — its 929 Colorado space is now BLANKSPACES), Philz Santa Monica, and Interstellar. Groundwork's remaining SM/Venice shops and Menotti's are too small to host.",
+      "<b>Pairing tip:</b> going with a coworking venue? goodboybob, Intelligentsia, and Menotti's all run mobile espresso / coffee-truck service you can bring in-house."
+    ],
+    "provenance": "Researched & links verified Aug 2026 · LA Tech Week 2026: Oct 12–18 (SF Tech Week runs Oct 5–11) · Photos load from each venue's own website; placeholder appears where no photo was published. Capacities are published or estimated figures — confirm when booking."
   }
 }
