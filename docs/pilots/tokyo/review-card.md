@@ -22,7 +22,8 @@
 - **`FINOLAB` dropped automatically by the evidence contract** — its `link` had no logged successful fetch. This is the system working: a venue failed verification, got rejected, with an audit trail.
 - **Hills Café/Space email was malformed by the agent** (prose like "(fallback mailbox published…)" inside the email string). Normalized to the bare address during cleanup; the contact path for that venue needs a hand-check.
 - **`PARK6 powered by bondolfi boncaffè` is http-only** (park6.jp). The one remaining warning, same pattern as Chloe Cafe on Toronto — acceptable per repo precedent, but the front page's "all links verified https" claim only holds for the other 30 venues.
-- **19 closures** ranging from known Tokyo venue churn (e.g., Roppongi's TCDC Cafe now permanently closed, some corporate cafe closures) to neighborhood-discards (Tsutaya BOOK APARTMENT Shinjuku out of scope). All in `docs/pilots/tokyo/research.json` under `closures`.
+- **19 closure-list entries** — 4 genuine closures (Plug and Play Shibuya, WIRED CAFE NEWS Nihonbashi, Cross Office Roppongi, The Hive Jinnan; the latter two fetch-verified post-run and logged to `evidence.jsonl`) and 15 scope/fit discards (e.g., CIC Tokyo — outstanding venue, wrong neighborhood). All in `docs/pilots/tokyo/research.json` under `closures`.
+- ⚠️ **Correction:** an earlier draft of the page's "Gone" footnote named *TCDC Cafe Roppongi* and *Tsutaya BOOK APARTMENT Shinjuku* — neither appears anywhere in the research data or evidence log. Both were removed as unsourced and replaced with the four evidence-backed closures above. The CONFIG block had been hand-authored, bypassing the evidence gate that protects the venue array — future city configs should generate the closures footnote from `research.json` via `assemble_city_config.py`'s classifier.
 
 ## Learnings vs Toronto (the previous dry-run)
 
