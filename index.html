@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ComputeCafe — Venue HQ for the Global Hackathon Tour</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <meta property="og:title" content="ComputeCafe ☕ — Venue HQ for the Global Hackathon Tour">
 <meta property="og:description" content="ComputeCafe — venue HQ for the global hackathon tour: 17 cities, 3 regions, Sep–Oct 2026. Pick a city to see its vetted venues.">
 <style>
@@ -52,12 +53,26 @@
     line-height: 1.45; padding: 34px 20px 44px;
   }
   .wrap { max-width: 1180px; margin: 0 auto; }
-  .themebtn {
+  .themebtn, .mapbtn {
     float: right; font-size: 12px; color: var(--ink-2);
     background: var(--surface); border: 1px solid var(--hairline);
     border-radius: 999px; padding: 6px 12px; cursor: pointer;
   }
-  .themebtn:hover { color: var(--ink-1); }
+  .themebtn:hover, .mapbtn:hover { color: var(--ink-1); }
+  .mapbtn { float: none; position: absolute; top: 34px; right: 20px; z-index: 11; }
+  .mapbtn.open { color: var(--accent-a); border-color: var(--accent-a); }
+  #mapbox {
+    display: none; position: fixed; top: 0; right: 0;
+    width: 50vw; height: 100vh; z-index: 10;
+    border-left: 1px solid var(--hairline);
+    background: var(--page);
+    box-shadow: -8px 0 24px rgba(0,0,0,0.15);
+  }
+  #mapbox .leaflet-container { height: 100%; }
+  @media (max-width: 860px) {
+    #mapbox { width: 100vw; }
+    .mapbtn { top: 108px; }
+  }
   .kicker {
     font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
     text-transform: uppercase; color: var(--accent-a); margin-bottom: 8px;
@@ -120,6 +135,7 @@
 <div class="wrap">
   <header>
     <button class="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <button class="mapbtn" id="mapbtn" onclick="togglePageMap()">🗺️ View Map</button>
     <div class="kicker">Global Hackathon Tour · H2 2026</div>
     <h1>ComputeCafe <span class="cup">☕</span></h1>
     <div class="sub"><b>ComputeCafe</b> is venue HQ for our global hackathon tour.
@@ -130,6 +146,7 @@
   </header>
 
   <div id="content"></div>
+  <div id="mapbox" aria-hidden="true"></div>
 
   <footer>
     <div class="fnote"><b>Satellite / stretch cities under consideration:</b> Washington DC, Vilnius, Warsaw, Rome / Milan, and Lisbon — cards will appear here if they're confirmed.</div>
@@ -138,7 +155,66 @@
   </footer>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
+/* compute-cafe-map.js — Leaflet helpers for View Map toggle */
+(function () {
+  const ACCENT = { live: "#0ca30c", rsvp: "#2a78d6", soon: "#898781" };
+  function initMap(container, data, opts) {
+    opts = Object.assign({ zoom: 10 }, opts || {});
+    const L = window.L;
+    if (!L) return null;
+    const el = container;
+    el.innerHTML = "";
+    const map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    const markers = [];
+    (data.cities || []).forEach(c => markers.push(c));
+    (data.venues || []).forEach(v => markers.push(v));
+    let bounds = [];
+    markers.forEach(it => {
+      const isCity = !!it.city || !!it.regions;
+      const color = isCity ? (ACCENT[it.status] || ACCENT.soon) : ACCENT.live;
+      const m = L.circleMarker([it.lat, it.lng], { radius: isCity ? 7 : 6, color, weight: 2, fillColor: color, fillOpacity: 0.55 });
+      const href = it.href;
+      const label = it.name;
+      const sub = isCity ? (it.date || "") : (it.area || "");
+      const popup = `<div style="max-width:220px"><b>${label}</b><div style="font-size:12px;color:#666">${sub}</div>${href ? `<div style="margin-top:6px"><a href="${href}" ${href.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>Open →</a></div>` : ""}</div>`;
+      m.bindPopup(popup);
+      m.addTo(map);
+      markers.push(m);
+      if (href) m.on("click", () => m.openPopup());
+      bounds.push(m.getLatLng());
+    });
+    if (bounds.length === 1) map.setView(bounds[0], 12);
+    else if (bounds.length > 1) map.fitBounds(L.latLngBounds(bounds), { padding: [30, 30] });
+    else map.setView([0, 0], 2);
+    return map;
+  }
+  function toggleMap(container, data, opts) {
+    const el = container;
+    if (el.style.display === "block") {
+      el.style.display = "none";
+      el.setAttribute("aria-hidden", "true");
+      return false;
+    }
+    el.style.display = "block";
+    el.setAttribute("aria-hidden", "false");
+    if (!el.dataset.mounted) {
+      el.dataset.mounted = "1";
+      window.__map = initMap(el, data, opts);
+      requestAnimationFrame(() => window.__map.invalidateSize());
+    }
+    return true;
+  }
+  window.initMap = initMap;
+  window.toggleMap = toggleMap;
+})();
+
 const REGIONS = [
   { name: "North America", cities: [
     { city: "San Francisco", date: "Oct 5", status: "live", href: "/san-francisco/",
@@ -240,6 +316,39 @@ function cycleTheme(){
   r.setAttribute("data-theme", next);
 }
 init();
+
+/* --------- Map toggle --------- */
+const CITY_CENTERS = {
+  "San Francisco": [37.7897, -122.3942], "Los Angeles": [34.0522, -118.2437],
+  "Toronto": [43.6532, -79.3832], "New York City": [40.7128, -74.0060],
+  "Boston": [42.3601, -71.0589],
+  "Stockholm": [59.3293, 18.0686], "Berlin": [52.5200, 13.4050],
+  "London": [51.5074, -0.1278], "Tel Aviv": [32.0853, 34.7818],
+  "Zurich": [47.3769, 8.5417], "Paris": [48.8566, 2.3522],
+  "Barcelona": [41.3874, 2.1686], "Amsterdam": [52.3676, 4.9041],
+  "Tokyo": [35.6762, 139.6503], "Seoul": [37.5665, 126.9780],
+  "Kuala Lumpur": [3.1390, 101.6869], "Singapore": [1.3521, 103.8198],
+};
+const cityPts = REGIONS.flatMap(r => r.cities.map(c => {
+  const coords = CITY_CENTERS[c.city];
+  return coords ? {
+    name: c.city, date: c.date, status: c.status,
+    href: c.href || null, lat: coords[0], lng: coords[1],
+  } : null;
+}).filter(Boolean));
+
+const MAPBTN = document.getElementById("mapbtn");
+const CLICK_TEXT = { open: "Hide Map", closed: "View Map" };
+function togglePageMap(){
+  const open = window.toggleMap(
+    document.getElementById("mapbox"),
+    { cities: cityPts },
+    {}
+  );
+  MAPBTN.textContent = open ? CLICK_TEXT.open : CLICK_TEXT.closed;
+  MAPBTN.classList.toggle("open", !!open);
+  MAPBTN.setAttribute("aria-pressed", String(!!open));
+}
 </script>
 </body>
 </html>

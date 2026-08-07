@@ -4,12 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Boston — Venue Options · ComputeCafe</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <!--
   COMPUTE CAFE EXPLORER TEMPLATE
   Edit ONLY the CONFIG, TYPE_META, and VENUES blocks in the <script> at the
   bottom (plus <title> above). Filter chips, section headers, and header stats
   all derive from the data — no markup edits needed for a new city or venue mix.
-  Keep the file self-contained: no external CSS/JS/fonts, no localStorage.
+  Keep the file self-contained: no external CSS/JS/fonts beyond Leaflet from unpkg;
+  geocoding caches per-browser via the browser Cache API (works without localStorage).
 -->
 <style>
   :root {
@@ -92,6 +94,26 @@
     border-radius: 999px; padding: 6px 12px; cursor: pointer;
   }
   .themebtn:hover { color: var(--ink-1); }
+  .mapbtn {
+    position: absolute; top: 34px; right: 20px; z-index: 11; float: none;
+    font-size: 12px; color: var(--ink-2); background: var(--surface);
+    border: 1px solid var(--hairline); border-radius: 999px; padding: 6px 12px;
+    cursor: pointer;
+  }
+  .mapbtn:hover { color: var(--ink-1); }
+  .mapbtn.open { color: var(--accent-a); border-color: var(--accent-a); }
+  #mapbox {
+    display: none; position: fixed; top: 0; right: 0;
+    width: 50vw; height: 100vh; z-index: 10;
+    border-left: 1px solid var(--hairline);
+    background: var(--page);
+    box-shadow: -8px 0 24px rgba(0,0,0,0.15);
+  }
+  #mapbox .leaflet-container { height: 100%; }
+  @media (max-width: 860px) {
+    #mapbox { width: 100vw; }
+    .mapbtn { top: 108px; }
+  }
   .filters {
     position: sticky; top: 0; z-index: 5; background: var(--page);
     padding: 12px 0 10px; margin: 8px 0 6px;
@@ -181,6 +203,7 @@
 <div class="wrap">
   <header class="hero">
     <button class="themebtn" id="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <button class="mapbtn" id="mapbtn" onclick="toggleCityMap()">🗺️ View Map</button>
     <a class="homelink" href="/">← ComputeCafe</a>
     <div class="kicker" id="kicker"></div>
     <h1 id="title"></h1>
@@ -196,10 +219,117 @@
     <div class="count" id="count"></div>
   </div>
   <div id="content"></div>
+  <div id="mapbox" aria-hidden="true"></div>
   <footer id="foot"></footer>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
+/* Map primitives — Leaflet helpers (also used by index.html) */
+(function () {
+  const ACCENT = { live: "#0ca30c", rsvp: "#2a78d6", soon: "#898781" };
+  const NOMINATIM = "https://nominatim.openstreetmap.org/search?format=json&limit=1&q=";
+  const CACHE_NS = "venue-coords:";
+
+  window.initMap = function (container, data) {
+    const L = window.L;
+    if (!L) return null;
+    const el = container;
+    el.innerHTML = "";
+    const map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+    const pts = [];
+    (data.venues || []).forEach(v => pts.push(v));
+    (data.cities || []).forEach(c => pts.push(c));
+    const latLngs = [];
+    pts.forEach(it => {
+      const isCity = !!it.kind && it.kind === "city";
+      const color = isCity ? (ACCENT[it.status] || ACCENT.soon) : ACCENT.live;
+      const m = L.circleMarker([it.lat, it.lng], {
+        radius: isCity ? 7 : 6, color, weight: 2, fillColor: color, fillOpacity: 0.55,
+      });
+      const href = it.href;
+      const label = it.name;
+      const sub = it.area || it.date || "";
+      const popup = `<div style="max-width:220px"><b>${label}</b><div style="font-size:12px;color:#666">${sub}</div>${href ? `<div style="margin-top:6px"><a href="${href}" ${href.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>Open →</a></div>` : ""}</div>`;
+      m.bindPopup(popup);
+      m.addTo(map);
+      if (href) m.on("click", () => m.openPopup());
+      latLngs.push(m.getLatLng());
+    });
+    if (latLngs.length === 1) map.setView(latLngs[0], 12);
+    else if (latLngs.length > 1) map.fitBounds(L.latLngBounds(latLngs), { padding: [30, 30] });
+    else map.setView([0, 0], 2);
+    return map;
+  };
+
+  window.toggleMap = function (container, data) {
+    const el = container;
+    if (el.style.display === "block") {
+      el.style.display = "none";
+      el.setAttribute("aria-hidden", "true");
+      return false;
+    }
+    el.style.display = "block";
+    el.setAttribute("aria-hidden", "false");
+    if (!el.dataset.mounted) {
+      el.dataset.mounted = "1";
+      window.__map = window.initMap(el, data);
+      requestAnimationFrame(() => window.__map.invalidateSize());
+    }
+    return true;
+  };
+
+  window.__geoCache = {};
+  function cacheKeyForCities() { return CACHE_NS + "cities:1"; }
+  function getCityCenters() { return window.__citiesCache || null; }
+
+  window.toggleCityMap = async function () {
+    const el = document.getElementById("mapbox");
+    if (el.style.display === "block") {
+      el.style.display = "none";
+      document.getElementById("mapbtn").textContent = "🗺️ View Map";
+      return;
+    }
+    document.getElementById("mapbtn").textContent = "🗺️ Loading…";
+    if (!el.dataset.mounted) {
+      el.dataset.mounted = "1";
+      const cache = caches && caches.open ? await caches.open("compute-cafe") : null;
+      const cachedCoords = cache ? await cache.match(CACHE_NS + "venues") : null;
+      let out;
+      if (cachedCoords) {
+        try { out = await cachedCoords.json(); } catch {}
+      }
+      if (!out) {
+        out = [];
+        const batch = VENUES.slice(0, 50);
+        await Promise.all(batch.map(async v => {
+          if (!v.addr) { out.push({...v, lat: null, lng: null}); return; }
+          try {
+            const resp = await fetch(NOMINATIM + encodeURIComponent(v.addr));
+            const arr = await resp.json();
+            const first = arr[0] || {};
+            out.push({...v, lat: first.lat ? parseFloat(first.lat) : null, lng: first.lon ? parseFloat(first.lon) : null});
+          } catch {
+            out.push({...v, lat: null, lng: null});
+          }
+        }));
+        if (cache) await cache.put(CACHE_NS + "venues", new Response(JSON.stringify(out)));
+      }
+      const pts = out.filter(v => v.lat !== null && v.lng !== null);
+      window.__map = window.initMap(el, { venues: pts });
+      requestAnimationFrame(() => window.__map.invalidateSize());
+    }
+    el.style.display = "block";
+    el.setAttribute("aria-hidden", "false");
+    document.getElementById("mapbtn").textContent = "🗺️ Hide Map";
+  };
+})();
+
+
 /* ============================ EDIT BELOW ============================ */
 
 // Page copy — CONFIG + TYPE_META + VENUES
@@ -249,8 +379,8 @@ const VENUES = [
     "linkText": "CIC Cambridge Event Spaces",
     "email": "events@cic.com",
     "note": "CreativeMornings/Boston hosted its Nov 2025 breakfast lecture at CIC Cambridge (1 Broadway) — proven coffee-and-100+-crowd room-shape fit; the wood-paneled Venture Café space is literally Kendall Sq's weekly innovation-coffee gathering spot (Thursday Gatherings, 20K visitors/yr), with terrace, bar space, breakouts, and translation services via LinguaSmart for a bilingual tech-week day.",
-    "img": null,
-    "alt": "Wood-paneled Venture Cafe event hall with terrace access at One Broadway",
+    "img": "https://venturecafecambridge.org/wp-content/uploads/sites/6/2021/05/IMG_1861-1.jpg",
+    "alt": "Venture Café Cambridge Thursday Gathering crowd at CIC",
     "top": false
   },
   {
@@ -265,8 +395,8 @@ const VENUES = [
     "linkText": "Event Rentals",
     "email": null,
     "note": "1890 industrial creative hub 0.4 mi from Kendall/MIT T actively recruiting a cafe operator; maker-space DNA (Design Lab built for hackathons), sliding-scale pricing for community events, and a three-story atrium Community Hall that fits the 50-200 hack-day band at public-event rates.",
-    "img": null,
-    "alt": "Three-story atrium Community Hall with 19th-century wooden beams and skylights",
+    "img": "https://cdn.prod.website-files.com/6266e76b1797370598592b60/63952408e4a413f5de1a01e8_Community%20Hall%2008.22.22.jpg",
+    "alt": "The Foundry Community Hall tall wood-beam interior",
     "top": false
   },
   {
@@ -281,8 +411,8 @@ const VENUES = [
     "linkText": "Kendall Square Private Events",
     "email": "Victoria@AreaFour.com",
     "note": "Technology Square cafe-bar directly facing the MIT campus edge with an on-site A4 Café for coffee service, two private rooms and outdoor space; published private-room capacity (40 cocktail) sits below the 50-200 band, so this works only as a full-venue buyout play — events coordinator published by name.",
-    "img": null,
-    "alt": "Wood-fired cafe and bar dining room at 500 Technology Square",
+    "img": "https://images.getbento.com/accounts/6797956624a9674f3b0f27765887f7df/media/images/10177Area_Four_Cambridge_Interior_2_Melissa_Ostrow.jpg?w=1800&fit=max&auto=compress,format&cs=origin&h=1800",
+    "alt": "Area Four Cambridge dining room at 500 Technology Square",
     "top": false
   },
   {
@@ -409,8 +539,8 @@ const VENUES = [
     "linkText": "Daily Provisions Seaport location",
     "email": "info@dailyprovisions.co",
     "note": "Danny Meyer / Union Square Hospitality Group's all-day café that just opened on Commonwealth Pier (steps from ICA + BCEC); crullers + coffee morning trade, evening beer/wine crowd, USHG hospitality pedigree — group buyout email goes through the home office (info@dailyprovisions.co). Best for a <100-person format or as catering anchor for a nearby room.",
-    "img": null,
-    "alt": "Daily Provisions Seaport pastry display and coffee bar at Commonwealth Pier",
+    "img": "https://images.getbento.com/accounts/421fdbfaa020a606991e0319ff8084f3/media/images/54101081825_dailyprov_dupont_lifestyle-0020.JPG?w=1200&fit=crop&auto=compress,format&cs=origin&h=600",
+    "alt": "Daily Provisions cafe interior, Seaport",
     "top": false
   },
   {
@@ -425,8 +555,8 @@ const VENUES = [
     "linkText": "GrubStreet's Café / Fabulist",
     "email": null,
     "note": "New (2025-26) coffee shop inside Seaport's creative-writing nonprofit, co-run with Travelmug; harbor-view tables, next door to Porter Square Books, with GrubStreet's Writers' Stage used for monthly literary events — already set up for seated talk + reception formats. Café + stage combo fits an intimate builder coffee day of ~50-80; booking goes through GrubStreet's main line (617-695-0075).",
-    "img": null,
-    "alt": "Travelmug Café interior inside GrubStreet's Fabulist space with harbor windows",
+    "img": "https://media.thebostoncalendar.com/images/q_auto,fl_lossy/v1746883674/h8hzowhbxkajdx3trz71/travel-mug-cafe.jpg",
+    "alt": "Travelmug Cafe inside GrubStreet Fabulist",
     "top": false
   },
   {
@@ -505,8 +635,8 @@ const VENUES = [
     "linkText": "Meeting & Event Venues",
     "email": "seaportsales@seaportboston.com",
     "note": "Independent waterfront hotel with a public capacity chart across 13 spaces, harbor-view ballrooms, on-site catering/AV, and a direct meetings sales inbox — a safe scale-up option if the hack day pushes past 200.",
-    "img": null,
-    "alt": "Plaza Ballroom with floor-to-ceiling harbor windows",
+    "img": "https://assets.milestoneinternet.com/cdn-cgi/image/f=auto/seaport-hotel-and-world-trade-center-parent/seaport-hotel-boston/siteimages/meetings-seaport-ballroom-reception.jpg?width=1800&height=600",
+    "alt": "Seaport Hotel Boston Plaza Ballroom",
     "top": false
   },
   {
@@ -574,7 +704,7 @@ const VENUES = [
     "top": false
   },
   {
-    "k": "cic_boston_cambridge",
+    "k": "cic_boston_cambridge_50milk",
     "name": "CIC Boston (Cambridge Innovation Center)",
     "area": "Downtown Boston / Financial District (incl. CIC Boston @ 50 Milk St, Downtown Crossing edge)",
     "type": "cowork",
