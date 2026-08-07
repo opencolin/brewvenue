@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New York — Venue Options · ComputeCafe</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<!--
+  COMPUTE CAFE EXPLORER TEMPLATE
+  Edit ONLY the CONFIG, TYPE_META, and VENUES blocks in the <script> at the
+  bottom (plus <title> above). Filter chips, section headers, and header stats
+  all derive from the data — no markup edits needed for a new city or venue mix.
+  Keep the file self-contained: no external CSS/JS/fonts beyond Leaflet from unpkg;
+  geocoding caches per-browser via the browser Cache API (works without localStorage).
+-->
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --ink-1: #0b0b0b;
+    --ink-2: #52514e;
+    --ink-3: #898781;
+    --hairline: rgba(11,11,11,0.10);
+    --grid: #e1e0d9;
+    --accent-a: #eb6834;
+    --accent-a-soft: rgba(235,104,52,0.12);
+    --accent-b: #2a78d6;
+    --accent-b-soft: rgba(42,120,214,0.12);
+    --accent-c: #6f4fce;
+    --accent-c-soft: rgba(111,79,206,0.12);
+    --good: #0ca30c;
+    --good-soft: rgba(12,163,12,0.10);
+    --chip-on: #0b0b0b;
+    --chip-on-ink: #fcfcfb;
+    --ph-a: #f3e7dc;
+    --ph-b: #e8d5c2;
+    --ph-c: #dde8f3;
+    --ph-d: #c9d9ec;
+    --ph-e: #e7ddf3;
+    --ph-f: #d6c8ec;
+    --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+      --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+      --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+      --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+      --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+      --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+      --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+      --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+      --ph-e: #291f38; --ph-f: #382a4e;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19;
+    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+    --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+    --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+    --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+    --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+    --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+    --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+    --ph-e: #291f38; --ph-f: #382a4e;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page); color: var(--ink-1);
+    line-height: 1.45; padding: 28px 20px 40px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  header.hero { margin-bottom: 18px; }
+  .kicker {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent-a); margin-bottom: 6px;
+  }
+  h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+  .sub { color: var(--ink-2); font-size: 14px; margin-top: 6px; max-width: 70ch; }
+  .statrow { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 16px; }
+  .stat .n { font-size: 22px; font-weight: 700; }
+  .stat .l { font-size: 12px; color: var(--ink-3); }
+  .themebtn {
+    float: right; margin-top: -2px; font-size: 12px; color: var(--ink-2);
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  }
+  .themebtn:hover { color: var(--ink-1); }
+  .mapbtn {
+    position: absolute; top: 34px; right: 20px; z-index: 11; float: none;
+    font-size: 12px; color: var(--ink-2); background: var(--surface);
+    border: 1px solid var(--hairline); border-radius: 999px; padding: 6px 12px;
+    cursor: pointer;
+  }
+  .mapbtn:hover { color: var(--ink-1); }
+  .mapbtn.open { color: var(--accent-a); border-color: var(--accent-a); }
+  #mapbox {
+    display: none; position: fixed; top: 0; right: 0;
+    width: 50vw; height: 100vh; z-index: 10;
+    border-left: 1px solid var(--hairline);
+    background: var(--page);
+    box-shadow: -8px 0 24px rgba(0,0,0,0.15);
+  }
+  #mapbox .leaflet-container { height: 100%; }
+  @media (max-width: 860px) {
+    #mapbox { width: 100vw; }
+    .mapbtn { top: 108px; }
+  }
+  .filters {
+    position: sticky; top: 0; z-index: 5; background: var(--page);
+    padding: 12px 0 10px; margin: 8px 0 6px;
+    border-bottom: 1px solid var(--grid);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .fgroup { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 999px; padding: 3px; }
+  .chip {
+    font-size: 12.5px; font-weight: 500; color: var(--ink-2);
+    padding: 5px 12px; border-radius: 999px; border: none; background: transparent;
+    cursor: pointer; white-space: nowrap;
+  }
+  .chip:hover { color: var(--ink-1); }
+  .chip.on { background: var(--chip-on); color: var(--chip-on-ink); font-weight: 600; }
+  .count { margin-left: auto; font-size: 12px; color: var(--ink-3); }
+  .section-h { display: flex; align-items: baseline; gap: 10px; margin: 26px 2px 12px; }
+  .section-h h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-h .hint { font-size: 12px; color: var(--ink-3); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  .imgbox { position: relative; aspect-ratio: 16/9.5; overflow: hidden; }
+  .imgbox img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ph {
+    position: absolute; inset: 0; z-index: 0; display: flex;
+    align-items: center; justify-content: center; flex-direction: column; gap: 6px;
+  }
+  .card.noimg img { display: none; }
+  .ph.t0 { background: linear-gradient(135deg, var(--ph-a), var(--ph-b)); }
+  .ph.t1 { background: linear-gradient(135deg, var(--ph-c), var(--ph-d)); }
+  .ph.t2 { background: linear-gradient(135deg, var(--ph-e), var(--ph-f)); }
+  .ph .mono { font-size: 30px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-2); opacity: 0.85; }
+  .ph .icn { font-size: 22px; }
+  .toppick {
+    position: absolute; top: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 700; background: rgba(11,11,11,0.78); color: #fff;
+    padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .areatag {
+    position: absolute; bottom: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 600; background: rgba(11,11,11,0.62); color: #fff;
+    padding: 3px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .body { padding: 14px 16px 15px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .titlerow { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .vname { font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .typechip { flex: none; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; margin-top: 1px; }
+  .typechip.t0 { color: var(--accent-a); background: var(--accent-a-soft); }
+  .typechip.t1 { color: var(--accent-b); background: var(--accent-b-soft); }
+  .typechip.t2 { color: var(--accent-c); background: var(--accent-c-soft); }
+  .addr { font-size: 12.5px; }
+  .addr a { color: var(--ink-3); text-decoration: none; }
+  .addr a:hover { color: var(--ink-1); text-decoration: underline; }
+  .cap { font-size: 12.5px; color: var(--ink-2); }
+  .cap b { color: var(--ink-1); font-weight: 600; }
+  .flag {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 7px; align-self: flex-start;
+  }
+  .flag.dedicated { color: var(--good); background: var(--good-soft); }
+  .flag.contact { color: var(--ink-2); background: var(--page); border: 1px solid var(--hairline); }
+  .note { font-size: 13px; color: var(--ink-2); flex: 1; }
+  .links { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+  .btn { font-size: 12.5px; font-weight: 600; text-decoration: none; padding: 7px 13px; border-radius: 8px; }
+  .btn.pri { background: var(--ink-1); color: var(--page); }
+  .btn.pri:hover { opacity: 0.85; }
+  .btn.sec { color: var(--ink-2); border: 1px solid var(--hairline); }
+  .btn.sec:hover { color: var(--ink-1); border-color: var(--ink-3); }
+  .empty { color: var(--ink-3); font-size: 14px; padding: 40px 0; text-align: center; }
+  footer { margin-top: 34px; border-top: 1px solid var(--grid); padding-top: 18px; display: grid; gap: 14px; }
+  .fnote { font-size: 13px; color: var(--ink-2); max-width: 90ch; }
+  .fnote b { color: var(--ink-1); }
+  .prov { font-size: 11.5px; color: var(--ink-3); }
+  @media (max-width: 640px) {
+    body { padding: 18px 12px 30px; }
+    h1 { font-size: 22px; }
+    .count { flex-basis: 100%; margin-left: 2px; }
+  }
+  .homelink { font-size: 12.5px; font-weight: 600; color: var(--ink-3); text-decoration: none; display: inline-block; margin-bottom: 8px; }
+  .homelink:hover { color: var(--ink-1); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <button class="themebtn" id="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <button class="mapbtn" id="mapbtn" onclick="toggleCityMap()">🗺️ View Map</button>
+    <a class="homelink" href="/">← ComputeCafe</a>
+    <div class="kicker" id="kicker"></div>
+    <h1 id="title"></h1>
+    <div class="sub" id="subtitle"></div>
+    <div class="statrow" id="stats"></div>
+  </header>
+  <div class="filters">
+    <div class="fgroup" id="f-area"></div>
+    <div class="fgroup" id="f-type"></div>
+    <div class="fgroup" id="f-flag">
+      <button class="chip" data-v="dedicated">✓ Dedicated events page only</button>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+  <div id="content"></div>
+  <div id="mapbox" aria-hidden="true"></div>
+  <footer id="foot"></footer>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+/* Map primitives — Leaflet helpers (also used by index.html) */
+(function () {
+  const ACCENT = { live: "#0ca30c", rsvp: "#2a78d6", soon: "#898781" };
+  const NOMINATIM = "https://nominatim.openstreetmap.org/search?format=json&limit=1&q=";
+  const CACHE_NS = "venue-coords:";
+
+  window.initMap = function (container, data) {
+    const L = window.L;
+    if (!L) return null;
+    const el = container;
+    el.innerHTML = "";
+    const map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+    const pts = [];
+    (data.venues || []).forEach(v => pts.push(v));
+    (data.cities || []).forEach(c => pts.push(c));
+    const latLngs = [];
+    pts.forEach(it => {
+      const isCity = !!it.kind && it.kind === "city";
+      const color = isCity ? (ACCENT[it.status] || ACCENT.soon) : ACCENT.live;
+      const m = L.circleMarker([it.lat, it.lng], {
+        radius: isCity ? 7 : 6, color, weight: 2, fillColor: color, fillOpacity: 0.55,
+      });
+      const href = it.href;
+      const label = it.name;
+      const sub = it.area || it.date || "";
+      const popup = `<div style="max-width:220px"><b>${label}</b><div style="font-size:12px;color:#666">${sub}</div>${href ? `<div style="margin-top:6px"><a href="${href}" ${href.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>Open →</a></div>` : ""}</div>`;
+      m.bindPopup(popup);
+      m.addTo(map);
+      if (href) m.on("click", () => m.openPopup());
+      latLngs.push(m.getLatLng());
+    });
+    if (latLngs.length === 1) map.setView(latLngs[0], 12);
+    else if (latLngs.length > 1) map.fitBounds(L.latLngBounds(latLngs), { padding: [30, 30] });
+    else map.setView([0, 0], 2);
+    return map;
+  };
+
+  window.toggleMap = function (container, data) {
+    const el = container;
+    if (el.style.display === "block") {
+      el.style.display = "none";
+      el.setAttribute("aria-hidden", "true");
+      return false;
+    }
+    el.style.display = "block";
+    el.setAttribute("aria-hidden", "false");
+    if (!el.dataset.mounted) {
+      el.dataset.mounted = "1";
+      window.__map = window.initMap(el, data);
+      requestAnimationFrame(() => window.__map.invalidateSize());
+    }
+    return true;
+  };
+
+  window.__geoCache = {};
+  function cacheKeyForCities() { return CACHE_NS + "cities:1"; }
+  function getCityCenters() { return window.__citiesCache || null; }
+
+  window.toggleCityMap = async function () {
+    const el = document.getElementById("mapbox");
+    if (el.style.display === "block") {
+      el.style.display = "none";
+      document.getElementById("mapbtn").textContent = "🗺️ View Map";
+      return;
+    }
+    document.getElementById("mapbtn").textContent = "🗺️ Loading…";
+    if (!el.dataset.mounted) {
+      el.dataset.mounted = "1";
+      const cache = caches && caches.open ? await caches.open("compute-cafe") : null;
+      const cachedCoords = cache ? await cache.match(CACHE_NS + "venues") : null;
+      let out;
+      if (cachedCoords) {
+        try { out = await cachedCoords.json(); } catch {}
+      }
+      if (!out) {
+        out = [];
+        const batch = VENUES.slice(0, 50);
+        await Promise.all(batch.map(async v => {
+          if (!v.addr) { out.push({...v, lat: null, lng: null}); return; }
+          try {
+            const resp = await fetch(NOMINATIM + encodeURIComponent(v.addr));
+            const arr = await resp.json();
+            const first = arr[0] || {};
+            out.push({...v, lat: first.lat ? parseFloat(first.lat) : null, lng: first.lon ? parseFloat(first.lon) : null});
+          } catch {
+            out.push({...v, lat: null, lng: null});
+          }
+        }));
+        if (cache) await cache.put(CACHE_NS + "venues", new Response(JSON.stringify(out)));
+      }
+      const pts = out.filter(v => v.lat !== null && v.lng !== null);
+      window.__map = window.initMap(el, { venues: pts });
+      requestAnimationFrame(() => window.__map.invalidateSize());
+    }
+    el.style.display = "block";
+    el.setAttribute("aria-hidden", "false");
+    document.getElementById("mapbtn").textContent = "🗺️ Hide Map";
+  };
+})();
+
+
+/* ============================ EDIT BELOW ============================ */
+
+// Page copy — GENERATED by assemble_city_config.py, 2026-08-06
+const CONFIG = {
+  kicker: "New York · ComputeCafe",
+  title: "New York — Venue Options",
+  subtitle: "Event-capable cafes, coworking & event spaces in Flatiron / Union Square and Williamsburg / Dumbo — for the Sep 25, 2026 tech coffee/hack event (~50–200 people). Links point to verified private-events pages or booking contacts.",
+  extraStat: { n: "Sep 25", l: "New York event date, 2026" },
+  footnotes: [
+    "<b>Neighborhood analysis:</b> Flatiron / Union Square is Manhattan's most transit-central tech cluster (Zero Irving's purpose-built tech hub, Silicon Alley legacy); Williamsburg / Dumbo carries Brooklyn's builder-café scene — Cafe Cursor's NYC takeover is a Brooklyn café, though tour hosts (Ideal Glass, Betaworks, ElevenLabs office) mostly sit outside these two cells or behind registration gates.",
+    "<b>Gone / don't route inquiries here:</b> Brooklyn Roasting Company — 25 Jay St, DUMBO flagship: closed — no longer listed on brooklynroasting.com/pages/our-stores (fetched Aug 6 2026); brand now lists only 200 Flushing Ave, 1 Clinton St, and 543 Metropolitan Ave.",
+    "<b>Confirmed host:</b> the Sep 25 event runs at First Round's on Me — Cafe Social Club (109 W 25th St, Chelsea). The rest of the lineup is the vetted overflow / satellite list.",
+    "<b>RSVP:</b> the New York event page is live — <a href=\"https://luma.com/tavily-nnzl\" target=\"_blank\" rel=\"noopener\">register on Luma ↗</a>.",
+  ],
+  provenance: "Researched & links verified Aug 6–7, 2026 · Photos load from each venue's own website; placeholder art covers the rest. Capacities are published or estimated — confirm when booking.",
+};
+
+const TYPE_META = {
+  coffee: { label: "Coffee shop", icon: "☕" },
+  cowork: { label: "Coworking / event space", icon: "🏢" },
+};
+
+// Discarded during research (scope/fit — NOT closures; for the review card, not the page):
+//   dropped: ClawCon NYC tour-trace seed — host venue was Ideal Glass Studios (Manhattan event studio, 1,313 RSVPs), not a café; outside the coffee cell.
+//   dropped: Cafe Cursor NYC (Aug 12 2026) tour-trace seed — Brooklyn host café never publicly named (Luma address gated behind registration, GarysGuide lists 'Venue To Be Announced', forum thread silent); no venue to verify. Prior SoHo edition equally gated.
+//   dropped: AI Tinkerers NYC tour-trace seed — past 'coworking cafe' sessions were hosted at sponsor offices (Betaworks, MongoDB/Javits Center), not standalone cafés; nyc.aitinkerers.org also returned 403 on direct fetch.
+//   dropped: Sey Coffee — operating at 18 Grattan St, Brooklyn 11206 (East Williamsburg/Bushwick edge per seycoffee.com), outside the core Williamsburg/Dumbo cell; closes 5pm weekdays with no events program listed.
+//   dropped: Devoción DUMBO (105 York St) — open per devocion.com/pages/cafes but redundant with the larger Williamsburg flagship one neighborhood over; kept Usagi as the DUMBO pick instead.
+//   dropped: Ideal Glass Studios — ClawCon NYC host (Mar 4, 2026 per search results incl. trymimetic.com) but located in West Village, outside both target neighborhoods
+//   dropped: Betaworks — ClawHack NY host (betaworks.com/event/clawhack-ny) but in Meatpacking District, outside both target neighborhoods
+//   dropped: ElevenLabs NYC office — hosted the AI Tinkerers ElevenLabs Worldwide Hackathon (100+ participants per elevenlabs.io blog) but it is a sponsor's private office, not publicly bookable; partner lead only
+//   dropped: Pilot (Dabl Club NYC Founders & Investors Winter Social host, luma.com/sryjeq4l) — physical venue intentionally undisclosed on public page ('shared with attendees day before event'), 28-person social; partner lead, not a verifiable bookable venue
+//   dropped: Bond Collective Vinegar Hill (295 Front St, Brooklyn) — largest bookable room seats 10 and location is waitlisted for new members; cannot host a 50-200 person event
+//   dropped: The Malin (Williamsburg candidate) — themalin.com unreachable on two attempts (connection refused); current offering could not be verified this session
+
+const VENUES = [
+  {
+    "k": "firstroundsonme",
+    "name": "First Round's on Me — Cafe Social Club",
+    "area": "Flatiron / Union Square",
+    "type": "coffee",
+    "addr": "109 W 25th St (Chelsea), New York, NY 10001",
+    "cap": "not published — café + social floor; ~<b>60</b>–<b>100</b> (est), confirm with the team",
+    "flag": "contact",
+    "link": "https://linktr.ee/firstroundsonmeapp",
+    "linkText": "Events & links (Linktree)",
+    "email": null,
+    "note": "✔ CONFIRMED HOST of the Sep 25 NYC event. Cafe/podcast/social club from the FROM dating-app team (opened May 2025): coffee bar, DJ + podcast setup, pool-table social floor — built for exactly this crowd. Daily 8am–4pm; evening events by arrangement. Own site was down at research time — Linktree is the live link.",
+    "img": null,
+    "alt": "Neon-lit social floor at Cafe Social Club",
+    "top": true
+  },
+  {
+    "k": "devocinwilliamsburgflagship",
+    "name": "Devoción — Williamsburg Flagship",
+    "area": "Williamsburg / Dumbo",
+    "type": "coffee",
+    "addr": "148 Grand St, Brooklyn, NY 11249",
+    "cap": "~<b>80</b> seated / <b>150</b> standing (est)",
+    "flag": "contact",
+    "link": "https://www.devocion.com/pages/new-york-coffee-shop-williamsburg-brooklyn",
+    "linkText": "devocion.com — Williamsburg café",
+    "email": null,
+    "note": "Greenhouse-style flagship with skylight, lush plantings, dual espresso bars and an on-site training lab already used for public classes and cuppings — the strongest coffee/hack-day room in Brooklyn. Open 7am-6pm daily.",
+    "img": "https://www.devocion.com/cdn/shop/files/Devocion_Wburg_1025_LizClayman_012_3.jpg",
+    "alt": "Sunlit greenhouse-style café interior with skylight and tropical plants",
+    "top": true
+  },
+  {
+    "k": "usaginy",
+    "name": "Usagi NY",
+    "area": "Williamsburg / Dumbo",
+    "type": "coffee",
+    "addr": "163 Plymouth St, Brooklyn, NY 11201",
+    "cap": "~<b>60</b> seated / <b>100</b> standing (est, ~2,800-3,000 sq ft)",
+    "flag": "contact",
+    "link": "https://www.usaginy.com/",
+    "linkText": "usaginy.com",
+    "email": "connect@usaginy.com",
+    "note": "Sou Fujimoto-designed café/gallery/library hybrid in DUMBO with 15 removable track-mounted panels for reconfiguring the room — purpose-built for takeovers, talks and workshops. Direct events email listed.",
+    "img": null,
+    "alt": "Minimalist white café-gallery interior with movable panels",
+    "top": false
+  },
+  {
+    "k": "brooklynroastingcompanymetropolitanave",
+    "name": "Brooklyn Roasting Company — Metropolitan Ave",
+    "area": "Williamsburg / Dumbo",
+    "type": "coffee",
+    "addr": "543 Metropolitan Ave, Brooklyn, NY 11211",
+    "cap": "~<b>40</b> seated / <b>60</b> standing (est)",
+    "flag": "contact",
+    "link": "https://www.brooklynroasting.com/pages/our-stores",
+    "linkText": "brooklynroasting.com — our cafés",
+    "email": null,
+    "note": "The roaster's surviving Williamsburg café — open 7am-7pm daily with private tours/tastings offered, so staff are used to groups. Best as an overflow or satellite room; too small to solo-host 200. Phone (347) 799-1173.",
+    "img": null,
+    "alt": "Industrial roastery café with coffee sacks and brew bar",
+    "top": false
+  },
+  {
+    "k": "devocinflatiron",
+    "name": "Devoción — Flatiron",
+    "area": "Flatiron / Union Square",
+    "type": "coffee",
+    "addr": "25 E 20th St, New York, NY 10003",
+    "cap": "~<b>60</b> seated / <b>100</b> standing (est)",
+    "flag": "contact",
+    "link": "https://www.devocion.com/pages/cafes",
+    "linkText": "devocion.com — café locations",
+    "email": null,
+    "note": "Devoción's large Flatiron room two blocks from Union Square carries the same plant-filled, high-design DNA as the Brooklyn flagship, and one brand relationship could cover both boroughs of the tour. Open 7am-6pm.",
+    "img": null,
+    "alt": "Plant-lined café interior with leather seating and espresso bar",
+    "top": false
+  },
+  {
+    "k": "thinkcoffeeunionsquare",
+    "name": "Think Coffee — Union Square",
+    "area": "Flatiron / Union Square",
+    "type": "coffee",
+    "addr": "123 4th Ave, New York, NY 10003",
+    "cap": "~<b>50</b> seated / <b>80</b> standing (est)",
+    "flag": "contact",
+    "link": "https://www.thinkcoffee.com/pages/locations-catering",
+    "linkText": "thinkcoffee.com — locations & catering",
+    "email": null,
+    "note": "Spacious, laptop-friendly room just off Union Square, open 7am-7pm with every subway line nearby; chain also runs a Flatiron shop at 568 6th Ave and does catering via EZCater. Book by phone (646) 991-0342.",
+    "img": null,
+    "alt": "Open-plan coffee shop with communal work tables",
+    "top": false
+  },
+  {
+    "k": "irvingfarmnewyorkgramercy71irvingplace",
+    "name": "Irving Farm New York — Gramercy (71 Irving Place)",
+    "area": "Flatiron / Union Square",
+    "type": "coffee",
+    "addr": "71 Irving Pl, New York, NY 10003",
+    "cap": "~<b>40</b> seated / <b>60</b> standing (est)",
+    "flag": "contact",
+    "link": "https://irvingfarmcoffee.com/pages/locations",
+    "linkText": "irvingfarmcoffee.com — locations",
+    "email": null,
+    "note": "The original Irving Farm café a block from Union Square — confirmed operating on the current locations page. Cozy neighborhood energy for a smaller-format hack morning rather than the full 200-person day.",
+    "img": null,
+    "alt": "Classic brick-walled café on a tree-lined Gramercy corner",
+    "top": false
+  },
+  {
+    "k": "zeroirving",
+    "name": "Zero Irving",
+    "area": "Flatiron / Union Square",
+    "type": "cowork",
+    "addr": "124 E 14th St, New York, NY 10003",
+    "cap": "<b>~200</b> (est) — 14,000 sq ft event & conference center on the 2nd floor",
+    "flag": "contact",
+    "link": "https://zeroirving.com/",
+    "linkText": "zeroirving.com",
+    "email": null,
+    "note": "Purpose-built Union Square tech hub (opened 2023): flexible office/coworking floors, a tech training center, and a dedicated double-height conference/event venue — the strongest hack-day shape in the cell. Event page not linked from homepage; inquire via zeroirving.com/contact.",
+    "img": "https://zeroirving.com/wp-content/themes/zeroirving/_content/building/home_lobby_rendering_intro.jpg",
+    "alt": "Double-height lobby at 124 E 14th St",
+    "top": true
+  },
+  {
+    "k": "theyardflatironsouth",
+    "name": "The Yard: Flatiron South",
+    "area": "Flatiron / Union Square",
+    "type": "cowork",
+    "addr": "234 Fifth Ave (at 27th St), New York, NY",
+    "cap": "<b>~75-125</b> (est) across lounges and conference rooms",
+    "flag": "contact",
+    "link": "https://theyard.com/flatiron-south-coworking/",
+    "linkText": "theyard.com/flatiron-south-coworking",
+    "email": null,
+    "note": "Coworking floors with exposed brick, Fifth Ave views, art-lined lounges, and a private conference room per floor; meeting/space rental via FlexSpace, larger buyouts by inquiry. No published event capacity — confirm headcount for 50+.",
+    "img": "https://theyard.com/wp-content/uploads/2025/02/copy-of-006-min-1024x683.jpg",
+    "alt": "Art-lined coworking lounge over Fifth Avenue",
+    "top": false
+  },
+  {
+    "k": "newlab",
+    "name": "Newlab",
+    "area": "Williamsburg / Dumbo",
+    "type": "cowork",
+    "addr": "19 Morris Ave, Brooklyn Navy Yard (between Dumbo and Williamsburg), Brooklyn, NY",
+    "cap": "<b>~100-300</b> (est) — 84,000 sq ft facility",
+    "flag": "dedicated",
+    "link": "https://newlab.com/host-an-event",
+    "linkText": "newlab.com/host-an-event",
+    "email": null,
+    "note": "Deep-tech innovation hub in the Navy Yard with a long history of hosting hackathons and demo days; dedicated event-rental intake via TripleSeat (newlab.tripleseat.com). Note: paid rentals only — they state no free event space or tours currently.",
+    "img": null,
+    "alt": "Vaulted machine-shop hall turned innovation hub",
+    "top": true
+  },
+  {
+    "k": "theyardwilliamsburg",
+    "name": "The Yard: Williamsburg",
+    "area": "Williamsburg / Dumbo",
+    "type": "cowork",
+    "addr": "195 Broadway, Brooklyn, NY 11211",
+    "cap": "<b>~75-100</b> (est)",
+    "flag": "contact",
+    "link": "https://theyard.com/williamsburg-coworking/",
+    "linkText": "theyard.com/williamsburg-coworking",
+    "email": null,
+    "note": "South Williamsburg coworking with 24/7 access, conference rooms, spacious lounges and a monthly events program; meeting rooms bookable via FlexSpace, staffed M-F with an on-site community manager ((646) 233-2786). Buyout capacity for 50+ needs confirmation.",
+    "img": "https://theyard.com/wp-content/uploads/2023/12/12132023_pf_the_yard_williamsburg_19-1024x683.jpg",
+    "alt": "Sunlit coworking lounge at 195 Broadway",
+    "top": false
+  },
+  {
+    "k": "greendeskdumbo",
+    "name": "Green Desk (Dumbo)",
+    "area": "Williamsburg / Dumbo",
+    "type": "cowork",
+    "addr": "68 Jay St & 195 Plymouth St, Dumbo, Brooklyn, NY (also 240 Kent Ave, Williamsburg)",
+    "cap": "<b>~50-100</b> (est) in their large event spaces",
+    "flag": "contact",
+    "link": "https://greendesk.com/",
+    "linkText": "greendesk.com",
+    "email": "sales@greendesk.com",
+    "note": "Dumbo-born flexible coworking operator with multiple buildings in the neighborhood; advertises 'conference and events in one of our fantastic large event spaces,' pricing varies by location. Good budget-friendly hack-day base steps from the waterfront.",
+    "img": null,
+    "alt": "Loft-style Dumbo coworking floor",
+    "top": false
+  },
+  {
+    "k": "dumboloft",
+    "name": "Dumbo Loft",
+    "area": "Williamsburg / Dumbo",
+    "type": "cowork",
+    "addr": "155 Water St, Brooklyn, NY 11201",
+    "cap": "<b>140</b> seated / <b>200</b> standing (per venue listings; 3,200+ sq ft)",
+    "flag": "dedicated",
+    "link": "https://thedumboloft.com/",
+    "linkText": "thedumboloft.com",
+    "email": "info@bkvenues.com",
+    "note": "1891 loft with high ceilings, wood columns, exposed brick and Manhattan Bridge views; a flexible raw rental space (run by BK Venues) that comfortably fits a 50-200 person coffee/hack day — bring your own AV/furniture plan. Same building also houses Green Desk coworking.",
+    "img": "https://www.thedumboloft.com/wp-content/uploads/2019/04/DUMBO-Loft-Events_3.jpg",
+    "alt": "Exposed-brick loft with wood columns",
+    "top": false
+  },
+  {
+    "k": "citizens_of_soho",
+    "name": "Citizens of SoHo",
+    "area": "SoHo / NoLita (lower Manhattan, roughly Houston-Canal, Broadway-Lafayette)",
+    "type": "coffee",
+    "addr": "201 Lafayette St, New York, NY 10012",
+    "cap": "<b>60</b> seated / <b>120</b> standing",
+    "flag": "dedicated",
+    "link": "https://www.tagvenue.com/us/venues/new-york/61817/citizens-of-soho",
+    "linkText": "Book via Tagvenue",
+    "email": null,
+    "note": "Australian-style all-day café directly on Lafayette in the heart of the target zone; whole-venue hire with in-house coffee/kitchen, so a bilingual hack day runs natively on their espresso bar. Listed on Tagvenue with published capacity and bookable form (their own domain is parked, so Tagvenue is the live booking surface).",
+    "img": "https://www.tagvenue.com/resize/202511/4a/ff/widen-1680-noupsize;61817-citizens-of-soho-venue-pjRqwavT.jpg",
+    "alt": "Daylit café floor at Citizens of SoHo",
+    "top": false
+  },
+  {
+    "k": "two_hands_noho",
+    "name": "Two Hands NoHo",
+    "area": "SoHo / NoLita (lower Manhattan, roughly Houston-Canal, Broadway-Lafayette)",
+    "type": "coffee",
+    "addr": "74 Bleecker St, New York, NY 10012",
+    "cap": "~<b>80</b> seated / ~<b>150</b> standing (est)",
+    "flag": "dedicated",
+    "link": "https://www.twohandshospitality.com/events",
+    "linkText": "Two Hands private events page",
+    "email": "noho@twohandshospitality.com",
+    "note": "Australian café/restaurant with a dedicated private-events page and a published per-location events email (noho@). On the eastern edge of the target block (Bleecker at Lafayette/Bowery corner); room reads café-first with communal tables and an open bar, well-suited to a 100-person bilingual coffee-hack takeover.",
+    "img": "https://images.getbento.com/accounts/3cca86fd1cad92b59651204131a0ae59/media/images/35137TwoHands_NoHo_Mar24_LAlmeida-4652.jpg?w=1200&fit=crop&auto=compress,format&cs=origin&crop=focalpoint&fp-x=0.5&fp-y=0.5",
+    "alt": "Airy dining room at Two Hands NoHo",
+    "top": false
+  },
+  {
+    "k": "the_farm_soho",
+    "name": "The Farm SoHo",
+    "area": "SoHo / NoLita (lower Manhattan, roughly Houston-Canal, Broadway-Lafayette)",
+    "type": "coffee",
+    "addr": "447 Broadway, 2nd Floor, New York, NY 10013",
+    "cap": "<b>50</b> seated / <b>75</b> standing",
+    "flag": "dedicated",
+    "link": "https://www.thefarmsoho.com/event-venues/the-farm-soho",
+    "linkText": "The Farm SoHo event venue page",
+    "email": "hello@thefarmsoho.com",
+    "note": "Hybrid cowork/event loft with a dedicated events page and published capacities on Broadway just below Canal; bottoms out the room-shape curve (50 max) but is the closest thing to a built-for-hack-day blank canvas with in-house coffee. Custom layouts, A/V, and booking flow at thefarmsoho.flexspace.ai are already live.",
+    "img": "https://www.thefarmsoho.com/wp-content/uploads/2023/11/2-Loft-Venue-scaled.jpg",
+    "alt": "Reclaimed-wood communal worktables at The Farm SoHo",
+    "top": false
+  },
+  {
+    "k": "218_nolita_event",
+    "name": "218 Nolita Event Space",
+    "area": "SoHo / NoLita (lower Manhattan, roughly Houston-Canal, Broadway-Lafayette)",
+    "type": "cowork",
+    "addr": "218 Bowery, New York, NY 10012",
+    "cap": "~<b>120</b> seated / ~<b>200</b> standing (est)",
+    "flag": "contact",
+    "link": "https://www.tagvenue.com/us/venues/new-york/54800/218-events",
+    "linkText": "218 Events on Tagvenue",
+    "email": null,
+    "note": "Industrial-chic NoLita venue on Bowery with exposed brick, wooden floors, and a marble bar. The open-floor plan gives plenty of room for hack-day tables and mingling, and the 4,000 sq ft footprint can absorb a 50–200 person bilingual tech crowd.",
+    "img": "https://www.tagvenue.com/resize/8f/88/fit-900-600;91673-218-event-space-room.jpg",
+    "alt": "Exposed brick Nolita event loft with wooden floors and pendant lights",
+    "top": false
+  },
+  {
+    "k": "spring_place",
+    "name": "Spring Place",
+    "area": "SoHo / NoLita (lower Manhattan, roughly Houston-Canal, Broadway-Lafayette)",
+    "type": "cowork",
+    "addr": "6 St Johns Lane, New York, NY 10013",
+    "cap": "~<b>80</b> seated / ~<b>150</b> standing (est)",
+    "flag": "contact",
+    "link": "https://www.springplace.com",
+    "linkText": "Spring Place NYC",
+    "email": null,
+    "note": "Members-only creative coworking and event hub in a converted Tribeca printing building. Multiple lounges, a restaurant/bar, and modular event spaces support a blended coffee-service + hacking format; on-site event team handles 50–200 person cultural and tech gatherings.",
+    "img": "https://cdn.prod.website-files.com/68273a941eff82b585262fe9/68c9bf8cf8867fd3ccb540e8_Restaurant_1.webp",
+    "alt": "Modern Spring Place lounge with contemporary furniture and warm lighting",
+    "top": false
+  },
+  {
+    "k": "neuehouse_madison_square",
+    "name": "NeueHouse Madison Square",
+    "area": "SoHo / NoLita (lower Manhattan, roughly Houston-Canal, Broadway-Lafayette)",
+    "type": "cowork",
+    "addr": "110 East 25th Street, New York, NY 10010",
+    "cap": "<b>100</b> seated / <b>235</b> standing (Gallery); <b>240</b> (Penthouse)",
+    "flag": "dedicated",
+    "link": "https://www.neuehouse.com/private-events",
+    "linkText": "NeueHouse Private Events",
+    "email": null,
+    "note": "Premium Flatiron creative workspace with terracotta-walled Gallery (projector, stepped seating) and a sunlit Penthouse. High-end coffee service and hospitality team are built for tech-adjacent gatherings; location is a short walk north of the strict SoHo/NoLita boundary.",
+    "img": "https://images.ctfassets.net/rpinqlxtcitg/2bi4WkK97O0RdSblqGitCT/dc2a3b1c61f57288bd19fdc3d0a765d9/NH_-_Penthouse.jpg",
+    "alt": "NeueHouse Madison Square Penthouse event space with city views",
+    "top": false
+  },
+  {
+    "k": "verci",
+    "name": "Verci",
+    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "type": "coffee",
+    "addr": "45 E 20th St, New York, NY 10003",
+    "cap": "~<b>80</b> seated / <b>150</b> standing (est)",
+    "flag": "dedicated",
+    "link": "https://www.verci.com/events",
+    "linkText": "Events at Verci",
+    "email": "club@verci.com",
+    "note": "3-story members' club with cafe/bar, social space, and rooftop (tour-trace seed via AI Tinkerers NY Tech Week Demo Day — hosted Builder of Things NY Tech Week 2026). Open floor plan and barista bar suit bilingual coffee/hack flow; can open to public bookings via 'Rent the space' link.",
+    "img": "https://images.squarespace-cdn.com/content/v1/633267f31b2e7a42908c8155/68384256-1c82-4b4a-a3e3-639dffc7999a/2045+Clubhouse+-+Cafe%CC%81+%26+Bar.png",
+    "alt": "Verci events space",
+    "top": false
+  },
+  {
+    "k": "moxy_chelsea_event",
+    "name": "Moxy Chelsea Event Space + Lobby Cafe",
+    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "type": "coffee",
+    "addr": "105 W 28th St, New York, NY 10001",
+    "cap": "<b>150</b> standing / <b>120</b> seated; Lobby Bar full buyout <b>200</b> reception",
+    "flag": "dedicated",
+    "link": "https://www.moxychelsea.com/meetings-and-events",
+    "linkText": "Meetings + Events",
+    "email": "MoxyChelseaEvents@taogroup.com",
+    "note": "Lobby cafe converts into day-to-night event space with terrace; meeting studios offer flexible hack-day layout. Hotel events team handles catering and AV; published capacities fit 50–200.",
+    "img": "https://moxychelsea.com/content/uploads/sites/3/2025/06/tinywow_Feroce-Caffe_81898489-1-1920x1280.jpg",
+    "alt": "Moxy Chelsea meeting and event space",
+    "top": false
+  },
+  {
+    "k": "resident_madison_park",
+    "name": "Resident Madison Park / Union Square",
+    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "type": "coffee",
+    "addr": "115 E 23rd St, New York, NY 10010",
+    "cap": "~<b>50</b>–<b>120</b> (est, across spaces)",
+    "flag": "contact",
+    "link": "https://residentcompanyclub.com",
+    "linkText": "Resident Company Club",
+    "email": null,
+    "note": "Curated startup coworking with event management support and lounge/cafe areas (tour-trace seed via AI Tinkerers Builder Co-working Day at Resident). Two nearby locations; contact directly for events availability.",
+    "img": "https://ik.imagekit.io/7uki45mt9/images/tr:w-3840,f-webp,q-50/3f5fb63912ed68bd87020363704b806963a55cfa-2000x1333.jpg/19-DSC02313.webp",
+    "alt": "Resident coworking lounge",
+    "top": false
+  },
+  {
+    "k": "blender_workspace",
+    "name": "Blender Workspace",
+    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "type": "cowork",
+    "addr": "135 Madison Ave, 8th Fl (at E 31st St), New York, NY 10016",
+    "cap": "Auditorium: <b>250</b> theater / <b>300</b> standing · Event Suite: <b>100</b> theater / <b>200</b> standing (published)",
+    "flag": "dedicated",
+    "link": "https://blenderworkspace.com/event-space/",
+    "linkText": "blenderworkspace.com/event-space",
+    "email": null,
+    "note": "Best all-around fit: 15,000 sq ft NoMad floor with a 5,000 sq ft auditorium and separate Event Suite sized exactly for a 50-200-person coffee/hack day, in-house hospitality bar, coffee, AV and catering, and a published client list (Google, Netflix, JPMorgan) that proves corporate tech events land here.",
+    "img": null,
+    "alt": "Modern lounge seating at Blender Workspace",
+    "top": false
+  },
+  {
+    "k": "betaworks",
+    "name": "Betaworks",
+    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "type": "cowork",
+    "addr": "29 Little W 12th St, New York, NY 10014 (just west of the cell, Meatpacking edge)",
+    "cap": "<b>200</b> person street-level event space; 110 audience chairs; board room fits <b>25-40</b> (published)",
+    "flag": "dedicated",
+    "link": "https://www.betaworks.com/event-rentals",
+    "linkText": "betaworks.com/event-rentals",
+    "email": "eventsny@betaworks.com",
+    "note": "Pre-vetted builder room: hosted AI Tinkerers OpenClaw Demo Night (Feb 2026) and the ClawHack NY 12-hour hackathon (Feb 28, 2026) — proven hack-day layout with stage, 160-inch projector, mics, bar, check-in lobby and back-of-house coffee prep. Tour-trace seed via AI Tinkerers NYC.",
+    "img": null,
+    "alt": "Betaworks stage hero shot facing the presentation wall in the street-level lounge",
+    "top": false
+  },
+  {
+    "k": "nyc_seminar_conference",
+    "name": "NYC Seminar & Conference Center",
+    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "type": "cowork",
+    "addr": "114 W 26th St, 3rd Fl, New York, NY 10001",
+    "cap": "Event Hall <b>2</b>: <b>200</b> seated / <b>250</b> standing (published); halls range 800-2,300 sq ft",
+    "flag": "dedicated",
+    "link": "https://nycseminarcenter.com/forms/",
+    "linkText": "nycseminarcenter.com/forms",
+    "email": "salesteam@nycseminarcenter.com",
+    "note": "20-year Flatiron workhorse with combinable event halls up to ~2,300 sq ft, online Tripleseat booking, in-house catering and value pricing — a practical mid-budget room that comfortably swallows a 100-200-person day of hacking plus coffee service.",
+    "img": null,
+    "alt": "NYC Seminar & Conference Center exterior entrance at 114 West 26th Street",
+    "top": false
+  },
+  {
+    "k": "the_malin_flatiron",
+    "name": "The Malin Flatiron",
+    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "type": "cowork",
+    "addr": "895 Broadway, 5th Fl, New York, NY 10003",
+    "cap": "<b>32,700</b>sq ft floor; meeting rooms up to <b>30</b> ppl; private events from intimate to full buyout ~<b>60-120</b> (est)",
+    "flag": "contact",
+    "link": "https://themalin.co/locations/flatiron/",
+    "linkText": "themalin.co/locations/flatiron",
+    "email": null,
+    "note": "Design-forward coworking floor one block off Union Square whose private-events section offers hires from offsites to full buyouts; AI/VC-heavy member base is the exact crowd for a tech-week coffee day. Bookable-capacity details only via inquiry, hence contact flag.",
+    "img": null,
+    "alt": "The Malin Flatiron bright communal lounge with velvet seating and artwork",
+    "top": false
+  },
+  {
+    "k": "public_records_cafe",
+    "name": "Public Records (Cafe Public)",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "type": "coffee",
+    "addr": "233 Butler St, Brooklyn, NY 11217",
+    "cap": "<b>200</b> standing / <b>200</b> seated across rooms (published by EventUp venue listing); five linked rooms let a 50–200 hack-day scale up/down",
+    "flag": "dedicated",
+    "link": "https://publicrecords.nyc",
+    "linkText": "PUBLIC RECORDS — private events link on homepage",
+    "email": "parties@publicrecords.nyc",
+    "note": "In-zone at 233 Butler, ~never more than a 2-min walk from 337 Butler. The historic ASPCA HQ holds a record bar + all-day vegan Cafe Public + Sound Room + Atrium + plant-nursery courtyard (The Nursery) — daytime cafe over Sitting-capacity performance rooms, exactly the coffee+builder shape; full-time events inbox parties@publicrecords.nyc and a dedicated 'PRIVATE EVENTS' form linked from the homepage. Room-shape fit: Cafe Public is the coffee front-room, Sound Room/Nursery absorb 50–200 builders with house sound and backing kitchen.",
+    "img": "https://publicrecords.nyc/wp-content/uploads/2025/11/atrium-cheers-3-copy-450x300.jpg",
+    "alt": "Public Records Atrium interior with guests seated around the bar under exposed steel beams",
+    "top": false
+  },
+  {
+    "k": "devocin_downtown_brooklyn",
+    "name": "Devoción — Downtown Brooklyn",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "type": "coffee",
+    "addr": "276 Livingston St, Brooklyn, NY 11201 (corner of Bond)",
+    "cap": "~<b>80</b> seated / ~<b>120</b> standing (est) — 1,700+ sq ft hall with 18-ft floor-to-ceiling windows and indoor tropical garden, Boerum Hill × Downtown BK edge",
+    "flag": "contact",
+    "link": "https://www.devocion.com/pages/devocion-cafe-downtown-brooklyn-ny",
+    "linkText": "Devoción — Downtown Brooklyn page",
+    "email": null,
+    "note": "Devoción's largest Downtown-Brooklyn room sits right at the Boerum Hill edge of the cell, ~never a 10-min walk from 337 Butler. A high-ceiling, plant-filled cafe that routinely runs community pop-ups — the direct-trade farm-fresh Colombian coffee program is also a bilingual hook (EN/ES on menus and bags). No published events inbox on this page; flag as contact via the cafe's main line listed on-site.",
+    "img": "https://www.devocion.com/cdn/shop/files/DowntownBK_Devocion_LizClayman_001_1.jpg",
+    "alt": "Devoción Downtown Brooklyn cafe interior with tropical indoor garden and 18-foot windows",
+    "top": false
+  },
+  {
+    "k": "brooklyn_roasting_company",
+    "name": "Brooklyn Roasting Company — Navy Yard Roastery HQ",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "type": "coffee",
+    "addr": "Building 123, Brooklyn Navy Yard, Brooklyn, NY 11205",
+    "cap": "~<b>150</b> standing (est) — 120-year-old industrial roastery with 60-ft ceilings, private-event buyouts offered by the roastery",
+    "flag": "contact",
+    "link": "https://www.brooklynroasting.com/pages/about-us-2",
+    "linkText": "Brooklyn Roasting — About / private events",
+    "email": "info@brooklynroasting.com",
+    "note": "Working roastery inside the Navy Yard (adjacent to Newlab) that explicitly opens its shipyard-scale floor for fully-customizable private events ('no idea is too big'). On-site coffee program is the venue's own roast — a self-catering hack-day room. Reachable events contact published as info@brooklynroasting.com on the linked contact page.",
+    "img": "https://www.brooklynroasting.com/cdn/shop/files/OneClintonDSCF0911.jpg",
+    "alt": "Latte art in a Brooklyn Roasting Company mug at the Navy Yard roastery cafe",
+    "top": false
+  },
+  {
+    "k": "the_shop_at",
+    "name": "The Shop at 420 Carroll",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "type": "cowork",
+    "addr": "420 Carroll St, 2nd Floor, Brooklyn, NY 11215",
+    "cap": "~<b>150</b>–<b>200</b> event / <b>12,000</b> sq ft total (est)",
+    "flag": "dedicated",
+    "link": "https://shopworkspace.com/membership/meeting-space-events/",
+    "linkText": "Meeting & Event Space",
+    "email": "infobk@shopworkspace.com",
+    "note": "New 12,000-sq-ft Gowanus coworking space with outdoor patio deck, breakout rooms, hospitality support and FlexSpace booking; walking distance to Union St R station, Beanmonger coffee on site.",
+    "img": "https://shopworkspace.com/wp-content/uploads/2026/05/Screenshot-2026-05-18-152000_1240x880_acf_cropped.png",
+    "alt": "Outdoor patio deck at The Shop Brooklyn, Gowanus Canal",
+    "top": false
+  },
+  {
+    "k": "zerospace",
+    "name": "ZeroSpace",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "type": "cowork",
+    "addr": "337-345 Butler St, Brooklyn, NY 11217",
+    "cap": "~<b>300</b>+ across <b>40,000</b> sq ft of rentable warehouse (est; Studio B alone 16,500 sq ft)",
+    "flag": "dedicated",
+    "link": "https://www.zerospace.co/studios/venue",
+    "linkText": "The Space — venue rental page",
+    "email": null,
+    "note": "Sits literally at the target address (337-345 Butler St). Four interconnected mostly column-free studios with 16–35 ft ceilings, drive-in loading bays, plus a Luma-hosted community events calendar for tech/arts meetups.",
+    "img": "https://images.squarespace-cdn.com/content/v1/61c4a90f724d79385b3a744d/1640722734890-YBHYZAK147LAEF64IDL2/DSC09381.jpg",
+    "alt": "ZeroSpace Studio B, 16,500 sq ft daylight warehouse",
+    "top": false
+  },
+  {
+    "k": "littlefield",
+    "name": "littlefield",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "type": "cowork",
+    "addr": "635 Sackett St, Brooklyn, NY 11217",
+    "cap": "<b>300</b> in Performance Space / <b>150</b> full-venue private rental",
+    "flag": "contact",
+    "link": "https://littlefieldnyc.com",
+    "linkText": "littlefield home",
+    "email": "booking@littlefieldnyc.com",
+    "note": "Converted 6,200 sq ft Gowanus warehouse with stage, EAW A/V, gallery/bar front room; 300-capacity performance room or movable-partition 100-cap gallery + bar. Day-time coffee-hack friendly industrial shape in the heart of the target zone.",
+    "img": null,
+    "alt": "littlefield Gowanus industrial performance room with stage",
+    "top": false
+  },
+  {
+    "k": "civic_hall_nyc",
+    "name": "Civic Hall NYC (The Bernard Goldstein Center)",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "type": "cowork",
+    "addr": "124 East 14th St, New York, NY 10003",
+    "cap": "<b>250</b> gala / <b>300</b>+ keynote / <b>500</b>+ standing in Craig Newmark Auditorium; 10–800 overall",
+    "flag": "dedicated",
+    "link": "https://www.civichall.org/nyceventvenue",
+    "linkText": "NYC Event Venue — Civic Hall",
+    "email": null,
+    "note": "Tour-trace seed via NYC AI Tinkerers (hosted the ElevenLabs Worldwide Hackathon Dec 2025 and several 2026 chapter events). Union Square transit hub, nonprofit rates, proven 100–150-person hackathon room; a short F/L/N/R/W hop from Downtown Brooklyn.",
+    "img": "https://cdn.prod.website-files.com/65c43c2479e30f10b200c063/65d2e688c520c9a4b7ddd009_20231115_151913%201.png",
+    "alt": "Craig Newmark Auditorium wall of glass facing Irving Place",
+    "top": false
+  },
+  {
+    "k": "union_square_loft",
+    "name": "Union Square Loft",
+    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "type": "cowork",
+    "addr": "873 Broadway, Suite 408, New York, NY 10003 (Flatiron)",
+    "cap": "<b>60</b> total: 45 theater / 35 seated / 55 standing (published)",
+    "flag": "dedicated",
+    "link": "https://unionsquareloft.com",
+    "linkText": "unionsquareloft.com",
+    "email": null,
+    "note": "Intimate all-inclusive Flatiron loft with 13-ft ceilings, pro Fulcrum sound and everything included (furniture, lighting, AV) — a plug-and-play room for the 50-60-person end of the range; partners with neighboring spaces for larger builds.",
+    "img": null,
+    "alt": "Open loft interior at Union Square Loft with tall windows and exposed industrial ceiling",
+    "top": false
+  },
+  {
+    "k": "brooklynroastingcompany200flushingaveout",
+    "name": "Brooklyn Roasting Company — 200 Flushing Ave Outpost",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "type": "coffee",
+    "addr": "200 Flushing Ave, Brooklyn, NY 11205 (Navy Yard edge, by Newlab)",
+    "cap": "~<b>40</b> seated (est) — satellite outpost cafe open 6am–7pm daily, walkable to Newlab",
+    "flag": "contact",
+    "link": "https://www.brooklynroasting.com/blogs/cafe/our-new-outpost-at-200-flushing-avenue-is-now-open",
+    "linkText": "BRC blog — 200 Flushing outpost open",
+    "email": "info@brooklynroasting.com",
+    "note": "BRC's newest full-service outpost sits at the Navy Yard edge right by Newlab, open 6am–7pm daily — best as an overflow/day-two brew base for smaller workshop pods (est. 40 seats) while the roastery hosts the main room. Same published contact as HQ: info@brooklynroasting.com / (718) 855-1000.",
+    "img": null,
+    "alt": "Brooklyn Roasting Company 200 Flushing Ave cafe storefront at the Brooklyn Navy Yard",
+    "top": false
+  }
+];
+
+/* ============================ EDIT ABOVE ============================ */
+
+const state = { area: "all", type: "all", dedicatedOnly: false };
+const AREAS = [...new Set(VENUES.map(v => v.area))];
+const typeKeys = Object.keys(TYPE_META);
+const tcls = t => "t" + (typeKeys.indexOf(t) % 3);
+
+function initials(name){
+  return name.replace(/[^a-zA-Z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join("");
+}
+function mapsUrl(v){
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(v.name + " " + v.addr);
+}
+function card(v){
+  const t = TYPE_META[v.type] || { label: v.type, icon: "📍" };
+  const flagHtml = v.flag === "dedicated"
+    ? '<span class="flag dedicated">✓ Dedicated events page</span>'
+    : '<span class="flag contact">✉ Events contact only</span>';
+  const imgHtml = v.img
+    ? `<img src="${v.img}" alt="${v.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.card').classList.add('noimg')">`
+    : "";
+  const emailBtn = v.email ? `<a class="btn sec" href="mailto:${v.email}">${v.email}</a>` : "";
+  return `<div class="card${v.img ? "" : " noimg"}">
+    <div class="imgbox">
+      ${imgHtml}
+      <div class="ph ${tcls(v.type)}"><span class="icn">${t.icon}</span><span class="mono">${initials(v.name)}</span></div>
+      ${v.top ? '<div class="toppick">★ Top pick</div>' : ""}
+      <div class="areatag">${v.area}</div>
+    </div>
+    <div class="body">
+      <div class="titlerow"><div class="vname">${v.name}</div><span class="typechip ${tcls(v.type)}">${t.icon} ${t.label}</span></div>
+      <div class="addr"><a href="${mapsUrl(v)}" target="_blank" rel="noopener">📍 ${v.addr}</a></div>
+      <div class="cap">${v.cap}</div>
+      ${flagHtml}
+      <div class="note">${v.note}</div>
+      <div class="links"><a class="btn pri" href="${v.link}" target="_blank" rel="noopener">${v.linkText} ↗</a>${emailBtn}</div>
+    </div>
+  </div>`;
+}
+function render(){
+  const match = v =>
+    (state.area === "all" || v.area === state.area) &&
+    (state.type === "all" || v.type === state.type) &&
+    (!state.dedicatedOnly || v.flag === "dedicated");
+  const shown = VENUES.filter(match);
+  const areas = AREAS.filter(a => state.area === "all" || a === state.area);
+  let html = "";
+  for (const a of areas){
+    const items = shown.filter(v => v.area === a);
+    if (!items.length) continue;
+    const hint = typeKeys.map(k => {
+      const n = items.filter(v => v.type === k).length;
+      return n ? `${n} ${TYPE_META[k].label.toLowerCase()}` : null;
+    }).filter(Boolean).join(" · ");
+    html += `<div class="section-h"><h2>${a}</h2><span class="hint">${hint}</span></div>
+             <div class="grid">${items.map(card).join("")}</div>`;
+  }
+  document.getElementById("content").innerHTML = html || '<div class="empty">No venues match these filters.</div>';
+  document.getElementById("count").textContent = `Showing ${shown.length} of ${VENUES.length} venues`;
+}
+function buildChips(el, values, key){
+  el.innerHTML = `<button class="chip on" data-v="all">All ${key === "area" ? "areas" : "types"}</button>` +
+    values.map(v => `<button class="chip" data-v="${v.v}">${v.label}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(btn => btn.addEventListener("click", () => {
+    el.querySelectorAll(".chip").forEach(b => b.classList.remove("on"));
+    btn.classList.add("on");
+    state[key] = btn.dataset.v;
+    render();
+  }));
+}
+function init(){
+  if (document.title === "Compute Cafe") document.title = CONFIG.title; // standalone use only; built pages keep their spliced title
+  document.getElementById("kicker").textContent = CONFIG.kicker;
+  document.getElementById("title").textContent = CONFIG.title;
+  document.getElementById("subtitle").textContent = CONFIG.subtitle;
+  const dedicated = VENUES.filter(v => v.flag === "dedicated").length;
+  const stats = [
+    { n: String(VENUES.length), l: "venues vetted" },
+    { n: String(dedicated), l: "with dedicated events pages" },
+    { n: String(AREAS.length), l: AREAS.length === 1 ? "neighborhood" : "neighborhoods" },
+  ];
+  if (CONFIG.extraStat) stats.push(CONFIG.extraStat);
+  document.getElementById("stats").innerHTML =
+    stats.map(s => `<div class="stat"><div class="n">${s.n}</div><div class="l">${s.l}</div></div>`).join("");
+  document.getElementById("foot").innerHTML =
+    CONFIG.footnotes.map(f => `<div class="fnote">${f}</div>`).join("") +
+    `<div class="prov">${CONFIG.provenance}</div>`;
+  buildChips(document.getElementById("f-area"), AREAS.map(a => ({v:a, label:a})), "area");
+  buildChips(document.getElementById("f-type"), typeKeys.map(k => ({v:k, label:`${TYPE_META[k].icon} ${TYPE_META[k].label}s`})), "type");
+  const flagBtn = document.querySelector('#f-flag .chip');
+  flagBtn.addEventListener("click", () => {
+    state.dedicatedOnly = !state.dedicatedOnly;
+    flagBtn.classList.toggle("on", state.dedicatedOnly);
+    render();
+  });
+  render();
+}
+function cycleTheme(){
+  const r = document.documentElement;
+  const cur = r.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : cur === "light" ? "dark"
+    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
+  r.setAttribute("data-theme", next);
+}
+init();
+</script>
+</body>
+</html>

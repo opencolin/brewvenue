@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ComputeCafe — Venue HQ for the Global Hackathon Tour</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <meta property="og:title" content="ComputeCafe ☕ — Venue HQ for the Global Hackathon Tour">
 <meta property="og:description" content="ComputeCafe — venue HQ for the global hackathon tour: 17 cities, 3 regions, Sep–Oct 2026. Pick a city to see its vetted venues.">
 <style>
@@ -52,15 +53,26 @@
     line-height: 1.45; padding: 34px 20px 44px;
   }
   .wrap { max-width: 1180px; margin: 0 auto; }
-  .themebtn {
+  .themebtn, .mapbtn {
     float: right; font-size: 12px; color: var(--ink-2);
     background: var(--surface); border: 1px solid var(--hairline);
     border-radius: 999px; padding: 6px 12px; cursor: pointer;
   }
-  .themebtn:hover { color: var(--ink-1); }
-  .topnav { float: right; display: flex; gap: 16px; margin: 4px 18px 0 0; flex-wrap: wrap; }
-  .topnav a { font-size: 12.5px; font-weight: 600; color: var(--ink-2); text-decoration: none; }
-  .topnav a:hover { color: var(--ink-1); text-decoration: underline; text-underline-offset: 2px; }
+  .themebtn:hover, .mapbtn:hover { color: var(--ink-1); }
+  .mapbtn { float: none; position: absolute; top: 34px; right: 20px; z-index: 11; }
+  .mapbtn.open { color: var(--accent-a); border-color: var(--accent-a); }
+  #mapbox {
+    display: none; position: fixed; top: 0; right: 0;
+    width: 50vw; height: 100vh; z-index: 10;
+    border-left: 1px solid var(--hairline);
+    background: var(--page);
+    box-shadow: -8px 0 24px rgba(0,0,0,0.15);
+  }
+  #mapbox .leaflet-container { height: 100%; }
+  @media (max-width: 860px) {
+    #mapbox { width: 100vw; }
+    .mapbtn { top: 108px; }
+  }
   .kicker {
     font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
     text-transform: uppercase; color: var(--accent-a); margin-bottom: 8px;
@@ -82,7 +94,10 @@
     border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
     transition: transform .15s ease, box-shadow .15s ease;
   }
-  a.citycard:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  a.citycard:hover, .citycard.dual:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .citycard .go { color: var(--ink-1); font-weight: 600; text-decoration: none; }
+  .citycard .go:hover { text-decoration: underline; text-underline-offset: 2px; }
+  .citycard .go.rsvp { color: var(--accent-b); font-size: 12.5px; }
   .imgbox { position: relative; aspect-ratio: 16/10; overflow: hidden; }
   .imgbox img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
   .ph {
@@ -120,55 +135,113 @@
 <div class="wrap">
   <header>
     <button class="themebtn" onclick="cycleTheme()">◐ Theme</button>
-    <nav class="topnav">
-      <a href="/events/">Upcoming events →</a>
-      <a href="/stack/">View our tech stack →</a>
-    </nav>
+    <button class="mapbtn" id="mapbtn" onclick="togglePageMap()">🗺️ View Map</button>
     <div class="kicker">Global Hackathon Tour · H2 2026</div>
     <h1>ComputeCafe <span class="cup">☕</span></h1>
     <div class="sub"><b>ComputeCafe</b> is venue HQ for our global hackathon tour.
       Pick a city to open its venue lineup — vetted cafes, coworking, and event spaces with verified booking links —
-      or RSVP where the event page is already live. More cities light up as the tour approaches.</div>
+      or RSVP where the event page is already live. More cities light up as the tour approaches.
+      <a href="/events/">See all upcoming events →</a></div>
     <div class="statrow" id="stats"></div>
   </header>
 
   <div id="content"></div>
+  <div id="mapbox" aria-hidden="true"></div>
 
   <footer>
     <div class="fnote"><b>Satellite / stretch cities under consideration:</b> Washington DC, Vilnius, Warsaw, Rome / Milan, and Lisbon — cards will appear here if they're confirmed.</div>
     <div class="fnote"><b>Tour shape:</b> three focused regional weeks — Asia-Pacific (early Sep), Europe &amp; Middle East (mid–late Sep), North America (late Sep–mid Oct) — anchored around major AI events where possible, wrapping with SF Tech Week (Oct 5–11) and LA Tech Week (Oct 12–18).</div>
-    <div class="prov">City lineup from the tour plan · ComputeCafe guides researched Aug 2026 · City photos via Wikimedia Commons; venue photos load from each venue's own site.</div>
+    <div class="prov">City lineup from the tour plan · ComputeCafe guides researched Aug 2026 · City photos via Wikimedia Commons; venue photos load from each venue's own site. <a href="/events/">Upcoming events →</a> · <a href="/stack/">How the stack works →</a></div>
   </footer>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
+/* compute-cafe-map.js — Leaflet helpers for View Map toggle */
+(function () {
+  const ACCENT = { live: "#0ca30c", rsvp: "#2a78d6", soon: "#898781" };
+  function initMap(container, data, opts) {
+    opts = Object.assign({ zoom: 10 }, opts || {});
+    const L = window.L;
+    if (!L) return null;
+    const el = container;
+    el.innerHTML = "";
+    const map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    const markers = [];
+    (data.cities || []).forEach(c => markers.push(c));
+    (data.venues || []).forEach(v => markers.push(v));
+    let bounds = [];
+    markers.forEach(it => {
+      const isCity = !!it.city || !!it.regions;
+      const color = isCity ? (ACCENT[it.status] || ACCENT.soon) : ACCENT.live;
+      const m = L.circleMarker([it.lat, it.lng], { radius: isCity ? 7 : 6, color, weight: 2, fillColor: color, fillOpacity: 0.55 });
+      const href = it.href;
+      const label = it.name;
+      const sub = isCity ? (it.date || "") : (it.area || "");
+      const popup = `<div style="max-width:220px"><b>${label}</b><div style="font-size:12px;color:#666">${sub}</div>${href ? `<div style="margin-top:6px"><a href="${href}" ${href.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>Open →</a></div>` : ""}</div>`;
+      m.bindPopup(popup);
+      m.addTo(map);
+      markers.push(m);
+      if (href) m.on("click", () => m.openPopup());
+      bounds.push(m.getLatLng());
+    });
+    if (bounds.length === 1) map.setView(bounds[0], 12);
+    else if (bounds.length > 1) map.fitBounds(L.latLngBounds(bounds), { padding: [30, 30] });
+    else map.setView([0, 0], 2);
+    return map;
+  }
+  function toggleMap(container, data, opts) {
+    const el = container;
+    if (el.style.display === "block") {
+      el.style.display = "none";
+      el.setAttribute("aria-hidden", "true");
+      return false;
+    }
+    el.style.display = "block";
+    el.setAttribute("aria-hidden", "false");
+    if (!el.dataset.mounted) {
+      el.dataset.mounted = "1";
+      window.__map = initMap(el, data, opts);
+      requestAnimationFrame(() => window.__map.invalidateSize());
+    }
+    return true;
+  }
+  window.initMap = initMap;
+  window.toggleMap = toggleMap;
+})();
+
 const REGIONS = [
   { name: "North America", cities: [
     { city: "San Francisco", date: "Oct 5", status: "live", href: "/san-francisco/",
-      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/SF_From_Marin_Highlands3.jpg/960px-SF_From_Marin_Highlands3.jpg" },
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Zeppelin-ride-020100925-195_%285029394846%29.jpg/960px-Zeppelin-ride-020100925-195_%285029394846%29.jpg" },
     { city: "Los Angeles", date: "Oct 12", status: "live", href: "/los-angeles/",
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Hollywood_sign_%288485145044%29.jpg/960px-Hollywood_sign_%288485145044%29.jpg" },
-    { city: "Toronto", date: "Sep 29", status: "live", href: "/toronto/",
+    { city: "Toronto", date: "Sep 29", status: "soon", href: null,
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Toronto_Skyline_from_Olympic_Island%2C_June_20_2026_%285-3_cropped%29.jpg/960px-Toronto_Skyline_from_Olympic_Island%2C_June_20_2026_%285-3_cropped%29.jpg" },
-    { city: "New York City", date: "Sep 25", status: "live", href: "/new-york/",
+    { city: "New York City", date: "Sep 25", status: "live", href: "/new-york/", rsvp: "https://luma.com/tavily-nnzl",
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg/960px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg" },
-    { city: "Boston", date: "Oct 2", status: "live", href: "/boston/",
+    { city: "Boston", date: "Oct 2", status: "live", href: "/boston/", rsvp: "https://luma.com/emee7xtr",
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/ISH_WC_Boston4.jpg/960px-ISH_WC_Boston4.jpg" },
   ]},
   { name: "Europe & Middle East", cities: [
-    { city: "Stockholm", date: "Sep 9–11", status: "live", href: "/stockholm/",
+    { city: "Stockholm", date: "Sep 9–11", status: "soon", href: null,
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Royal_Dramatic_Theatre_Stockholm.jpg/960px-Royal_Dramatic_Theatre_Stockholm.jpg" },
-    { city: "Berlin", date: "Sep 10 · 17 · 24", status: "live", href: "/berlin/",
+    { city: "Berlin", date: "Sep 10 · 17 · 24", status: "soon", href: null,
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Museumsinsel_Berlin_Juli_2021_1_%28cropped%29_b.jpg/960px-Museumsinsel_Berlin_Juli_2021_1_%28cropped%29_b.jpg" },
-    { city: "London", date: "Sep 15", status: "live", href: "/london/",
+    { city: "London", date: "Sep 15", status: "soon", href: null,
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/London_Skyline_%28125508655%29.jpeg/960px-London_Skyline_%28125508655%29.jpeg" },
-    { city: "Tel Aviv", date: "Sep 16", status: "live", href: "/tel-aviv/",
+    { city: "Tel Aviv", date: "Sep 16", status: "soon", href: null,
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Sarona_CBD_01_%28cropped%29.jpg/960px-Sarona_CBD_01_%28cropped%29.jpg" },
-    { city: "Zurich", date: "Sep 16", status: "live", href: "/zurich/",
+    { city: "Zurich", date: "Sep 16", status: "soon", href: null,
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Altstadt_Z%C3%BCrich_2015.jpg/960px-Altstadt_Z%C3%BCrich_2015.jpg" },
-    { city: "Paris", date: "Sep 18", status: "live", href: "/paris/",
+    { city: "Paris", date: "Sep 18", status: "soon", href: null,
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg/960px-La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg" },
-    { city: "Barcelona", date: "Sep 21", status: "live", href: "/barcelona/",
+    { city: "Barcelona", date: "Sep 21", status: "soon", href: null,
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Evening_light_over_Barcelona.jpg/960px-Evening_light_over_Barcelona.jpg" },
     { city: "Amsterdam", date: "Sep 25", status: "soon", href: null,
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg/800px-South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg" },
@@ -176,11 +249,11 @@ const REGIONS = [
   { name: "Asia-Pacific", cities: [
     { city: "Tokyo", date: "Sep 9", status: "live", href: "/tokyo/",
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg/960px-Skyscrapers_of_Shinjuku_2009_January.jpg" },
-    { city: "Seoul", date: "Sep 11", status: "live", href: "/seoul/",
+    { city: "Seoul", date: "Sep 11", status: "soon", href: null,
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/%EC%A4%91%ED%99%94%EC%A0%84%EC%9D%98_%EB%82%AE.jpg/960px-%EC%A4%91%ED%99%94%EC%A0%84%EC%9D%98_%EB%82%AE.jpg" },
-    { city: "Kuala Lumpur", date: "Sep 12", status: "live", href: "/kuala-lumpur/",
-      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Kuala_Lumpur_Skyline_at_dusk.jpg/960px-Kuala_Lumpur_Skyline_at_dusk.jpg" },
-    { city: "Singapore", date: "Sep 14", status: "live", href: "/singapore/",
+    { city: "Kuala Lumpur", date: "Sep 12", status: "soon", href: null,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Bukit_Bintang_junction_in_2024_2.jpg/960px-Bukit_Bintang_junction_in_2024_2.jpg" },
+    { city: "Singapore", date: "Sep 14", status: "soon", href: null,
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Marina_Bay%2C_Financial_District_and_Singapore_River_%2835622190292%29.jpg/960px-Marina_Bay%2C_Financial_District_and_Singapore_River_%2835622190292%29.jpg" },
   ]},
 ];
@@ -202,6 +275,16 @@ function card(c){
       <div class="ph"><span class="mono">${initials(c.city)}</span></div>
       <div class="datechip">${c.date}</div>
     </div>`;
+  if (c.href && c.rsvp) {
+    // both a Compute Cafe page and an open RSVP: two links, so the card can't be one <a>
+    return `<div class="citycard dual${c.img ? "" : " noimg"}">${media}
+    <div class="body">
+      <div class="cname">${c.city}</div>
+      <span class="status ${c.status}">${m.chip}</span>
+      <span class="cta"><a class="go" href="${c.href}">${m.cta}</a></span>
+      <span class="cta"><a class="go rsvp" href="${c.rsvp}" target="_blank" rel="noopener">RSVP on Luma ↗</a></span>
+    </div></div>`;
+  }
   const inner = `${media}
     <div class="body">
       <div class="cname">${c.city}</div>
@@ -233,6 +316,39 @@ function cycleTheme(){
   r.setAttribute("data-theme", next);
 }
 init();
+
+/* --------- Map toggle --------- */
+const CITY_CENTERS = {
+  "San Francisco": [37.7897, -122.3942], "Los Angeles": [34.0522, -118.2437],
+  "Toronto": [43.6532, -79.3832], "New York City": [40.7128, -74.0060],
+  "Boston": [42.3601, -71.0589],
+  "Stockholm": [59.3293, 18.0686], "Berlin": [52.5200, 13.4050],
+  "London": [51.5074, -0.1278], "Tel Aviv": [32.0853, 34.7818],
+  "Zurich": [47.3769, 8.5417], "Paris": [48.8566, 2.3522],
+  "Barcelona": [41.3874, 2.1686], "Amsterdam": [52.3676, 4.9041],
+  "Tokyo": [35.6762, 139.6503], "Seoul": [37.5665, 126.9780],
+  "Kuala Lumpur": [3.1390, 101.6869], "Singapore": [1.3521, 103.8198],
+};
+const cityPts = REGIONS.flatMap(r => r.cities.map(c => {
+  const coords = CITY_CENTERS[c.city];
+  return coords ? {
+    name: c.city, date: c.date, status: c.status,
+    href: c.href || null, lat: coords[0], lng: coords[1],
+  } : null;
+}).filter(Boolean));
+
+const MAPBTN = document.getElementById("mapbtn");
+const CLICK_TEXT = { open: "Hide Map", closed: "View Map" };
+function togglePageMap(){
+  const open = window.toggleMap(
+    document.getElementById("mapbox"),
+    { cities: cityPts },
+    {}
+  );
+  MAPBTN.textContent = open ? CLICK_TEXT.open : CLICK_TEXT.closed;
+  MAPBTN.classList.toggle("open", !!open);
+  MAPBTN.setAttribute("aria-pressed", String(!!open));
+}
 </script>
 </body>
 </html>
