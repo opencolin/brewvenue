@@ -152,3 +152,47 @@ known failure modes (permission 403s, protected previews) before deploying.
 - Closed venues surfaced, not dropped
 - Zero unverified URLs anywhere in the deliverable
 - A "Sources" trail exists in conversation for the research claims
+
+## Multi-city operations (the lessons the 13-city wave runs taught)
+
+When the audit scales past a couple of cities the failure modes change. What
+held and what didn't:
+
+1. **The 5-slot sandbox cap.** Agents run one city each, five at a time.
+   Amsterdam ran seventh. Track `gh task list` before you fire the next five —
+   dead workflows show up cleanly and free their slot, which avoids the
+   "who uses the fifth slot right now" confusion that crippled Barcelona->Amsterdam.
+2. **Order by event date.** The driver is always the next-approaching window.
+   Within the same ~3-day cluster (e.g., Stockholm/Berlin/Seoul 9-11 Sep),
+   use biggest-market tiebreak (Seoul → Berlin → Stockholm) — harder cities
+   get the buffer for corrections first.
+3. **Wave the PRs as you go.** Don't batch-config 10 cities then PR them
+   all: per-wave PR (Seoul+Berlin+Stockholm+KL+Singapore is wave 1; EMEA is
+   wave 2) with each PR carrying its own index.html flip block. Reviewing
+   one wave's diff is far more human-scalable than reviewing ten cities'
+   single giant sweep.
+4. **The dry-run is load-bearing.** Before ANY wave, run the *one* city
+   that will teach you your pipeline's own bugs with capped scope. Toronto
+   proved: the agent-return schema needs `k`/`area`/`type` explicitly (you
+   will regress to missing-key + prose-alt output every time);
+ photo coverage lands below the 60% bar without a dedicated photo stage; and
+   the evidence-log contract catches hallucinated links. Fix the schema,
+   the budget, *and* the contract in the pilot before you spend five sandboxes' worth
+   on a full wave.
+5. **A venue-scout skill is not the page.** Writing `configs/<city>_config.js`
+   by hand is the actual bugweave — always generate configs from the *same*
+   research.json file `scripts/normalize-pilot.js` consumes. Hand-rolled config
+   output bypassed the evidence gate in Tokyo and produced a fabricated closure
+   ("Tsutaya BOOK APARTMENT Shinjuku") in the shipped config: caught and fixed,
+   but only after a second human pairing read the PR.
+6. **Never trust "editorial" data without re-validating.** The merge of wave-3
+   research into NYC + Boston *looked* plausible until I tried to merge
+   configs — and found the main-branch configs were themselves corrupted JS
+   (unescaped apostrophes) plus one file labeled NYC that was actually a Toronto
+   dry-run leftover. Validation chain: file parses → validates → duplicates
+   k sorted → only then merges.
+7. **Replace rather than union** when the inputs disagree the way NYC did:
+   wave-3's research was strictly cleaner than the editorial record. Marrying
+   two compromises usually produces neither.
+
+See `docs/retrospective-wave-123.md` for the comprehensive post-mortem.
