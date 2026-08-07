@@ -63,6 +63,24 @@
   }
   h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; }
   .sub { color: var(--ink-2); font-size: 14.5px; margin-top: 8px; max-width: 68ch; }
+  .viewrow { margin-top: 18px; }
+  .vgroup { display: inline-flex; gap: 4px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 999px; padding: 3px; }
+  .vbtn { font-size: 12.5px; font-weight: 500; color: var(--ink-2); padding: 5px 12px; border-radius: 999px; border: none; background: transparent; cursor: pointer; }
+  .vbtn:hover { color: var(--ink-1); }
+  .vbtn.on { background: var(--ink-1); color: var(--page); font-weight: 600; }
+  .egrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .ecard { display: block; text-decoration: none; color: inherit; background: var(--surface); border: 1px solid var(--hairline); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); transition: transform .15s ease, box-shadow .15s ease; }
+  a.ecard:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(11,11,11,0.08), 0 10px 28px rgba(11,11,11,0.12); }
+  .ecard .imgbox { position: relative; aspect-ratio: 16/10; overflow: hidden; }
+  .ecard .imgbox img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ecard .ph { position: absolute; inset: 0; z-index: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--accent-a-soft), var(--accent-b-soft)); font-size: 26px; font-weight: 700; color: var(--ink-2); }
+  .ecard.noimg img { display: none; }
+  .ecard .datechip { position: absolute; top: 10px; left: 10px; z-index: 2; font-size: 11px; font-weight: 700; background: rgba(11,11,11,0.78); color: #fff; padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px); }
+  .ecard .body { padding: 11px 13px 13px; display: flex; flex-direction: column; gap: 4px; }
+  .ecard .city { font-size: 15.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .ecard .region { font-size: 11.5px; color: var(--ink-3); }
+  .ecard .act2 { font-size: 12.5px; font-weight: 600; color: var(--accent-b); }
+  .ecard .soon2 { font-size: 12px; color: var(--ink-3); }
   .month-h { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin: 28px 2px 10px; }
   .list { display: grid; gap: 10px; }
   .ev {
@@ -115,6 +133,13 @@
       RSVP where registration is open; each city's <b>ComputeCafe</b> lineup lists its vetted venues.</div>
   </header>
 
+  <div class="viewrow">
+    <div class="vgroup" role="group" aria-label="View">
+      <button class="vbtn on" id="btn-list" onclick="setView('list')">☰ List</button>
+      <button class="vbtn" id="btn-grid" onclick="setView('grid')">▦ Grid</button>
+    </div>
+  </div>
+
   <div id="content"></div>
 
   <footer>
@@ -156,12 +181,64 @@ function row(e){
     <div class="links">${linksHtml}</div>
   </div>`;
 }
+const CITY_IMG = {
+  "Tokyo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg/960px-Skyscrapers_of_Shinjuku_2009_January.jpg",
+  "Stockholm": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Royal_Dramatic_Theatre_Stockholm.jpg/960px-Royal_Dramatic_Theatre_Stockholm.jpg",
+  "Berlin": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Museumsinsel_Berlin_Juli_2021_1_%28cropped%29_b.jpg/960px-Museumsinsel_Berlin_Juli_2021_1_%28cropped%29_b.jpg",
+  "Seoul": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/%EC%A4%91%ED%99%94%EC%A0%84%EC%9D%98_%EB%82%AE.jpg/960px-%EC%A4%91%ED%99%94%EC%A0%84%EC%9D%98_%EB%82%AE.jpg",
+  "Kuala Lumpur": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Bukit_Bintang_junction_in_2024_2.jpg/960px-Bukit_Bintang_junction_in_2024_2.jpg",
+  "Singapore": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Marina_Bay%2C_Financial_District_and_Singapore_River_%2835622190292%29.jpg/960px-Marina_Bay%2C_Financial_District_and_Singapore_River_%2835622190292%29.jpg",
+  "London": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/London_Skyline_%28125508655%29.jpeg/960px-London_Skyline_%28125508655%29.jpeg",
+  "Tel Aviv": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Sarona_CBD_01_%28cropped%29.jpg/960px-Sarona_CBD_01_%28cropped%29.jpg",
+  "Zurich": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Altstadt_Z%C3%BCrich_2015.jpg/960px-Altstadt_Z%C3%BCrich_2015.jpg",
+  "Paris": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg/960px-La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg",
+  "Barcelona": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Evening_light_over_Barcelona.jpg/960px-Evening_light_over_Barcelona.jpg",
+  "New York City": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg/960px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg",
+  "Amsterdam": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg/800px-South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg",
+  "Toronto": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Toronto_Skyline_from_Olympic_Island%2C_June_20_2026_%285-3_cropped%29.jpg/960px-Toronto_Skyline_from_Olympic_Island%2C_June_20_2026_%285-3_cropped%29.jpg",
+  "Boston": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/ISH_WC_Boston4.jpg/960px-ISH_WC_Boston4.jpg",
+  "San Francisco": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Zeppelin-ride-020100925-195_%285029394846%29.jpg/960px-Zeppelin-ride-020100925-195_%285029394846%29.jpg",
+  "Los Angeles": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Hollywood_sign_%288485145044%29.jpg/960px-Hollywood_sign_%288485145044%29.jpg",
+};
+
+// grid cards link to the EVENT (RSVP) — not the venue page
+function gcard(e){
+  const img = CITY_IMG[e.city];
+  const initials = e.city.replace(/[^a-zA-Z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join("");
+  const inner = `
+    <div class="imgbox">
+      ${img ? `<img src="${img}" alt="${e.city}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.ecard').classList.add('noimg')">` : ""}
+      <div class="ph">${initials}</div>
+      <div class="datechip">${e.date}</div>
+    </div>
+    <div class="body">
+      <div class="city">${e.city}</div>
+      <div class="region">${e.region}</div>
+      ${e.rsvp ? `<span class="act2">RSVP on Luma ↗</span>` : `<span class="soon2">Event page soon</span>`}
+    </div>`;
+  return e.rsvp
+    ? `<a class="ecard" href="${e.rsvp}" target="_blank" rel="noopener">${inner}</a>`
+    : `<div class="ecard">${inner}</div>`;
+}
+
+let VIEW = "list";
+function setView(v){
+  VIEW = v;
+  document.getElementById("btn-list").classList.toggle("on", v === "list");
+  document.getElementById("btn-grid").classList.toggle("on", v === "grid");
+  init();
+}
+
 function init(){
   const sorted = [...EVENTS].sort((a, b) => a.sort - b.sort);
   const months = [["September", 20260900, 20260999], ["October", 20261000, 20261099]];
   document.getElementById("content").innerHTML = months.map(([name, lo, hi]) => {
     const evs = sorted.filter(e => e.sort >= lo && e.sort <= hi);
-    return evs.length ? `<div class="month-h">${name} 2026</div><div class="list">${evs.map(row).join("")}</div>` : "";
+    if (!evs.length) return "";
+    const body = VIEW === "grid"
+      ? `<div class="egrid">${evs.map(gcard).join("")}</div>`
+      : `<div class="list">${evs.map(row).join("")}</div>`;
+    return `<div class="month-h">${name} 2026</div>` + body;
   }).join("");
 }
 init();
