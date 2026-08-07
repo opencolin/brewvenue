@@ -10,11 +10,11 @@
   :root {
     color-scheme: light;
     --page: #f9f9f7; --surface: #fcfcfb;
-    --ink-1: #0b0b0b; --ink-2: #52514e; --ink-3: #898781;
+    --ink-1: #0b0b0b; --ink-2: #52514e; --ink-3: #716f68;
     --hairline: rgba(11,11,11,0.10); --grid: #e1e0d9;
-    --accent-a: #eb6834; --accent-a-soft: rgba(235,104,52,0.12);
-    --accent-b: #2a78d6; --accent-b-soft: rgba(42,120,214,0.12);
-    --accent-c: #6f4fce; --accent-c-soft: rgba(111,79,206,0.12);
+    --accent-a: #c5481a; --accent-a-soft: rgba(197,72,26,0.12);
+    --accent-b: #1c5db2; --accent-b-soft: rgba(28,93,178,0.12);
+    --accent-c: #5436c4; --accent-c-soft: rgba(84,54,196,0.12);
     --good: #0ca30c; --good-soft: rgba(12,163,12,0.10);
     --ph-a: #f3e7dc; --ph-b: #e8d5c2;
     --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
@@ -24,7 +24,7 @@
     :root:where(:not([data-theme="light"])) {
       color-scheme: dark;
       --page: #0d0d0d; --surface: #1a1a19;
-      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #716f68;
       --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
       --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
       --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
@@ -38,7 +38,7 @@
   :root[data-theme="dark"] {
     color-scheme: dark;
     --page: #0d0d0d; --surface: #1a1a19;
-    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #716f68;
     --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
     --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
     --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
@@ -104,7 +104,7 @@
     margin-top: 28px; padding: 18px; border: 1px solid var(--grid);
     border-radius: 12px; background: var(--surface);
   }
-  .pipe ol { padding-left: 20px; color: var(--ink-2); font-size: 14px; display: grid; gap: 10px; }
+  .pipe ol { padding-left: 26px; color: var(--ink-2); font-size: 14px; display: block; list-style: decimal outside; }
   .pipe ol li::marker { color: var(--accent-a); font-weight: 700; }
 
   footer { margin-top: 34px; border-top: 1px solid var(--grid); padding-top: 18px; display: grid; gap: 12px; }
@@ -203,7 +203,7 @@
   <div class="section">
     <h2>Honesty rules we enforce in code</h2>
     <p>These are not aspirational — they're checked by scripts, not by promises.</p>
-    <ul style="color:var(--ink-2); font-size:14px; padding-left:20px; display:grid; gap:8px; margin-top:10px;">
+    <ul style="color:var(--ink-2); font-size:14px; padding-left:26px; display:block; list-style:disc outside; margin-top:10px;">
       <li><b>Zero unverified links.</b> Any venue whose <code>link</code> lacks a successful fetch in <code>evidence.jsonl</code> is dropped by <code>assemble_city_config.py</code> with a nonzero exit.</li>
       <li><b>Closed venues surface, not disappear.</b> They get their own "Gone" footnote with a fetched source or an <code>[UNVERIFIED]</code> flag — never silently removed.</li>
       <li><b>Capacities are marked.</b> Published numbers get <code>&lt;b&gt;</code> (script-checked); estimates carry a <code>~</code> and "(est)" per the skill's research rules, so nobody overbooks.</li>
