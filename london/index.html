@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>London — Venue Options · ComputeCafe</title>
+<!--
+  COMPUTE CAFE EXPLORER TEMPLATE
+  Edit ONLY the CONFIG, TYPE_META, and VENUES blocks in the <script> at the
+  bottom (plus <title> above). Filter chips, section headers, and header stats
+  all derive from the data — no markup edits needed for a new city or venue mix.
+  Keep the file self-contained: no external CSS/JS/fonts, no localStorage.
+-->
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --ink-1: #0b0b0b;
+    --ink-2: #52514e;
+    --ink-3: #898781;
+    --hairline: rgba(11,11,11,0.10);
+    --grid: #e1e0d9;
+    --accent-a: #eb6834;
+    --accent-a-soft: rgba(235,104,52,0.12);
+    --accent-b: #2a78d6;
+    --accent-b-soft: rgba(42,120,214,0.12);
+    --accent-c: #6f4fce;
+    --accent-c-soft: rgba(111,79,206,0.12);
+    --good: #0ca30c;
+    --good-soft: rgba(12,163,12,0.10);
+    --chip-on: #0b0b0b;
+    --chip-on-ink: #fcfcfb;
+    --ph-a: #f3e7dc;
+    --ph-b: #e8d5c2;
+    --ph-c: #dde8f3;
+    --ph-d: #c9d9ec;
+    --ph-e: #e7ddf3;
+    --ph-f: #d6c8ec;
+    --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+      --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+      --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+      --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+      --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+      --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+      --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+      --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+      --ph-e: #291f38; --ph-f: #382a4e;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19;
+    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+    --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+    --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+    --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+    --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+    --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+    --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+    --ph-e: #291f38; --ph-f: #382a4e;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page); color: var(--ink-1);
+    line-height: 1.45; padding: 28px 20px 40px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  header.hero { margin-bottom: 18px; }
+  .kicker {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent-a); margin-bottom: 6px;
+  }
+  h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+  .sub { color: var(--ink-2); font-size: 14px; margin-top: 6px; max-width: 70ch; }
+  .statrow { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 16px; }
+  .stat .n { font-size: 22px; font-weight: 700; }
+  .stat .l { font-size: 12px; color: var(--ink-3); }
+  .themebtn {
+    float: right; margin-top: -2px; font-size: 12px; color: var(--ink-2);
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  }
+  .themebtn:hover { color: var(--ink-1); }
+  .filters {
+    position: sticky; top: 0; z-index: 5; background: var(--page);
+    padding: 12px 0 10px; margin: 8px 0 6px;
+    border-bottom: 1px solid var(--grid);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .fgroup { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 999px; padding: 3px; }
+  .chip {
+    font-size: 12.5px; font-weight: 500; color: var(--ink-2);
+    padding: 5px 12px; border-radius: 999px; border: none; background: transparent;
+    cursor: pointer; white-space: nowrap;
+  }
+  .chip:hover { color: var(--ink-1); }
+  .chip.on { background: var(--chip-on); color: var(--chip-on-ink); font-weight: 600; }
+  .count { margin-left: auto; font-size: 12px; color: var(--ink-3); }
+  .section-h { display: flex; align-items: baseline; gap: 10px; margin: 26px 2px 12px; }
+  .section-h h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-h .hint { font-size: 12px; color: var(--ink-3); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  .imgbox { position: relative; aspect-ratio: 16/9.5; overflow: hidden; }
+  .imgbox img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ph {
+    position: absolute; inset: 0; z-index: 0; display: flex;
+    align-items: center; justify-content: center; flex-direction: column; gap: 6px;
+  }
+  .card.noimg img { display: none; }
+  .ph.t0 { background: linear-gradient(135deg, var(--ph-a), var(--ph-b)); }
+  .ph.t1 { background: linear-gradient(135deg, var(--ph-c), var(--ph-d)); }
+  .ph.t2 { background: linear-gradient(135deg, var(--ph-e), var(--ph-f)); }
+  .ph .mono { font-size: 30px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-2); opacity: 0.85; }
+  .ph .icn { font-size: 22px; }
+  .toppick {
+    position: absolute; top: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 700; background: rgba(11,11,11,0.78); color: #fff;
+    padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .areatag {
+    position: absolute; bottom: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 600; background: rgba(11,11,11,0.62); color: #fff;
+    padding: 3px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .body { padding: 14px 16px 15px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .titlerow { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .vname { font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .typechip { flex: none; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; margin-top: 1px; }
+  .typechip.t0 { color: var(--accent-a); background: var(--accent-a-soft); }
+  .typechip.t1 { color: var(--accent-b); background: var(--accent-b-soft); }
+  .typechip.t2 { color: var(--accent-c); background: var(--accent-c-soft); }
+  .addr { font-size: 12.5px; }
+  .addr a { color: var(--ink-3); text-decoration: none; }
+  .addr a:hover { color: var(--ink-1); text-decoration: underline; }
+  .cap { font-size: 12.5px; color: var(--ink-2); }
+  .cap b { color: var(--ink-1); font-weight: 600; }
+  .flag {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 7px; align-self: flex-start;
+  }
+  .flag.dedicated { color: var(--good); background: var(--good-soft); }
+  .flag.contact { color: var(--ink-2); background: var(--page); border: 1px solid var(--hairline); }
+  .note { font-size: 13px; color: var(--ink-2); flex: 1; }
+  .links { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+  .btn { font-size: 12.5px; font-weight: 600; text-decoration: none; padding: 7px 13px; border-radius: 8px; }
+  .btn.pri { background: var(--ink-1); color: var(--page); }
+  .btn.pri:hover { opacity: 0.85; }
+  .btn.sec { color: var(--ink-2); border: 1px solid var(--hairline); }
+  .btn.sec:hover { color: var(--ink-1); border-color: var(--ink-3); }
+  .empty { color: var(--ink-3); font-size: 14px; padding: 40px 0; text-align: center; }
+  footer { margin-top: 34px; border-top: 1px solid var(--grid); padding-top: 18px; display: grid; gap: 14px; }
+  .fnote { font-size: 13px; color: var(--ink-2); max-width: 90ch; }
+  .fnote b { color: var(--ink-1); }
+  .prov { font-size: 11.5px; color: var(--ink-3); }
+  @media (max-width: 640px) {
+    body { padding: 18px 12px 30px; }
+    h1 { font-size: 22px; }
+    .count { flex-basis: 100%; margin-left: 2px; }
+  }
+  .homelink { font-size: 12.5px; font-weight: 600; color: var(--ink-3); text-decoration: none; display: inline-block; margin-bottom: 8px; }
+  .homelink:hover { color: var(--ink-1); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <button class="themebtn" id="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <a class="homelink" href="/">← ComputeCafe</a>
+    <div class="kicker" id="kicker"></div>
+    <h1 id="title"></h1>
+    <div class="sub" id="subtitle"></div>
+    <div class="statrow" id="stats"></div>
+  </header>
+  <div class="filters">
+    <div class="fgroup" id="f-area"></div>
+    <div class="fgroup" id="f-type"></div>
+    <div class="fgroup" id="f-flag">
+      <button class="chip" data-v="dedicated">✓ Dedicated events page only</button>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+  <div id="content"></div>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+/* ============================ EDIT BELOW ============================ */
+
+// Page copy — CONFIG + TYPE_META + VENUES
+const CONFIG = {
+  kicker: "London · ComputeCafe",
+  title: "London — Venue Options",
+  subtitle: "Event-capable cafes & event spaces in Shoreditch / Spitalfields / Soho-Fitzrovia — for a Sept 15, 2026 bilingual tech-week coffee/hack event (~50–200 people). Links verified.",
+  extraStat: {"n":"Sep 15","l":"London event date, 2026"},
+  footnotes: [
+    "<b>Neighborhood analysis:</b> Shoreditch/Old Street (cursor-eBoldhammer AI Playground, London AI Hub at Techspace Farringdon) is the anchor; Spitalfields/Aldgate East (Potter & Reid Toynbee St) is where Cafe Cursor London actually ran Dec 2025; Soho/Fitzrovia (Dawn Capital Manette St) holds AI Tinkerers London.",
+    "<b>Gone / don't route inquiries here:</b> Look mum no hands! — the iconic cycle-cafe at 49 Old Street EC1V 9HX, a natural fit for a Silicon Roundabout tech coffee day (Square Mile coffee, hosted cycling/tech talks and live events). Permanently closed in Feb 2023 after 13 years; both cafe and workshop shutdown announced on Instagram ('Both our cafe and our workshop are permanently closed.'). road.cc reported rising costs + post-Covid commuter drop as the cause. · Lady Dinah's Cat Emporium, Bethnal Green - permanently closed 2023; not included [UNVERIFIED — needs a fetched source before this claim is relied on] · Second Home London Fields and Clerkenwell Green — closed after Second Home's Dec 2024 administration/buyout; only Spitalfields (E1) and Holland Park survive in London, both outside Soho/Fitzrovia (sifted.eu, Jan 2025).",
+    "<b>Booking note:</b> Many London venues quote by minimum-spend or per-hour hire — expect a rate card, not a flat fee.",
+  ],
+  provenance: "Researched Aug 2026 · English-local · 31 → 30 shipped after contract (drops: The Trampery Old Street - The Ballroom) · Capacities published or estimated.",
+};
+
+const TYPE_META = {
+  coffee: { label: "Coffee shop", icon: "☕" },
+  cowork: { label: "Coworking / event space", icon: "🏢" },
+};
+
+const VENUES = [
+  {
+    "k": "lantana_shoreditch",
+    "name": "Lantana Shoreditch",
+    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "type": "coffee",
+    "addr": "2 Oliver's Yard, 55 City Road, London EC1Y 1HQ",
+    "cap": "Up to <b>150</b>standing / 60 seated (exclusive hire); Mural Zone 50 standing / 40 seated",
+    "flag": "dedicated",
+    "link": "https://lantana.co.uk/private-hire",
+    "linkText": "Private Dining & Event Spaces — Lantana",
+    "email": "marketing@lantanagroup.co.uk",
+    "note": "Cafe-by-day with a dedicated private-hire page that publishes capacity bands and minimum spends, a covered outdoor terrace and explicit networking/team-social positioning — the room shape, coffee service and 150-guest band are an exact match for a 50-200-person Tech Week coffee/hack day one minute from Old St roundabout.",
+    "img": "https://images.prismic.io/lantanacafe/ac5DY5GXnQHGZMrC__D3A3486.jpg?auto=format%2Ccompress&fit=max&w=1200&q=50",
+    "alt": "Lantana Shoreditch semi-private event zone with warm timber, mural wall and cafe seating",
+    "top": true
+  },
+  {
+    "k": "the_cafe_venue",
+    "name": "The Cafe Venue (Proper Office, 2 Bath Place)",
+    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "type": "coffee",
+    "addr": "2 Bath Place, London EC2A 3DR (Shoreditch, 4 min from Old St)",
+    "cap": "Up to <b>100</b>standing",
+    "flag": "dedicated",
+    "link": "https://www.properoffice.com/meeting-rooms/cafe-venue-event-space-shoreditch",
+    "linkText": "Cafe-Style Venue Hire in Shoreditch — Proper Office",
+    "email": "enquiry@properoffice.com",
+    "note": "Purpose-built cafe-style event space with booth seating, communal tables, unlimited tea/coffee included and an on-site reception team — explicitly pitched at networking events, workshops and company socials, 4 min from Old St, fits the 50-100-person end of the hack-day brief perfectly.",
+    "img": "https://www.properoffice.com/wp-content/uploads/2025/02/cafevenue-04-scaled.jpg",
+    "alt": "Communal cafe-style event space at The Cafe Venue with booth seating, lounge areas and natural light",
+    "top": false
+  },
+  {
+    "k": "ozone_coffee_roasters",
+    "name": "Ozone Coffee Roasters Shoreditch",
+    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "type": "coffee",
+    "addr": "11 Leonard St, London EC2A 4AQ (next to Old Street station)",
+    "cap": "Private meeting room (est. <b>~30</b>-50) + larger private-dining / whole-venue hire on enquiry — see brochure (est)",
+    "flag": "dedicated",
+    "link": "https://ozonecoffee.co.uk/pages/private-hire-shoreditch-eatery",
+    "linkText": "Private Hire at Ozone Coffee Shoreditch",
+    "email": "leonardstreet@ozonecoffee.co.uk",
+    "note": "Working specialty coffee roastery two minutes from Old St roundabout with a dedicated private-hire page, an explicit meeting-room hire tier (£10/person/hr including unlimited specialty coffee) and a private-hire brochure for larger bookings — the room is a proven builder/freelancer haunt on weekdays, good for a coffee-led hack-day breakout wave.",
+    "img": "https://ozonecoffee.co.uk/cdn/shop/files/Ozone_leonard_St_interior_1500x.jpg?v=1710942538",
+    "alt": "Ozone Coffee Roasters Shoreditch interior",
+    "top": false
+  },
+  {
+    "k": "potter_reid",
+    "name": "Potter & Reid",
+    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "type": "coffee",
+    "addr": "20-22 Toynbee Street, London E1 7NE (Spitalfields, 10 min from Old St)",
+    "cap": "<b>~50</b>-80 standing (est); whole-venue private hire available",
+    "flag": "dedicated",
+    "link": "https://www.potterandreid.com/catering",
+    "linkText": "Catering & Private Venue Hire — Potter & Reid",
+    "email": "hello@potterandreid.com",
+    "note": "Tour-trace seed: Potter & Reid hosted Cafe Cursor London in Dec 2025 (Cursor founders took over the cafe with a laptop-crowd co-working day, two slots 9am-1pm / 1pm-5pm) — the room is proven to say yes to a coffee takeover for AI builders at our exact event shape, across two rooms with a marble counter, natural-wine fridges and pavement tables.",
+    "img": "https://images.squarespace-cdn.com/content/v1/62d02857d7ab9827ec9895d8/1698615357664-O4QNI5FYP1CUUQR8DEXP/DSCF5913.jpg",
+    "alt": "Potter & Reid cafe interior on Toynbee Street with marble counter, dark wood and warm lighting",
+    "top": false
+  },
+  {
+    "k": "attendant_shoreditch",
+    "name": "Attendant Shoreditch",
+    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "type": "coffee",
+    "addr": "5 Ravey Street, London EC2A 4QP (Shoreditch, 6 min from Old St)",
+    "cap": "Whole-venue hire (est. <b>~80</b>-120 standing via Hirespace/Headbox listings)",
+    "flag": "contact",
+    "link": "https://www.the-attendant.com/",
+    "linkText": "Attendant Coffee Roasters (venue page)",
+    "email": null,
+    "note": "Small-batch coffee roasters' Shoreditch outpost on a quiet Victorian back street of Old St with industrial-chic interiors, a living-wall breakout and a biophilic feel — listed for whole-venue private hire through Hirespace/Headbox with networking-reception and morning-breakfast layouts, so the booking route runs through those marketplaces rather than a dedicated on-site events page.",
+    "img": null,
+    "alt": "Attendant Shoreditch rustic-industrial cafe interior with living wall and counter",
+    "top": false
+  },
+  {
+    "k": "shoreditch_grind",
+    "name": "Shoreditch Grind",
+    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "type": "coffee",
+    "addr": "213 Old Street, London EC1V 9NR (Old Street roundabout)",
+    "cap": "Up to <b>50</b>guests (full venue hire, published)",
+    "flag": "dedicated",
+    "link": "https://grind.co.uk/pages/hire",
+    "linkText": "London Venue Hire — Grind (Shoreditch)",
+    "email": "events@grind.co.uk",
+    "note": "The original Grind coffee bar on Old St roundabout — cylindrical black building that's a Silicon Roundabout landmark — with a dedicated venue-hire page that publishes a 50-guest cap, evening license until midnight and an all-day coffee-to-cocktail format, good for the lower end of the hack-day brief or a side-event espresso-martini reception.",
+    "img": "https://grind.co.uk/cdn/shop/files/shoreditch_interior_1_340x340.webp?v=1760515772",
+    "alt": "Shoreditch Grind interior with white marble counters and bar stools on Old Street",
+    "top": false
+  },
+  {
+    "k": "second_home_spitalfields",
+    "name": "Second Home Spitalfields - The Auditorium",
+    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "type": "cowork",
+    "addr": "68 Hanbury Street, Spitalfields, London E1 5JL",
+    "cap": "<b>120</b>theatre / 150 standing / 65 cabaret",
+    "flag": "dedicated",
+    "link": "https://secondhome.io/space/spitalfields-auditorium/",
+    "linkText": "The Auditorium venue page",
+    "email": null,
+    "note": "Iconic cowork-native venue 5 min from Shoreditch High St and Liverpool St; purpose-built for panel talks, conferences, hack days and launches with stage, PA and plug-and-play AV. Selgas Cano-designed biophilic space reads perfectly for a bilingual tech-week crowd.",
+    "img": "https://secondhome.io/wp-content/uploads/2019/09/Bettina-Martin-82-scaled.jpg",
+    "alt": "Tiered auditorium with warm lighting and the iconic Flying Table inside Second Home Spitalfields",
+    "top": true
+  },
+  {
+    "k": "techspace_goswell_road",
+    "name": "Techspace Goswell Road - The Gallery",
+    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "type": "cowork",
+    "addr": "140 Goswell Road, London EC1V 7DY",
+    "cap": "<b>80</b>seated / 150 standing (with breakout)",
+    "flag": "dedicated",
+    "link": "https://www.techspace.co/locations/goswell-road/events-at-the-gallery",
+    "linkText": "The Gallery event page",
+    "email": null,
+    "note": "Home of the London AI Hub, 10 min walk from Old Street; double-height gallery with 105in screen, 1Gbps WiFi both directions and stage lighting made for tech conferences and hybrid streams. Dry hire with dedicated events team.",
+    "img": "https://cdn.prod.website-files.com/5e185d81b1025a75a986bb6a/689a03e0b93ac82e86e1af39_The%20Gallery-02.avif",
+    "alt": "Double-height, skylight-flooded interior of The Gallery at Techspace Goswell Road",
+    "top": false
+  },
+  {
+    "k": "rich_mix_the",
+    "name": "Rich Mix - The Mix",
+    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "type": "cowork",
+    "addr": "35-47 Bethnal Green Road, Shoreditch, London E1 6LA",
+    "cap": "<b>200</b>max",
+    "flag": "dedicated",
+    "link": "https://richmix.org.uk/hire-a-space",
+    "linkText": "Rich Mix hire page",
+    "email": "events@richmix.org.uk",
+    "note": "Five-storey arts landmark moments from Brick Lane with a 200-cap modern conference room, three cinema screens for demos, and an events team that has staged SXSW and Netflix. Independent charity, so hire fees support the local creative community.",
+    "img": "https://rich-mix.transforms.svdcdn.com/production/Private-Hires/Spaces/The-Mix/Untitled-design-22.jpg?w=540&h=334&q=100&auto=format&fit=crop&dm=1778593861&s=49dc99cb2f4993139ecc7b33ef156172",
+    "alt": "The Mix event room at Rich Mix with high ceilings, high tables and ambient blue lighting",
+    "top": false
+  },
+  {
+    "k": "village_underground",
+    "name": "Village Underground",
+    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "type": "cowork",
+    "addr": "54 Holywell Lane, Shoreditch, London EC2A 3PQ",
+    "cap": "<b>130</b>seated / 200 theatre (700 standing)",
+    "flag": "dedicated",
+    "link": "https://villageunderground.co.uk/hire",
+    "linkText": "Village Underground private hire",
+    "email": null,
+    "note": "Victorian brick warehouse 2 min from Shoreditch High St with state-of-the-art sound and lighting, natural daylight and a late licence; explicit conferences-and-meetings hire track. Scales comfortably past 200 if the bilingual tech week grows.",
+    "img": "https://cdn.villageunderground.co.uk/spio/ret_img,q_cdnize,to_avif,s_avif,p_h/villageunderground.co.uk/wp-content/uploads/2024/05/LOreal_MainSpace3-800x533.jpg",
+    "alt": "Wide stripped-back main space at Village Underground set up for a conference",
+    "top": false
+  },
+  {
+    "k": "liverpool_street_grind",
+    "name": "Liverpool Street Grind",
+    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "type": "coffee",
+    "addr": "38 Broadgate Circle, London EC2M 2QS",
+    "cap": "Up to <b>130</b>(full venue hire)",
+    "flag": "dedicated",
+    "link": "https://grind.co.uk/pages/hire",
+    "linkText": "Grind private hire",
+    "email": "events@grind.co.uk",
+    "note": "Buzzing espresso bar + all-day restaurant right outside Liverpool Street, open til 1am. Best pick for a 100+ coffee-week hack day that wants to blend into evening networking by Broadgate Circle.",
+    "img": "https://grind.co.uk/cdn/shop/files/hire_liverpool_1024x.webp?v=1730386747",
+    "alt": "Liverpool Street Grind interior at Broadgate Circle",
+    "top": false
+  },
+  {
+    "k": "the_caf_venue",
+    "name": "The Café Venue (Proper Office, Shoreditch)",
+    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "type": "coffee",
+    "addr": "2 Bath Place, London EC2A 3DR",
+    "cap": "Up to <b>100</b>standing",
+    "flag": "dedicated",
+    "link": "https://www.properoffice.com/meeting-rooms/cafe-venue-event-space-shoreditch",
+    "linkText": "Café Venue hire, Shoreditch",
+    "email": "enquiry@properoffice.com",
+    "note": "Purpose-built cafe-style networking space (1,200 sq ft) four minutes from Old Street, fully stocked kitchen + unlimited coffee/tea included. Solid mid-size venue hire for a 50-100 person daytime hack sprint.",
+    "img": "https://www.properoffice.com/wp-content/uploads/2025/02/cafevenue-06-scaled.jpg",
+    "alt": "The Café Venue lounge seating, Shoreditch",
+    "top": false
+  },
+  {
+    "k": "second_home_spitalfields",
+    "name": "Second Home Spitalfields",
+    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "type": "cowork",
+    "addr": "68 Hanbury Street, London E1 5JL",
+    "cap": "<b>150</b>seated (Auditorium) / up to 200 standing (whole-venue)",
+    "flag": "dedicated",
+    "link": "https://secondhome.io/venue-hire-london/east-london",
+    "linkText": "secondhome.io/venue-hire-london/east-london",
+    "email": null,
+    "note": "Iconic biophilic coworking house in the heart of Spitalfields' creative-tech corridor with seven bookable event spaces (Auditorium, Rooftop, Cafe) 5 min from Liverpool St and Brick Lane — a natural home for a hack day.",
+    "img": "https://secondhome.io/wp-content/uploads/2019/09/Spitafields-1-scaled.jpg",
+    "alt": "Second Home Spitalfields interior coworking space with abundant greenery and natural light",
+    "top": true
+  },
+  {
+    "k": "wallacespace_spitalfields",
+    "name": "wallacespace spitalfields",
+    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "type": "cowork",
+    "addr": "15-25 Artillery Lane, London E1 7HA",
+    "cap": "<b>up to 220</b>(apollo + soyuz combined)",
+    "flag": "contact",
+    "link": "https://www.wallacespace.com/spitalfields/",
+    "linkText": "wallacespace.com/spitalfields",
+    "email": "ask@wallacespace.com",
+    "note": "Purpose-built training/event space with a rooftop kitchen (cap 150) and combinable rooms up to 220; all-inclusive day-delegate model and a direct events email make it very hack-day friendly.",
+    "img": "https://www.wallacespace.com/wp-content/uploads/apollo-soyuz-1849x835.jpg",
+    "alt": "wallacespace spitalfields combined apollo and soyuz event room in cabaret layout",
+    "top": false
+  },
+  {
+    "k": "fora_folgate_street",
+    "name": "FORA - Folgate Street (The Conservatory)",
+    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "type": "cowork",
+    "addr": "35-41 Folgate Street, London E1 6BX",
+    "cap": "<b>up to 120</b>standing / 110 theatre (Conservatory)",
+    "flag": "dedicated",
+    "link": "https://www.foraspace.com/event-venues/london/folgate-street",
+    "linkText": "foraspace.com/event-venues/london/folgate-street",
+    "email": null,
+    "note": "Design-led coworking campus with tiered seating, nine-metre skylights and a video wall in The Conservatory, plus garden and wrap-around terrace — very strong tech-week aesthetic 8 min from Liverpool St.",
+    "img": "https://www.foraspace.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2F8vw7318k%2Fproduction%2F0cc47fb1ca6704f46a2b6354879996f0a31e121e-6429x5799.jpg%3Fw%3D2000%26q%3D75%26fit%3Dmax%26auto%3Dformat&w=2000&q=70",
+    "alt": "FORA Folgate Street Conservatory event space with tiered seating and large skylights",
+    "top": false
+  },
+  {
+    "k": "the_aldgate_centre",
+    "name": "The Aldgate Centre",
+    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "type": "cowork",
+    "addr": "Aldgate High Street, London EC3N 1AB (Aldgate station)",
+    "cap": "<b>125</b>reception / 120 theatre",
+    "flag": "contact",
+    "link": "https://aldgatecentre.org",
+    "linkText": "aldgatecentre.org",
+    "email": "venue@aldgatecentre.org",
+    "note": "Bright, accessible, eco-friendly dry-hire hall with moveable acoustic walls and superfast Wi-Fi, right next to Aldgate station — a budget-friendly, flexible blank canvas for a community hack day.",
+    "img": "https://aldgatecentre.org/images/TheAldgateCentre-2sq.jpg",
+    "alt": "The Aldgate Centre open-plan event hall with natural light",
+    "top": false
+  },
+  {
+    "k": "events_no_6",
+    "name": "Events @ No 6 (Royal College of Pathologists)",
+    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "type": "cowork",
+    "addr": "6 Alie Street, London E1 8QT",
+    "cap": "<b>up to 250</b>(whole venue) / 120 rooftop terrace",
+    "flag": "contact",
+    "link": "https://www.eventsatno6.com",
+    "linkText": "eventsatno6.com",
+    "email": "sales@eventsatno6.com",
+    "note": "Award-winning modern conference venue over nine rooms plus an open-air top-floor terrace with City views, a short walk from Aldgate East; in-house AV and a dedicated events team suit a polished bilingual tech-week day.",
+    "img": "https://images.squarespace-cdn.com/content/v1/5bbf51c5840b1645150cef7d/1738333022511-OPDTFWEL50ZG064MD3I3/No.6+Event+Space-32.jpg",
+    "alt": "Events @ No 6 flexible event space with views over the City of London skyline",
+    "top": false
+  },
+  {
+    "k": "christ_church_spitalfields",
+    "name": "Christ Church Spitalfields (The Spitalfields Venue)",
+    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "type": "cowork",
+    "addr": "Commercial Street, London E1 6LY",
+    "cap": "<b>250</b>seated / 600 standing (Nave); 10-600 across Crypt & Nave",
+    "flag": "contact",
+    "link": "https://christchurchspitalfields.co.uk",
+    "linkText": "christchurchspitalfields.co.uk",
+    "email": "info@christchurchspitalfields.co.uk",
+    "note": "Hawksmoor Grade-I listed landmark turned blank-canvas event venue with in-house AV, Wi-Fi and wheelchair access — a striking, high-capacity Spitalfields backdrop that scales easily to a 200-person tech-week reception.",
+    "img": null,
+    "alt": "Christ Church Spitalfields Nave event space with white columns and vaulted ceiling",
+    "top": false
+  },
+  {
+    "k": "watchhouse_fitzrovia",
+    "name": "WatchHouse Fitzrovia",
+    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "type": "coffee",
+    "addr": "56 Wells Street, London W1T 3PT",
+    "cap": "<b>~100</b>-150 (est, multiple floors inc. basement and outdoor terrace)",
+    "flag": "dedicated",
+    "link": "https://watchhouse.com/en-us/pages/events",
+    "linkText": "WatchHouse — Private hire",
+    "email": "hello@watchhouse.com",
+    "note": "The newest and largest WatchHouse branch sits dead-centre in Fitzrovia — a Kandinsky-inspired, design-led flagship with specialty coffee, brunch and multi-level seating. The brand runs a formal private-hire programme across Houses via a single events email, making a bilingual tech-week hack day easy to book. Steps from Goodge Street and Tottenham Court Road tube for the three London tech clusters to converge on.",
+    "img": "https://watchhouse.com/cdn/shop/files/WatchHouse-Fitzrovia-Feature2.jpg?v=1776252647&width=1600",
+    "alt": "Kandinsky-inspired circular column and sleek counters inside WatchHouse Fitzrovia on Wells St",
+    "top": true
+  },
+  {
+    "k": "caravan_fitzrovia",
+    "name": "Caravan Fitzrovia",
+    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "type": "coffee",
+    "addr": "152 Great Portland Street, London W1W 6QA",
+    "cap": "Full venue <b>up to 150</b>; Record Room up to 50 (private); Bolsover up to 34 (semi-private)",
+    "flag": "dedicated",
+    "link": "https://caravanandco.com/pages/fitzrovia-private-hire",
+    "linkText": "Caravan Fitzrovia — Private Dining & Events",
+    "email": "reservations@caravanrestaurants.co.uk",
+    "note": "Specialty coffee roastery plus all-day restaurant in the former BBC Radio 1 HQ on Great Portland St. Whole-venue hire up to 150 makes it one of the few Fitzrovia coffee venues big enough for a 200-person hack-day hand-off; the lower-ground Record Room (ex-BBC studio, with AV screen and PA) is a built-in break-out / demo space.",
+    "img": "https://caravanandco.com/cdn/shop/files/GlG08xOA.jpg?v=1682272601&width=1600",
+    "alt": "Wide dining-room and bar of Caravan Fitzrovia on Great Portland Street",
+    "top": false
+  },
+  {
+    "k": "riding_house_fitzrovia",
+    "name": "Riding House Fitzrovia",
+    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "type": "coffee",
+    "addr": "43-51 Great Titchfield Street, London W1W 7PQ",
+    "cap": "Whole venue <b>up to 165</b>; Dining Room private for 55; Lounge up to 25; Stables 14",
+    "flag": "dedicated",
+    "link": "https://www.riding.house/event-spaces",
+    "linkText": "Riding House — Event Spaces",
+    "email": null,
+    "note": "Iconic all-day café-restaurant on Great Titchfield Street right in the heart of Fitzrovia. The dedicated events page offers whole-venue hire to 165, plus the large private Dining Room (55) and the Stables snug for speakers and sponsors. A long-time morning fixture of Fitzrovia's creative/tech workers.",
+    "img": "https://www.riding.house/img/assets/fitzrovia-stamp-square.jpg",
+    "alt": "Riding House Café Fitzrovia branded stamp and interior",
+    "top": false
+  },
+  {
+    "k": "attendant_fitzrovia",
+    "name": "Attendant Fitzrovia",
+    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "type": "coffee",
+    "addr": "27A Foley Street, London W1W 6DY",
+    "cap": "Up to <b>~30</b>reception (est, single room) — best for press/kick-off pods",
+    "flag": "dedicated",
+    "link": "https://oldsite.the-attendant.com/catering-events",
+    "linkText": "The Attendant — Events",
+    "email": "info@the-attendant.com",
+    "note": "London's best-known converted-Victorian-restroom specialty café, two streets off Great Portland St and playground-adjacent to BBC Broadcasting House. The venue is small but Gotham-grade photogenic for an affiliated soirée; evening-only private hire 19:00-23:30 published on the events page.",
+    "img": "https://hb-prod.gumlet.io/uploads/space_photo/filename/38417/Soho_Grind_210.-3228469848-O.jpg?fit=crop&w=1600",
+    "alt": "Wide interior hallway of Attendant Fitzrovia on Foley Street",
+    "top": false
+  },
+  {
+    "k": "grind_soho",
+    "name": "Grind Soho",
+    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "type": "coffee",
+    "addr": "19 Beak Street, London W1F 9RP",
+    "cap": "Up to <b>30</b>(in-house page); up to 50 standing in basement per headbox listing",
+    "flag": "dedicated",
+    "link": "https://grind.co.uk/pages/hire",
+    "linkText": "Grind — London Venue Hire",
+    "email": "hello@grind.co.uk",
+    "note": "B-Corp specialty coffee + cocktail bar in the heart of Soho, two blocks off Brewer St. Whole-venue private hire via dedicated Grind page gives a turnkey hack-day wrap-up venue immediately after sessions elsewhere; cocktail / espresso martini programme makes it a natural tech-week after-hours anchor.",
+    "img": "https://grind.co.uk/cdn/shop/files/hire_soho_1_800x.webp?v=1730386508",
+    "alt": "Coffee shop and cocktail bar interior of Grind Soho on Beak Street",
+    "top": false
+  },
+  {
+    "k": "honey_co_studio",
+    "name": "Honey & Co. Studio",
+    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "type": "coffee",
+    "addr": "47 Lamb's Conduit Street, London WC1N 3NG",
+    "cap": "<b>70</b>standing / 50 seated",
+    "flag": "dedicated",
+    "link": "https://honeyandco.co.uk/places/honey-studio",
+    "linkText": "Honey & Co. Studio",
+    "email": "booking@honeyandco.co.uk",
+    "note": "Honey & Co's deli + creative events space just south of Fitzrovia across the street from their flagship restaurant. Mornings are light-filled with deli and café culture; afternoons convert to a dedicated events room with sound system and bar counter. A roomy option in the Fitzrovia/Bloomsbury triangle when direct W1D/W1T cafes are full.",
+    "img": "https://honeyandco-cdn-1.s3.eu-west-2.amazonaws.com/wp-content/uploads/2025/04/16120008/4.-Honey-Co-Studio-interior-events-space.jpg",
+    "alt": "Honey & Co Studio light-filled interior events space",
+    "top": false
+  },
+  {
+    "k": "fora_broadwick_street",
+    "name": "Fora Broadwick Street (The Hideaway)",
+    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "type": "cowork",
+    "addr": "33 Broadwick Street, Soho, London W1F 0DQ",
+    "cap": "<b>150</b>standing / 100 theatre / 50 cabaret (published; whole venue up to 220 per Fora workspace page)",
+    "flag": "dedicated",
+    "link": "https://www.foraspace.com/event-venues/london/broadwick-street",
+    "linkText": "Event spaces at Broadwick Street",
+    "email": null,
+    "note": "Purpose-built subterranean event venue ('The Hideaway') beneath a Soho coworking hub, with reception area, bar, modular extensions and theatre/cabaret layouts — dead centre of Soho, 6 min from Oxford Circus and Tottenham Court Road. Biggest confirmed capacity in the postcode band and a dedicated events team; natural fit for a 50-200-person tech-week coffee/hack day.",
+    "img": "https://cdn.sanity.io/images/8vw7318k/production/cba994c6cacef4d3b3106042636415a7eda0efcb-4000x2667.jpg",
+    "alt": "Fora Broadwick Street (The Hideaway) interior",
+    "top": true
+  },
+  {
+    "k": "mortimer_house_by",
+    "name": "Mortimer House by Maslow's (Loft & Gallery)",
+    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "type": "cowork",
+    "addr": "37-41 Mortimer Street, Fitzrovia, London W1T 3JH",
+    "cap": "<b>120</b>standing / 70 theatre (published, Loft & Gallery); whole house up to 300 across 5 spaces",
+    "flag": "dedicated",
+    "link": "https://www.maslows.com/private-hire/events",
+    "linkText": "Maslow's private hire — events",
+    "email": null,
+    "note": "Members-club coworking house in the heart of Fitzrovia with a light-filled penthouse Loft & Gallery (rooftop terrace attached, in-house catering, late licence). Regularly hired for talks, presentations and standing receptions; flexible layouts suit an all-day bilingual coffee/hack format, and the rooftop adds breakout air.",
+    "img": "https://www.maslows.com/propeller/uploads/sites/6/2025/08/MH_LoftGallery_AH_070725_HighRes_jpeg_3722-1200x788.jpg",
+    "alt": "Mortimer House by Maslow's (Loft & Gallery) interior",
+    "top": false
+  },
+  {
+    "k": "1_warwick_by",
+    "name": "1 Warwick by Maslow's (Nolita Social / Library & Drawing Room / Yasmin)",
+    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "type": "cowork",
+    "addr": "1 Warwick Street, Soho, London W1B 5LR",
+    "cap": "<b>100</b>standing (Yasmin exclusive hire) / 80 standing (Library & Drawing Room) (published)",
+    "flag": "dedicated",
+    "link": "https://www.maslows.com/private-hire/events",
+    "linkText": "Maslow's private hire — events",
+    "email": null,
+    "note": "Sister Maslow's house on the Soho/Fitzrovia border: Library + Drawing Room (80 standing, DJ setup, bar) and the Yasmin floor with semi-private rooftop terrace (100 standing) give a built-in coffee-bar plus room for hacking clusters. Same dedicated events page/team as Mortimer House — good overflow or alternate date option.",
+    "img": "https://www.maslows.com/propeller/uploads/sites/6/2025/08/21W_LivingRoom_HighRes_jpeg_170225_-1200x788.jpg",
+    "alt": "1 Warwick by Maslow's (Nolita Social / Library & Drawing Room / Yasmin) interior",
+    "top": false
+  },
+  {
+    "k": "soho_works_dean",
+    "name": "Soho Works Dean Street",
+    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "type": "cowork",
+    "addr": "72-74 Dean Street, Soho, London W1D 3SG",
+    "cap": "<b>10</b>-120 across 8 bookable meeting/event spaces (published range on Soho House event-spaces page)",
+    "flag": "dedicated",
+    "link": "https://www.sohohouse.com/soho-works/dean-street/event-spaces",
+    "linkText": "Soho Works Dean Street — meeting & event spaces",
+    "email": null,
+    "note": "Soho House's work arm on Dean Street (W1D) — non-members can book, so no membership gate for a public tech-week day. Eight lounge/boardroom-style rooms across four floors (10-120) with in-house catering and podcast studio; cluster of rooms lets you run bilingual tracks plus coffee service from the members' kitchen.",
+    "img": null,
+    "alt": "Soho Works Dean Street interior",
+    "top": false
+  },
+  {
+    "k": "huckletree_soho_elwood",
+    "name": "Huckletree Soho (Elwood Cafe / Ellwood Gallery)",
+    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "type": "cowork",
+    "addr": "Ingestre Court, Ingestre Place, Soho, London W1F 0JL",
+    "cap": "<b>50</b>standing / 20 seated (Elwood Cafe, Huckletree site: evenings & weekends only); third-party listings cite ~80 standing for Ellwood Gallery (~est)",
+    "flag": "contact",
+    "link": "https://www.huckletree.com/hubs/hire-event-spaces/london",
+    "linkText": "Huckletree London event spaces (Elwood Cafe, Soho)",
+    "email": "events@huckletree.com",
+    "note": "Tech-native coworking hub by Carnaby Street with an in-house cafe (Elwood) that converts to an evening/weekend event space — literally built around coffee. Smaller confirmed capacity (50) makes it best for the 50-80 end, or as an evening demo/social slot within a tech-week programme.",
+    "img": "https://cdn.buttercms.com/Q1tUwO5oRTyh8zDl3jJE",
+    "alt": "Huckletree Soho (Elwood Cafe / Ellwood Gallery) interior",
+    "top": false
+  },
+  {
+    "k": "huckletree_oxford_circus",
+    "name": "Huckletree Oxford Circus (The Parlour)",
+    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "type": "cowork",
+    "addr": "Floor 4, 213 Oxford Street, London W1D 2LG",
+    "cap": "<b>80</b>standing / 40 seated (published on Huckletree London event-spaces page)",
+    "flag": "contact",
+    "link": "https://www.huckletree.com/hubs/hire-event-spaces/london",
+    "linkText": "Huckletree London event spaces (The Parlour, Oxford Circus)",
+    "email": "events@huckletree.com",
+    "note": "Huckletree's Web3/tech-curated hub literally in W1D (213 Oxford St), one minute from Oxford Circus. The Parlour (80 standing) plus sun terrace gives a compact but perfectly located option for a 50-100-person hack/coffee day; same events team and email as the Soho hub.",
+    "img": "https://cdn.buttercms.com/VMuFdGsnTdqFjWPlhubA",
+    "alt": "Huckletree Oxford Circus (The Parlour) interior",
+    "top": false
+  }
+];
+
+/* ============================ EDIT ABOVE ============================ */
+
+const state = { area: "all", type: "all", dedicatedOnly: false };
+const AREAS = [...new Set(VENUES.map(v => v.area))];
+const typeKeys = Object.keys(TYPE_META);
+const tcls = t => "t" + (typeKeys.indexOf(t) % 3);
+
+function initials(name){
+  return name.replace(/[^a-zA-Z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join("");
+}
+function mapsUrl(v){
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(v.name + " " + v.addr);
+}
+function card(v){
+  const t = TYPE_META[v.type] || { label: v.type, icon: "📍" };
+  const flagHtml = v.flag === "dedicated"
+    ? '<span class="flag dedicated">✓ Dedicated events page</span>'
+    : '<span class="flag contact">✉ Events contact only</span>';
+  const imgHtml = v.img
+    ? `<img src="${v.img}" alt="${v.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.card').classList.add('noimg')">`
+    : "";
+  const emailBtn = v.email ? `<a class="btn sec" href="mailto:${v.email}">${v.email}</a>` : "";
+  return `<div class="card${v.img ? "" : " noimg"}">
+    <div class="imgbox">
+      ${imgHtml}
+      <div class="ph ${tcls(v.type)}"><span class="icn">${t.icon}</span><span class="mono">${initials(v.name)}</span></div>
+      ${v.top ? '<div class="toppick">★ Top pick</div>' : ""}
+      <div class="areatag">${v.area}</div>
+    </div>
+    <div class="body">
+      <div class="titlerow"><div class="vname">${v.name}</div><span class="typechip ${tcls(v.type)}">${t.icon} ${t.label}</span></div>
+      <div class="addr"><a href="${mapsUrl(v)}" target="_blank" rel="noopener">📍 ${v.addr}</a></div>
+      <div class="cap">${v.cap}</div>
+      ${flagHtml}
+      <div class="note">${v.note}</div>
+      <div class="links"><a class="btn pri" href="${v.link}" target="_blank" rel="noopener">${v.linkText} ↗</a>${emailBtn}</div>
+    </div>
+  </div>`;
+}
+function render(){
+  const match = v =>
+    (state.area === "all" || v.area === state.area) &&
+    (state.type === "all" || v.type === state.type) &&
+    (!state.dedicatedOnly || v.flag === "dedicated");
+  const shown = VENUES.filter(match);
+  const areas = AREAS.filter(a => state.area === "all" || a === state.area);
+  let html = "";
+  for (const a of areas){
+    const items = shown.filter(v => v.area === a);
+    if (!items.length) continue;
+    const hint = typeKeys.map(k => {
+      const n = items.filter(v => v.type === k).length;
+      return n ? `${n} ${TYPE_META[k].label.toLowerCase()}` : null;
+    }).filter(Boolean).join(" · ");
+    html += `<div class="section-h"><h2>${a}</h2><span class="hint">${hint}</span></div>
+             <div class="grid">${items.map(card).join("")}</div>`;
+  }
+  document.getElementById("content").innerHTML = html || '<div class="empty">No venues match these filters.</div>';
+  document.getElementById("count").textContent = `Showing ${shown.length} of ${VENUES.length} venues`;
+}
+function buildChips(el, values, key){
+  el.innerHTML = `<button class="chip on" data-v="all">All ${key === "area" ? "areas" : "types"}</button>` +
+    values.map(v => `<button class="chip" data-v="${v.v}">${v.label}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(btn => btn.addEventListener("click", () => {
+    el.querySelectorAll(".chip").forEach(b => b.classList.remove("on"));
+    btn.classList.add("on");
+    state[key] = btn.dataset.v;
+    render();
+  }));
+}
+function init(){
+  if (document.title === "Compute Cafe") document.title = CONFIG.title; // standalone use only; built pages keep their spliced title
+  document.getElementById("kicker").textContent = CONFIG.kicker;
+  document.getElementById("title").textContent = CONFIG.title;
+  document.getElementById("subtitle").textContent = CONFIG.subtitle;
+  const dedicated = VENUES.filter(v => v.flag === "dedicated").length;
+  const stats = [
+    { n: String(VENUES.length), l: "venues vetted" },
+    { n: String(dedicated), l: "with dedicated events pages" },
+    { n: String(AREAS.length), l: AREAS.length === 1 ? "neighborhood" : "neighborhoods" },
+  ];
+  if (CONFIG.extraStat) stats.push(CONFIG.extraStat);
+  document.getElementById("stats").innerHTML =
+    stats.map(s => `<div class="stat"><div class="n">${s.n}</div><div class="l">${s.l}</div></div>`).join("");
+  document.getElementById("foot").innerHTML =
+    CONFIG.footnotes.map(f => `<div class="fnote">${f}</div>`).join("") +
+    `<div class="prov">${CONFIG.provenance}</div>`;
+  buildChips(document.getElementById("f-area"), AREAS.map(a => ({v:a, label:a})), "area");
+  buildChips(document.getElementById("f-type"), typeKeys.map(k => ({v:k, label:`${TYPE_META[k].icon} ${TYPE_META[k].label}s`})), "type");
+  const flagBtn = document.querySelector('#f-flag .chip');
+  flagBtn.addEventListener("click", () => {
+    state.dedicatedOnly = !state.dedicatedOnly;
+    flagBtn.classList.toggle("on", state.dedicatedOnly);
+    render();
+  });
+  render();
+}
+function cycleTheme(){
+  const r = document.documentElement;
+  const cur = r.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : cur === "light" ? "dark"
+    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
+  r.setAttribute("data-theme", next);
+}
+init();
+</script>
+</body>
+</html>
