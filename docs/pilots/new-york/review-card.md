@@ -12,6 +12,10 @@
 | Closures footnote | ✅ 1 genuine closure (Brooklyn Roasting DUMBO flagship — absent from the brand's current store list), fetch-backed; 11 discards as comments |
 | Photos | 5/12 (42%) — below the 60% bar; placeholder art covers the rest |
 
+## 1.5) Confirmed host (added post-run)
+
+Colin confirmed the Sep 25 event runs at **First Round's on Me — Cafe Social Club** (109 W 25th St, Chelsea). Added as the lead venue with `top` (Devoción Flatiron demoted from top to keep picks sparse); the rest of the lineup is now the overflow/satellite list. Verification caveat: **the venue's own site (firstroundsonme.co) was unreachable this session** (TLS errors on fetch and browser) — link of record is their Linktree (fetched ✅) corroborated by SecretNYC coverage (fetched ✅); capacity is unpublished and estimate-marked. Re-fetch the own site before the event window and swap the link when it's back.
+
 ## 2) Items a human should check before/while booking
 
 - **Cafe Cursor's Brooklyn host café is still unnamed publicly** (Luma-gated; GarysGuide says "Venue To Be Announced"). Whoever attends Aug 12 should capture the venue — it's a pre-vetted seed for this exact page.

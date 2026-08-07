@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Upcoming Events · BrewVenue</title>
-<meta property="og:title" content="BrewVenue ☕ — Upcoming Events">
-<meta property="og:description" content="Every stop on the global hackathon tour, Sep 9 – Oct 18, 2026 — RSVP where registration is open, and browse each city's Compute Cafe.">
+<title>Upcoming Events · ComputeCafe</title>
+<meta property="og:title" content="ComputeCafe ☕ — Upcoming Events">
+<meta property="og:description" content="Every stop on the global hackathon tour, Sep 9 – Oct 18, 2026 — RSVP where registration is open, and browse each city's ComputeCafe venue lineup.">
 <style>
   :root {
     color-scheme: light;
@@ -101,11 +101,11 @@
 <div class="wrap">
   <header>
     <button class="themebtn" onclick="cycleTheme()">◐ Theme</button>
-    <a class="homelink" href="/">← BrewVenue</a>
+    <a class="homelink" href="/">← ComputeCafe</a>
     <div class="kicker">Global Hackathon Tour · H2 2026</div>
     <h1>Upcoming events</h1>
     <div class="sub">Every stop on the tour, in order — Sep 9 to Oct 18, 2026.
-      RSVP where registration is open; each city's <b>Compute Cafe</b> lists its vetted venues.</div>
+      RSVP where registration is open; each city's <b>ComputeCafe</b> lineup lists its vetted venues.</div>
   </header>
 
   <div id="content"></div>
@@ -117,7 +117,7 @@
 </div>
 
 <script>
-// sort: YYYYMMDD of the (first) event day. rsvp = registration link; cafe = the city's Compute Cafe.
+// sort: YYYYMMDD of the (first) event day. rsvp = registration link; cafe = the city's ComputeCafe lineup.
 const EVENTS = [
   { sort: 20260909, date: "Sep 9",       city: "Tokyo",         region: "Asia-Pacific",         rsvp: null, cafe: "/tokyo/" },
   { sort: 20260909, date: "Sep 9–11",    city: "Stockholm",     region: "Europe & Middle East", rsvp: null, cafe: null },
@@ -141,7 +141,7 @@ const EVENTS = [
 function row(e){
   const links = [];
   if (e.rsvp) links.push(`<a class="act rsvp" href="${e.rsvp}" target="_blank" rel="noopener">RSVP on Luma ↗</a>`);
-  if (e.cafe) links.push(`<a class="act cafe" href="${e.cafe}">Compute Cafe →</a>`);
+  if (e.cafe) links.push(`<a class="act cafe" href="${e.cafe}">ComputeCafe →</a>`);
   const linksHtml = links.length ? links.join("") : `<span class="soon">Details soon</span>`;
   return `<div class="ev">
     <div class="date">${e.date}</div>

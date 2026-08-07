@@ -32,13 +32,13 @@ docs/                      ← multi-city research plan (Tavily + Kimi K3 + Tenk
    neighborhood analysis → venue discovery → **link verification** (every URL fetched before
    it ships) → photo URLs. Output the findings as a `configs/<city>_config.js` following the
    schema documented in the template comments.
-2. **Build** — `python3 scripts/build.py configs/<city>_config.js "<City> Tech Week — Venue Options · BrewVenue" <city-slug>`
+2. **Build** — `python3 scripts/build.py configs/<city>_config.js "<City> Tech Week — Venue Options · ComputeCafe" <city-slug>`
    writes `<city-slug>/index.html` (repo-root-relative, safe to run from anywhere) with the
-   BrewVenue home link injected. Titles follow the `… · BrewVenue` suffix convention. The
+   ComputeCafe home link injected. Titles follow the `… · ComputeCafe` suffix convention. The
    shipped pages were built with exactly:
    ```
-   python3 scripts/build.py configs/sf_config.js "SF Tech Week — Venue Options · BrewVenue" san-francisco
-   python3 scripts/build.py configs/la_config.js "LA Tech Week — Venue Options · BrewVenue" los-angeles
+   python3 scripts/build.py configs/sf_config.js "SF Tech Week — Venue Options · ComputeCafe" san-francisco
+   python3 scripts/build.py configs/la_config.js "LA Tech Week — Venue Options · ComputeCafe" los-angeles
    ```
 3. **Flip the card** — in `index.html`, set the city's entry to `status: "live", href: "/<city-slug>/"`.
    The `href` must match the `<city-slug>` passed to the build script.

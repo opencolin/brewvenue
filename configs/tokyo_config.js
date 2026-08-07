@@ -1,6 +1,6 @@
 // Page copy — Tokyo · Compute Cafe · CONFIG + TYPE_META + VENUES
 const CONFIG = {
-  kicker: "Tokyo Tech Week · Compute Cafe",
+  kicker: "Tokyo Tech Week · ComputeCafe",
   title: "Tokyo Tech Week — Venue Options",
   subtitle: "Event-capable cafes, coworking & event halls in Shibuya, Nihonbashi/Kayabacho, and Roppongi — for a bilingual (JP/EN) Sept 9, 2026 tech-week coffee/hack event (~50–200 people). Links point to each venue's verified private-events pages or booking contacts.",
   extraStat: { n: "Sep 9", l: "Tokyo event date, 2026" },

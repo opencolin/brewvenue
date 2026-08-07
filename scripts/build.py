@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Assemble a BrewVenue city page from a config file + the venue-scout explorer template.
+"""Assemble a ComputeCafe city page from a config file + the venue-scout explorer template.
 
 Usage:
-    python3 scripts/build.py configs/la_config.js "LA Tech Week — Venue Options · BrewVenue" los-angeles
+    python3 scripts/build.py configs/la_config.js "LA Tech Week — Venue Options · ComputeCafe" los-angeles
 
 Writes <slug>/index.html with the config spliced between the template's EDIT markers
-and a "← BrewVenue" home link injected into the hero.
+and a "← ComputeCafe" home link injected into the hero.
 """
 import os
 import sys
@@ -19,7 +19,7 @@ HOMELINK_CSS = (
     "text-decoration: none; display: inline-block; margin-bottom: 8px; }\n"
     "  .homelink:hover { color: var(--ink-1); }\n"
 )
-HOMELINK_A = '<a class="homelink" href="/">← BrewVenue</a>\n    '
+HOMELINK_A = '<a class="homelink" href="/">← ComputeCafe</a>\n    '
 
 
 def splice(doc: str, needle: str, replacement: str) -> str:

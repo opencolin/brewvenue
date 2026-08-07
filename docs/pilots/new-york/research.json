@@ -1,6 +1,22 @@
 {
   "venues": [
     {
+      "k": "firstroundsonme",
+      "name": "First Round's on Me — Cafe Social Club",
+      "area": "Flatiron / Union Square",
+      "type": "coffee",
+      "addr": "109 W 25th St (Chelsea), New York, NY 10001",
+      "cap": "not published — café + social floor; ~<b>60</b>–<b>100</b> (est), confirm with the team",
+      "flag": "contact",
+      "link": "https://linktr.ee/firstroundsonmeapp",
+      "linkText": "linktr.ee/firstroundsonmeapp (own site unreachable at research time)",
+      "email": null,
+      "note": "✔ CONFIRMED HOST of the Sep 25 NYC event. Cafe/podcast/social club from the FROM dating-app team (opened May 2025): coffee bar, DJ + podcast setup, pool-table social floor — built for exactly this crowd. Daily 8am–4pm; evening events by arrangement.",
+      "img": null,
+      "alt": "Neon-lit social floor at Cafe Social Club",
+      "top": true
+    },
+    {
       "k": "devocinwilliamsburgflagship",
       "name": "Devoción — Williamsburg Flagship",
       "area": "Williamsburg / Dumbo",
@@ -62,7 +78,7 @@
       "note": "Devoción's large Flatiron room two blocks from Union Square carries the same plant-filled, high-design DNA as the Brooklyn flagship, and one brand relationship could cover both boroughs of the tour. Open 7am-6pm.",
       "img": null,
       "alt": "Plant-lined café interior with leather seating and espresso bar",
-      "top": true
+      "top": false
     },
     {
       "k": "thinkcoffeeunionsquare",

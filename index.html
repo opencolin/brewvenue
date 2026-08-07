@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BrewVenue — Compute Cafe HQ</title>
-<meta property="og:title" content="BrewVenue ☕ — Compute Cafe HQ">
-<meta property="og:description" content="Compute Cafe HQ for the global hackathon tour — 17 cities, 3 regions, Sep–Oct 2026. Pick a city to see its vetted venues.">
+<title>ComputeCafe — Venue HQ for the Global Hackathon Tour</title>
+<meta property="og:title" content="ComputeCafe ☕ — Venue HQ for the Global Hackathon Tour">
+<meta property="og:description" content="ComputeCafe — venue HQ for the global hackathon tour: 17 cities, 3 regions, Sep–Oct 2026. Pick a city to see its vetted venues.">
 <style>
   :root {
     color-scheme: light;
@@ -121,9 +121,9 @@
   <header>
     <button class="themebtn" onclick="cycleTheme()">◐ Theme</button>
     <div class="kicker">Global Hackathon Tour · H2 2026</div>
-    <h1>BrewVenue <span class="cup">☕</span></h1>
-    <div class="sub"><b>Compute Cafe</b> HQ for our global hackathon tour.
-      Pick a city to open its Compute Cafe — vetted cafes, coworking, and event spaces with verified booking links —
+    <h1>ComputeCafe <span class="cup">☕</span></h1>
+    <div class="sub"><b>ComputeCafe</b> is venue HQ for our global hackathon tour.
+      Pick a city to open its venue lineup — vetted cafes, coworking, and event spaces with verified booking links —
       or RSVP where the event page is already live. More cities light up as the tour approaches.
       <a href="/events/">See all upcoming events →</a></div>
     <div class="statrow" id="stats"></div>
@@ -134,7 +134,7 @@
   <footer>
     <div class="fnote"><b>Satellite / stretch cities under consideration:</b> Washington DC, Vilnius, Warsaw, Rome / Milan, and Lisbon — cards will appear here if they're confirmed.</div>
     <div class="fnote"><b>Tour shape:</b> three focused regional weeks — Asia-Pacific (early Sep), Europe &amp; Middle East (mid–late Sep), North America (late Sep–mid Oct) — anchored around major AI events where possible, wrapping with SF Tech Week (Oct 5–11) and LA Tech Week (Oct 12–18).</div>
-    <div class="prov">City lineup from the tour plan · Compute Cafe guides researched Aug 2026 · City photos via Wikimedia Commons; venue photos load from each venue's own site. <a href="/events/">Upcoming events →</a> · <a href="/stack/">How the stack works →</a></div>
+    <div class="prov">City lineup from the tour plan · ComputeCafe guides researched Aug 2026 · City photos via Wikimedia Commons; venue photos load from each venue's own site. <a href="/events/">Upcoming events →</a> · <a href="/stack/">How the stack works →</a></div>
   </footer>
 </div>
 
@@ -183,9 +183,9 @@ const REGIONS = [
 ];
 
 const STATUS_META = {
-  live: { chip: "● Compute Cafe live", cta: "Open Compute Cafe →" },
+  live: { chip: "● ComputeCafe live", cta: "Open ComputeCafe →" },
   rsvp: { chip: "✓ Event confirmed", cta: "RSVP on Luma ↗" },
-  soon: { chip: "Coming soon", cta: "Compute Cafe in the works" },
+  soon: { chip: "Coming soon", cta: "ComputeCafe in the works" },
 };
 
 function initials(name){
@@ -226,7 +226,7 @@ function init(){
     { n: String(total), l: "tour cities" },
     { n: String(REGIONS.length), l: "regions" },
     { n: "Sep 9 – Oct 18", l: "tour window, 2026" },
-    { n: String(live), l: "Compute Cafes live" },
+    { n: String(live), l: "ComputeCafes live" },
   ].map(s => `<div class="stat"><div class="n">${s.n}</div><div class="l">${s.l}</div></div>`).join("");
   document.getElementById("content").innerHTML = REGIONS.map(r => `
     <div class="region-h"><h2>${r.name}</h2><span class="hint">${r.cities.length} cities</span></div>
