@@ -19,6 +19,22 @@ const TYPE_META = {
 
 const VENUES = [
   {
+    "k": "encodehub",
+    "name": "Encode Hub (Encode Club)",
+    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "type": "cowork",
+    "addr": "41 Pitfield St, London N1 6DA",
+    "cap": "whole venue up to <b>300</b> standing (published, from £12k/day); rooftop terrace <b>120</b> reception; meeting rooms 8–20",
+    "flag": "contact",
+    "link": "https://hub.encodeclub.com/",
+    "linkText": "hub.encodeclub.com",
+    "email": null,
+    "note": "✔ Added by request — London's AI & web3 builder space by Encode Club: multi-level industrial venue (6,000+ sq ft) with coworking floors, event rooms and a rooftop terrace, minutes from Old Street. The Encode London hackathon + conference runs here, so the room is proven at exactly our event shape. Hire direct or via HireSpace/HeadBox.",
+    "img": null,
+    "alt": "Industrial multi-level event floor at Encode Hub Shoreditch",
+    "top": false
+  },
+  {
     "k": "lantana_shoreditch",
     "name": "Lantana Shoreditch",
     "area": "Shoreditch / Old Street (Silicon Roundabout)",
