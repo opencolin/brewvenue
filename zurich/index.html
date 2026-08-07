@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zurich — Venue Options · BrewVenue</title>
+<!--
+  COMPUTE CAFE EXPLORER TEMPLATE
+  Edit ONLY the CONFIG, TYPE_META, and VENUES blocks in the <script> at the
+  bottom (plus <title> above). Filter chips, section headers, and header stats
+  all derive from the data — no markup edits needed for a new city or venue mix.
+  Keep the file self-contained: no external CSS/JS/fonts, no localStorage.
+-->
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --ink-1: #0b0b0b;
+    --ink-2: #52514e;
+    --ink-3: #898781;
+    --hairline: rgba(11,11,11,0.10);
+    --grid: #e1e0d9;
+    --accent-a: #eb6834;
+    --accent-a-soft: rgba(235,104,52,0.12);
+    --accent-b: #2a78d6;
+    --accent-b-soft: rgba(42,120,214,0.12);
+    --accent-c: #6f4fce;
+    --accent-c-soft: rgba(111,79,206,0.12);
+    --good: #0ca30c;
+    --good-soft: rgba(12,163,12,0.10);
+    --chip-on: #0b0b0b;
+    --chip-on-ink: #fcfcfb;
+    --ph-a: #f3e7dc;
+    --ph-b: #e8d5c2;
+    --ph-c: #dde8f3;
+    --ph-d: #c9d9ec;
+    --ph-e: #e7ddf3;
+    --ph-f: #d6c8ec;
+    --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+      --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+      --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+      --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+      --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+      --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+      --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+      --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+      --ph-e: #291f38; --ph-f: #382a4e;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19;
+    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+    --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+    --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+    --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+    --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+    --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+    --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+    --ph-e: #291f38; --ph-f: #382a4e;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page); color: var(--ink-1);
+    line-height: 1.45; padding: 28px 20px 40px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  header.hero { margin-bottom: 18px; }
+  .kicker {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent-a); margin-bottom: 6px;
+  }
+  h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+  .sub { color: var(--ink-2); font-size: 14px; margin-top: 6px; max-width: 70ch; }
+  .statrow { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 16px; }
+  .stat .n { font-size: 22px; font-weight: 700; }
+  .stat .l { font-size: 12px; color: var(--ink-3); }
+  .themebtn {
+    float: right; margin-top: -2px; font-size: 12px; color: var(--ink-2);
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  }
+  .themebtn:hover { color: var(--ink-1); }
+  .filters {
+    position: sticky; top: 0; z-index: 5; background: var(--page);
+    padding: 12px 0 10px; margin: 8px 0 6px;
+    border-bottom: 1px solid var(--grid);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .fgroup { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 999px; padding: 3px; }
+  .chip {
+    font-size: 12.5px; font-weight: 500; color: var(--ink-2);
+    padding: 5px 12px; border-radius: 999px; border: none; background: transparent;
+    cursor: pointer; white-space: nowrap;
+  }
+  .chip:hover { color: var(--ink-1); }
+  .chip.on { background: var(--chip-on); color: var(--chip-on-ink); font-weight: 600; }
+  .count { margin-left: auto; font-size: 12px; color: var(--ink-3); }
+  .section-h { display: flex; align-items: baseline; gap: 10px; margin: 26px 2px 12px; }
+  .section-h h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-h .hint { font-size: 12px; color: var(--ink-3); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  .imgbox { position: relative; aspect-ratio: 16/9.5; overflow: hidden; }
+  .imgbox img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ph {
+    position: absolute; inset: 0; z-index: 0; display: flex;
+    align-items: center; justify-content: center; flex-direction: column; gap: 6px;
+  }
+  .card.noimg img { display: none; }
+  .ph.t0 { background: linear-gradient(135deg, var(--ph-a), var(--ph-b)); }
+  .ph.t1 { background: linear-gradient(135deg, var(--ph-c), var(--ph-d)); }
+  .ph.t2 { background: linear-gradient(135deg, var(--ph-e), var(--ph-f)); }
+  .ph .mono { font-size: 30px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-2); opacity: 0.85; }
+  .ph .icn { font-size: 22px; }
+  .toppick {
+    position: absolute; top: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 700; background: rgba(11,11,11,0.78); color: #fff;
+    padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .areatag {
+    position: absolute; bottom: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 600; background: rgba(11,11,11,0.62); color: #fff;
+    padding: 3px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .body { padding: 14px 16px 15px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .titlerow { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .vname { font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .typechip { flex: none; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; margin-top: 1px; }
+  .typechip.t0 { color: var(--accent-a); background: var(--accent-a-soft); }
+  .typechip.t1 { color: var(--accent-b); background: var(--accent-b-soft); }
+  .typechip.t2 { color: var(--accent-c); background: var(--accent-c-soft); }
+  .addr { font-size: 12.5px; }
+  .addr a { color: var(--ink-3); text-decoration: none; }
+  .addr a:hover { color: var(--ink-1); text-decoration: underline; }
+  .cap { font-size: 12.5px; color: var(--ink-2); }
+  .cap b { color: var(--ink-1); font-weight: 600; }
+  .flag {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 7px; align-self: flex-start;
+  }
+  .flag.dedicated { color: var(--good); background: var(--good-soft); }
+  .flag.contact { color: var(--ink-2); background: var(--page); border: 1px solid var(--hairline); }
+  .note { font-size: 13px; color: var(--ink-2); flex: 1; }
+  .links { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+  .btn { font-size: 12.5px; font-weight: 600; text-decoration: none; padding: 7px 13px; border-radius: 8px; }
+  .btn.pri { background: var(--ink-1); color: var(--page); }
+  .btn.pri:hover { opacity: 0.85; }
+  .btn.sec { color: var(--ink-2); border: 1px solid var(--hairline); }
+  .btn.sec:hover { color: var(--ink-1); border-color: var(--ink-3); }
+  .empty { color: var(--ink-3); font-size: 14px; padding: 40px 0; text-align: center; }
+  footer { margin-top: 34px; border-top: 1px solid var(--grid); padding-top: 18px; display: grid; gap: 14px; }
+  .fnote { font-size: 13px; color: var(--ink-2); max-width: 90ch; }
+  .fnote b { color: var(--ink-1); }
+  .prov { font-size: 11.5px; color: var(--ink-3); }
+  @media (max-width: 640px) {
+    body { padding: 18px 12px 30px; }
+    h1 { font-size: 22px; }
+    .count { flex-basis: 100%; margin-left: 2px; }
+  }
+  .homelink { font-size: 12.5px; font-weight: 600; color: var(--ink-3); text-decoration: none; display: inline-block; margin-bottom: 8px; }
+  .homelink:hover { color: var(--ink-1); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <button class="themebtn" id="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <a class="homelink" href="/">← ComputeCafe</a>
+    <div class="kicker" id="kicker"></div>
+    <h1 id="title"></h1>
+    <div class="sub" id="subtitle"></div>
+    <div class="statrow" id="stats"></div>
+  </header>
+  <div class="filters">
+    <div class="fgroup" id="f-area"></div>
+    <div class="fgroup" id="f-type"></div>
+    <div class="fgroup" id="f-flag">
+      <button class="chip" data-v="dedicated">✓ Dedicated events page only</button>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+  <div id="content"></div>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+/* ============================ EDIT BELOW ============================ */
+
+// Page copy — CONFIG + TYPE_META + VENUES
+const CONFIG = {
+  kicker: "Zurich Tech Week · Venue Scout",
+  title: "Zurich — Venue Options",
+  subtitle: "Event-capable cafes & event spaces in Zurich West (Kreis 5) / City·Selnau / Oerlikon — for a Sept 16, 2026 bilingual (DE/EN) tech-week coffee/hack event (~50–200 people). Links verified. Hostpoint/Host2Co venues cap early.",
+  extraStat: {"n":"Sep 16","l":"Zurich event date, 2026"},
+  footnotes: [
+    "<b>Neighborhood analysis:</b> Kreis 5/Zurich West (Frau Gerolds Garten, Impact Hub Kraftwerk, Bluelion) is where Zurich AI Club + the Swiss {ai} Weeks events actually ran; City/Selnau (Kraftwerk at Selnaustrasse) is the flagship hackathon address; Oerlikon (ETH AI Center/StageOne) anchors the research-side summits.",
+    "<b>Gone / don't route inquiries here:</b> 43 closure/discards logged — a very high count, including many conversions in 2024-2026 (e.g., Hive Sihlcity).",
+  ],
+  provenance: "Researched Aug 2026 · Bilingual DE/EN · 29 → 28 shipped after contract (drops: Impact Hub Kraftwerk — Eventspace & Café) · Capacities published or estimated.",
+};
+
+const TYPE_META = {
+  coffee: { label: "Coffee shop", icon: "☕" },
+  cowork: { label: "Coworking / event space", icon: "🏢" },
+};
+
+const VENUES = [
+  {
+    "k": "frau_gerolds_garten",
+    "name": "Frau Gerolds Garten",
+    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "type": "coffee",
+    "addr": "Geroldstrasse 23, 8005 Zürich",
+    "cap": "Garden groups <b><b>10–120</b></b>; sister room Braschler's Bar <b>30–150</b> (plant-wrapped, covered)",
+    "flag": "dedicated",
+    "link": "https://www.fraugerold.ch/gruppen",
+    "linkText": "fraugerold.ch/gruppen — Gruppen & Eventlocation",
+    "email": "info@fraugerold.ch",
+    "note": "Iconic shipping-container Stadtgarten at the foot of the Prime Tower, 2 min from Hardbrücke. Sep 16 falls inside the 2026 Sommersaison (until 26.09) and inside Braschler's Bar's event window (until 19.09, events until midnight, no DJ) — the covered bar is the rain fallback for a 50–200 coffee/hack day.",
+    "img": "https://www.fraugerold.ch/data/images/2105_1.jpg",
+    "alt": "Walled urban garden terrace with container structures and string lights",
+    "top": true
+  },
+  {
+    "k": "venice_bar_fusio",
+    "name": "Venice Bar (Fusio AG)",
+    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "type": "coffee",
+    "addr": "Schiffbauplatz, 8005 Zürich",
+    "cap": "<b><b>20–150</b></b> guests across two floors",
+    "flag": "dedicated",
+    "link": "https://venicebar.ch",
+    "linkText": "venicebar.ch — Premium-Eventlocation",
+    "email": null,
+    "note": "Rooftop wine/cocktail bar over the Schiffbau with 360° panorama and openable glass facade; industry-chic + Chesterfield lounges suit an apéro-style hack night. During the summer season it is exclusively an event location; booking runs through the published Typeform inquiry or +41 79 427 17 91 (no events email published).",
+    "img": "https://venicebar.ch/wp-content/uploads/2023/07/VeniceBar-Location-P1039435-1-web.jpg",
+    "alt": "Two-floor rooftop bar interior with panoramic windows over Zurich",
+    "top": false
+  },
+  {
+    "k": "amboss_rampe",
+    "name": "Amboss Rampe",
+    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "type": "coffee",
+    "addr": "Zollstrasse 80, 8005 Zürich",
+    "cap": "<b><b>96</b></b> seated / <b>100</b> theatre / <b>120</b> standing (155 m²)",
+    "flag": "dedicated",
+    "link": "https://ambossrampe.ch/eventlocation-mieten",
+    "linkText": "ambossrampe.ch/eventlocation-mieten",
+    "email": "mail@ambossrampe.ch",
+    "note": "Industrial ex-garage event room off HB's north tracks with bar, Meyer sound system and plug-and-play layout; rents day-rate until 17:00 (CHF 1600) or evening (CHF 2600) — a daytime coffee/hack session followed by an evening social fits the published rental block exactly.",
+    "img": "https://ambossrampe.ch/wp-content/uploads/2022/07/amboss-rampe-club.jpg",
+    "alt": "Industrial event hall with plants, string lights and bar area",
+    "top": false
+  },
+  {
+    "k": "labor5_eventfactory",
+    "name": "Labor5 eventfactory",
+    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "type": "coffee",
+    "addr": "Schiffbaustrasse 3, 8005 Zürich",
+    "cap": "up to ~<b><b>450</b></b> guests (est — per RA/eventlokale listings; venue site publishes no figure)",
+    "flag": "contact",
+    "link": "https://www.labor5.ch",
+    "linkText": "labor5.ch — eventfactory day & night",
+    "email": "hallo@labor5.ch",
+    "note": "Former industrial hall next to the Schiffbau renting for private, corporate and public events with own café/day-night operation; explicit welcome for 'public events of all kinds at fair conditions' — useful overflow option if the headcount pushes past 150.",
+    "img": "https://www.labor5.ch/media/output/Startseite5-5/Labor5-Eventfactory-day-night-Willkommen-im-Labor5-eventfactory-I-day-night-Impressionen-16-49.webp",
+    "alt": "Wide hall interior shot from Labor5 impressions gallery",
+    "top": false
+  },
+  {
+    "k": "technopark_zrich",
+    "name": "TECHNOPARK® Zürich",
+    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "type": "coffee",
+    "addr": "Technoparkstrasse 1, 8005 Zürich",
+    "cap": "<b><b>10–500</b></b> people; 500 m² transfer area for fairs/exhibitions",
+    "flag": "dedicated",
+    "link": "https://www.technopark.ch/en/events-at-technopark",
+    "linkText": "technopark.ch/en/events-at-technopark",
+    "email": "info@technopark.ch",
+    "note": "Zurich's tech anchor at Escher-Wyss with full AV (projectors, streaming, auditorium) plus on-site restaurant/food-court for coffee service — the most tech-week-native room in the cell, trade-off is a corporate conference feel rather than café charm.",
+    "img": "https://www.technopark.ch/wp-content/uploads/2014/08/TechnoPark_Interiors-012-1160x755.jpg",
+    "alt": "Bright atrium interior of the Technopark event facilities",
+    "top": false
+  },
+  {
+    "k": "westhive_zurich_hardturm",
+    "name": "Westhive Zurich Hardturm",
+    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "type": "cowork",
+    "addr": "Hardturmstrasse 161, 8005 Zürich",
+    "cap": "<b><b>150</b></b> theater / <b>200</b> conference seating (Hall of Fame)",
+    "flag": "dedicated",
+    "link": "https://www.westhive.com/en/wh-meeting-room/hall-of-fame",
+    "linkText": "westhive.com/…/hall-of-fame",
+    "email": null,
+    "note": "The only room in the hood that comfortably tops out the 200-person envelope: dedicated event floor with AV, stage, adjacents bookable, and an in-house Head of Event Management (Ramona Romer). Proven tech-crowd shape via Westhive's startup coworking base.",
+    "img": "https://www.westhive.com/wp-content/uploads/westhive-hardturm-event-hall-of-fame-1200x900-1.jpg",
+    "alt": "Westhive Hardturm Hall of Fame event hall with stage and seating",
+    "top": true
+  },
+  {
+    "k": "technopark_zrich_eventlocation",
+    "name": "TECHNOPARK Zürich Eventlocation",
+    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "type": "cowork",
+    "addr": "Technoparkstrasse 1, 8005 Zürich",
+    "cap": "Rooms for <b><b>10–500</b></b>; <b>500 m²</b> transfer-area exhibition floor",
+    "flag": "dedicated",
+    "link": "https://www.technopark.ch/en/events-at-technopark",
+    "linkText": "technopark.ch/en/events-at-technopark",
+    "email": "info@technopark.ch",
+    "note": "The neighborhood's biggest hackable stock: 500m² open transfer area plus tiered auditoriums, AV and Wi-Fi zones built in, and a named event team. Home turf for the AI/data-science cluster, ideal for a tech-week bilingual hack day.",
+    "img": "https://www.technopark.ch/wp-content/uploads/2022/07/tpz_events_hack-1160x340.jpg",
+    "alt": "Wide view of a hackathon event inside Technopark Zürich transfer area",
+    "top": false
+  },
+  {
+    "k": "impact_hub_zrich",
+    "name": "Impact Hub Zürich – Viadukt (Event Space Bogen D)",
+    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "type": "cowork",
+    "addr": "Viaduktstrasse 93-95, 8005 Zürich",
+    "cap": "Up to <b><b>100</b></b> (Bogen D event space, tribune-style)",
+    "flag": "dedicated",
+    "link": "https://zurich.impacthub.ch/en/what-we-do/meeting-event-spaces",
+    "linkText": "zurich.impacthub.ch/…/meeting-event-spaces",
+    "email": "booking.zurich@impacthub.ch",
+    "note": "Restored railway-arch event space 5 min from Hardbrücke under community-builder gravity: Impact Hub Zurich's birth site, with kitchenette and cafeteria in Arch D/E. Great fit for a 60-100 person coffee-hack format.",
+    "img": "https://zurich.impacthub.ch/wp-content/uploads/2023/09/Viadukt_04-optimized.jpg",
+    "alt": "Interior of Impact Hub Zürich viaduct arch event space",
+    "top": false
+  },
+  {
+    "k": "bluelion_zwz_eventpace",
+    "name": "Bluelion ZWZ — Eventpace «Ombre»",
+    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "type": "cowork",
+    "addr": "Josefstrasse 219, 8005 Zürich",
+    "cap": "Up to <b><b>100</b></b> (Ombre) + rooftop terrace <b>80</b>",
+    "flag": "dedicated",
+    "link": "https://bluelion.ch/space",
+    "linkText": "bluelion.ch/space",
+    "email": null,
+    "note": "Purpose-built startup-hub event room in the Zentralwäscherei, 5 min from Hardbrücke: stage, video wall, café-style bistro seating, tribune, open kitchen, and an 80-person rooftop terrace for the apéro. CHF 300/h, 4h min — publish prices, easy ask.",
+    "img": "https://bluelion.ch/wp-content/uploads/2022/03/Bluelion_Interior-259-1024x683.jpg",
+    "alt": "Bluelion ZWZ interior coworking and event area",
+    "top": false
+  },
+  {
+    "k": "impact_hub_zrich",
+    "name": "Impact Hub Zürich – Colab & Café Auer & Co",
+    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "type": "cowork",
+    "addr": "Sihlquai 131, 8005 Zürich",
+    "cap": "Café Auer & Co banqueting <b><b>40</b></b> / reception <b>80</b>; Loft Corner <b>50</b>",
+    "flag": "dedicated",
+    "link": "https://zurich.impacthub.ch/en/about-us/locations/colab-auer-co",
+    "linkText": "zurich.impacthub.ch/…/colab-auer-co",
+    "email": "booking.zurich@impacthub.ch",
+    "note": "1,700m² brick-building hub directly on the Limmat in Kreis 5 with its own barista café (Auer & Co) — the room is literally built around coffee service, and the terrace works for hack-day spillover. Sizes this one to the 50-80 end of the band.",
+    "img": "https://zurich.impacthub.ch/wp-content/uploads/2023/09/Auer-Slider-01-optimized.jpg",
+    "alt": "Café Auer & Co interior at Impact Hub Colab with long tables",
+    "top": false
+  },
+  {
+    "k": "cream_zrich_by",
+    "name": "C.R.E.A.M. Zürich (by Bros Beans & Beats)",
+    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "type": "cowork",
+    "addr": "Josefstrasse 214, 8005 Zürich",
+    "cap": "<b><b>50–80</b></b> (Veranstaltungssaal)",
+    "flag": "dedicated",
+    "link": "https://cream-zurich.ch/events",
+    "linkText": "cream-zurich.ch/events",
+    "email": "event@cream-zurich.ch",
+    "note": "Specialty-coffee bar in the Orbiz Josef coworking house on Josefstrasse with a dedicated bilingual events page, lounge zones and apéro high table — the closest shape to the Cafe Cursor café-takeover format, sized for the small end of the brief.",
+    "img": "https://cream-zurich.ch/wp-content/uploads/2024/10/CREAM_Stimmungsbild_Interior_3.jpeg",
+    "alt": "C.R.E.A.M. Zürich café interior with lounge seating and bar",
+    "top": false
+  },
+  {
+    "k": "haus_hiltl_hiltl",
+    "name": "Haus Hiltl (Hiltl Academy + Seminar Rooms)",
+    "area": "City / Selnau (Kreis 1, Sihl riverfront by Bahnhof Selnau)",
+    "type": "coffee",
+    "addr": "Sihlstrasse 28, 8001 Zürich",
+    "cap": "Ambrosius <b><b>100</b></b> theatre / <b>100</b> reception; Hiltl Academy indoor <b>100</b> / Terrasse <b>80</b>; Marthas Innenhof <b>250</b> reception; published",
+    "flag": "dedicated",
+    "link": "https://hiltl.ch/en/locations/overview/haus-hiltl",
+    "linkText": "Haus Hiltl — Seminar & Event Spaces",
+    "email": "catering@hiltl.ch",
+    "note": "World's oldest vegetarian restaurant (since 1898) sits on Sihlstrasse — same street-name as the target Sihl riverfront, 3 min walk from Bahnhof Selnau — and runs a dedicated seminar/events program with in-house catering and café-grade coffee service. Ambrosius room + the 5th-floor Academy (with private terrace up to 80) cover 100–200 headcounts; on-site buffet/bar/bistro removes external catering logistics for a full-day bilingual tech-week coffee/hack day.",
+    "img": "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_gastronomie_hiltl_02.jpg",
+    "alt": "Haus Hiltl exterior on Sihlstrasse with summer boulevard seating",
+    "top": false
+  },
+  {
+    "k": "barfussbar_in_der",
+    "name": "Barfussbar in der Frauenbadi",
+    "area": "City / Selnau (Kreis 1, Sihl riverfront by Bahnhof Selnau)",
+    "type": "coffee",
+    "addr": "Stadthausquai 12, 8001 Zürich (Frauenbadi, Schanzengraben-on-Limmat)",
+    "cap": "<b><b>60–300</b></b> (full Frauenbadi); smaller groups 20–59 via 'Sounds am Dunnstig' séparée; published",
+    "flag": "dedicated",
+    "link": "https://barfussbar.ch/de/barfussbar-mieten/",
+    "linkText": "Barfussbar mieten — Privat- & Firmenevents",
+    "email": "event@barfussbar.ch",
+    "note": "Only viable in the May–Sep lido season — Sep 16, 2026 is inside the window (last few weeks before the Festival-setup takeover in late Sep). Caution for a Wednesday: season-time rentals run Mon/Tue/Fri/Sat 20:00–00:00 only — Wednesday is a public 'Sounds am Mittwuch' night with a séparée option rather than full hire, so this is a sunset afterparty pairing with Kraftwerk rather than the all-day hack host. On the Limmat (Schanzengraben outlet), Kreis 1 addresses, ~10 min walk from Bhf Selnau.",
+    "img": null,
+    "alt": "Barefoot bar in historic Frauenbadi at Stadthausquai on the Limmat",
+    "top": false
+  },
+  {
+    "k": "caf_bar_odeon",
+    "name": "Café Bar ODEON",
+    "area": "City / Selnau (Kreis 1, Sihl riverfront by Bahnhof Selnau)",
+    "type": "coffee",
+    "addr": "Limmatquai 2, 8001 Zürich (Kreis 1, Bellevue/Sechseläuten edge)",
+    "cap": "Private hire by arrangement; published figures not listed on the events page — est ~<b><b>150</b></b> seated across the two rooms (est),.Layout handled in an on-site pre-meeting per ODEON.",
+    "flag": "dedicated",
+    "link": "https://odeon.ch/en/your-event-at-odeon",
+    "linkText": "Your event at ODEON — private events",
+    "email": "info@odeon.ch",
+    "note": "Iconic 1911 Viennese-style grand café (Einstein, Joyce, Lenin were regulars) on the Limmat — Kreis 1 and 10-min walk from Bhf Selnau. ODEON does full private hire by custom agreement including weekday all-day bookings (unlike many Zurich cafés), and has hosted film-premieres, political events, and birthdays up to full-house scale. Good bilingual fit (both DE + EN published), in-house champagne-by-glass program. Note the address is on the Limmat street (not the Sihl); cross-check the exact 'by Bahnhof Selnau' proximity against the brief before short-listing.",
+    "img": "https://fredhotelsallink-live-df2cb5dada9a4075a-471e907.divio-media.net/filer_public_thumbnails/filer_public/16/c6/16c67c76-828b-4f18-a120-41eed8cd4372/fredtschanz-odeon-mood2022-allink-dsc04828.jpg__992x496_q75_HIGH_RESOLUTION_crop_subsampling-2.jpg",
+    "alt": "ODEON art-nouveau café interior with marble, brass and chandeliers",
+    "top": false
+  },
+  {
+    "k": "caf_auer_co",
+    "name": "Café Auer & Co. at Impact Hub Colab",
+    "area": "City / Selnau (Kreis 1, Sihl riverfront by Bahnhof Selnau)",
+    "type": "coffee",
+    "addr": "Sihlquai 131, 8005 Zürich (Kreis 5, at Limmatplatz — borderline outside the strict Selnau/Kreis-1 target)",
+    "cap": "Café floor + terrace est ~<b><b>80</b></b> seated / <b>120</b> standing (est); large Colab meeting/event spaces expandable from 8 → 150 via the shared Impact Hub booking stack",
+    "flag": "contact",
+    "link": "https://www.auer.coffee/",
+    "linkText": "Auer & Co — Kaffee, Kultur & Begegnung",
+    "email": "auer@impacthub.ch",
+    "note": "In-house café of Impact Hub Colab (brick warehouse at the north end of Sihlquai, technically Kreis 5, adjacent to Oberer Letten river bath). Open Mon–Fri only (closed weekends), which is actually aligned with a Wed Sep 16 hack-day. Seed via the same Impact Hub Zürich network as Kraftwerk; Comedy Kiss series + regular 'Auer Events' track record proves public event-hosting willingness. Flag: the address is just outside the strict Kreis 1 Selnau radius — treat as a backup sibling to Kraftwerk if Selnau proper proves saturated.",
+    "img": null,
+    "alt": "Auer & Co café in red-brick courtyard warehouse by Limmatplatz",
+    "top": false
+  },
+  {
+    "k": "kraftwerk_impact_hub",
+    "name": "Kraftwerk (Impact Hub Zürich Kraftwerk)",
+    "area": "City / Selnau (Kreis 1, Sihl riverfront by Bahnhof Selnau)",
+    "type": "cowork",
+    "addr": "Selnaustrasse 25, 8001 Zürich",
+    "cap": "Event Space: <b><b>160</b></b> theater / <b>250</b> flying apéro / <b>500</b> party; Kommandoraum <b>50</b>; Sihl terrace <b>100</b>; whole venue exklusiv up to <b>800</b>",
+    "flag": "dedicated",
+    "link": "https://kraftwerk.zuerich/eventlocation-zuerich",
+    "linkText": "Eventlocation Zürich: Einzigartige Räume buchen",
+    "email": "contact@kraftwerk.zuerich",
+    "note": "Former ewz transformer hall 150m from Bahnhof Selnau, run with Impact Hub Zürich — café/bar + coworking + stage/AV event space that already hosts tech meetups, talks and Zürich Music Week; the bilingual tech-week coffee/hack fit is exact.",
+    "img": "https://kraftwerk.zuerich/wp-content/uploads/KW_Event-Space_2023_160.jpg",
+    "alt": "Wide shot of the Kraftwerk industrial event hall with tables and stage lighting",
+    "top": true
+  },
+  {
+    "k": "office_lab_sihlcity",
+    "name": "Office LAB Sihlcity",
+    "area": "City / Selnau (Kreis 1, Sihl riverfront by Bahnhof Selnau)",
+    "type": "cowork",
+    "addr": "Kalandergasse 1, 8045 Zürich",
+    "cap": "Event rooms Odermatt/Cancellara/Frei, combinable, up to <b><b>200</b></b> people; boardrooms + breakout rooms",
+    "flag": "dedicated",
+    "link": "https://www.officelab.ch/sihlcity",
+    "linkText": "Coworking Zürich Sihlcity | Office LAB",
+    "email": "joinus@officelab.ch",
+    "note": "Modern all-inclusive coworking+conferencing floor in Sihlcity on the Sihl riverfront (S-Bahn stop Sihlcity Nord); high ceilings, terrace, catering/tech/event management included — scales cleanly to the upper end of the 50–200 band.",
+    "img": "https://cdn.prod.website-files.com/67b7357f78fede6b574b19eb/67dad566efc77b1c7e8da257_event.webp",
+    "alt": "Office LAB Sihlcity bright event room with high ceilings and lounge seating",
+    "top": false
+  },
+  {
+    "k": "coworking_lounge_tessinerplatz",
+    "name": "Coworking Lounge Tessinerplatz",
+    "area": "City / Selnau (Kreis 1, Sihl riverfront by Bahnhof Selnau)",
+    "type": "cowork",
+    "addr": "Tessinerplatz 7, 8002 Zürich",
+    "cap": "Event Space up to <b><b>50</b></b> people (published); ~500 m² total, coffee bar + coworking floor",
+    "flag": "dedicated",
+    "link": "https://www.tessinerplatz.ch/en/book-room/eventspace",
+    "linkText": "Event Space for every Event > Request now!",
+    "email": "info@tessinerplatz.ch",
+    "note": "Boutique coffee-bar coworking at Enge, a 7-minute walk from Bahnhof Selnau along the Selnau/Enge corridor; instant hourly/day booking with AV, catering and coffee service — right fit for the smaller (50-side) bilingual coffee/hack format.",
+    "img": "https://cdn.prod.website-files.com/5be2c2a5f498fc628d27a3aa/622b9ad9f8a8f0834212069f_Tessinerplatz.jpg",
+    "alt": "Wide interior of the Coworking Lounge Tessinerplatz coffee bar and open workspace",
+    "top": false
+  },
+  {
+    "k": "stageone_event_convention",
+    "name": "StageOne Event & Convention Hall",
+    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "type": "coffee",
+    "addr": "Elias-Canetti-Strasse 146, 8050 Zürich (Oerlikon)",
+    "cap": "MainHall <b><b>500</b></b> conf / <b>800</b> cocktail; SideHall <b>750</b> / <b>950</b>; total up to <b>2,000</b>",
+    "flag": "dedicated",
+    "link": "https://www.stage-one.ch",
+    "linkText": "stage-one.ch",
+    "email": "info@stage-one.ch",
+    "note": "The ETH AI Center's own flagship venue (hosts AI+X Summit and the Swiss Coffee Festival) on the former ABB grounds — walking distance to the ETH AI Center, industrial hall + in-house catering makes a 50-200 tech-week coffee/hack day easy to stage.",
+    "img": "https://stage-one.ch/wp-content/uploads/2026/01/DSC_4905-scaled.jpg",
+    "alt": "Industrial event hall with ambient lighting rigs and event seating",
+    "top": true
+  },
+  {
+    "k": "giesserei_oerlikon_fidel",
+    "name": "Giesserei Oerlikon (Fidel Gastro AG)",
+    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "type": "coffee",
+    "addr": "Birchstrasse 108, 8050 Zürich-Oerlikon",
+    "cap": "Rooms from <b><b>26–80</b></b> (Szenograf / Hofkunstloft) to <b>96–220</b> (Cheminée / Werkstatt); whole venue up to <b>850</b>",
+    "flag": "dedicated",
+    "link": "https://diegiesserei.ch/raumangebot/",
+    "linkText": "diegiesserei.ch/raumangebot",
+    "email": "info@diegiesserei.ch",
+    "note": "Post-industrial restaurant/event café in a former metal foundry, in operation since 1996 and actively hosting corporate + private events; dedicated events team with per-room capacities and terraces gives a relaxed coffee-house shape inside a tech-week-sized footprint. Back from Betriebsferien on Aug 11, 2026 — open Sep 16.",
+    "img": "https://diegiesserei.ch/wp-content/uploads/2025/04/cheminee-raum-11-1024x683.jpg",
+    "alt": "Industrial-chic brick event room with cheminée and warm lighting",
+    "top": false
+  },
+  {
+    "k": "chicago_1928_halle",
+    "name": "Chicago 1928 — Halle 550",
+    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "type": "coffee",
+    "addr": "Halle 550, Ricarda-Huch-Strasse, 8050 Zürich-Oerlikon",
+    "cap": "<b>300</b>m²; banquet <b>112–168</b>, theater ~<b>176</b>, exclusive rental up to <b>220</b>",
+    "flag": "dedicated",
+    "link": "https://chicago1928.ch/en",
+    "linkText": "chicago1928.ch/en",
+    "email": "info@chicago1928.ch",
+    "note": "Jazz-age themed event location that already hosts ETH AI Center events (Zurich AI Festival closing), StageOne's partner hall next door — English site, published floor plans, and in-house catering make exclusive rental for up to 220 a turnkey fit.",
+    "img": "https://chicago1928.ch/wp-content/uploads/2025/11/CHI-Web-19-1024x819.jpg",
+    "alt": "Wide industrial hall dining room with 1920s decor and long banquet tables",
+    "top": false
+  },
+  {
+    "k": "halle_622",
+    "name": "Halle 622",
+    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "type": "coffee",
+    "addr": "Therese-Giehse-Strasse 10, 8050 Zürich Oerlikon",
+    "cap": "Foyer <b><b>350</b></b> conf / <b>600</b> reception; hall + gallery up to <b>1,600–2,000</b> (max venue 3,500, est)",
+    "flag": "contact",
+    "link": "https://www.zuerich.com/en/visit/place/halle-622",
+    "linkText": "zuerich.com — Halle 622",
+    "email": "info@bymaag.ch",
+    "note": "Pillar-free event hall with a spacious 880 m² foyer two minutes from Oerlikon Bahnhof — the foyer alone fits a 50-200 coffee/hack crowd with room for sponsor pods; MAAG events team handles corporate bookings.",
+    "img": null,
+    "alt": "Large open foyer with bar column-free industrial hall beneath gallery",
+    "top": false
+  },
+  {
+    "k": "fusio_oerlikon",
+    "name": "FUSIO Oerlikon",
+    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "type": "coffee",
+    "addr": "Max-Bill-Platz 15, 8050 Zürich",
+    "cap": "Group/private hire for ~<b><b>150</b></b> guests (est from eventlokale; no published room count)",
+    "flag": "contact",
+    "link": "https://fusio.ch/oerlikon",
+    "linkText": "fusio.ch/oerlikon",
+    "email": null,
+    "note": "Modern Italian restaurant-bar right on Max-Bill-Platz with a summer garden; their FAQ explicitly offers whole-venue private hire via an event form — works for a smaller coffee/hack morning or evening apéro in the 50-150 band.",
+    "img": "https://fusio.ch/wp-content/uploads/2024/11/FUSIO_Olten-FUSIO_Oerlikon_Italian-Restaurant_Hand_1.webp",
+    "alt": "Restaurant interior with open kitchen pizza counter and tiled walls",
+    "top": false
+  },
+  {
+    "k": "zum_frischen_max",
+    "name": "Zum Frischen Max",
+    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "type": "coffee",
+    "addr": "Max-Frisch-Platz 25a, 8050 Zürich (by Bahnhof Oerlikon)",
+    "cap": "Open-air summer garden, group reservations from <b><b>8</b></b>; eventlokale-style capacity ~<b>100–200</b> standing in tipis/garden (est)",
+    "flag": "contact",
+    "link": "https://www.zumfrischenmax.ch/zfm/de.html",
+    "linkText": "zumfrischenmax.ch",
+    "email": "info@zumfrischenmax.ch",
+    "note": "MAAG's shady summer garden next to Oerlikon station — casual coffee-and-street-food format with tipis and shade, sells itself for group/company bookings; seasonal (April–end September) and weather-dependent, so treat as the relaxed open-air option for a hack-day wind-down rather than the all-weather base.",
+    "img": null,
+    "alt": "Shady urban summer garden with wooden tables tipis and string lights",
+    "top": false
+  },
+  {
+    "k": "giesserei_oerlikon_restaurant",
+    "name": "Giesserei Oerlikon (Restaurant & Eventlocation)",
+    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "type": "cowork",
+    "addr": "Birchstrasse 108, 8050 Zürich-Oerlikon",
+    "cap": "<b>8</b>rooms up to <b>140</b> restaurant / <b>160</b> exclusive hire; Metalli <b>120</b> banquet / <b>200</b> reception; Terrasse <b>200</b>",
+    "flag": "dedicated",
+    "link": "https://www.diegiesserei.ch/en/events",
+    "linkText": "diegiesserei.ch/en/events — Exclusive event rooms, tailor-made events",
+    "email": "info@diegiesserei.ch",
+    "note": "Post-industrial foundry hall 8 min from Oerlikon station that runs 650+ corporate/tech banquets a year and rents rooms for seminars, conferences and team events — the 50–200 band slots straight into the Cheminée/Metalli combo with full in-house catering. Reopens from summer closure on Aug 11, 2026, well before Sep 16.",
+    "img": "https://diegiesserei.ch/wp-content/uploads/2025/04/cheminee-raum-11-1024x683.jpg",
+    "alt": "Cheminée room: wide former-foundry event space with long tables and pendant lighting",
+    "top": false
+  },
+  {
+    "k": "swiss_game_hub",
+    "name": "Swiss Game Hub",
+    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "type": "cowork",
+    "addr": "Erika-Mann-Strasse 11, 8050 Zürich (Oerlikon)",
+    "cap": "Auditorium <b><b>42</b></b> seated; full creative hall up to <b>108</b> (per Zurich Convention Bureau); ~<b>100+</b> hack-day layout w/ breakout rooms (est)",
+    "flag": "dedicated",
+    "link": "https://www.swissgamehub.com/meetingrooms",
+    "linkText": "swissgamehub.com/meetingrooms — book the space",
+    "email": "venue@swissgamehub.com",
+    "note": "2,400 m² cowork/event hall 3 min from Oerlikon HB, purpose-built for dev communities — the exact room-shape of a builder hack day, with coffee/water included and a track record of game-dev meetups; the same building hosts Bluelion's ETH AI Center-linked AI hub, so an AI-crowd takeover is a proven pattern. Max ~108 caps the top end of the 200 band.",
+    "img": "https://www.zuerich.com/sites/default/files/image/2025/web_zurich_venue_swiss_game_hub_coworking_PT_57636.jpg",
+    "alt": "Wide industrial coworking hall with desks,Meeting pods and mezzanine at Swiss Game Hub",
+    "top": false
+  },
+  {
+    "k": "halle_622_maag",
+    "name": "Halle 622 (MAAG Music & Arts)",
+    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "type": "cowork",
+    "addr": "Therese-Giehse-Strasse 10, 8050 Zürich-Oerlikon",
+    "cap": "Foyer <b><b>350</b></b> theater / <b>600</b> reception; Halle 622 + Gallery 20–<b>3,500</b>; a 50–200 crowd fits the foyer band or a sectioned hall",
+    "flag": "dedicated",
+    "link": "https://www.halle622.ch/622/de.html",
+    "linkText": "halle622.ch — Die Location für unvergessliche Events",
+    "email": "info@bymaag.ch",
+    "note": "Swiss Location Award winner 2 min from Oerlikon HB, run by a dedicated MAAG events team used to corporate formats; pillar-free 1,818 m² hall plus an 880 m² foyer means a 100–200 person coffee/hack day can take the foyer alone and stay intimate, or spill into the hall. Less café-cozy than the others, but proven tech-expo infrastructure.",
+    "img": "https://www.zuerich.com/sites/default/files/webhalle.jpg",
+    "alt": "Wide pillar-free industrial hall interior of Halle 622 with gallery",
+    "top": false
+  },
+  {
+    "k": "bluelion_ai_coworking",
+    "name": "Bluelion AI Coworking Space Oerlikon",
+    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "type": "cowork",
+    "addr": "Erika-Mann-Strasse 11, 8050 Zürich (Oerlikon)",
+    "cap": "<b><b>26</b></b> desks on one floor; hack-day takeover ~<b>50–80</b> combined with adjacent Swiss Game Hub space (est)",
+    "flag": "contact",
+    "link": "https://bluelion.ch/space/coworking-fixed-desk-oerlikon",
+    "linkText": "bluelion.ch — AI Coworking Space Oerlikon",
+    "email": null,
+    "note": "ETH AI Center-co-launched AI startup hub that already hosted its first hackathon (Zurich Builds / mimic / Loki Robotics / OpenAI) weeks after opening — the strongest builder-trace in the neighborhood, 2 min from Oerlikon HB. Standalone it's small for 200, but as a coffee/hack-day anchor at 50–80 people or in tandem with the Game Hub floor below, it's the most on-theme room on the axis; book via the site's booking-request form.",
+    "img": "https://bluelion.ch/wp-content/uploads/2025/05/oerlikon_ai-hub-1-scaled.jpeg",
+    "alt": "Open AI coworking floor with rows of desks and café tables at Bluelion Oerlikon",
+    "top": false
+  }
+];
+
+/* ============================ EDIT ABOVE ============================ */
+
+const state = { area: "all", type: "all", dedicatedOnly: false };
+const AREAS = [...new Set(VENUES.map(v => v.area))];
+const typeKeys = Object.keys(TYPE_META);
+const tcls = t => "t" + (typeKeys.indexOf(t) % 3);
+
+function initials(name){
+  return name.replace(/[^a-zA-Z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join("");
+}
+function mapsUrl(v){
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(v.name + " " + v.addr);
+}
+function card(v){
+  const t = TYPE_META[v.type] || { label: v.type, icon: "📍" };
+  const flagHtml = v.flag === "dedicated"
+    ? '<span class="flag dedicated">✓ Dedicated events page</span>'
+    : '<span class="flag contact">✉ Events contact only</span>';
+  const imgHtml = v.img
+    ? `<img src="${v.img}" alt="${v.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.card').classList.add('noimg')">`
+    : "";
+  const emailBtn = v.email ? `<a class="btn sec" href="mailto:${v.email}">${v.email}</a>` : "";
+  return `<div class="card${v.img ? "" : " noimg"}">
+    <div class="imgbox">
+      ${imgHtml}
+      <div class="ph ${tcls(v.type)}"><span class="icn">${t.icon}</span><span class="mono">${initials(v.name)}</span></div>
+      ${v.top ? '<div class="toppick">★ Top pick</div>' : ""}
+      <div class="areatag">${v.area}</div>
+    </div>
+    <div class="body">
+      <div class="titlerow"><div class="vname">${v.name}</div><span class="typechip ${tcls(v.type)}">${t.icon} ${t.label}</span></div>
+      <div class="addr"><a href="${mapsUrl(v)}" target="_blank" rel="noopener">📍 ${v.addr}</a></div>
+      <div class="cap">${v.cap}</div>
+      ${flagHtml}
+      <div class="note">${v.note}</div>
+      <div class="links"><a class="btn pri" href="${v.link}" target="_blank" rel="noopener">${v.linkText} ↗</a>${emailBtn}</div>
+    </div>
+  </div>`;
+}
+function render(){
+  const match = v =>
+    (state.area === "all" || v.area === state.area) &&
+    (state.type === "all" || v.type === state.type) &&
+    (!state.dedicatedOnly || v.flag === "dedicated");
+  const shown = VENUES.filter(match);
+  const areas = AREAS.filter(a => state.area === "all" || a === state.area);
+  let html = "";
+  for (const a of areas){
+    const items = shown.filter(v => v.area === a);
+    if (!items.length) continue;
+    const hint = typeKeys.map(k => {
+      const n = items.filter(v => v.type === k).length;
+      return n ? `${n} ${TYPE_META[k].label.toLowerCase()}` : null;
+    }).filter(Boolean).join(" · ");
+    html += `<div class="section-h"><h2>${a}</h2><span class="hint">${hint}</span></div>
+             <div class="grid">${items.map(card).join("")}</div>`;
+  }
+  document.getElementById("content").innerHTML = html || '<div class="empty">No venues match these filters.</div>';
+  document.getElementById("count").textContent = `Showing ${shown.length} of ${VENUES.length} venues`;
+}
+function buildChips(el, values, key){
+  el.innerHTML = `<button class="chip on" data-v="all">All ${key === "area" ? "areas" : "types"}</button>` +
+    values.map(v => `<button class="chip" data-v="${v.v}">${v.label}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(btn => btn.addEventListener("click", () => {
+    el.querySelectorAll(".chip").forEach(b => b.classList.remove("on"));
+    btn.classList.add("on");
+    state[key] = btn.dataset.v;
+    render();
+  }));
+}
+function init(){
+  if (document.title === "Compute Cafe") document.title = CONFIG.title; // standalone use only; built pages keep their spliced title
+  document.getElementById("kicker").textContent = CONFIG.kicker;
+  document.getElementById("title").textContent = CONFIG.title;
+  document.getElementById("subtitle").textContent = CONFIG.subtitle;
+  const dedicated = VENUES.filter(v => v.flag === "dedicated").length;
+  const stats = [
+    { n: String(VENUES.length), l: "venues vetted" },
+    { n: String(dedicated), l: "with dedicated events pages" },
+    { n: String(AREAS.length), l: AREAS.length === 1 ? "neighborhood" : "neighborhoods" },
+  ];
+  if (CONFIG.extraStat) stats.push(CONFIG.extraStat);
+  document.getElementById("stats").innerHTML =
+    stats.map(s => `<div class="stat"><div class="n">${s.n}</div><div class="l">${s.l}</div></div>`).join("");
+  document.getElementById("foot").innerHTML =
+    CONFIG.footnotes.map(f => `<div class="fnote">${f}</div>`).join("") +
+    `<div class="prov">${CONFIG.provenance}</div>`;
+  buildChips(document.getElementById("f-area"), AREAS.map(a => ({v:a, label:a})), "area");
+  buildChips(document.getElementById("f-type"), typeKeys.map(k => ({v:k, label:`${TYPE_META[k].icon} ${TYPE_META[k].label}s`})), "type");
+  const flagBtn = document.querySelector('#f-flag .chip');
+  flagBtn.addEventListener("click", () => {
+    state.dedicatedOnly = !state.dedicatedOnly;
+    flagBtn.classList.toggle("on", state.dedicatedOnly);
+    render();
+  });
+  render();
+}
+function cycleTheme(){
+  const r = document.documentElement;
+  const cur = r.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : cur === "light" ? "dark"
+    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
+  r.setAttribute("data-theme", next);
+}
+init();
+</script>
+</body>
+</html>
