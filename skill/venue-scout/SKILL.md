@@ -53,12 +53,19 @@ Work `references/venue-sources.md` top-down before any cold search:
 3. **Tier 2/3 — venue-native series and meta-directories** (CreativeMornings,
    Luma Discover): right venue shape, broader crowd.
 
-Rules: a tour trace is a **seed, never a verification bypass** — every lead
-still passes Step 2's fetch-verification (venues close between tours). Log
-the event-page fetch like any other evidence (`used_for: "tour-trace seed via
-<series>"`). Luma pages may hide the street address until registration, but
-the venue *name* is public — enough to seed. A tour stop at a sponsor's
-private office is a partner lead, not a venue, unless it's publicly bookable.
+Rules: a tour trace is a **seed, never a verification bypass**. A trace
+proves hosting *history*, not current existence — every seed still gets a
+fresh fetch of the venue's own site/events page in Step 2 before it may ship
+(venues close between tours). Log the event-page fetch like any other
+evidence (`used_for: "tour-trace seed via <series>"`). Every seed carries a
+one-line **room-shape fit note** — why it suits the ~50-200 coffee/hack
+format, not just who hosted there (a web3 gala hall proved a crowd, not our
+room). For non-EN cities, sweep the sources in the **local language** before
+concluding no trace exists — the source list is English-first and
+undercounts local scenes. Luma pages may hide the street address until
+registration, but the venue *name* is public — enough to seed. A tour stop
+at a sponsor's private office is a partner lead, not a venue, unless it's
+publicly bookable.
 
 ## Step 2 — Research with verification (subagents)
 

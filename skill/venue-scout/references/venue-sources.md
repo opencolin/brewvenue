@@ -5,11 +5,13 @@ hackable café / event space in city X" — and their past event pages *name the
 A venue that hosted a 50–300 person builder event is a pre-vetted seed candidate: proven
 capacity, proven event-hosting willingness, proven tech-crowd fit. Researched Aug 2026.
 
-**How this feeds the pipeline:** these are **seed sources for the Frame + Discover stages**
-(plan §4, stages 1–2), not a verification bypass. Every harvested lead still goes through
-Verify; the event page fetch gets its own evidence-log line
-(`used_for: "tour-trace seed via <series>"`). Bonus: the event page itself is stronger
-capacity evidence than the venue's own marketing copy.
+**How this feeds the pipeline:** these are **seed sources for SKILL.md Step 1 (framing)
+and Step 1.5 (the seed pass), feeding Step 2 (discovery)** — not a verification bypass.
+Every harvested lead still goes through Step 2's fetch-verification, and the event-page
+fetch gets its own line in the evidence log (the running record of every URL fetched —
+see SKILL.md Step 2's non-negotiables) tagged `used_for: "tour-trace seed via <series>"`.
+Bonus: the event page itself is stronger capacity evidence than the venue's own
+marketing copy.
 
 ---
 
@@ -34,6 +36,10 @@ capacity evidence than the venue's own marketing copy.
     the best current inroad for Seoul, our weakest-coverage target.
   - Repeat co-hosts across cities: EduDAO, Pool, Polygon Labs, Zo House — partner-first
     channels for venue intros in new cities.
+- **Fit caveat:** Dabl's history skews web3-shaped (Devcon/Token2049/KBW audiences), which
+  is not automatically our bilingual AI-engineering coffee-hack room. Every Tier 0 seed
+  needs the room-shape fit note (see Caveats) — a venue that said yes to a KBW side event
+  proved willingness, not that it's the right room.
 
 ## Tier 1 — AI-builder tours (event shape = exact match)
 
@@ -45,8 +51,9 @@ capacity evidence than the venue's own marketing copy.
   (Upcoming + Past tabs) → each event's Luma page names the café. Announcements also in
   the [Cursor forum events category](https://forum.cursor.com/c/events/15).
 - **Target-city hits (confirmed):** Stockholm, Toronto, Tokyo, NYC (Brooklyn café,
-  Aug 12 2026) — plus Taipei, Bangkok, Bangalore and a large pipeline; re-check the
-  calendar per city at research time.
+  Aug 12 2026) — plus Taipei, Bangkok, Bangalore and a large pipeline.
+- **Missing (Aug 2026):** London, Seoul, KL, Singapore, Berlin, Tel Aviv, Zurich, Paris,
+  Barcelona, Amsterdam, Boston — the pipeline grows weekly; re-sweep at research time.
 
 ### 2. ElevenLabs Worldwide Hackathon
 - **What:** simultaneous one-evening hackathons in 30 cities
@@ -66,14 +73,17 @@ capacity evidence than the venue's own marketing copy.
   browsable past events + venues; full directory at
   [aitinkerers.org/all_cities](https://aitinkerers.org/all_cities).
 - **Target-city hits:** NYC, Boston, London, Paris, Singapore, Berlin, Amsterdam,
-  Toronto confirmed; check the directory for the rest.
+  Toronto confirmed.
+- **Missing/unconfirmed:** Tokyo, Seoul, KL, Stockholm, Tel Aviv, Zurich, Barcelona —
+  check `/all_cities` before concluding no chapter exists.
 
 ### 4. Lovable community world tour
 - **What:** Lovable's global meetup series (free-credits format, venue-hosted).
 - **Where the venues live:** [luma.com/lovabledev](https://luma.com/lovabledev) +
   [community.lovable.app/events](https://community.lovable.app/events). Event pages name
   hosts (e.g. Toronto @ Rootly HQ, São Paulo @ Vibe Space).
-- **Target-city hits:** Toronto confirmed; calendar is active — sweep per city.
+- **Target-city hits:** Toronto confirmed only; all other targets unconfirmed —
+  sweep the calendar per city.
 
 ### 5. Supabase Launch Week community meetups
 - **What:** community-run meetups in dozens of cities every Launch Week.
@@ -81,18 +91,26 @@ capacity evidence than the venue's own marketing copy.
   LW's community-meetups blog post (e.g.
   [LWX](https://supabase.com/blog/community-meetups-lwx)) → per-city Luma pages
   (e.g. [London](https://luma.com/supabase-london-11)).
-- **Target-city hits:** London confirmed; global spread — sweep per city.
+- **Target-city hits:** London confirmed only; global spread but all other targets
+  unconfirmed — sweep the per-LW blog post for each city.
 
 ### 6. ClawCon
 - **What:** free multi-city "Festival for Personal AI" evening meetups (OpenClaw
   community) — deliberately social-first rather than a gated developer conference, so
-  its venues skew toward the bar/café/event-space shape we want. Seattle edition drew
-  325+ attendees — capacity signal at the top of our band. Actively recruiting local
-  hosts, so it's a partner lead as well as a venue source.
+  its venues skew toward the bar/café/event-space shape we want. The Seattle edition's
+  Luma listing showed 325+ attendees (a Luma RSVP count — treat as approximate until a
+  host recap confirms the room actually held that). Actively recruiting local hosts, so
+  it's a partner lead as well as a venue source.
 - **Where the venues live:** [claw-con.com](https://claw-con.com) +
-  [luma.com/clawcon](https://luma.com/clawcon) → per-event Luma pages name venues.
-- **Target-city hits:** Toronto, Boston, London, NYC (plus SF/LA already live, and
-  Madrid/Dublin near the stretch list).
+  [luma.com/clawcon?period=past](https://luma.com/clawcon?period=past) → per-event Luma
+  pages name venues. Venue names also surface in event titles ("ClawCon Shanghai @
+  muShanghai") and co-host lists (ClawCon Dublin's co-host is Dogpatch Labs — that's the
+  venue). Past-calendar RSVP counts are public: Toronto +437, Boston +470, Dublin +398.
+- **Target-city hits:** Toronto (May 2026, +437), Boston (Apr 2026, +470),
+  **Singapore** (May 2026), London, NYC (plus SF/LA already live, and Madrid/Dublin
+  near the stretch list). Older stops sit deeper in the past-calendar scroll.
+- **Missing:** Tokyo, Seoul, KL, Stockholm, Berlin, Tel Aviv, Zurich, Paris,
+  Barcelona, Amsterdam.
 
 ## Tier 2 — venue-native global series (venue shape = exact match)
 
@@ -103,7 +121,9 @@ capacity evidence than the venue's own marketing copy.
 - **Where the venues live:** [creativemornings.com/cities](https://creativemornings.com/cities)
   → chapter pages list each month's host venue (e.g. Stockholm's chapter venue:
   United Spaces).
-- **Target-city hits:** effectively all 15 (Toronto, Stockholm, Berlin confirmed directly).
+- **Target-city hits:** Toronto, Stockholm, Berlin confirmed directly. The 238-chapter
+  directory likely covers most targets, but **confirm the chapter exists and is active
+  per city** before counting on it — do not treat the network's size as coverage.
 
 ## Tier 3 — meta-directories (per-city sweeps)
 
@@ -116,9 +136,22 @@ capacity evidence than the venue's own marketing copy.
 
 ---
 
+## Coverage gaps (be honest about the negative)
+
+**Kuala Lumpur, Zurich, and Barcelona have zero confirmed tour-trace seeds in any tier.**
+**Seoul** has exactly one inroad — the Dabl Club KBW sub-calendar — and it's a different
+audience shape (see the Tier 0 fit caveat). For these four cities:
+
+- Local-language sweeps and cold discovery remain the *primary* method, with tour traces
+  as opportunistic extras — do not let an empty trace sweep eat the research budget.
+- Log "no tour trace found for {city} across Tiers 0–3" as a framing finding so the
+  next run doesn't re-derive it.
+
 ## Query recipes (Discover stage)
 
 ```
+luma.com/<calendar>?period=past   ← append to ANY Luma calendar: jumps straight to
+                                    the archive; RSVP counts (+N) are public there
 site:luma.com "{city}" cafe cursor OR "cafe cursor {city}"
 site:{city-slug}.aitinkerers.org
 "supabase meetup" {city} luma
@@ -126,10 +159,25 @@ creativemornings.com/cities → chapter → past talks → venue names
 "{series} {city}" venue    (for any tour above)
 ```
 
+Luma calendar pages are JS-rendered — plain fetches often return no events. Render
+them in a browser (or a headless fetch that executes JS) before concluding a calendar
+is empty. RSVP counts are registration numbers, not room capacity — treat as an upper
+bound on interest, not a capacity figure.
+
 ## Caveats
 
-- **Staleness:** a venue that hosted a 2024 event may be closed by 2026 — tour traces
-  are seeds, never verification. The Verify stage and evidence contract stay mandatory.
+- **Staleness:** a venue that hosted a 2024 event may be closed by 2026 — a trace proves
+  hosting *history*, not current existence. Every seed still gets a fresh fetch of the
+  venue's own site/events page in Step 2 (SKILL.md) before it may ship, logged to the
+  evidence log like any other verification.
+- **Room-shape fit:** hosting history alone isn't fit. Every harvested seed must carry a
+  one-line fit note — *why* it matches the ~50–200 coffee/hack shape (capacity band,
+  coffee service, hack-day layout) — not just who hosted there. A web3 gala hall or a
+  KBW conference room proved a crowd showed up, not that it's our room.
+- **Local-language sweep:** this source list is English-first and undercounts local
+  scenes. For non-EN cities (Seoul, KL, Zurich, Barcelona, Tokyo…), sweep chapters and
+  Luma in the local language (한국어, Bahasa Melayu, Deutsch, Català/Español, 日本語)
+  before concluding "no trace exists."
 - **Luma address gating:** some Luma pages hide the street address until registration,
   but the venue *name* is public — enough to seed discovery.
 - **Private offices:** tour stops at sponsor HQs (e.g. a startup's office) are leads for
