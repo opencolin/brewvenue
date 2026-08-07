@@ -25,6 +25,8 @@
     --accent-a-soft: rgba(235,104,52,0.12);
     --accent-b: #2a78d6;
     --accent-b-soft: rgba(42,120,214,0.12);
+    --accent-c: #6f4fce;
+    --accent-c-soft: rgba(111,79,206,0.12);
     --good: #0ca30c;
     --good-soft: rgba(12,163,12,0.10);
     --chip-on: #0b0b0b;
@@ -33,6 +35,8 @@
     --ph-b: #e8d5c2;
     --ph-c: #dde8f3;
     --ph-d: #c9d9ec;
+    --ph-e: #e7ddf3;
+    --ph-f: #d6c8ec;
     --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
   }
   @media (prefers-color-scheme: dark) {
@@ -43,9 +47,11 @@
       --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
       --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
       --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+      --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
       --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
       --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
       --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+      --ph-e: #291f38; --ph-f: #382a4e;
       --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
     }
   }
@@ -56,9 +62,11 @@
     --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
     --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
     --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+    --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
     --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
     --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
     --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+    --ph-e: #291f38; --ph-f: #382a4e;
     --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -117,6 +125,7 @@
   .card.noimg img { display: none; }
   .ph.t0 { background: linear-gradient(135deg, var(--ph-a), var(--ph-b)); }
   .ph.t1 { background: linear-gradient(135deg, var(--ph-c), var(--ph-d)); }
+  .ph.t2 { background: linear-gradient(135deg, var(--ph-e), var(--ph-f)); }
   .ph .mono { font-size: 30px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-2); opacity: 0.85; }
   .ph .icn { font-size: 22px; }
   .toppick {
@@ -135,6 +144,7 @@
   .typechip { flex: none; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; margin-top: 1px; }
   .typechip.t0 { color: var(--accent-a); background: var(--accent-a-soft); }
   .typechip.t1 { color: var(--accent-b); background: var(--accent-b-soft); }
+  .typechip.t2 { color: var(--accent-c); background: var(--accent-c-soft); }
   .addr { font-size: 12.5px; }
   .addr a { color: var(--ink-3); text-decoration: none; }
   .addr a:hover { color: var(--ink-1); text-decoration: underline; }
@@ -324,7 +334,7 @@ const VENUES = [
 const state = { area: "all", type: "all", dedicatedOnly: false };
 const AREAS = [...new Set(VENUES.map(v => v.area))];
 const typeKeys = Object.keys(TYPE_META);
-const tcls = t => "t" + (typeKeys.indexOf(t) % 2);
+const tcls = t => "t" + (typeKeys.indexOf(t) % 3);
 
 function initials(name){
   return name.replace(/[^a-zA-Z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join("");

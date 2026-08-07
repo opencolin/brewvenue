@@ -20,9 +20,9 @@ SF and LA are done (manual runs, live today). The pilot exists to tune prompts a
 
 ## 2. What each city run must produce (the contract)
 
-1. `venues.json` — 15–22 venues in the explorer schema (`k, name, area, type, addr, cap, flag, link, linkText, email, note, img, alt, top`), plus a `CONFIG` block (title, dates stat, neighborhood-analysis footnote, closed-venues footnote, provenance).
-2. `evidence.jsonl` — one line per URL the agent fetched: URL, HTTP outcome, timestamp, what it was used for. **Any link that appears in venues.json must have a successful fetch in the evidence log.** This is the anti-hallucination contract, enforced by the harness, not by prompting alone.
-3. `city/index.html` — assembled **deterministically by a build script** from venues.json + the venue-scout explorer template (no LLM in the build step; nothing to hallucinate).
+1. `configs/<city>_config.js` — the venue data of record (what earlier drafts called `venues.json`): 15–22 venues in the explorer schema (`k, name, area, type, addr, cap, flag, link, linkText, email, note, img, alt, top`), plus a `CONFIG` block (title, dates stat, neighborhood-analysis footnote, closed-venues footnote, provenance). This is the format `scripts/build.py` consumes and `scripts/assemble_city_config.py` emits.
+2. `evidence.jsonl` — one line per URL the agent fetched: URL, HTTP outcome, timestamp, what it was used for. **Any link that appears in the city config must have a successful fetch in the evidence log.** This is the anti-hallucination contract, enforced by the harness, not by prompting alone.
+3. `city/index.html` — assembled **deterministically by `scripts/build.py`** from the city config + the venue-scout explorer template (no LLM in the build step; nothing to hallucinate).
 4. A review card for a human: top picks, closures found, low-confidence items flagged.
 
 Quality bar per city (from the venue-scout skill): every link verified · closed venues surfaced, not dropped · capacities marked published vs. estimate · ≥60% of cards with photos (fallback art covers the rest) · honest "too small" flags on seed venues.
@@ -45,7 +45,7 @@ Quality bar per city (from the venue-scout skill): every link verified · closed
 2. **Discover** — per neighborhood × type (cafes / coworking / event spaces), Tavily-search for large, event-capable candidates. Dual-language queries where relevant (JP, KR, MS, SV, DE, HE, FR, ES, NL).
 3. **Verify** — the core stage. For every candidate: Tavily-extract the events/booking page (must load and actually cover events), classify `dedicated` vs `contact` vs drop, check open status ("[venue] closed 2025/2026"), harvest capacity + published email. Closures go to a closed-list, never silently dropped. The harness rejects any venue whose link lacks an evidence-log entry.
 4. **Photos** — from pages already extracted, pick one wide interior/patio shot per venue (venue's own CDN; skip logos/headshots); hotlink with the template's built-in fallback art. Skip robots-blocked sites.
-5. **Build** — script assembles `index.html` from the template + venues.json. Deterministic; runs in the sandbox.
+5. **Build** — `scripts/build.py` assembles `index.html` from the template + the city config. Deterministic; runs in the sandbox.
 6. **QA** — a *fresh* K3 instance (no research context) adversarially re-checks a sample: does each flagged "dedicated" page really cover private events? Then a human skim — ideally the local Fellow/partner for that city, who can catch "that place closed last month" in 5 minutes.
 7. **Ship** — merge to the brewvenue repo/deploy, flip the front-page card.
 
@@ -89,4 +89,4 @@ The two manual runs are the argument. LA: five famous venues (NeueHouse Venice, 
 5. Green-light Wave 1 (APJ) — the Sep 1 deadline is the binding constraint; work backward from it.
 
 ---
-*Prepared Aug 7, 2026 · Companion assets: venue-scout skill (SKILL.md + explorer template), brewvenue.vercel.app repo/deploys, SF & LA venues.json extractable from the live pages.*
+*Prepared Aug 7, 2026 · Companion assets: venue-scout skill (SKILL.md + explorer template), brewvenue.vercel.app repo/deploys, SF & LA city configs in `configs/`.*
