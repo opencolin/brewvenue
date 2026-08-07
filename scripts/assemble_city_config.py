@@ -30,7 +30,20 @@ import json
 import re
 import sys
 
-DISCARD_RE = re.compile(r"\bdropped:\s", re.IGNORECASE)
+# The public "Gone" footnote requires POSITIVE closure evidence in the claim
+# text; everything else (scope/fit discards: "dropped:", "excluded:",
+# "rejected", "Skipped", "kept as 'alt'"...) stays out of the public page.
+# Cities phrase discards differently (Toronto used "dropped:", Tokyo used
+# five other markers), so opt-in beats enumerating discard phrasings.
+CLOSURE_RE = re.compile(
+    r"(?<!not )(?<!isn't )\bclosed\b|\bclosing\b|will not reopen|ceased operations"
+    r"|coming soon|not yet open|domain[^;]{0,60}\bparked\b|閉店",
+    re.IGNORECASE,
+)
+# Search-log lines are discovery, not sources. Agents have encoded searches as
+# "tavily_search: ...", "https://www.tavily.com/search?q=...", and
+# "https://tavily.search?q=..." — treat any tavily.* URL as a search line.
+SEARCH_URL_RE = re.compile(r"^tavily_search:|^https?://[^/]*tavily\.[a-z]+", re.IGNORECASE)
 
 
 def load_evidence(evidence_path):
@@ -63,13 +76,20 @@ def closure_has_fetched_source(claim, recs):
     head = re.split(r"\s+[—\-]|\(", claim, maxsplit=1)[0]
     words = [w for w in re.findall(r"[a-z0-9']+", head.lower()) if w not in ("the", "a", "an")][:2]
     if not words:
+        # CJK-named venue: fall back to Latin words in the first parenthetical,
+        # e.g. "クロスオフィス六本木 (Cross Office Roppongi)" -> cross, office
+        paren = re.search(r"\(([^)]+)\)", claim)
+        if paren:
+            words = [w for w in re.findall(r"[a-z0-9']+", paren.group(1).lower())
+                     if w not in ("the", "a", "an")][:2]
+    if not words:
         return False
     for rec in recs:
         if rec.get("outcome") != "success":
             continue
         url = rec.get("url") or ""
-        if not url.startswith("http"):
-            continue  # tavily_search: pseudo-URLs are discovery, not sources
+        if not url.startswith("http") or SEARCH_URL_RE.match(url):
+            continue  # search-log lines are discovery, not sources
         spaced = re.sub(r"[^a-z0-9']+", " ", (url + " " + (rec.get("used_for") or "")).lower())
         squashed = spaced.replace(" ", "")
         if all(w in spaced.split() or w in squashed for w in words):
@@ -116,8 +136,8 @@ def main():
         cfg.append('    "<b>Neighborhood analysis:</b> ' +
                    research["neighborhood_analysis"].replace('"', '\\"') + '",')
     raw_closures = research.get("closures") or []
-    discards = [c for c in raw_closures if DISCARD_RE.search(c)]
-    closures = [c for c in raw_closures if not DISCARD_RE.search(c)]
+    closures = [c for c in raw_closures if CLOSURE_RE.search(c)]
+    discards = [c for c in raw_closures if not CLOSURE_RE.search(c)]
     unverified = []
     annotated = []
     for c in closures:
