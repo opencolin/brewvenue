@@ -66,7 +66,7 @@ const VENUES = [
     "top": false
   },
   {
-    "k": "dark_horse_espresso",
+    "k": "darkhorseespressospadina",
     "name": "Dark Horse Espresso — Spadina",
     "area": "King West / Spadina–Bathurst corridor (Toronto's densest AI-builder block)",
     "type": "coffee",
@@ -258,7 +258,7 @@ const VENUES = [
     "top": false
   },
   {
-    "k": "dark_horse_espresso",
+    "k": "darkhorseespressobarcanarydistrict",
     "name": "Dark Horse Espresso Bar — Canary District",
     "area": "King East / St. Lawrence / Old Town (King & Yonge to Jarvis)",
     "type": "coffee",
@@ -354,7 +354,7 @@ const VENUES = [
     "top": false
   },
   {
-    "k": "dark_horse_espresso",
+    "k": "darkhorseespressoqueensquaye100queensquaye",
     "name": "Dark Horse Espresso — Queens Quay E (100 Queens Quay E)",
     "area": "East Bayfront / Waterfront (Queens Quay E, Lower Jarvis to Parliament)",
     "type": "coffee",
@@ -367,22 +367,6 @@ const VENUES = [
     "note": "Specialty coffee bar operating on the ground floor of 100 Queens Quay E (same building as The Quay) so hack-day attendees can source serious espresso on-site; Dark Horse explicitly offers evening rentals across its cafes and daytime buy-outs by inquiry via the dedicated events form / contact.",
     "img": null,
     "alt": "Dark Horse Espresso cafe interior at 100 Queens Quay East",
-    "top": false
-  },
-  {
-    "k": "st_lawrence_hall",
-    "name": "St. Lawrence Hall — ClawCon Toronto 2026 venue",
-    "area": "East Bayfront / Waterfront (Queens Quay E, Lower Jarvis to Parliament)",
-    "type": "coffee",
-    "addr": "157 King St E, Toronto, ON M5C 1G9",
-    "cap": "<b>150</b> seated / <b>250</b> standing (Cvent + tagvenue published for the heritage hall)",
-    "flag": "dedicated",
-    "link": "https://www.stlawrencemarket.com/st_lawrence_hall",
-    "linkText": "St Lawrence Hall — City of Toronto / St Lawrence Market rental page (phone, email, floor plan, 360 tour)",
-    "email": "stlawrencemarket@toronto.ca",
-    "note": "Heritage hall at King E x Jarvis (northwest boundary of the cell, a 2-minute walk from Queens Quay E). ClawCon Toronto (May 2026 luma) ran here with +437 RSVPs as a Toronto Tech Week personal-AI meetup — proven pre-vetted builder-event seed with the crowd size and coffee-social flow we need.",
-    "img": null,
-    "alt": "St Lawrence Hall heritage ballroom at 157 King St E, Toronto",
     "top": false
   },
   {
@@ -432,22 +416,6 @@ const VENUES = [
     "img": "https://marsdd-hubs-prod-public-files.s3.amazonaws.com/wp-content/uploads/2024/09/MaRS-Waterfront-Venue-Overview-2024.pdf",
     "alt": "Lake Lounge multi-purpose event space with tiered seating facing a waterfront window",
     "top": true
-  },
-  {
-    "k": "the_quay_toronto",
-    "name": "The Quay (Toronto Region Board of Trade)",
-    "area": "East Bayfront / Waterfront (Queens Quay E, Lower Jarvis to Parliament)",
-    "type": "cowork",
-    "addr": "100 Queens Quay E, 3rd Floor, Toronto, ON M5E 1V3",
-    "cap": "Full buyout <b>725</b> reception; Gala Space <b>410</b> seated / <b>500</b> standing; terrace <b>400</b>",
-    "flag": "dedicated",
-    "link": "https://www.oliverbonacini.com/event-venues/the-quay",
-    "linkText": "The Quay event venue page (capacities + floor plans + events contact)",
-    "email": "events@oliverbonacini.com",
-    "note": "Brand-new 38,000 sq ft purpose-built event floor with modular gala hall (partitions into three). Trade Cafe breakout space, digital studio and 22,000 sq ft terrace make it the headliner-capable room in the cell for the 150-200-person tech-week coffee/hack format.",
-    "img": "https://cdn.oliverbonacininetwork.com/uploads/sites/42/2022/10/gala4-1024x685.jpg",
-    "alt": "Gala Hall with floor-to-ceiling waterfront windows, movable stage and wooden ceiling panels",
-    "top": false
   },
   {
     "k": "boxcar_social_harbourfront",

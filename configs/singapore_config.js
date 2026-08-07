@@ -451,7 +451,7 @@ const VENUES = [
     "top": false
   },
   {
-    "k": "pen_inc_onenorth",
+    "k": "peninconenorthfunctionhallnjgroup",
     "name": "PEN & INC One-North Function Hall (NJ Group)",
     "area": "one-north / Ayer Rajah (BLOCK71, JTC LaunchPad, Fusionopolis, Science Park)",
     "type": "cowork",

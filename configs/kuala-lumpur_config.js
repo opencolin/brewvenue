@@ -99,7 +99,7 @@ const VENUES = [
     "top": false
   },
   {
-    "k": "connexion_conference_event",
+    "k": "connexionconferenceeventcentreccecnexusthevertic",
     "name": "Connexion Conference & Event Centre (CCEC) @ Nexus / The Vertical",
     "area": "Bangsar South (KL Gateway / Nexus / Kerinchi)",
     "type": "cowork",
@@ -115,7 +115,7 @@ const VENUES = [
     "top": true
   },
   {
-    "k": "worq_kl_gateway",
+    "k": "worqklgatewayworqbangsarsouth",
     "name": "WORQ KL Gateway (WORQ Bangsar South)",
     "area": "Bangsar South (KL Gateway / Nexus / Kerinchi)",
     "type": "cowork",
@@ -419,7 +419,7 @@ const VENUES = [
     "top": true
   },
   {
-    "k": "sandbox_coworking_space",
+    "k": "sandboxcoworkingspacebandarsunwaysandboxspace",
     "name": "Sandbox Coworking Space — Bandar Sunway (Sandbox Space)",
     "area": "Bukit Jalil — APU/APIIT campus (with Sunway University as sister node)",
     "type": "cowork",

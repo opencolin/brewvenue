@@ -323,7 +323,7 @@ const VENUES = [
     "top": false
   },
   {
-    "k": "house_of_music",
+    "k": "houseofmusichomstage",
     "name": "House of Music (HoM Stage)",
     "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
     "type": "cowork",

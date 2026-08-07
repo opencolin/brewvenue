@@ -323,7 +323,7 @@ const VENUES = [
     "top": false
   },
   {
-    "k": "meet_in_place",
+    "k": "meetinplace57rothschild",
     "name": "Meet In Place, 57 Rothschild (מיט אין פלייס)",
     "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
     "type": "cowork",
