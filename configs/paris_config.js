@@ -1,12 +1,13 @@
 // Page copy — CONFIG + TYPE_META + VENUES
 const CONFIG = {
-  kicker: "Paris Tech Week · Venue Scout",
+  kicker: "Paris · ComputeCafe",
   title: "Paris — Venue Options",
   subtitle: "Event-capable cafes & event spaces in 13th (Station F / Bibliothèque) / 9th / 12th — for a Sept 18, 2026 bilingual (FR/EN) tech-week coffee/hack event (~50–200 people). Links verified.",
   extraStat: {"n":"Sep 18","l":"Paris event date, 2026"},
   footnotes: [
     "<b>Neighborhood analysis:</b> 13th arrondissement (Station F Founders Café) is where AI Tinkerers Paris launched + the Anthropic AI Agents Hackathon actually ran; 9th (Neon Noir) is the builder community's home; 12th (Ground Control) holds AI Tinkerers' summer networking + apéro formats.",
-    "<b>Gone / don't route inquiries here:</b> 24 closure/discards logged. Note some venues carry license-restricted hours (License III/IV) — verify before booking after 22:30.",
+    "<b>Gone / don't route inquiries here:</b> Anticafé La Fayette (76 rue La Fayette, 75009 Paris): closed — anticafe.eu events subpage now self-headers 'This Anticafé has closed' and Privateaser lists the venue as '(Fermé)' per the Aug 2026 crawl; Creative Room of La Fayette no longer bookable.",
+    "<b>Booking note:</b> Note some venues carry license-restricted hours (License III/IV) — verify before booking after 22:30.",
   ],
   provenance: "Researched Aug 2026 · Bilingual FR/EN · 29 → 29 shipped after contract (drops: none) · Capacities published or estimated.",
 };

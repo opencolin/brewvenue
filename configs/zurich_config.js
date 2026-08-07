@@ -1,12 +1,12 @@
 // Page copy — CONFIG + TYPE_META + VENUES
 const CONFIG = {
-  kicker: "Zurich Tech Week · Venue Scout",
+  kicker: "Zurich · ComputeCafe",
   title: "Zurich — Venue Options",
   subtitle: "Event-capable cafes & event spaces in Zurich West (Kreis 5) / City·Selnau / Oerlikon — for a Sept 16, 2026 bilingual (DE/EN) tech-week coffee/hack event (~50–200 people). Links verified. Hostpoint/Host2Co venues cap early.",
   extraStat: {"n":"Sep 16","l":"Zurich event date, 2026"},
   footnotes: [
     "<b>Neighborhood analysis:</b> Kreis 5/Zurich West (Frau Gerolds Garten, Impact Hub Kraftwerk, Bluelion) is where Zurich AI Club + the Swiss {ai} Weeks events actually ran; City/Selnau (Kraftwerk at Selnaustrasse) is the flagship hackathon address; Oerlikon (ETH AI Center/StageOne) anchors the research-side summits.",
-    "<b>Gone / don't route inquiries here:</b> 43 closure/discards logged — a very high count, including many conversions in 2024-2026 (e.g., Hive Sihlcity).",
+    "<b>Booking note:</b> g., Hive Sihlcity).",
   ],
   provenance: "Researched Aug 2026 · Bilingual DE/EN · 29 → 28 shipped after contract (drops: Impact Hub Kraftwerk — Eventspace & Café) · Capacities published or estimated.",
 };

@@ -1,12 +1,13 @@
 // Page copy — CONFIG + TYPE_META + VENUES
 const CONFIG = {
-  kicker: "London Tech Week · Venue Scout",
+  kicker: "London · ComputeCafe",
   title: "London — Venue Options",
   subtitle: "Event-capable cafes & event spaces in Shoreditch / Spitalfields / Soho-Fitzrovia — for a Sept 15, 2026 bilingual tech-week coffee/hack event (~50–200 people). Links verified.",
   extraStat: {"n":"Sep 15","l":"London event date, 2026"},
   footnotes: [
     "<b>Neighborhood analysis:</b> Shoreditch/Old Street (cursor-eBoldhammer AI Playground, London AI Hub at Techspace Farringdon) is the anchor; Spitalfields/Aldgate East (Potter & Reid Toynbee St) is where Cafe Cursor London actually ran Dec 2025; Soho/Fitzrovia (Dawn Capital Manette St) holds AI Tinkerers London.",
-    "<b>Gone / don't route inquiries here:</b> 19 closure/discards logged. Many London venues quote by minimum-spend or per-hour hire — expect a rate card, not a flat fee.",
+    "<b>Gone / don't route inquiries here:</b> Look mum no hands! — the iconic cycle-cafe at 49 Old Street EC1V 9HX, a natural fit for a Silicon Roundabout tech coffee day (Square Mile coffee, hosted cycling/tech talks and live events). Permanently closed in Feb 2023 after 13 years; both cafe and workshop shutdown announced on Instagram ('Both our cafe and our workshop are permanently closed.'). road.cc reported rising costs + post-Covid commuter drop as the cause. · Lady Dinah's Cat Emporium, Bethnal Green - permanently closed 2023; not included [UNVERIFIED — needs a fetched source before this claim is relied on] · Second Home London Fields and Clerkenwell Green — closed after Second Home's Dec 2024 administration/buyout; only Spitalfields (E1) and Holland Park survive in London, both outside Soho/Fitzrovia (sifted.eu, Jan 2025).",
+    "<b>Booking note:</b> Many London venues quote by minimum-spend or per-hour hire — expect a rate card, not a flat fee.",
   ],
   provenance: "Researched Aug 2026 · English-local · 31 → 30 shipped after contract (drops: The Trampery Old Street - The Ballroom) · Capacities published or estimated.",
 };

@@ -1,12 +1,12 @@
 // Page copy — CONFIG + TYPE_META + VENUES
 const CONFIG = {
-  kicker: "Barcelona Tech Week · Venue Scout",
+  kicker: "Barcelona · ComputeCafe",
   title: "Barcelona — Venue Options",
   subtitle: "Event-capable cafes & event spaces in Poblenou / Dreta de l'Eixample / Port Vell — for a Sept 21, 2026 bilingual (CA/ES/EN) tech-week coffee/hack event (~50–200 people). Overlaps Barcelona AI Summit Sep 22–23.",
   extraStat: {"n":"Sep 21","l":"Barcelona event date, 2026"},
   footnotes: [
     "<b>Neighborhood analysis:</b> Poblenou/22@ (Itnig Spaces, Valkiria, SB Glow + Norrsken House) is where HackBarna and AI Tinkerers Barcelona actually ran; Dreta de l'Eixample (Alice Secret Garden, eDreams) is the recurring-weekly social core; Port Vell (Norrsken + Pier01) anchors AI Week.",
-    "<b>Gone / don't route inquiries here:</b> 37 closure/discards logged — highest churn among our 13 cities (Poblenou industrial conversions + post-port F&B reshuffles).",
+    "<b>Gone / don't route inquiries here:</b> dropped: MOB (Makers of Barcelona) — scope: MOB Bailén and MOB Caterina are in Eixample, not Poblenou/Sant Martí; MOB Caterina closed its Caterina street location years ago per MOB's own site history, remaining locations out of neighborhood. [UNVERIFIED — needs a fetched source before this claim is relied on] · Dropped (status ambiguous): Monday Barceloneta, Pg. de Joan de Borbó 93 — Barceloneta no longer appears in Monday's own location list at mymonday.es as of Aug 2026 (only Tibidabo, Diagonal, CNB, Pau Claris, Arroba, Fleming); third-party directories still list it, so excluded rather than risk shipping a stale or closed venue.",
   ],
   provenance: "Researched Aug 2026 · Bilingual CA/ES/EN · 25 → 25 shipped after contract (drops: none) · Capacities published or estimated.",
 };
