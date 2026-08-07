@@ -26,28 +26,51 @@ skill/venue-scout/         ← the research skill: SKILL.md, explorer template, 
 docs/                      ← multi-city research plan (Tavily + Kimi K3 + Tenki pipeline)
 ```
 
-## Adding a city
+## Adding a city (the end-to-end recipe)
 
-1. **Research** — run the `venue-scout` skill (see `skill/venue-scout/SKILL.md`) for the city:
-   neighborhood analysis → venue discovery → **link verification** (every URL fetched before
-   it ships) → photo URLs. Output the findings as a `configs/<city>_config.js` following the
-   schema documented in the template comments.
-2. **Build** — `python3 scripts/build.py configs/<city>_config.js "<City> Tech Week — Venue Options · ComputeCafe" <city-slug>`
-   writes `<city-slug>/index.html` (repo-root-relative, safe to run from anywhere) with the
-   ComputeCafe home link injected. Titles follow the `… · ComputeCafe` suffix convention. The
-   shipped pages were built with exactly:
-   ```
-   python3 scripts/build.py configs/sf_config.js "SF Tech Week — Venue Options · ComputeCafe" san-francisco
-   python3 scripts/build.py configs/la_config.js "LA Tech Week — Venue Options · ComputeCafe" los-angeles
-   ```
-3. **Flip the card** — in `index.html`, set the city's entry to `status: "live", href: "/<city-slug>/"`.
-   The `href` must match the `<city-slug>` passed to the build script.
-4. **Deploy** — push to the connected Vercel project (`brewvenue`), or deploy the file tree
-   with the Vercel API. The site is plain static HTML; no build step on Vercel's side.
+The canonical recipe: research → validate → build → flip → review → PR.
 
-The plan to run steps 1–4 as autonomous agents (Tavily search/extract + Kimi K3 on Nebius
-Token Factory + Tenki sandboxes) for the remaining 13 cities is in
-[`docs/multicity-research-plan.md`](docs/multicity-research-plan.md).
+```bash
+# 1. Kick off research — the workflow script drives frame → discover → verify per city
+curl -X POST https://agent/workflows \
+  -d '{"workflow":"city-scout","args":{"city":"Amsterdam","slug":"amsterdam","eventDate":"Sep 25, 2026","lang":"Dutch + English"}}'
+# Or: open this chat and say "run the venue-scout for Amsterdam"
+
+# 2. Shape the artifacts
+# Each agent run produces:
+#   docs/pilots/<city>/framing.md       — neighborhood analysis + don't-waste-time list
+#   docs/pilots/<city>/evidence.jsonl   — every fetch/search the agent made (the anti-hallucination log)
+#   docs/pilots/<city>/research.json    — raw venues + closures (the draft, not the config)
+#
+# Then:
+node scripts/normalize-pilot.js $CITY       # → configs/$CITY_config.js (drops unverified via evidence contract)
+python3 scripts/build.py configs/$CITY_config.js "$CITY — Venue Options · ComputeCafe" $CITY
+python3 scripts/validate_config.py --venues-json docs/pilots/$CITY/research.json
+
+# 3. Flip the card
+# Edit index.html:  { city: "Amsterdam", status: "soon", href: null, ... }  →  status: "live", href: "/amsterdam/"
+
+# 4. PR
+git checkout -b add-$CITY
+git add configs/$CITY_config.js $CITY/ docs/pilots/$CITY/
+gh pr create --title "Amsterdam venue scout" --body "…"
+```
+
+### Waves, caps, and order
+To run many cities in parallel: launch each city as its own top-level Workflow with `args = {city, slug, eventDate, lang}`. Three rules of engagement that proved sound:
+- **5 concurrent sandboxes/cells, no more** (the Tenki cap)
+- **Order by event date** with biggest-market tiebreak when dates overlap
+- **Ship least-risky-first** — English-native markets go out before dual-script heavy cities
+
+### Data honesty rules
+Carried from the skill, *enforced in code*, in every city page:
+- **No unverified URLs.** Any venue without a successful fetch in `evidence.jsonl` is auto-dropped.
+- **Closures surface in the footer, never disappear.**
+- **Capacities marked published vs estimated** with `~` + `(est)`.
+- **`alt` = photo caption,** never advice — enforced by `validate_config.py`.
+- **Research date in the provenance line.**
+
+For the exhaustive multi-city retrospective: `docs/retrospective-wave-123.md`.
 
 ## Data honesty rules
 
