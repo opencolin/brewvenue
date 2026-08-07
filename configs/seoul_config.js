@@ -1,12 +1,13 @@
 // Page copy — CONFIG + TYPE_META + VENUES
 const CONFIG = {
-  kicker: "Seoul Tech Week · Venue Scout",
+  kicker: "Seoul · ComputeCafe",
   title: "Seoul — Venue Options",
   subtitle: "Event-capable cafes & event halls in Gangnam / Seongsu / Sinchon-Hongdae — for a Sept 11, 2026 bilingual (KR/EN) tech-week coffee/hack event (~50–200 people). Links verified (Korean scripts preserved).",
   extraStat: {"n":"Sep 11","l":"Seoul event date, 2026"},
   footnotes: [
     "<b>Neighborhood analysis:</b> Gangnam-Teheran-ro (Hashed Lounge, Maru180, AMD Aloft) is where AI Tinkerers Seoul + Cursor Meetups actually ran; Seongsu-dong warehouse conversions (Elice Lab, Seoul Startup Hub Seongsu) are Seoul's hackable cafe-district; Sinchon/Hongdae (Yonsei, SKYST consortium) anchors the bilingual student/indie-builder crowd.",
-    "<b>Gone / don't route inquiries here:</b> 29 closure/discards logged. Many booking paths are via ShareIt (shareit.kr) or SpaceCloud (spacecloud.kr) — KakaoTalk channels surface when venues list them.",
+    "<b>Gone / don't route inquiries here:</b> Google for Startups Campus Seoul (캠퍼스 서울, formerly at Yeoksam-ro 165 Autoway Tower) — permanently closed in 2020, removed from consideration [UNVERIFIED — needs a fetched source before this claim is relied on]",
+    "<b>Booking note:</b> Many booking paths are via ShareIt (shareit.kr) or SpaceCloud (spacecloud.kr) — KakaoTalk channels surface when venues list them.",
   ],
   provenance: "Researched Aug 2026 · Bilingual KR/EN · 27 → 27 shipped after contract (drops: none) · Capacities published or estimated.",
 };

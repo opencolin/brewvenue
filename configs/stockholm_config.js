@@ -1,12 +1,13 @@
 // Page copy — CONFIG + TYPE_META + VENUES
 const CONFIG = {
-  kicker: "Stockholm Tech Week · Venue Scout",
+  kicker: "Stockholm · ComputeCafe",
   title: "Stockholm — Venue Options",
   subtitle: "Event-capable cafes & event spaces in Norrmalm / Södermalm / Östermalm — for a Sept 9–11, 2026 bilingual tech-week coffee/hack event (~50–200 people). Overlaps Nordic Tech Week Sep 7–11.",
   extraStat: {"n":"Sep 9–11","l":"Stockholm event dates, 2026"},
   footnotes: [
     "<b>Neighborhood analysis:</b> Norrmalm (Founders House + Epicenter at Malmskillnadsgatan) is where AI Tinkerers Stockholm + {Tech: Europe}'s first AI Hackathon actually ran; Södermalm (Goto10 / Foo Café) is the engineer-first spine; Östermalm (Norrsken House) hosts the VC-adjacent impact crowd.",
-    "<b>Gone / don't route inquiries here:</b> 12 closure/discards logged. Note Epicenter's first venue hire is package-priced, not per-hour.",
+    "<b>Gone / don't route inquiries here:</b> Snickarbacken 7 (Snickarbacken 7, Norrmalm) — site states 'SNICKARBACKEN 7 ÄR OFFICIELT NEDLAGT OCH VERKSAMHETEN FINNS INTE KVAR' (permanently closed). Dropped from candidates. · Goto 10 (Hammarby kaj 10d) — permanently closed since 2026-02-27 per Internetstiftelsen notice on goto10.se. The axis anchor is gone; no replacement tech-café venue has opened at the same address as of Aug 2026. · Goto 10 Stockholm (Hammarby Kaj 10D) — the neighborhood's named anchor: PERMANENTLY CLOSED 27 February 2026 (Internetstiftelsen strategic wind-down). Verified live on https://www.goto10.se ('Goto 10 har stängt', 'den 27 februari 2026 är Goto 10 stängt för gott'). Events/book pages /event and /boka-lokal return 404. Must not be proposed for a Sep 2026 event.",
+    "<b>Booking note:</b> Note Epicenter's first venue hire is package-priced, not per-hour.",
   ],
   provenance: "Researched Aug 2026 · Bilingual SE/EN · 24 → 24 shipped after contract (drops: none) · Capacities published or estimated.",
 };

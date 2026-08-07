@@ -1,12 +1,13 @@
 // Page copy — CONFIG + TYPE_META + VENUES
 const CONFIG = {
-  kicker: "Berlin Tech Week · Venue Scout",
+  kicker: "Berlin · ComputeCafe",
   title: "Berlin — Venue Options",
   subtitle: "Event-capable cafes, coworking & event halls in Mitte / Kreuzberg / Friedrichshain — for a Sept 10 · 17 · 24, 2026 bilingual (DE/EN) tech-week coffee/hack event (~50–200 people). Links verified.",
   extraStat: {"n":"Sep 10 · 17 · 24","l":"Berlin event dates, 2026"},
   footnotes: [
     "<b>Neighborhood analysis:</b> Mitte (St. Oberholz Rosenthaler, Factory Berlin Mitte) is where AI Tinkerers + PyData actually ran; Kreuzberg (betahaus Moritzplatz) is the community spine; Friedrichshain (Thoughtworks at Revaler Str 31) carried the largest monthly dev meetups (170-188 RSVPs).",
-    "<b>Gone / don't route inquiries here:</b> 21 closure/discards logged (e.g., Factory Berlin Görlitzer Park closed Apr 2024).",
+    "<b>Gone / don't route inquiries here:</b> Kaffee Burger — Torstraße 58–60, 10119 Berlin. Historic artists' bar once suitable for events; goout.net lists it as 'Venue closed' and its own domain kaffeeburger.de now serves an unrelated WordPress demo page (Brooklyn, NY placeholder content) — treated as closed and excluded. [UNVERIFIED — needs a fetched source before this claim is relied on] · Hallesches Haus (Tempelhofer Ufer 1, 10961 Berlin): general store and on-site cafe permanently closed per the venue's own Instagram announcement ('Today we're saying goodbye to our cafe and store'); now operates only as an events venue and online shop, so it fails the 'coffee' type despite the great Kreuzberg location. Re-opened March 2026 as 1000 sqm event-space-only; no live cafe to anchor a coffee/hack day. · Factory Berlin, Görlitzer Park campus (Lohmühlenstraße 65, Kreuzberg) — closed Feb 2024 as part of Factory's scale-down; the remaining Berlin venue is at Rheinsberger Str. 76/77 in Mitte, outside this neighborhood brief (factory.network/host-an-event fetched; closure via coworkingeurope.net search snippet) · Griessmühle (RAW-Gelände, Revaler Str. 99) — closed January 2020 after lease termination; the team reopened as Revier Südost / RSO.BERLIN in Niederschöneweide (Schneller Str. 137), well outside the Friedrichshain corridor. Do not book 'at RAW'. · Kosmonaut (RAW-Gelände) — permanently closed; its hall slot is now filled by other tenants on the site. [UNVERIFIED — needs a fetched source before this claim is relied on]",
+    "<b>Booking note:</b> g., Factory Berlin Görlitzer Park closed Apr 2024).",
   ],
   provenance: "Researched Aug 2026 · Bilingual DE/EN · 27 → 25 shipped after contract (drops: St. Oberholz Café Rosenthaler, St. Oberholz Café Zehdenicker) · Capacities published or estimated.",
 };

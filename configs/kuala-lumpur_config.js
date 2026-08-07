@@ -1,12 +1,13 @@
 // Page copy — CONFIG + TYPE_META + VENUES
 const CONFIG = {
-  kicker: "Kuala lumpur Tech Week · Venue Scout",
+  kicker: "Kuala Lumpur · ComputeCafe",
   title: "Kuala Lumpur — Venue Options",
   subtitle: "Event-capable cafes, coworking & event halls in Bangsar South / TRX / Bukit Jalil — for a Sept 12, 2026 bilingual (BM/EN) tech-week coffee/hack event (~50–200 people). Links verified.",
   extraStat: {"n":"Sep 12","l":"Kuala Lumpur event date, 2026"},
   footnotes: [
     "<b>Neighborhood analysis:</b> Bangsar South (WORQ KL Gateway, Connexion @ Nexus) is where test/automation/AI meetups cluster; TRX (Access Group) hosts AI Tinkerers KL + PyLadies; Bukit Jalil (APU campus) anchors the Great Malaysia AI Hackathon (1,741 participants).",
-    "<b>Gone / don't route inquiries here:</b> 18 closure/discards logged. On many KL venues, WhatsApp is the faster booking path — emails and forms still exist but response times differ.",
+    "<b>Gone / don't route inquiries here:</b> Spaces Exchange 106 — Level 23, Menara Exchange 106, Lingkaran TRX, Tun Razak Exchange, 55188 Kuala Lumpur: Spaces/Regus sibling-directory page explicitly marks this centre CLOSED; INFINITY8 Reserve TRX now operates the L23 floor instead. · Spaces Exchange 106 (Level 23, The Exchange 106, TRX) — permanently CLOSED per IWG's myspacesworks centre page ('zzzKuala Lumpur, Spaces Exchange 106 (CLOSED)'). Dropped; replaced in this list by IWG's other TRX-edge site, Spaces Menara Public Gold @ TRX. · Colony @ Star Boulevard KLCC — permanently CLOSED per Colony's own Instagram farewell reel (Nov 2025). Dropped; Colony @ KLCC (Vipod Residences) and Colony @ Eco City remain open and are listed. · 103 Coffee 'Apartment 103' space — announced via Instagram reel that it is 'closing our doors for good on 4 January' (year not shown in snippet); not included pending confirmation a replacement Bukit Jalil space is event-bookable. [UNVERIFIED — needs a fetched source before this claim is relied on] · Sunway iLabs @ Sunway University — verified active on sunwayuniversity.edu.my but positioned as the university's internal innovation/entrepreneurship centre for Sunway students/startups; no public booking page or external event-rental channel, so excluded rather than marked closed",
+    "<b>Booking note:</b> On many KL venues, WhatsApp is the faster booking path — emails and forms still exist but response times differ.",
   ],
   provenance: "Researched Aug 2026 · Bilingual BM/EN · 30 → 30 shipped after contract (drops: none) · Capacities published or estimated.",
 };
