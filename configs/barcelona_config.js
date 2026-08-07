@@ -20,7 +20,7 @@ const VENUES = [
   {
     "k": "cloudworks_22",
     "name": "Cloudworks 22@",
-    "area": "Poblenou / 22@ (Sant Martí)",
+    "area": "Poblenou / 22@",
     "type": "coffee",
     "addr": "Carrer de Pere IV, 64, 08005 Barcelona (Poblenou)",
     "cap": "up to <b>160</b> people",
@@ -31,12 +31,14 @@ const VENUES = [
     "note": "True 22@-district coworking hub with dedicated event-space service: 618m2 interior + 161m2 terrace, theater/U/cocktail layouts, freshly ground coffee included — the cleanest room-shape fit for a tech-week coffee/hack day of 50–200. Metro Bogatell L4, 4 min.",
     "img": "https://wearecloudworks.com/wp-content/uploads/2024/12/eventos-22-arroba.webp",
     "alt": "Modern Cloudworks 22@ event space interior with terrace in Poblenou",
-    "top": true
+    "top": true,
+    "lat": 41.3962928,
+    "lng": 2.1925559
   },
   {
     "k": "the_hoxton_poblenou",
     "name": "The Hoxton, Poblenou — The Apartment & La Cava",
-    "area": "Poblenou / 22@ (Sant Martí)",
+    "area": "Poblenou / 22@",
     "type": "coffee",
     "addr": "Avinguda Diagonal 205, 08018 Barcelona (metro Glòries, 1 min)",
     "cap": "La Cava: <b>200</b> theatre / <b>240</b> dining / <b>300</b> standing; whole floor up to <b>400</b>",
@@ -47,12 +49,14 @@ const VENUES = [
     "note": "Dedicated meetings/events page with published capacity chart, enquiry form and phone (+34 932 717 222). Freshly brewed coffee and pantry kitchen come standard, and La Cava (own bar, built-in A/V, splittable into 4 rooms) easily swallows a 50–200 person hack day.",
     "img": "https://thehoxton.com/wp-content/uploads/sites/5/2022/07/poblenou-meeting-spaces-hero.jpg",
     "alt": "The Hoxton Poblenou Apartment meeting space hero lounge",
-    "top": false
+    "top": false,
+    "lat": 41.403902,
+    "lng": 2.1902571
   },
   {
     "k": "the_social_hub",
     "name": "The Social Hub Barcelona Poblenou",
-    "area": "Poblenou / 22@ (Sant Martí)",
+    "area": "Poblenou / 22@",
     "type": "coffee",
     "addr": "Carrer de Cristóbal de Moura 49, 08018 Barcelona (Poblenou)",
     "cap": "<b>110</b> theatre / up to <b>150</b> cocktail",
@@ -63,12 +67,14 @@ const VENUES = [
     "note": "Dedicated meetings-and-events page: rooms from 2 to 60 plus a 110-seat theatre and restaurant for a 150-person cocktail, full AV, and catering/coffee packages — a proven student-and-startup hub atmosphere suited to a bilingual tech-week crowd.",
     "img": null,
     "alt": "The Social Hub Poblenou flexible event lounge",
-    "top": false
+    "top": false,
+    "lat": 41.4099113,
+    "lng": 2.2044589
   },
   {
     "k": "valkiria_hub_space",
     "name": "Valkiria Hub Space",
-    "area": "Poblenou / 22@ (Sant Martí)",
+    "area": "Poblenou / 22@",
     "type": "coffee",
     "addr": "Carrer de Pujades, 126, Sant Martí, 08005 Barcelona",
     "cap": "~<b>200</b> seated / <b>250</b> standing (est; Innohub hall ~230 per venue directories)",
@@ -79,12 +85,14 @@ const VENUES = [
     "note": "1,500m2 renovated nave in 22@ with in-house Bistrot catering and a dedicated events email; hosts innovation workshops and offsites for Google, Adidas, Esade. Multi-room campus (Innohub, Learning Lab ~100, Inspirational Koffee ~80) fits a 50–200 coffee/hack format; capacity figures are directory-published, not on own site.",
     "img": "https://valkiriahubspace.com/wp-content/uploads/2024/03/espacios-para-eventos-en-barcelona-21.jpg",
     "alt": "Valkiria Hub Space industrial nave set for an event",
-    "top": false
+    "top": false,
+    "lat": 41.3984699,
+    "lng": 2.1966181
   },
   {
     "k": "hot_spot_creative",
     "name": "Hot Spot Creative Space",
-    "area": "Poblenou / 22@ (Sant Martí)",
+    "area": "Poblenou / 22@",
     "type": "coffee",
     "addr": "Poblenou, Barcelona (exact street address via WhatsApp enquiry)",
     "cap": "<b>320</b>m² over two floors; ~<b>80</b>–<b>120</b> (est)",
@@ -95,12 +103,14 @@ const VENUES = [
     "note": "Bilingual (CA/ES/EN) creative venue in Poblenou with modular floors for workshops, talks and launches, from 35-45 EUR/hr, AV and host team included; ground floor suits an open coffee/hack flow. Capacity not published — sized from 320m2; contact via WhatsApp/Telegram only.",
     "img": null,
     "alt": "Hot Spot Poblenou two-floor workshop space interior",
-    "top": false
+    "top": false,
+    "lat": 41.403733,
+    "lng": 2.2033544
   },
   {
     "k": "talent_garden_barcelona",
     "name": "Talent Garden Barcelona",
-    "area": "Poblenou / 22@ (Sant Martí)",
+    "area": "Poblenou / 22@",
     "type": "cowork",
     "addr": "Carrer de Ramon Turró, 169, 08005 Barcelona",
     "cap": "~<b>180</b> standing event space (est; Cvent listing, venue site does not publish a number)",
@@ -111,12 +121,14 @@ const VENUES = [
     "note": "Digital-skills campus dead-center in 22@ with TAG Café on-site (built-in coffee service), 4,500 m2 of industrial-chic space and a named Events Manager (Simona Di Chiazza) — the startup-community crowd and hack-day layouts are the venue's daily business.",
     "img": "https://talentgarden.com/hs-fs/hubfs/Website%20Images/Coworking%20Page/Seconda%20sezione/Barcellona.webp?width=1005&height=410&name=Barcellona.webp",
     "alt": "Industrial-chic 4,500 m2 coworking campus hall at Talent Garden Barcelona",
-    "top": false
+    "top": false,
+    "lat": 41.3987309,
+    "lng": 2.2010369
   },
   {
     "k": "thehoxtonpoblenou",
     "name": "The Hoxton, Poblenou",
-    "area": "Poblenou / 22@ (Sant Martí)",
+    "area": "Poblenou / 22@",
     "type": "cowork",
     "addr": "Avinguda Diagonal 205 (Glòries/Poblenou), 08018 Barcelona",
     "cap": "La Cava <b>300</b> standing / <b>240</b> dining / <b>120</b> cabaret; Apartment exclusive hire <b>70</b>",
@@ -127,7 +139,9 @@ const VENUES = [
     "note": "Design hotel one minute from Glòries metro whose La Cava basement (own bar, built-in A/V, splits into 4 rooms) plus the Apartment's pantry-kitchen coffee setup cover a 50-300-person hack/coffee day with all-day brewed coffee included as standard.",
     "img": "https://thehoxton.com/wp-content/uploads/sites/5/2022/09/la-cava-meeting-space.jpg?w=600",
     "alt": "Basement event hall with skylight and own bar at The Hoxton Poblenou",
-    "top": false
+    "top": false,
+    "lat": 41.403902,
+    "lng": 2.1902571
   },
   {
     "k": "casa_bonay",
@@ -143,7 +157,9 @@ const VENUES = [
     "note": "Tour-worn coffee-hack shape in the right neighborhood: working café Satan's Coffee Corner on the ground floor plus multiple hireable mid-size rooms (Nica, Libertine, Chiringuito rooftop) with private entrance. Dedicated events page plus published events inbox, docs, menus and prices.",
     "img": "https://goop-img.com/wp-content/uploads/2016/05/Satans_CasaBonay1.jpg",
     "alt": "Satan's Coffee Corner barista counter and seating inside Casa Bonay",
-    "top": true
+    "top": true,
+    "lat": 41.3936137,
+    "lng": 2.1742767
   },
   {
     "k": "mob_bailn_makers",
@@ -159,7 +175,9 @@ const VENUES = [
     "note": "Coworking/creative community in the right quadrant of Dreta with an event-venues page that explicitly invites hackathons and workshops. Multiple bookable rooms (Hedy Lamarr, Marie Curie, BarBailèn bar w/ terrace on weekends) suit a daytime coffee/hack setup plus evening wrap-up; published events inbox.",
     "img": "https://mob-barcelona.com/wp-content/uploads/2025/03/MOB-Caterina-1-1.png",
     "alt": "MOB Bailèn ground floor coworking room with long shared tables",
-    "top": false
+    "top": false,
+    "lat": 41.3917462,
+    "lng": 2.1771975
   },
   {
     "k": "aticco_bailn",
@@ -175,7 +193,9 @@ const VENUES = [
     "note": "Right in the heart of Dreta on Carrer de Bailèn with a dedicated events floor. 100 m² conference room expandable to ~170 pax covers the 50-200 band; proposal-based pricing published, catering and A/V support on request.",
     "img": "https://aticco.com/wp-content/uploads/2024/07/espacios-eventos-barcelona-conferencia-teatro.jpg",
     "alt": "Aticco Bailén conference room set in theatre layout",
-    "top": false
+    "top": false,
+    "lat": 41.3971419,
+    "lng": 2.1701279
   },
   {
     "k": "aticco_urquinaona",
@@ -191,7 +211,9 @@ const VENUES = [
     "note": "Penthouse venue on the Dreta de l'Eixample border at Plaça d'Urquinaona, steps from Passeig de Gràcia. The Workshop Cantina joins the common area with a bar service and privatization from 4pm for ~80 mixed; Conference Theatre adds another 60-pax room.",
     "img": "https://aticco.com/wp-content/uploads/2024/07/espacios-eventos-barcelona-verdaguer-workshop-cantina.jpg",
     "alt": "Aticco Urquinaona workshop cantina with shared bar and tables",
-    "top": false
+    "top": false,
+    "lat": 41.3902234,
+    "lng": 2.1765706
   },
   {
     "k": "factory_103",
@@ -207,7 +229,9 @@ const VENUES = [
     "note": "Best-in-band single-room coworking-cum-event hall in Dreta de l'Eixample: a 19th-century Lloveras chocolate factory with high ceilings, rooftop, lounge zones, full AV, catering and in-house front-desk. Roster of 2000+ members + known client list (BBVA, Nestlé, Intel, Glovo, Edreams) proves tech-crowd fit for a 50–200 bilingual tech-week coffee/hack day.",
     "img": "https://factory103.es/wp-content/uploads/2025/07/factory103_01-1.webp",
     "alt": "Wide interior of the converted chocolate-factory loft with skylights and wooden work tables",
-    "top": true
+    "top": true,
+    "lat": 41.3987151,
+    "lng": 2.1690411
   },
   {
     "k": "factor_barcelona",
@@ -223,7 +247,9 @@ const VENUES = [
     "note": "New street-level purpose-built corporate events hall in a restored textile factory — one single event at a time, dedicated kitchen/lounge/green-room/VIP staff desk and full AV with hydraulic stage. Sweet-spot for a 100-200-person coffee/hack day with keynotes + demos.",
     "img": "https://www.factorbarcelona.com/web/image/2047-a7921476/4%20Vista%20general%20de%20Factor%20Barcelona.webp",
     "alt": "Central hall of Factor Barcelona with Catalan vaulted ceiling and modular stage",
-    "top": false
+    "top": false,
+    "lat": 41.3944515,
+    "lng": 2.1669214
   },
   {
     "k": "casa_bonay_nica",
@@ -239,7 +265,9 @@ const VENUES = [
     "note": "Boutique hotel / café-house hybrid (Satan's Coffee Corner on-site, Libertine restaurant, Nica listening bar, Chiringuito rooftop). Five hireable rooms, private entrance for Nica, AV/DJ infrastructure, and a café culture that matches the coffee/hack format verbatim.",
     "img": "https://casabonay.com/wp-content/uploads/2024/02/Nica-cocktail-999x660.jpg",
     "alt": "Nica listening-bar lounge with cocktail setup and warm low-key lighting",
-    "top": false
+    "top": false,
+    "lat": 41.3936137,
+    "lng": 2.1742767
   },
   {
     "k": "mobbailnmakersofbarcelonaeixample",
@@ -255,7 +283,9 @@ const VENUES = [
     "note": "Barcelona's oldest coworking space in a converted textile factory — deep tech/maker community, on-site BarBailèn café for coffee service, and event-programming DNA (hackathons listed on the venue page as a named event type). Right size for an intimate 50–100-person builder day with breakouts.",
     "img": "https://mob-barcelona.com/wp-content/uploads/2024/12/Bar_Bailen_rental-1.jpg",
     "alt": "BarBailèn café interior with long communal high table and hanging plants",
-    "top": false
+    "top": false,
+    "lat": 41.3917462,
+    "lng": 2.1771975
   },
   {
     "k": "cloudworks_passeig_de",
@@ -271,12 +301,14 @@ const VENUES = [
     "note": "Established coworking brand with a corporate-grade event floor + skyline terrace on one of Barcelona's most iconic corners. Theatre/U-shape/boardroom/cocktail configurable, full AV, kitchen and drinks bar — solid for a 50–100-person daytime hack + evening cocktail.",
     "img": "https://wearecloudworks.com/wp-content/uploads/2021/12/01da468a96acdb67d9e957ac9da8a84a8cc032e5.jpeg",
     "alt": "Rooftop terrace of Cloudworks overlooking Passeig de Gràcia with lounge seating",
-    "top": false
+    "top": false,
+    "lat": 41.3900873,
+    "lng": 2.168712
   },
   {
     "k": "marina_port_vell",
     "name": "Marina Port Vell — The Sea Garden & Blue Wave Bar",
-    "area": "Port Vell / Barceloneta waterfront (Moll de Barcelona)",
+    "area": "Port Vell / Barceloneta waterfront",
     "type": "coffee",
     "addr": "Moll de la Barceloneta, 1, Ciutat Vella, 08039 Barcelona",
     "cap": "Blue Wave Bar ~<b>120</b> cocktail; Sea Garden <b>485</b> standing / <b>100</b> seated / <b>185</b> banquet",
@@ -287,12 +319,14 @@ const VENUES = [
     "note": "Award-winning waterfront event venue inside the superyacht marina. Blue Wave Bar and Sea Garden offer indoor/outdoor spaces directly on the harbor. Proven host for America’s Cup and corporate events. Ideal for a daytime hack/coffee session with Mediterranean terrace and superyacht backdrop.",
     "img": "https://mpv.imgix.net/events-home.jpg?auto=format%2Ccompress&fit=max&q=70&w=1920",
     "alt": "Waterfront event terrace at Marina Port Vell with guests and superyachts",
-    "top": true
+    "top": true,
+    "lat": 41.3726497,
+    "lng": 2.1855054
   },
   {
     "k": "time_out_market",
     "name": "Time Out Market Barcelona",
-    "area": "Port Vell / Barceloneta waterfront (Moll de Barcelona)",
+    "area": "Port Vell / Barceloneta waterfront",
     "type": "coffee",
     "addr": "Moll d'Espanya, 5, 2nd floor, Ciutat Vella, 08039 Barcelona",
     "cap": "Full market <b>1,500</b> standing; semi-private spaces <b>15</b>–<b>200</b>",
@@ -303,12 +337,14 @@ const VENUES = [
     "note": "5,250 m² curated food hall on the Maremagnum rooftop above Port Vell. Houses Café de Indias, 10 kitchens, and multiple event zones (Central Space, Events Room, Rooftop Bar Xaloc, Rooftop Mestral). Direct street access via elevator/escalator.",
     "img": "https://media.timeout.com/images/106154408/image.jpg",
     "alt": "Time Out Market Barcelona rooftop terrace overlooking Port Vell and the Mediterranean",
-    "top": false
+    "top": false,
+    "lat": 41.3657684,
+    "lng": 2.1857262
   },
   {
     "k": "brisa_palau_de",
     "name": "Brisa Palau de Mar",
-    "area": "Port Vell / Barceloneta waterfront (Moll de Barcelona)",
+    "area": "Port Vell / Barceloneta waterfront",
     "type": "coffee",
     "addr": "Plaça de Pau Vila, 1, Edificio Palau de Mar, 08039 Barcelona",
     "cap": "~<b>80</b> seated / <b>120</b> standing (est)",
@@ -319,12 +355,14 @@ const VENUES = [
     "note": "Waterfront café-restaurant in the historic Palau de Mar with interior salon, open terrace, and glassed all-year terrace. Morning opening (10:00) and explicit corporate-event support via the Somos Esencia group.",
     "img": "https://cdn.prod.website-files.com/693b10955226c03a0f40f67a/6a1027dde76b53f17a0acdef_restaurante%20Brisa%20Barceloneta%202026-2%20by%20_mariaalgaraphotography-16%20(1)%20(1).jpg",
     "alt": "Brisa Palau de Mar terrace with greenery and Port Vell marina views",
-    "top": false
+    "top": false,
+    "lat": 41.3804406,
+    "lng": 2.1859557
   },
   {
     "k": "restaurant_1881_per",
     "name": "Restaurant 1881 per SAGARDI / La Terrassa de les Indianes",
-    "area": "Port Vell / Barceloneta waterfront (Moll de Barcelona)",
+    "area": "Port Vell / Barceloneta waterfront",
     "type": "coffee",
     "addr": "Plaça de Pau Vila, 3, 4th floor (Museu d'Història de Catalunya), 08003 Barcelona",
     "cap": "~<b>60</b> seated / <b>100</b> standing (est)",
@@ -335,12 +373,14 @@ const VENUES = [
     "note": "Rooftop café-restaurant with panoramic Port Vell and Barceloneta skyline views. Open from 10:00 for coffee and Mediterranean fare. Run by SAGARDI group; group dining and semi-private events handled via reservation.",
     "img": "https://1881persagardi.com/img/carrusel-1-1.jpg",
     "alt": "1881 per SAGARDI panoramic rooftop terrace overlooking Barcelona harbour and Barceloneta",
-    "top": false
+    "top": false,
+    "lat": 41.3810646,
+    "lng": 2.1865219
   },
   {
     "k": "restaurante_agua",
     "name": "Restaurante Agua",
-    "area": "Port Vell / Barceloneta waterfront (Moll de Barcelona)",
+    "area": "Port Vell / Barceloneta waterfront",
     "type": "coffee",
     "addr": "Passeig Marítim de la Barceloneta, 30, 08003 Barcelona",
     "cap": "~<b>80</b> seated / <b>120</b> standing (est)",
@@ -351,12 +391,14 @@ const VENUES = [
     "note": "Beachfront Mediterranean café-restaurant on the Barceloneta promenade. Two-level interior salon plus open terrace and small Agüita terrace. Opens daily at 10:00. Corporate events arranged through Somos Esencia.",
     "img": "https://cdn.prod.website-files.com/693b10955226c03a0f40f67a/6a43930b090f0fe5e879cd6c_Restaurant%20Agua%20Som%20Essencia%20-%20_mariaalgaraphotography-7.jpg",
     "alt": "Restaurante Agua beachfront terrace on Passeig Marítim de la Barceloneta with sea views",
-    "top": false
+    "top": false,
+    "lat": 41.3789393,
+    "lng": 2.1921639
   },
   {
     "k": "cloudworks_la_rambla",
     "name": "Cloudworks La Rambla – Drassanes (Edificio Colón)",
-    "area": "Port Vell / Barceloneta waterfront (Moll de Barcelona)",
+    "area": "Port Vell / Barceloneta waterfront",
     "type": "cowork",
     "addr": "Av. de les Drassanes, 6, 08001 Barcelona (Planta 23, Edificio Colón — at the mouth of Moll de Drassanes, Port Vell)",
     "cap": "Up to <b>180</b> people (570 m² event floor + 360° terraces)",
@@ -367,12 +409,14 @@ const VENUES = [
     "note": "Why it works: a true cowork space with a bookable event floor on the 23rd story of Torre Colón — wrap-around terraces overlooking Port Vell, coffee bar, foosball, ambient sound, bookable by hour/half/full day: the closest shape to a coffee + hack day for 50–180 on the waterfront. L3 Drassanes 1 min away.",
     "img": "https://wearecloudworks.com/wp-content/uploads/2021/12/drassanes-terraza-scaled.jpg",
     "alt": "23rd-floor Cloudworks terrace with panoramic views over Port Vell and Barcelona",
-    "top": true
+    "top": true,
+    "lat": 41.3765153,
+    "lng": 2.1751106
   },
   {
     "k": "world_trade_center",
     "name": "World Trade Center Barcelona (Centro de Congresos WTCB)",
-    "area": "Port Vell / Barceloneta waterfront (Moll de Barcelona)",
+    "area": "Port Vell / Barceloneta waterfront",
     "type": "cowork",
     "addr": "Moll de Barcelona, s/n, 08039 Barcelona",
     "cap": "Sala Port Vell: <b>250</b> theatre / <b>460</b> cocktail (700 m², divisible into 3 rooms); complex up to <b>500</b> in Sala Àgora",
@@ -383,12 +427,14 @@ const VENUES = [
     "note": "Why it works：直接 on the Moll de Barcelona pier, in-house AV/Wi-Fi/catering and modular rooms (Port Vell 1–3 combine from 110 to 700 m²) so a bilingual 50–200 coffee/hack day can scale up or split into demo pods; published capacity chart and dedicated events team.",
     "img": "https://wtcbarcelonaevents.com/wp-content/uploads/2025/04/img-world-trade-center-barcelona-congress-center-sala-port-vell.jpg",
     "alt": "Bright, wide Sala Port Vell congress hall at World Trade Center Barcelona",
-    "top": false
+    "top": false,
+    "lat": 41.372084,
+    "lng": 2.1812075
   },
   {
     "k": "marinaportvell",
     "name": "Marina Port Vell",
-    "area": "Port Vell / Barceloneta waterfront (Moll de Barcelona)",
+    "area": "Port Vell / Barceloneta waterfront",
     "type": "cowork",
     "addr": "Moll de la Barceloneta, 1, 08039 Barcelona",
     "cap": "Up to <b>500</b> people across five spaces; Sea Garden terrace <b>300+</b>",
@@ -399,12 +445,14 @@ const VENUES = [
     "note": "Why it works: 1,600 m² of event space literally over the water in the old harbor — glass Crew Lounge with harbor-view terrace plus covered waterfront terraces for the 300-cap Sea Garden format; dramatic backdrop for a tech-week closing hack demo day, with reception handling event enquiries.",
     "img": "https://mpv.imgix.net/events-home.jpg?auto=format%2Ccompress&fit=max&q=70&w=1920",
     "alt": "Superyachts moored at Marina Port Vell with the Barcelona skyline behind",
-    "top": false
+    "top": false,
+    "lat": 41.3726497,
+    "lng": 2.1855054
   },
   {
     "k": "port_vell_bcn",
     "name": "Port Vell BCN — quayside event spaces (Moll de Barcelona / Moll de la Barceloneta)",
-    "area": "Port Vell / Barceloneta waterfront (Moll de Barcelona)",
+    "area": "Port Vell / Barceloneta waterfront",
     "type": "cowork",
     "addr": "Event spaces on Moll de Barcelona and Moll de la Barceloneta, 08039 Barcelona (office: Josep Anselm Clavé 27, 08002)",
     "cap": "Open-air quaysides and plazas licensed by permit — ~<b>200+</b> configurable (est)",
@@ -415,6 +463,8 @@ const VENUES = [
     "note": "Why it works: the port authority's own rental catalogue includes the Moll de Barcelona quay itself plus Moll de la Barceloneta and Plaça del Mar — blank-canvas piers that host festivals and fairs, ideal as an outdoor coffee-truck + hack footprint for 50–200 if an indoor venue plates are wanted as neighbor backup.",
     "img": null,
     "alt": "Quayside rental spaces along Port Vell's Moll de Barcelona",
-    "top": false
+    "top": false,
+    "lat": 41.3700932,
+    "lng": 2.1854681
   }
 ];

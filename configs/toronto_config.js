@@ -20,7 +20,7 @@ const VENUES = [
   {
     "k": "dark_horse_espresso",
     "name": "Dark Horse Espresso — Richmond (401 Richmond St W)",
-    "area": "King West / Spadina–Bathurst corridor (Toronto's densest AI-builder block)",
+    "area": "King West / Spadina–Bathurst corridor",
     "type": "coffee",
     "addr": "401 Richmond St W, Toronto, ON M5V 3A8",
     "cap": "<b>60</b> people (published; 1,200 sq ft). Sister rooms on the same booking page — OCAD at 230 Richmond St W: <b>45</b> seated / <b>75</b> standing; Spadina at 215 Spadina Ave: <b>40</b>.",
@@ -31,12 +31,14 @@ const VENUES = [
     "note": "Trace-proven room: CreativeMornings Toronto hosted 'Urban Space' mornings in this same heritage 401 Richmond loft building, and Dark Horse's published private-events page explicitly offers daytime buy-outs across its six (now seven) cafe spaces, so it fits the coffee/hack shape straight out of the box. One block north of Queen in the Queen West creative corridor — right on the Spadina edge of the AI-builder block; wheelchair accessible with high ceilings and warm loft-room feel.",
     "img": "https://darkhorseespresso.com/cdn/shop/files/DH_Richmond.jpg?v=1705087826&width=3200",
     "alt": "Dark Horse Espresso Richmond interior used for private events",
-    "top": true
+    "top": true,
+    "lat": 43.6478184,
+    "lng": -79.3952429
   },
   {
     "k": "arvo_coffee_liberty",
     "name": "Arvo Coffee — Liberty Village",
-    "area": "King West / Spadina–Bathurst corridor (Toronto's densest AI-builder block)",
+    "area": "King West / Spadina–Bathurst corridor",
     "type": "coffee",
     "addr": "80 Atlantic Ave, Toronto, ON M6K 1X9",
     "cap": "~<b>50</b>–<b>300</b> cocktail style (est; Arvo's dedicated events page confirms the Liberty Village location is 'available for cocktail-style events' but publishes no headcount — directory coverage cites a 30–300 range).",
@@ -47,12 +49,14 @@ const VENUES = [
     "note": "Third-wave specialty cafe and wine bar anchored in the heart of Liberty Village — the western anchor of the King West corridor and one TTC stop from the Spadina–Bathurst tech block. Day-to-night shape (coffee bar by day, wine bar / reserved cocktail format by night) mirrors a tech-week coffee day that slides into evening networking. Note: events page offers a contact form only — no published email; reach out via the form or phone (416) 531-6864.",
     "img": "https://arvocoffee.com/cdn/shop/files/Wine3_1280x@2x.jpg?v=1613715630",
     "alt": "Arvo Coffee Liberty Village cafe and wine bar interior",
-    "top": false
+    "top": false,
+    "lat": 43.6386831,
+    "lng": -79.4212523
   },
   {
     "k": "oretta_king_west",
     "name": "Oretta King West — Oretta Caffe / La Cambusa + The Mezzanine",
-    "area": "King West / Spadina–Bathurst corridor (Toronto's densest AI-builder block)",
+    "area": "King West / Spadina–Bathurst corridor",
     "type": "coffee",
     "addr": "633 King St W, Toronto, ON M5V 1M5",
     "cap": "<b>90</b> standing / <b>65</b> seated for the full Mezzanine (L'Attico + Soggiorno); La Cambusa (the Oretta Caffe room) holds <b>40</b> cocktail / <b>26</b> seated; Cantina <b>24</b> — published on the events page.",
@@ -63,12 +67,14 @@ const VENUES = [
     "note": "The only true coffee-by-day / event-by-night hybrid squarely on King West: La Cambusa visibly operates as the Oretta Caffe through the day, then converts to a chef's-table-style private room in the evening, and the upstairs Mezzanine adds a 90-person standing capacity for bigger tech-week coffee/hack programming. In-house catering, Tripleseat inquiry form, and a King & Portland address inside the densest AI-builder block.",
     "img": "https://cdn.prod.website-files.com/5ebae4faa2cf589870550a07/5f4724ec7885b51ce24fc62c_Dinners%20-4.jpg",
     "alt": "Oretta King West mezzanine event room with marble presentation island",
-    "top": false
+    "top": false,
+    "lat": 43.6444142,
+    "lng": -79.4005746
   },
   {
     "k": "darkhorseespressospadina",
     "name": "Dark Horse Espresso — Spadina",
-    "area": "King West / Spadina–Bathurst corridor (Toronto's densest AI-builder block)",
+    "area": "King West / Spadina–Bathurst corridor",
     "type": "coffee",
     "addr": "215 Spadina Ave, Toronto, ON M5T 2C7",
     "cap": "<b>40</b> people (published; 1,700 sq ft). Daytime rental available only via explicit buy-out conversation; evening rentals standard.",
@@ -79,12 +85,14 @@ const VENUES = [
     "note": "Rustic, eclectic cafe with high ceilings right at Queen & Spadina — the northern corner of the corridor and a block south of Chinatown, easy streetcar access from the King West tech offices. Same private-events program as the Richmond room (form-driven booking, wheelchair accessible). Caps at 40, so treat as an overflow/secondary room or as pairing with the larger Richmond / OCAD spaces; booking pages do not publish an events email, reserve through the on-page form.",
     "img": "https://darkhorseespresso.com/cdn/shop/files/DH_Spadina.jpg?v=1705087826&width=3200",
     "alt": "Dark Horse Espresso Spadina interior with high ceilings",
-    "top": false
+    "top": false,
+    "lat": 43.6507623,
+    "lng": -79.3966288
   },
   {
     "k": "cafe_23",
     "name": "Cafe 23",
-    "area": "King West / Spadina–Bathurst corridor (Toronto's densest AI-builder block)",
+    "area": "King West / Spadina–Bathurst corridor",
     "type": "coffee",
     "addr": "728 Queen St W, Toronto, ON M6J 1E8",
     "cap": "~<b>50</b>–<b>70</b> (est; front room + back room + enclosed garden patio, no published event headcount).",
@@ -95,12 +103,14 @@ const VENUES = [
     "note": "Queen West anchor cafe at the Bathurst/Trinity Bellwoods edge of the corridor — front room, a larger back room, and a beloved hidden garden patio that's explicitly open daily in 2026 per the Instagram bio (last-3-Aug-2026 posts). 'Private Events & Rentals' is advertised in the bio with a dedicated events email and a Google Form inquiry link; reachable for smaller 40–60-person tech-week coffee hangouts or as a satellite lounge for the bigger King West venues.",
     "img": null,
     "alt": "Cafe 23 garden patio and vintage interior on Queen St W",
-    "top": false
+    "top": false,
+    "lat": 43.6462278,
+    "lng": -79.4093668
   },
   {
     "k": "forno_cultura_king",
     "name": "Forno Cultura — King West",
-    "area": "King West / Spadina–Bathurst corridor (Toronto's densest AI-builder block)",
+    "area": "King West / Spadina–Bathurst corridor",
     "type": "coffee",
     "addr": "609 King St W, Toronto, ON M5V 1M5",
     "cap": "~<b>50</b>–<b>80</b> (est; artisan bakery-cafe, no published private-event capacity — Instagram bio advertises 'Unique designed spaces for corporate and social gatherings! Private Events available upon request').",
@@ -111,12 +121,14 @@ const VENUES = [
     "note": "Industrial-chic bakery-cafe immediately next door to Oretta on King West — top-tier espresso and pastry program with a brick-and-timber room that suits a 40–60-person daytime hack squad. No live events page on the freshly-refreshed 2026 site; private events are handled via direct email — confirm capacity in writing before banking on 50+.",
     "img": "https://www.fornocultura.com/wp-content/uploads/2026/07/heritage-slider-03.jpg",
     "alt": "Forno Cultura King West bakery-cafe heritage interior",
-    "top": false
+    "top": false,
+    "lat": 43.6441,
+    "lng": -79.40071
   },
   {
     "k": "startwell_level_up",
     "name": "StartWell (Level Up + Offsite Venue)",
-    "area": "King West / Spadina–Bathurst corridor (Toronto's densest AI-builder block)",
+    "area": "King West / Spadina–Bathurst corridor",
     "type": "cowork",
     "addr": "786 King St W (campus 782–786), Toronto, ON M5V 1N6",
     "cap": "<b>150</b> per suite (Level Up / Offsite Venue); 70 on Third Floor; combinable to ~300",
@@ -127,12 +139,14 @@ const VENUES = [
     "note": "Purpose-built corporate event campus on King West with turn-key AV, in-house media production, espresso bar and two combinable 150-person suites — track record of tech community events (Superhuman AI Build Night, Tech for Canada Conference) makes it the closest exact-match to a 50-200-person bilingual coffee/hack day.",
     "img": "https://startwell.co/cdn/shop/files/StartWell_Event-Space_Toronto_LevelUp_2025-WEB-2.jpg?v=1760532810&width=1200",
     "alt": "StartWell Level Up event space overlooking King St W with high ceilings and exposed brick",
-    "top": true
+    "top": true,
+    "lat": 43.6467734,
+    "lng": -79.3889311
   },
   {
     "k": "hotblack_coffee",
     "name": "HotBlack Coffee",
-    "area": "King West / Spadina–Bathurst corridor (Toronto's densest AI-builder block)",
+    "area": "King West / Spadina–Bathurst corridor",
     "type": "cowork",
     "addr": "245 Queen St W, Toronto, ON M5V 1Z4",
     "cap": "<b>10–60</b> guests (published: ~40 interior cocktail + ~30 licensed back patio)",
@@ -143,12 +157,14 @@ const VENUES = [
     "note": "Purpose-built events cafe on Queen West (Fashion/Entertainment District at University); dedicated events page publishes a 10–60-guest capacity, full AV + sound system, BYO-licenced back patio with firepit, and evening buyout model — ideal for the 50-person end of the coffee/hack band and a proven bilingual-friendly host.",
     "img": "https://www.hotblack-coffee.com/static/hotblack-events1-c30aacd0429eaeba560f5c0026e41ffb.jpg",
     "alt": "HotBlack Coffee interior event space with skylights and high ceilings",
-    "top": false
+    "top": false,
+    "lat": 43.65017,
+    "lng": -79.38861
   },
   {
     "k": "mars_discovery_district",
     "name": "MaRS Discovery District — MaRS Centre",
-    "area": "King West / Spadina–Bathurst corridor (Toronto's densest AI-builder block)",
+    "area": "King West / Spadina–Bathurst corridor",
     "type": "cowork",
     "addr": "MaRS Centre, South Tower, 101 College St, Toronto, ON M5G 1L7",
     "cap": "Collaboration Centre (CR1–CR3): <b>24</b>–90 seated; Café: <b>55</b> reception; Auditorium: <b>350</b> theatre / <b>400+</b> standing (2024 rate-card figures)",
@@ -159,12 +175,14 @@ const VENUES = [
     "note": "The MaRS/Downtown core cell the pilot skipped: world-scale innovation hub with published rate-card event spaces from 55-guest café to 400+ auditorium, bilingual FR/EN infrastructure, dedicated events team (events@marsdd.com, 647-255-1050) and a track record of TechTO / Fintech Summit-style hack/conference hosting — the scalable fallback for 100–200.",
     "img": null,
     "alt": "MaRS Centre event auditorium and atrium at 101 College Street",
-    "top": false
+    "top": false,
+    "lat": 43.6599701,
+    "lng": -79.3886888
   },
   {
     "k": "iq_offices_king",
     "name": "iQ Offices — King York Terrace & Lounge / Portland Patio",
-    "area": "King West / Spadina–Bathurst corridor (Toronto's densest AI-builder block)",
+    "area": "King West / Spadina–Bathurst corridor",
     "type": "cowork",
     "addr": "150 King St W (27th-floor terrace) / 545 King St W (Portland Patio), Toronto, ON",
     "cap": "~<b>250</b> seated / <b>300</b> standing (est. across 7,000 sq ft terrace + lounge at 150 King; Portland Patio ~90 standing)",
@@ -175,12 +193,14 @@ const VENUES = [
     "note": "Premium cowork operator's dedicated event venues on King West: the 27th-floor King York Terrace & Lounge for up to ~250–300 and the Portland Patio at 545 King W for ~90, both with concierge events team, bilingual FR/EN site and published venue PDFs — upper-end venue for a 150–200 person tech-week reception within the Spadina–Bathurst corridor.",
     "img": null,
     "alt": "iQ Offices King York Terrace lounge and rooftop patio overlooking the Toronto skyline",
-    "top": false
+    "top": false,
+    "lat": 43.6451043,
+    "lng": -79.3971599
   },
   {
     "k": "brandor_coffee_financial",
     "name": "BRANDOR COFFEE — Financial District (tour-trace seed via Cafe Cursor)",
-    "area": "King West / Spadina–Bathurst corridor (Toronto's densest AI-builder block)",
+    "area": "King West / Spadina–Bathurst corridor",
     "type": "cowork",
     "addr": "100 University Ave, Suite 106, Toronto, ON M5J 1V6",
     "cap": "~<b>50</b>–80 (est.; cafe footprint, no published event capacity; Cappis/Cursor coworking sessions have drawn ~353 RSVPs)",
@@ -191,12 +211,14 @@ const VENUES = [
     "note": "Tour-trace seed via Cafe Cursor: this minimalist coffee/matcha bar at the corridor's east edge is the recurring host of Cursor Toronto's weekly Cappis Coworking and Cursor Meetup sessions (100+ builders per). Event-hire is handled by inquiry through its Event & Venue page; its day-shape (more seating than most Toronto cafes) fits a 50–80-person bilingual coffee/hack morning.",
     "img": null,
     "alt": "BRANDOR COFFEE black-and-white cafe interior at 100 University Avenue",
-    "top": false
+    "top": false,
+    "lat": 43.6473626,
+    "lng": -79.3850942
   },
   {
     "k": "st_lawrence_hall",
     "name": "St. Lawrence Hall",
-    "area": "King East / St. Lawrence / Old Town (King & Yonge to Jarvis)",
+    "area": "King East / St. Lawrence / Old Town",
     "type": "coffee",
     "addr": "157 King St E, Toronto, ON M5C 1G9",
     "cap": "Main Great Hall <b>~400</b> seated / <b>~500</b> standing reception (est; site confirms 'three major rooms' + historic 1,000-seat ballroom at its peak; modern F&B/fire-code limits not published on the civic site)",
@@ -207,12 +229,14 @@ const VENUES = [
     "note": "TOUR-TRACE SEED: ClawCon Toronto ran here May 26, 2026 as an official Toronto Tech Week event with 442 RSVPs — pre-vetted for our exact 50-200 builder shape inside the cell's King St E heart. Room-shape fit note: neoclassical ballroom+ancillary rooms; coffee service is bring-your-own vendor (City allows outside caterers) so a hack-day works, but it's not a daytime café — stage + banquet tables, espresso-bar brought in as a coffee-cart add-on.",
     "img": null,
     "alt": "St. Lawrence Hall Great Hall ballroom interior, 157 King St E",
-    "top": true
+    "top": true,
+    "lat": 43.6502662,
+    "lng": -79.3723018
   },
   {
     "k": "arvo_coffee_distillery",
     "name": "Arvo Coffee — Distillery District",
-    "area": "King East / St. Lawrence / Old Town (King & Yonge to Jarvis)",
+    "area": "King East / St. Lawrence / Old Town",
     "type": "coffee",
     "addr": "17 Gristmill Lane, Toronto, ON M5A 3C4",
     "cap": "~<b>60</b>-80 standing in the Distillery unit (est; events page only publishes Liberty Village for cocktail service, Distillery handled by inquiry)",
@@ -223,12 +247,14 @@ const VENUES = [
     "note": "Australian-style third-wave roaster/café on the perimeter inside the Distillery District's Victorian cobblestones — same brand already ships from the Toronto pilot. Venue's own events page explicitly offers cocktail-style private events at sister location, so the ops team is already set up for private hire; Distillery room is small but characterful for a 50-80-person intimate coffee-day.",
     "img": null,
     "alt": "Arvo Coffee Distillery District café interior, Gristmill Lane",
-    "top": false
+    "top": false,
+    "lat": 43.64991,
+    "lng": -79.3612
   },
   {
     "k": "balzacs_coffee_distillery",
     "name": "Balzac's Coffee — Distillery District (Pump House)",
-    "area": "King East / St. Lawrence / Old Town (King & Yonge to Jarvis)",
+    "area": "King East / St. Lawrence / Old Town",
     "type": "coffee",
     "addr": "1 Trinity St, Toronto, ON M5A 3C4",
     "cap": "~<b>150</b>-200 across two Parisian-style storeys (est; no published event capacity; catering partner Daniel et Daniel lists it as a rental room)",
@@ -239,12 +265,14 @@ const VENUES = [
     "note": "Toronto's most recognisable heritage café — a transformed circa-1895 Pump House across two storeys in the heart of the pedestrian Distillery District, a short walk east of Jarvis on King. Widely used by caterers as an evening rental space; two-storey grand room with Vaudeville chandelier means a bilingual coffee-day/hack works as a café buy-out, with street-corporeal presence for tech-week foot traffic.",
     "img": null,
     "alt": "Balzac's Parisian-style café with chandelier in the Distillery Pump House",
-    "top": false
+    "top": false,
+    "lat": 43.64975,
+    "lng": -79.35913
   },
   {
     "k": "lauft_king_east",
     "name": "LAUFT King East — EVNT by LAUFT",
-    "area": "King East / St. Lawrence / Old Town (King & Yonge to Jarvis)",
+    "area": "King East / St. Lawrence / Old Town",
     "type": "coffee",
     "addr": "95 King Street East, Unit 101, Toronto, ON M5C 1G4",
     "cap": "<b>80</b> in dedicated event room (published on LAUFT own site + LiquidSpace listing) — fits the 50-200 band exactly",
@@ -255,12 +283,14 @@ const VENUES = [
     "note": "Street-level cowork-café hybrid one block south of King & Church — proper café service (complimentary coffee/tea for working guests) plus a bookable event room on the same floor. Tailored for corporate meetings, weddings, networking evenings — most tech-shaped room verified inside the cell; booking is via reservation form (no public email).",
     "img": null,
     "alt": "LAUFT King East event space front entrance, 95 King St E",
-    "top": false
+    "top": false,
+    "lat": 43.6497361,
+    "lng": -79.374689
   },
   {
     "k": "darkhorseespressobarcanarydistrict",
     "name": "Dark Horse Espresso Bar — Canary District",
-    "area": "King East / St. Lawrence / Old Town (King & Yonge to Jarvis)",
+    "area": "King East / St. Lawrence / Old Town",
     "type": "coffee",
     "addr": "416 Front St E, Toronto, ON M5A 1H7",
     "cap": "<b>40</b> people in 1,600 sq ft (published on Dark Horse own private-events page)",
@@ -271,12 +301,14 @@ const VENUES = [
     "note": "Toronto indie-coffee mainstay with an own-brand private-events product across 6 cafés; the Canary District location sits just east of Jarvis in the emerging Canary/Front St corridor — bike-lane-close to King East and a modern 'Bright, Refined, Polished' room. Daytime buy-outs are explicitly offered alongside evening rentals for a hack-day flow, though 40-person capacity fits only the low end of the brief.",
     "img": null,
     "alt": "Dark Horse Espresso Canary District café interior, 416 Front St E",
-    "top": false
+    "top": false,
+    "lat": 43.65297,
+    "lng": -79.357007
   },
   {
     "k": "transmission_studios",
     "name": "Transmission Studios",
-    "area": "King East / St. Lawrence / Old Town (King & Yonge to Jarvis)",
+    "area": "King East / St. Lawrence / Old Town",
     "type": "cowork",
     "addr": "58 Berkeley St, Toronto, ON M5A 2W6",
     "cap": "<b>200</b> standing / <b>150</b> seated in Main Event Space + Sunlight Studios (3,200 sq ft, 15 ft ceilings)",
@@ -287,12 +319,14 @@ const VENUES = [
     "note": "Purpose-built blank-canvas event studio a block east of Jarvis in Old Town — open-concept 3,200 sq ft with in-house sound system, five washrooms, garage-door access and dedicated events team. Capacity lands squarely in the 50-200 band with hack-day-friendly open floor, and Berkeley St location keeps it inside the King East/Old Town cell.",
     "img": "https://transmissionstudios58.com/wp-content/uploads/2024/01/58-Berkeley-Street-Studio-Space-interior-2-scaled.jpg",
     "alt": "Transmission Studios open-concept event space with white brick and floor-to-ceiling windows",
-    "top": false
+    "top": false,
+    "lat": 43.652309,
+    "lng": -79.3646153
   },
   {
     "k": "st_lawrence_market",
     "name": "St. Lawrence Market North",
-    "area": "King East / St. Lawrence / Old Town (King & Yonge to Jarvis)",
+    "area": "King East / St. Lawrence / Old Town",
     "type": "cowork",
     "addr": "92 Front St E, Toronto, ON M5E 1C3",
     "cap": "Market Hall: <b>600</b> standing / <b>600</b> theatre-style / <b>400</b>-<b>500</b> seated (14 ft ceilings, louvered doors open to Market Lane Park)",
@@ -303,12 +337,14 @@ const VENUES = [
     "note": "Newly redeveloped market-hall floor in the heart of the district with floor-to-ceiling glass that opens to Market Lane Park, direct underground parking (250 spots), and a published venue-rental package with per-room rates — handles the full 50-200 band with headroom to scale. Note: unavailable Saturdays (weekly Farmers Market), and Friday/Sunday availability limited; Sep 29 2026 is a Tuesday, so clear.",
     "img": null,
     "alt": "St. Lawrence Market North Market Hall with 14-foot ceilings and glass enclosures",
-    "top": false
+    "top": false,
+    "lat": 43.6487389,
+    "lng": -79.3715745
   },
   {
     "k": "st_lawrence_centre",
     "name": "St. Lawrence Centre for the Arts (TO Live)",
-    "area": "King East / St. Lawrence / Old Town (King & Yonge to Jarvis)",
+    "area": "King East / St. Lawrence / Old Town",
     "type": "cowork",
     "addr": "27 Front St E, Toronto, ON M5E 1B4",
     "cap": "Jane Mallet Lobby <b>287</b> standing; Bluma Appel Lobby <b>616</b> standing; Rehearsal Hall <b>100</b>; theatres 499/868 seated",
@@ -319,12 +355,14 @@ const VENUES = [
     "note": "City-owned arts centre at Front/Yonge on the western edge of the cell, run by TO Live with a named corporate-and-private-events director (Scott North) and a published rental package with per-space daily rates. The two multi-floored lobbies plus Rehearsal Hall cover the whole 50-200 span with CN Tower views and in-house catering.",
     "img": "https://images.ctfassets.net/nmxu5kj1b6ch/1m10lUa82osYWQ0KYOSG7b/0d8472d510adc9639fcdce012b6fbc0e/STLC_Long_Rectangle.jpg",
     "alt": "St. Lawrence Centre for the Arts lobby spaces with downtown views",
-    "top": false
+    "top": false,
+    "lat": 43.6473546,
+    "lng": -79.375174
   },
   {
     "k": "meridian_hall_castle",
     "name": "Meridian Hall — Castle Point Numa Lounge & Rehearsal Hall (TO Live)",
-    "area": "King East / St. Lawrence / Old Town (King & Yonge to Jarvis)",
+    "area": "King East / St. Lawrence / Old Town",
     "type": "cowork",
     "addr": "1 Front St E, Toronto, ON M5E 1B2",
     "cap": "Castle Point Numa Lounge <b>125</b>; Rehearsal Hall <b>200</b> theatre/reception/banquet; West Plaza <b>600</b> reception for outdoor overflow",
@@ -335,12 +373,14 @@ const VENUES = [
     "note": "At the Yonge-end corner of the cell (Front/Yonge, one block from Union), Meridian Hall's Rent with TO Live program publishes per-space rates and capacities — the Castle Point Numa Lounge (own Yonge St entrance, ~125) and Rehearsal Hall (200) map directly to the 50-200 hack-day band, with the West Plaza available for outdoor coffee service.",
     "img": null,
     "alt": "Meridian Hall main lobby and plaza at Front and Yonge",
-    "top": false
+    "top": false,
+    "lat": 43.6466648,
+    "lng": -79.3760653
   },
   {
     "k": "the_quay_toronto",
     "name": "The Quay (Toronto Region Board of Trade / Oliver & Bonacini) — Trade Café + Media Lounge",
-    "area": "East Bayfront / Waterfront (Queens Quay E, Lower Jarvis to Parliament)",
+    "area": "East Bayfront / Waterfront",
     "type": "coffee",
     "addr": "100 Queens Quay E, 3rd Floor, Toronto, ON M5E 1V3",
     "cap": "Trade Café workshop rooms hold <b>16</b>-40</b> each, opening to a single <b>120</b>-guest event space; boardrooms 8-10. Full venue buyout <b>725</b> reception (O&B floor plan)",
@@ -351,12 +391,14 @@ const VENUES = [
     "note": "Brand-new 38,000 sq ft East Bayfront event hub with a Trade Café, four modular 16-40-guest workshop rooms that fold into a single 120-guest room, a 22,000 sq ft lake-view terrace and full O&B in-house catering. Dedicated venue-hire pages on both bot.com and oliverbonacini.com; ideal mid-cell anchor for hack-day tracks plus coffee service.",
     "img": null,
     "alt": "The Quay Trade Café at 100 Queens Quay East, Toronto Region Board of Trade",
-    "top": false
+    "top": false,
+    "lat": 43.6381551,
+    "lng": -79.3819675
   },
   {
     "k": "darkhorseespressoqueensquaye100queensquaye",
     "name": "Dark Horse Espresso — Queens Quay E (100 Queens Quay E)",
-    "area": "East Bayfront / Waterfront (Queens Quay E, Lower Jarvis to Parliament)",
+    "area": "East Bayfront / Waterfront",
     "type": "coffee",
     "addr": "100 Queens Quay E, Toronto, ON M5E 1V3",
     "cap": "~<b>60</b> (est; the 100 Queens Quay E cafe itself is not listed on the private-events page, but sister cafes of similar size run 40-75 guests; confirm with Dark Horse)",
@@ -367,12 +409,14 @@ const VENUES = [
     "note": "Specialty coffee bar operating on the ground floor of 100 Queens Quay E (same building as The Quay) so hack-day attendees can source serious espresso on-site; Dark Horse explicitly offers evening rentals across its cafes and daytime buy-outs by inquiry via the dedicated events form / contact.",
     "img": null,
     "alt": "Dark Horse Espresso cafe interior at 100 Queens Quay East",
-    "top": false
+    "top": false,
+    "lat": 43.6437105,
+    "lng": -79.3710502
   },
   {
     "k": "mofer_coffee_queens",
     "name": "Mofer Coffee — Queens Quay",
-    "area": "East Bayfront / Waterfront (Queens Quay E, Lower Jarvis to Parliament)",
+    "area": "East Bayfront / Waterfront",
     "type": "coffee",
     "addr": "132 Queens Quay E, Toronto, ON M5A 0P7",
     "cap": "~<b>30</b>-50</b> (est; spacious high-ceiling storefront along the waterfront, no published event capacity)",
@@ -383,12 +427,14 @@ const VENUES = [
     "note": "Specialty Ethiopian roaster-café mid-cell on Queens Quay E between Jarvis and Sherbourne, listed on the Waterfront BIA east-waterfront café crawl; spacious bright interior suits a small daytime hack/coffee break or a buy-out ask via the main site's contact form (no dedicated events page published).",
     "img": "//www.mofercoffee.com/cdn/shop/files/3dgifmaker84869.gif?v=1714255786",
     "alt": "Mofer Coffee Queens Quay logo and Ethiopian coffee bags",
-    "top": false
+    "top": false,
+    "lat": 43.64441,
+    "lng": -79.36818
   },
   {
     "k": "lazy_barista",
     "name": "Lazy Barista",
-    "area": "East Bayfront / Waterfront (Queens Quay E, Lower Jarvis to Parliament)",
+    "area": "East Bayfront / Waterfront",
     "type": "coffee",
     "addr": "157 Queens Quay E, Toronto, ON M5A 1B4",
     "cap": "~<b>30</b>-40</b> (est small waterfront cafe, no published event capacity)",
@@ -399,12 +445,14 @@ const VENUES = [
     "note": "Tiny independent waterfront café two doors east of MaRS Waterfront at 157 Queens Quay E — BlogTO-listed, Instagram-operated (no own site), so contact is via Instagram DMs. Realistic only for a coffee-service partner or sub-40 buy-out inside our hack-day footprint, not a standalone host.",
     "img": null,
     "alt": "Lazy Barista storefront on Queens Quay East waterfront",
-    "top": false
+    "top": false,
+    "lat": 43.64433995,
+    "lng": -79.36708345
   },
   {
     "k": "mars_waterfront_the",
     "name": "MaRS Waterfront — The Nexus / Lake Lounge",
-    "area": "East Bayfront / Waterfront (Queens Quay E, Lower Jarvis to Parliament)",
+    "area": "East Bayfront / Waterfront",
     "type": "cowork",
     "addr": "155 Queens Quay E, Toronto, ON M5A 0W4",
     "cap": "<b>150</b> theatre / <b>250</b> reception (Lake Lounge); Nexus meeting rooms up to 70",
@@ -415,12 +463,14 @@ const VENUES = [
     "note": "Purpose-built tech-hub event floor inside the Waterfront Innovation Centre at the eastern end of the cell. Two amphitheatres, waterfront terraces and cafe-style breakout zones: exactly the coffee/hack shape for a bilingual tech-week day crowd.",
     "img": "https://marsdd-hubs-prod-public-files.s3.amazonaws.com/wp-content/uploads/2024/09/MaRS-Waterfront-Venue-Overview-2024.pdf",
     "alt": "Lake Lounge multi-purpose event space with tiered seating facing a waterfront window",
-    "top": true
+    "top": true,
+    "lat": 43.6442614,
+    "lng": -79.3673068
   },
   {
     "k": "boxcar_social_harbourfront",
     "name": "Boxcar Social Harbourfront",
-    "area": "East Bayfront / Waterfront (Queens Quay E, Lower Jarvis to Parliament)",
+    "area": "East Bayfront / Waterfront",
     "type": "cowork",
     "addr": "235 Queens Quay W, Toronto, ON M5J 2G8",
     "cap": "<b>150</b> indoors + patio; ~<b>250</b> standing whole-venue (est incl. patio)",
@@ -431,12 +481,14 @@ const VENUES = [
     "note": "Cafe-bar directly on the water with a dedicated private-events buyout page. Natural daylight, patio feeding toward the lake, coffee-forward: the closest analogue in the cell to a Cafe-Cursor-style daytime coffee/hack room. Western edge of the cell.",
     "img": "https://boxcarsocial.ca/cdn/shop/files/HFC_RP_06_DSCF1205.jpg?v=1684865981&width=640",
     "alt": "Cafe interior with concrete floor, large harbour-facing windows, pendant lights and high-top counter",
-    "top": false
+    "top": false,
+    "lat": 43.6391131,
+    "lng": -79.3828319
   },
   {
     "k": "george_brown_college",
     "name": "George Brown College Waterfront (Limberlost Place signature event space)",
-    "area": "East Bayfront / Waterfront (Queens Quay E, Lower Jarvis to Parliament)",
+    "area": "East Bayfront / Waterfront",
     "type": "cowork",
     "addr": "185 Queens Quay E, Toronto, ON M5A 1B6",
     "cap": "~<b>150</b>-200</b> (est; exact capacity not published)",
@@ -447,12 +499,14 @@ const VENUES = [
     "note": "Award-winning mass-timber waterfront campus with a dedicated signature event space, rooftop terraces with lake views and a published events-booking desk. Academic cowork/event room squarely in the middle of the Queens Quay E cell.",
     "img": null,
     "alt": "Limberlost Place interior event space with mass-timber columns and rows of tables and chairs",
-    "top": false
+    "top": false,
+    "lat": 43.6445936,
+    "lng": -79.3659021
   },
   {
     "k": "artscape_daniels_launchpad",
     "name": "Artscape Daniels Launchpad (Sugar Hall)",
-    "area": "East Bayfront / Waterfront (Queens Quay E, Lower Jarvis to Parliament)",
+    "area": "East Bayfront / Waterfront",
     "type": "cowork",
     "addr": "130 Queens Quay E, East Tower, 4th Floor, Toronto, ON M5A 0P6",
     "cap": "<b>350</b> standing / <b>250</b> seated (Sugar Hall)",
@@ -468,7 +522,7 @@ const VENUES = [
   {
     "k": "the_rostie_group",
     "name": "The Rostie Group - Queen's Quay Terminal",
-    "area": "East Bayfront / Waterfront (Queens Quay E, Lower Jarvis to Parliament)",
+    "area": "East Bayfront / Waterfront",
     "type": "cowork",
     "addr": "207 Queens Quay W, Suite 401, Toronto, ON M5J 1A7",
     "cap": "<b>60</b> seated / <b>70</b> standing (Event Lounge)",
@@ -479,6 +533,8 @@ const VENUES = [
     "note": "Coworking operator with a bookable 60-70-person Event Lounge overlooking the lake. Fits only the small end (up to ~70) of the coffee/hack range, but it is an in-scope dedicated coworking/event business with a published bookable room.",
     "img": null,
     "alt": "Event Lounge with twin 80-inch displays and floor-to-ceiling lake-facing windows",
-    "top": false
+    "top": false,
+    "lat": 43.6383846,
+    "lng": -79.3804374
   }
 ];

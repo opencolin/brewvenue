@@ -131,6 +131,10 @@
     body { padding: 22px 12px 32px; }
     h1 { font-size: 27px; }
   }
+  @media (min-width: 901px) {
+    body.map-open .wrap { max-width: calc(50vw - 44px); margin: 0; }
+    body.map-open .grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -251,12 +255,38 @@ function cycleTheme(){
   const next = cur === "dark" ? "light" : cur === "light" ? "dark"
     : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
   r.setAttribute("data-theme", next);
+  if (window.__syncMapTheme) window.__syncMapTheme();
 }
 init();
 
 /* compute-cafe-map.js — Leaflet helpers for View Map toggle */
 (function () {
   const ACCENT = { live: "#0ca30c", rsvp: "#2a78d6", soon: "#898781" };
+  const isDark = () => {
+    const t = document.documentElement.getAttribute("data-theme");
+    return t === "dark" || (t !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  };
+  function baseLayers(L) {
+    return {
+      light: L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }),
+      dark: L.tileLayer("https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Black_Marble/default/2016-01-01/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg", {
+        maxZoom: 19, maxNativeZoom: 8,
+        attribution: "NASA Earth at Night (VIIRS Black Marble) · EOSDIS GIBS",
+      }),
+    };
+  }
+  window.__syncMapTheme = function () {
+    const map = window.__map;
+    if (!map || !map.__layers) return;
+    const want = isDark() ? map.__layers.dark : map.__layers.light;
+    const other = isDark() ? map.__layers.light : map.__layers.dark;
+    if (!map.hasLayer(want)) map.addLayer(want);
+    if (map.hasLayer(other)) map.removeLayer(other);
+  };
+
   function initMap(container, data, opts) {
     opts = Object.assign({ zoom: 10 }, opts || {});
     const L = window.L;
@@ -264,10 +294,8 @@ init();
     const el = container;
     el.innerHTML = "";
     const map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+    map.__layers = baseLayers(L);
+    (isDark() ? map.__layers.dark : map.__layers.light).addTo(map);
 
     const markers = [];
     (data.cities || []).forEach(c => markers.push(c));
@@ -297,10 +325,12 @@ init();
     if (el.style.display === "block") {
       el.style.display = "none";
       el.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("map-open");
       return false;
     }
     el.style.display = "block";
     el.setAttribute("aria-hidden", "false");
+    document.body.classList.add("map-open");
     if (!el.dataset.mounted) {
       el.dataset.mounted = "1";
       window.__map = initMap(el, data, opts);

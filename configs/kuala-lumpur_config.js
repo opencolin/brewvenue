@@ -21,7 +21,7 @@ const VENUES = [
   {
     "k": "connexion_conference_event",
     "name": "Connexion Conference & Event Centre (CCEC) / Pusat Konvensyen & Acara Connexion",
-    "area": "Bangsar South (KL Gateway / Nexus / Kerinchi)",
+    "area": "Bangsar South",
     "type": "coffee",
     "addr": "Level 3 & 3A, Nexus, Bangsar South City, No. 7 Jalan Kerinchi, 59200 Kuala Lumpur (second site: Level M1, The Vertical, No. 8 Jalan Kerinchi)",
     "cap": "Up to <b>2,100</b>pax; 5 ballrooms, 15 function rooms, auditorium, rooftop gazebo (published)",
@@ -32,12 +32,14 @@ const VENUES = [
     "note": "Purpose-built convention centre across two Bangsar South towers; rooms for 10 to full buyout for 2,100 pax, with on-site culinary team (coffee/tea catering standard). Bilingual BM/EN staff, direct booking via email or WhatsApp +6012-398 9643. The most reliable fit for a 50-200 pax bilingual tech-week coffee/hack day here.",
     "img": "https://images.squarespace-cdn.com/content/v1/5c2d7579cc8fed1226da576f/1551269664926-7XUWZX99VJB442LO4YLP/Locations-Header.png",
     "alt": "Connexion CCEC featured exterior with terrace",
-    "top": true
+    "top": true,
+    "lat": 3.1096794,
+    "lng": 101.6662169
   },
   {
     "k": "worq_kl_gateway",
     "name": "WORQ KL Gateway (Bangsar South)",
-    "area": "Bangsar South (KL Gateway / Nexus / Kerinchi)",
+    "area": "Bangsar South",
     "type": "coffee",
     "addr": "Unit 3.07, Level 3, KL Gateway Mall, 2 Jalan Kerinchi, Kampung Kerinchi, 59200 Kuala Lumpur",
     "cap": "Up to <b>130</b>guests in the event space (published; 1500 sq ft)",
@@ -48,12 +50,14 @@ const VENUES = [
     "note": "Mall-based coworking/event hall 2 minutes from Universiti LRT with free-flow coffee/snacks; projector, PA, panel caterers. Hourly rental works well for an all-day bilingual hack/coffee combo. WhatsApp bookings answered fastest at +6010-979 6704.",
     "img": "https://worq.space/wp-content/uploads/2024/12/klg-event-space-01.jpg",
     "alt": "WORQ KL Gateway event hall interior, bright open plan",
-    "top": false
+    "top": false,
+    "lat": 3.1631374,
+    "lng": 101.7103842
   },
   {
     "k": "botanicaco_bangsar_south",
     "name": "Botanica+Co Bangsar South",
-    "area": "Bangsar South (KL Gateway / Nexus / Kerinchi)",
+    "area": "Bangsar South",
     "type": "coffee",
     "addr": "G5 Podium, The Vertical, Bangsar South City, No. 8 Jalan Kerinchi, 59200 Kuala Lumpur",
     "cap": "Whole restaurant <b>~250</b>pax (published on sister-venue brochure); sections 20-60 pax",
@@ -64,12 +68,14 @@ const VENUES = [
     "note": "Greenhouse-styled restaurant/cafe on The Vertical podium, already markets events packages at the Bangsar South outlet. WhatsApp +6016-965 6422 is the typical KL booking channel; the dedicated event-enquiry form is the published intake route.",
     "img": "https://www.botanica.com.my/wp-content/uploads/2024/12/Web-2-1000x450.jpg",
     "alt": "Botanica+Co Bangsar South greenhouse interior",
-    "top": false
+    "top": false,
+    "lat": 3.140489,
+    "lng": 101.6834074
   },
   {
     "k": "the_farm_foodcraft",
     "name": "The Farm Foodcraft @ The Sphere",
-    "area": "Bangsar South (KL Gateway / Nexus / Kerinchi)",
+    "area": "Bangsar South",
     "type": "coffee",
     "addr": "Unit G-1 & G-2, Level Ground, The Sphere, No. 1 Avenue 1 Bangsar South City, No. 8 Jalan Kerinchi, 59200 Kuala Lumpur",
     "cap": "<b>~120</b>(est; main dining plus separate private-events area, blog reviews cite \"75 guests\" and large-group bookings)",
@@ -80,12 +86,14 @@ const VENUES = [
     "note": "Farm-to-table cafe in The Sphere with a dedicated secluded events area and published event-booking form. Halal-friendly/pork-free suits a mixed bilingual tech crowd; WhatsApp +6014-993 3880 for fast reservations.",
     "img": "https://thefarmfoodcraft.co/wp-content/uploads/2023/10/Create-Unforgettable-moments-at-the-Farm-1.jpg",
     "alt": "The Farm private-event table setting, lush interior",
-    "top": false
+    "top": false,
+    "lat": 3.1103874,
+    "lng": 101.668099
   },
   {
     "k": "komune_coworking_the",
     "name": "Komune Co-working, The Vertical Bangsar South",
-    "area": "Bangsar South (KL Gateway / Nexus / Kerinchi)",
+    "area": "Bangsar South",
     "type": "coffee",
     "addr": "Level 8, Vertical Corporate Tower B, Avenue 10, The Vertical, No. 8 Jalan Kerinchi, Bangsar South City, 59200 Kuala Lumpur",
     "cap": "Full Event Space <b>60</b>pax theatre / 30 pax classroom; Studio 1 30 pax (published)",
@@ -101,7 +109,7 @@ const VENUES = [
   {
     "k": "connexionconferenceeventcentreccecnexusthevertic",
     "name": "Connexion Conference & Event Centre (CCEC) @ Nexus / The Vertical",
-    "area": "Bangsar South (KL Gateway / Nexus / Kerinchi)",
+    "area": "Bangsar South",
     "type": "cowork",
     "addr": "Level 3 & 3A, Nexus, Bangsar South City, No. 7, Jalan Kerinchi, 59200 Kuala Lumpur (second wing: Level M1, The Vertical, No. 8, Jalan Kerinchi)",
     "cap": "Oak Room <b>50</b>-200 seated; Function Rooms 50-300; Auditorium 300; Grand Nexus Ballroom up to 2,112 (published)",
@@ -112,12 +120,14 @@ const VENUES = [
     "note": "The neighborhood's purpose-built conference/event centre spanning Nexus and The Vertical — The Oak Room (14,340 sq ft, 50-200 pax) is sized exactly for a 50-200 tech-week coffee/hack day, with AV, catering and 1,650 parking bays on site. Books via enquire@connexioncec.com, +603 2386 9188, or WhatsApp 012-3989643 (site inspection bookings explicitly offered by WhatsApp — fastest response channel, typical for KL venues).",
     "img": null,
     "alt": "Connexion Conference & Event Centre Grand Nexus Ballroom interior, Bangsar South",
-    "top": true
+    "top": true,
+    "lat": 3.1096794,
+    "lng": 101.6662169
   },
   {
     "k": "worqklgatewayworqbangsarsouth",
     "name": "WORQ KL Gateway (WORQ Bangsar South)",
-    "area": "Bangsar South (KL Gateway / Nexus / Kerinchi)",
+    "area": "Bangsar South",
     "type": "cowork",
     "addr": "Unit 3.07, Level 3, KL Gateway Mall, 2, Jalan Kerinchi, Kampung Kerinchi, 59200 Kuala Lumpur",
     "cap": "Event hall <b>up to 130</b>pax (published on site); event hall from 1,500 sq ft, from RM2,200/hr",
@@ -128,12 +138,14 @@ const VENUES = [
     "note": "Inside KL Gateway Mall, 2 min from Universiti LRT — dead-simple access for a 100-130 person hack day, with projector/PA, panel caterers and a self-serve event-hall pricing + inquiry flow on their site. Strong community-coworking vibe fits a bilingual tech crowd; WhatsApp +6010 979 6704 is the fastest booking channel.",
     "img": "https://worq.space/wp-content/uploads/2024/12/klg-event-space-01.jpg",
     "alt": "WORQ KL Gateway event space set up for an event, Bangsar South",
-    "top": false
+    "top": false,
+    "lat": 3.1631374,
+    "lng": 101.7103842
   },
   {
     "k": "h_space_bangsar",
     "name": "H Space Bangsar South",
-    "area": "Bangsar South (KL Gateway / Nexus / Kerinchi)",
+    "area": "Bangsar South",
     "type": "cowork",
     "addr": "Level 28, Vertical Corporate Office Tower B, Bangsar South City, No. 8, Jalan Kerinchi, 59200 Kuala Lumpur",
     "cap": "Event space <b>up to 80</b>pax depending on layout (published); RM900/4 hours working hours, RM1,200/4 hours off-hours",
@@ -149,7 +161,7 @@ const VENUES = [
   {
     "k": "common_ground_bangsar",
     "name": "Common Ground Bangsar South (Menara BT)",
-    "area": "Bangsar South (KL Gateway / Nexus / Kerinchi)",
+    "area": "Bangsar South",
     "type": "cowork",
     "addr": "Level 1 & 2, Tower 3, Avenue 7, Horizon 2 (Menara BT), Bangsar South City, 59200 Kuala Lumpur",
     "cap": "Event space on site; <b>~50</b>-100 (est) — capacity confirmed on enquiry, their venues handle product launches, seminars and panel talks",
@@ -165,7 +177,7 @@ const VENUES = [
   {
     "k": "komune_coworking_space",
     "name": "Komune Co-Working Space, The Vertical",
-    "area": "Bangsar South (KL Gateway / Nexus / Kerinchi)",
+    "area": "Bangsar South",
     "type": "cowork",
     "addr": "Level 8, Vertical Corporate Tower B, Avenue 10, The Vertical, No. 8, Jalan Kerinchi, Bangsar South City, 59200 Kuala Lumpur",
     "cap": "Full Event Space <b>2,745</b>sq ft: 60 pax theatre / 30 pax classroom; Studio 1: 30 pax (published)",
@@ -181,7 +193,7 @@ const VENUES = [
   {
     "k": "infinity8_reserve_trx",
     "name": "INFINITY8 Reserve TRX",
-    "area": "Tun Razak Exchange (TRX) — Menara The Exchange 106",
+    "area": "Tun Razak Exchange — Menara The Exchange 106",
     "type": "coffee",
     "addr": "Level 23, Menara The Exchange 106, Lingkaran TRX, Tun Razak Exchange, 55188 Kuala Lumpur",
     "cap": "<b>~80</b>pax event space (est)",
@@ -192,12 +204,14 @@ const VENUES = [
     "note": "Only shortlisted venue physically inside Menara The Exchange 106; premium Reserve-tier event space and meeting rooms on L23 with MRT connection, 24/7 access, and complimentary coffee/tea built in — ideal base for a tech-week hack day, and tours book fast via WhatsApp (+6018-769 7718).",
     "img": "https://infinity8.com.my/api/image-proxy?url=https%3A%2F%2Fapi.infinity8.com.my%2Fapi%2Fv1%2Flocations%2Freserve-trx%2Fimages%2F1f6405243ab046fd9b3407132fd9888d",
     "alt": "Wide interior of INFINITY8 Reserve TRX coworking lounge inside The Exchange 106",
-    "top": true
+    "top": true,
+    "lat": 3.1417925,
+    "lng": 101.7187008
   },
   {
     "k": "the_rabbit_hole",
     "name": "The Rabbit Hole KL (Brew & Bread coffee bar)",
-    "area": "Tun Razak Exchange (TRX) — Menara The Exchange 106",
+    "area": "Tun Razak Exchange — Menara The Exchange 106",
     "type": "coffee",
     "addr": "14 & 16, Changkat Bukit Bintang, 50200 Kuala Lumpur",
     "cap": "<b>~100</b>-150 pax standing (est)",
@@ -208,12 +222,14 @@ const VENUES = [
     "note": "Cafe-by-day venue with the Brew & Bread specialty coffee program and a published corporate/private events section plus downloadable event rate card; three interconnected zones in a colonial building handle 100+ guest networking formats. Bookings run through their WhatsApp booking link (wa.link/j7pxx5) which answers faster than email.",
     "img": "https://www.rabbithole.com.my/wp-content/uploads/2022/03/Cafe-by-day-Bar-by-night-2-1-scaled.jpg",
     "alt": "Wide interior of The Rabbit Hole KL cafe-bar with artisan coffee bar",
-    "top": false
+    "top": false,
+    "lat": 3.1480962,
+    "lng": 101.7071256
   },
   {
     "k": "colony_the_met",
     "name": "Colony @ The MET — The Glass Box & Event Lounges",
-    "area": "Tun Razak Exchange (TRX) — Menara The Exchange 106",
+    "area": "Tun Razak Exchange — Menara The Exchange 106",
     "type": "coffee",
     "addr": "The MET Corporate Towers, Level 9 (Events), 20, Jalan Dutamas 2, 50480 Kuala Lumpur",
     "cap": "Classroom <b>200</b>/ Cocktail & Theatre up to 400 (Glass Box); Event Lounges 80-100 standing",
@@ -229,7 +245,7 @@ const VENUES = [
   {
     "k": "common_ground_klcc",
     "name": "Common Ground KLCC — The Grounds Event Space",
-    "area": "Tun Razak Exchange (TRX) — Menara The Exchange 106",
+    "area": "Tun Razak Exchange — Menara The Exchange 106",
     "type": "coffee",
     "addr": "Level 6, Menara Darussalam, Kuala Lumpur City Centre, 50088 Kuala Lumpur",
     "cap": "<b>~100</b>pax (est)",
@@ -245,7 +261,7 @@ const VENUES = [
   {
     "k": "craft_cafe_by",
     "name": "Craft Cafe by Craftale @ Cheras (Connaught)",
-    "area": "Tun Razak Exchange (TRX) — Menara The Exchange 106",
+    "area": "Tun Razak Exchange — Menara The Exchange 106",
     "type": "coffee",
     "addr": "First Floor, 3-1, Jalan Menara Gading 1, Taman Connaught, 56000 Kuala Lumpur",
     "cap": "<b>50</b>theatre / 70 standing",
@@ -256,12 +272,14 @@ const VENUES = [
     "note": "Specialty-coffee-led venue with a dedicated events/workshop/venue-rental page, on-site professional baristas, free Wi-Fi, projector and sound system — purpose-built for a smaller (50-70 pax) barista-workshop hack day, with mobile coffee-bar catering if needed. Primary booking channel is phone/WhatsApp +6011-1122 3201.",
     "img": "https://www.craftcafe.my/cdn/shop/files/EW-venue-img-01-1.png?v=1764139171&width=1500",
     "alt": "Wide interior of Craft Cafe by Craftale event venue space",
-    "top": false
+    "top": false,
+    "lat": 3.080916,
+    "lng": 101.7333519
   },
   {
     "k": "common_ground_bukit",
     "name": "Common Ground Bukit Bintang (The Grounds Event Space)",
-    "area": "Tun Razak Exchange (TRX) — Menara The Exchange 106",
+    "area": "Tun Razak Exchange — Menara The Exchange 106",
     "type": "cowork",
     "addr": "Level 25, Menara Worldwide, 198 Jalan Bukit Bintang, Bukit Bintang, 55100 Kuala Lumpur",
     "cap": "<b>120</b>seated / 150 standing",
@@ -272,12 +290,14 @@ const VENUES = [
     "note": "Three-storey 21,000 sq ft Malaysia-Digital-Hub coworking space with a named 'The Grounds Event Space' bookable at MYR 1,299/hr for 120 pax — perfect scale for a 50-200 person coffee/hack day. One MRT stop from TRX (Conlay station, 5-min walk); branch email published and WhatsApp enquiry on +60 11-5631 9888 answers fastest.",
     "img": null,
     "alt": "Common Ground Bukit Bintang (The Grounds Event Space) interior",
-    "top": false
+    "top": false,
+    "lat": 3.1487691,
+    "lng": 101.6936377
   },
   {
     "k": "colony_klcc_event",
     "name": "Colony @ KLCC (Event Lounge)",
-    "area": "Tun Razak Exchange (TRX) — Menara The Exchange 106",
+    "area": "Tun Razak Exchange — Menara The Exchange 106",
     "type": "cowork",
     "addr": "Vipod Residences, 6 Jalan Kia Peng, 50450 Wilayah Persekutuan Kuala Lumpur",
     "cap": "Theatre <b>80</b>/ Cocktail 80 (Event Lounge, 1,250 sq ft)",
@@ -288,12 +308,14 @@ const VENUES = [
     "note": "British-colonial two-storey-high-ceiling Event Lounge between KLCC and Pavilion, ~1.5 km from TRX, ideal for a premium 50-80 person bilingual tech-week session. Strong published event-booking record (half/full-day packages, dedicated Community Manager, AV + stage); WhatsApp +60 17-471 7823 answers ask@colony.work faster than email.",
     "img": "https://colony.work/wp-content/uploads/Colony-KLCC-capacity-desktop.jpg",
     "alt": "Colony @ KLCC (Event Lounge) interior",
-    "top": false
+    "top": false,
+    "lat": 3.1520308,
+    "lng": 101.7128996
   },
   {
     "k": "colony_eco_city",
     "name": "Colony @ Eco City (Event Lounge, Level 20 penthouse)",
-    "area": "Tun Razak Exchange (TRX) — Menara The Exchange 106",
+    "area": "Tun Razak Exchange — Menara The Exchange 106",
     "type": "cowork",
     "addr": "Levels 16-20, Boutique Office 1 (B-O1-D), Menara 2, KL Eco City, No. 3 Jalan Bangsar, 59200 Kuala Lumpur",
     "cap": "Theatre <b>100</b>/ Cocktail 100 (Event Lounge, 4,000 sq ft + terrace)",
@@ -304,12 +326,14 @@ const VENUES = [
     "note": "Colony's strongest published event venue: 4,000 sq ft penthouse Event Lounge at Level 20 with lush outdoor terrace, rated Theatre 100 / Cocktail 100 — matches the upper end of the 50-200 brief with breathing room. Though in KL Eco City (~15 min from TRX by LRT/MRT), its dedicated events team and laptop-friendly cowork campus make it a strong bilingual hack-day pick; WhatsApp +60 17-471 7823.",
     "img": "https://colony.work/wp-content/uploads/Colony-Eco-City-capacity-desktop.jpg",
     "alt": "Colony @ Eco City (Event Lounge, Level 20 penthouse) interior",
-    "top": false
+    "top": false,
+    "lat": 3.1181468,
+    "lng": 101.6737562
   },
   {
     "k": "spaces_menara_public",
     "name": "Spaces Menara Public Gold @ TRX",
-    "area": "Tun Razak Exchange (TRX) — Menara The Exchange 106",
+    "area": "Tun Razak Exchange — Menara The Exchange 106",
     "type": "cowork",
     "addr": "Level 9, Menara Public Gold @ TRX, No. 249 Jalan Tun Razak, Imbi, 50400 Kuala Lumpur",
     "cap": "<b>~50</b>-150 (est; IWG shared lounge + meeting rooms at TRX-address tower)",
@@ -320,12 +344,14 @@ const VENUES = [
     "note": "IWG Spaces sits literally at the TRX edge on Jalan Tun Razak, branded 'Menara Public Gold @ TRX' with Tun Razak Exchange MRT at the doorstep and Imbi Monorail close by — practical for spillover if The Exchange 106 tower itself is full. No public per-venue events email is published, so bookings go through the Spaces 'Contact us / Book a tour' form (WhatsApp-style response on the central line +60 3-2787 4400 during business hours).",
     "img": null,
     "alt": "Spaces Menara Public Gold @ TRX interior",
-    "top": false
+    "top": false,
+    "lat": 3.1436297,
+    "lng": 101.7207945
   },
   {
     "k": "flower_girl_coffee",
     "name": "Flower Girl Coffee – Sunway Geo",
-    "area": "Bukit Jalil — APU/APIIT campus (with Sunway University as sister node)",
+    "area": "Bukit Jalil — APU/APIIT campus",
     "type": "coffee",
     "addr": "A-1-10, Ground Floor, Sunway GEO Avenue, Jalan Lagoon Selatan, Bandar Sunway, 47500 Petaling Jaya, Selangor",
     "cap": "<b>30–250</b>pax (published)",
@@ -336,12 +362,14 @@ const VENUES = [
     "note": "Garden-style café in a glasshouse corner lot with strong natural light; explicitly takes private-event bookings 30–250 pax with buffet from RM30++/pax — closest strong café fit to Sunway University; tech-week hack day fits the weekday 'office events' slot they advertise. WhatsApp bookings at +60 17-691 7828 (KL cafés of this profile answer WhatsApp first).",
     "img": null,
     "alt": "Bright glasshouse interior with hanging plants, communal tables",
-    "top": true
+    "top": true,
+    "lat": 3.0651279,
+    "lng": 101.6097145
   },
   {
     "k": "souled_out_bukit",
     "name": "SOULed OUT Bukit Jalil",
-    "area": "Bukit Jalil — APU/APIIT campus (with Sunway University as sister node)",
+    "area": "Bukit Jalil — APU/APIIT campus",
     "type": "coffee",
     "addr": "Lot 3.112.00 & E3.112.00, Level 3, Pavilion Bukit Jalil, 2 Persiaran Jalil 8, Bukit Jalil, 57000 Kuala Lumpur",
     "cap": "<b>~150</b>seated + al fresco (est)",
@@ -352,12 +380,14 @@ const VENUES = [
     "note": "Coffee-and-kitchen staple inside Pavilion Bukit Jalil with a published private-events program (corporate meetings, product launches, performances) and al fresco patio; an easy load-in for a bilingual tech-week coffee/hack day. Reservations/WhatsApp +60 12 397 1955.",
     "img": null,
     "alt": "Indoor dining room with bar counter and outdoor patio seating",
-    "top": false
+    "top": false,
+    "lat": 3.064445,
+    "lng": 101.6670965
   },
   {
     "k": "oomph_kl_tropika",
     "name": "Oomph KL – Tropika Bukit Jalil",
-    "area": "Bukit Jalil — APU/APIIT campus (with Sunway University as sister node)",
+    "area": "Bukit Jalil — APU/APIIT campus",
     "type": "coffee",
     "addr": "E-G-2, E-G-3, E-G-3A, Tropika Bukit Jalil, Jalan Jalil Perkasa 3, Bukit Jalil, 57000 Kuala Lumpur",
     "cap": "<b>~80–120</b>(est; multi-lot café)",
@@ -368,12 +398,14 @@ const VENUES = [
     "note": "Café explicitly promotes private-event bookings across three linked ground-floor lots by Tropika; open till 2 a.m. daily, useful for hack-day runover. Published booking contact is WhatsApp +60 12-281 8342 (no events email listed).",
     "img": null,
     "alt": "Long café interior with counter, tables and string lights",
-    "top": false
+    "top": false,
+    "lat": 3.0546755,
+    "lng": 101.691369
   },
   {
     "k": "ocean_ground_coffee",
     "name": "Ocean Ground Coffee",
-    "area": "Bukit Jalil — APU/APIIT campus (with Sunway University as sister node)",
+    "area": "Bukit Jalil — APU/APIIT campus",
     "type": "coffee",
     "addr": "1-11-G, Jalan Jalil Perkasa 13, Arked Esplanad, Bukit Jalil, 57000 Kuala Lumpur",
     "cap": "<b>~60–80</b>(est)",
@@ -384,12 +416,14 @@ const VENUES = [
     "note": "Specialty-coffee shop in Bukit Jalil that already hosts private/corporate takeovers (e.g., a July 2026 AIA private event); weekday-evening format suits a hack-night. Contact is WhatsApp +60 18-249 3882 (oceanground.my).",
     "img": "https://images.eatdrinkkl.com/store/postimage/58581/image/webp_version-da6dfa01ef4920a883f77fb2b43742e0.webp",
     "alt": "Wide shot of coffee bar and open seating inside Ocean Ground",
-    "top": false
+    "top": false,
+    "lat": 3.1573634,
+    "lng": 101.7129039
   },
   {
     "k": "dme_caf_pavilion",
     "name": "DÔME Café – Pavilion Bukit Jalil",
-    "area": "Bukit Jalil — APU/APIIT campus (with Sunway University as sister node)",
+    "area": "Bukit Jalil — APU/APIIT campus",
     "type": "coffee",
     "addr": "Pavilion Bukit Jalil, 2 Persiaran Jalil 8, Bukit Jalil, 57000 Kuala Lumpur (mall listing: Level 1)",
     "cap": "<b>30–120</b>pax (published chain-wide)",
@@ -400,12 +434,14 @@ const VENUES = [
     "note": "Malaysian coffee chain with a published private-events program (corporate gatherings, product launches, min 30 pax up to 120 pax) and a Pavilion Bukit Jalil outlet; predictable AV-and-F&B package for tech-week. Mall outlet phone 012-224 1653.",
     "img": null,
     "alt": "Warmly lit café dining hall with booth seating",
-    "top": false
+    "top": false,
+    "lat": 3.051063,
+    "lng": 101.6705112
   },
   {
     "k": "sandbox_coworking_space",
     "name": "Sandbox Coworking Space — Sri Petaling (Sandbox Space)",
-    "area": "Bukit Jalil — APU/APIIT campus (with Sunway University as sister node)",
+    "area": "Bukit Jalil — APU/APIIT campus",
     "type": "cowork",
     "addr": "22-1 Jalan Radin Bagus 3, Sri Petaling, 57000 Kuala Lumpur, Malaysia",
     "cap": "Theatre <b>65</b>pax / Standing 65 pax / Sofa & beanbags 25 pax (published)",
@@ -416,12 +452,14 @@ const VENUES = [
     "note": "Sri Petaling sits right next to Bukit Jalil (10-12 min drive to APU/APIIT at TPM) and this true-24/7 coworking space runs a dedicated, bookable Event Space with 1Gbps WiFi7, projector, PA, whiteboard and free-flow coffee; bilingual-friendly WhatsApp line serves both English and Bahasa Malaysia enquiries; Sri Petaling|Bandar Sunway sister-branch lets ComputeCafe mirror the event at the Sunway node.",
     "img": "https://images.squarespace-cdn.com/content/v1/609b590456ebf57272f423d1/e4ad34f6-2435-48dd-9a2f-6f0fd1cfffd2/Theatre+Style+Event+Venue+in+Sandbox+Coworking+Space+Sri+Petaling.jpg",
     "alt": "Wide interior shot of Sandbox Coworking Space event hall in Sri Petaling set in theatre layout",
-    "top": true
+    "top": true,
+    "lat": 3.070218,
+    "lng": 101.6937879
   },
   {
     "k": "sandboxcoworkingspacebandarsunwaysandboxspace",
     "name": "Sandbox Coworking Space — Bandar Sunway (Sandbox Space)",
-    "area": "Bukit Jalil — APU/APIIT campus (with Sunway University as sister node)",
+    "area": "Bukit Jalil — APU/APIIT campus",
     "type": "cowork",
     "addr": "Lot 10, Jalan PJS 11/18, Bandar Sunway, 46150 Petaling Jaya, Selangor, Malaysia",
     "cap": "Theatre <b>100</b>pax / Standing 120 pax / Outdoor 100 pax (published)",
@@ -432,12 +470,14 @@ const VENUES = [
     "note": "Sister branch of the Sri Petaling node, sitting inside Bandar Sunway township just a short walk from Sunway University and the BRT Sunway line; larger capacity (up to 120 standing) plus outdoor area makes it the natural home-base for the Sunway leg of the bilingual tech-week; same WhatsApp + email booking channel as the Bukit Jalil node.",
     "img": "https://images.squarespace-cdn.com/content/v1/609b590456ebf57272f423d1/0be960a1-b6e4-45c0-b105-03dde841b743/PJ+Event+Space+for+rent.jpg",
     "alt": "Sandbox Coworking Space Bandar Sunway event space interior from PJ Event Space gallery",
-    "top": false
+    "top": false,
+    "lat": 3.0717889,
+    "lng": 101.6057891
   },
   {
     "k": "pavilion_bukit_jalil",
     "name": "Pavilion Bukit Jalil Exhibition Centre",
-    "area": "Bukit Jalil — APU/APIIT campus (with Sunway University as sister node)",
+    "area": "Bukit Jalil — APU/APIIT campus",
     "type": "cowork",
     "addr": "Level 5, Pavilion Bukit Jalil, No. 2, Persiaran Jalil 8, Bandar Bukit Jalil, 57000 Kuala Lumpur, Malaysia",
     "cap": "<b>3</b>Exhibition Halls spanning 47,000 sq ft with 200+ booth capacity (published)",
@@ -448,12 +488,14 @@ const VENUES = [
     "note": "Only venue in the shortlist located literally inside Bukit Jalil, ~2 km from APU/APIIT campus, with dedicated booking contact Jennifer Low (+60 16 778 3198 / +60 3 8092 8888 ext. 938) and a purpose-built Exhibition Centre + Function Room; ideal if the coffee/hack day scales beyond 200 pax or needs plenary + catering panoramas; bilingual team accustomed to consumer + tech fairs.",
     "img": "https://pavilion-bukitjalil.com/assets/images/exhibition-centre/IMG_20220811_131312.jpg",
     "alt": "Wide interior photo of Pavilion Bukit Jalil Exhibition Centre main hall during an event",
-    "top": false
+    "top": false,
+    "lat": 3.0519277,
+    "lng": 101.6697757
   },
   {
     "k": "common_ground_menara",
     "name": "Common Ground @ Menara BT, Bangsar South",
-    "area": "Bukit Jalil — APU/APIIT campus (with Sunway University as sister node)",
+    "area": "Bukit Jalil — APU/APIIT campus",
     "type": "cowork",
     "addr": "Menara BT, Tower 3, Avenue 7, Bangsar South, No. 8 Jalan Kerinchi, 59200 Kuala Lumpur, Malaysia",
     "cap": "Event space capacity not published on location page — <b>~80</b>-100 pax (est) based on Common Ground event-hall footprint across KL sites",
@@ -469,7 +511,7 @@ const VENUES = [
   {
     "k": "spaces_aurora_place",
     "name": "Spaces Aurora Place Bukit Jalil (Regus/Spaces #7121)",
-    "area": "Bukit Jalil — APU/APIIT campus (with Sunway University as sister node)",
+    "area": "Bukit Jalil — APU/APIIT campus",
     "type": "cowork",
     "addr": "Unit 3-03-01, Plaza Bukit Jalil (Aurora Place), No. 1, Persiaran Jalil 1, Bandar Bukit Jalil, 57000 Kuala Lumpur, Malaysia",
     "cap": "Meeting rooms <b>4</b>-30 pax; event spaces on request, ~60-80 pax (est)",
@@ -480,12 +522,14 @@ const VENUES = [
     "note": "Directly opposite Pavilion Bukit Jalil on Persiaran Jalil 1, ~5 min from APU campus; the location page lists a bookable 'Event spaces' product (price on request) alongside conference rooms and collaboration spaces, with a Book-a-Tour CTA — use the on-site team via the contact form to scope the hack-day layout; no venue-specific photo is published (only IWG brand fallbacks).",
     "img": null,
     "alt": "Spaces Aurora Place Bukit Jalil (Regus/Spaces #7121) interior",
-    "top": false
+    "top": false,
+    "lat": 3.0531061,
+    "lng": 101.6692735
   },
   {
     "k": "emspaced_bukit_jalil",
     "name": "Emspaced Bukit Jalil (Ho Hup Tower)",
-    "area": "Bukit Jalil — APU/APIIT campus (with Sunway University as sister node)",
+    "area": "Bukit Jalil — APU/APIIT campus",
     "type": "cowork",
     "addr": "Level 11, Ho Hup Tower, No. 1 Persiaran Jalil 1, Bandar Bukit Jalil, 57000 Kuala Lumpur",
     "cap": "Meeting rooms <b>6</b>-24 pax (published); Event Space on request, ~40-60 pax (est)",
@@ -496,6 +540,8 @@ const VENUES = [
     "note": "Homegrown Bukit Jalil cowork + IT-solutions operator on Persiaran Jalil 1 directly opposite Pavilion Bukit Jalil (5-8 min from APU); site explicitly markets an 'Event Space' for workshops/seminars/corporate meetings plus meeting rooms (6-24 pax published) and a Contact page at emspaced.com/contact-us; bilingual Malaysian team, ideal for a more intimate bilingual tech-week session or as a breakout-node to the larger Sandbox/Pavilion venues.",
     "img": "https://emspaced.com/wp-content/uploads/2024/01/home-image.webp",
     "alt": "Emspaced interior lounge / hot-desk open area (homepage hero)",
-    "top": false
+    "top": false,
+    "lat": 3.0533462,
+    "lng": 101.6802937
   }
 ];

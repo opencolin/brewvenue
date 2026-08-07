@@ -32,7 +32,9 @@ const VENUES = [
     "note": "AI Tinkerers Paris' original home: the chapter launched at Station F (Oct 2024, +164) and the Anthropic AI Agents Hackathon ran here (+399). The Founders Café is a former coffee house at the main entrance — literally a café-shaped event room on the world's largest startup campus; zero fit risk, EN/FR crowd native.",
     "img": "https://stationf.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffounders-cafe-1.09il1ib7jjijl.jpg&w=3840&q=75",
     "alt": "Former coffee house turned modular event room at Station F's main entrance",
-    "top": true
+    "top": true,
+    "lat": 48.8340771,
+    "lng": 2.3711573
   },
   {
     "k": "esspace_esspace_lavoisier",
@@ -48,7 +50,9 @@ const VENUES = [
     "note": "Association-run café-bar-restaurant + coworking tiers-lieu in the heart of the 13th with a privatization offering and cultural programming — a genuine neighborhood café that already hosts community events at accessible prices. FR-first; booking via contact email.",
     "img": "https://static.wixstatic.com/media/e986a9_d27cf81aad8e44168abaaefc531e2898%7Emv2.jpg/v1/fit/w_2500,h_1330,al_c/e986a9_d27cf81aad8e44168abaaefc531e2898%7Emv2.jpg",
     "alt": "Community café-bar and coworking room with wooden tables and plants",
-    "top": false
+    "top": false,
+    "lat": 48.8270088,
+    "lng": 2.3831178
   },
   {
     "k": "petit_bain_la",
@@ -64,7 +68,9 @@ const VENUES = [
     "note": "Floating cantine-café moored at the foot of the BnF with published per-space capacities, projector, mics and a plant-covered rooftop — hack-day layout by day, social roof by evening. Bookings via the Cantine's published email; concert calendar means date conflicts need checking.",
     "img": "https://www.tourisme-valdemarne.com/wp-content/uploads/wpetourisme/Petit-Bain-rooftop-Thierry-Guillaume-08-06-2018-77.jpg",
     "alt": "Green-roofed floating barge with terrace at the foot of the BnF",
-    "top": false
+    "top": false,
+    "lat": 48.8355557,
+    "lng": 2.3765802
   },
   {
     "k": "la_felicit",
@@ -80,7 +86,9 @@ const VENUES = [
     "note": "Big Mamma's giga Italian food court inside Station F with its own coffee-shop corner, 3 bars, stage/DJ kit and 700 m² covered terrace; private zones scale from a 50-person mezzanine to 2000 full buyout. RER C / line 14 at the door; booking via site form (Big Mamma events team).",
     "img": "https://www.bigmammagroup.com/img/b9b751d9760d11898fc96f8fe22b085c483740f0-8192x5462.jpg?rect=0,547,8192,4368&w=2048&h=1092&fit=min",
     "alt": "Wide view of the 4,500 m² Italian food hall with string lights and shared tables",
-    "top": false
+    "top": false,
+    "lat": 48.8340771,
+    "lng": 2.3711573
   },
   {
     "k": "wojo_paris_13e",
@@ -96,7 +104,9 @@ const VENUES = [
     "note": "Flagship coworking hub steps from BnF/RER with café-bar, lounges, kitchens and a panoramic rooftop; 'Coin Gourmet' and other spaces are listed for privatization (half-day/day/evening slots). EN+FR site; smaller headline capacity — best as a cozy 30–80 hack room with coffee built in.",
     "img": "https://wojo.s3.naitways.net/prod/sites/19/gallery/0938b1b2-9d87-40c5-8d51-0af131995d3f_1643822254.jpg",
     "alt": "Bright coworking lounge and bar with rooftop view over Paris",
-    "top": false
+    "top": false,
+    "lat": 48.8285445,
+    "lng": 2.3737362
   },
   {
     "k": "station_f_halle",
@@ -112,7 +122,9 @@ const VENUES = [
     "note": "Tour-trace seed via AI Tinkerers Paris: the chapter's recurring home (Feb 2025 Anthropic hackathon +399, Sep/Oct 2024 meetups +164) — its modular Founders Cafe, Central Room and Open Platform map one-to-one onto a 50-200 bilingual coffee/hack day, with screens, cafe service and a proven tech-crowd door policy. Venue-owned booking flow on the events page (licence-hours like any campus bar apply for late service).",
     "img": "https://cdn.thespaces.com/wp-content/uploads/2017/07/Station-F-Halle-Freyssinet-Paris-6.jpg",
     "alt": "wide interior of the Station F startup hall with shipping-container meeting rooms",
-    "top": true
+    "top": true,
+    "lat": 48.8340771,
+    "lng": 2.3711573
   },
   {
     "k": "la_felicit_big",
@@ -128,7 +140,9 @@ const VENUES = [
     "note": "4,500 m2 food-court + mezzanines inside Station F; claimed 'sexy food court, evenements et cafe coworking' — festive neon hall that already runs festival-scale programming, good for a hack-day that ends in a Spritz. Partial-to-full privatisation up to 2,000 via the group events page; weekend daytime slots may compete with brunch crowds.",
     "img": "https://cdn.sanity.io/images/cmba3ceb/production/ab668b8d2f6a043fcb315aa0ca8ef53d544da5b0-6455x4303.jpg?w=1536&h=1128&fit=crop&auto=format",
     "alt": "wide hall of La Felicita food market with food stalls and neon signs",
-    "top": false
+    "top": false,
+    "lat": 48.8340771,
+    "lng": 2.3711573
   },
   {
     "k": "les_docks_cit",
@@ -144,7 +158,9 @@ const VENUES = [
     "note": "The green Jakob+MacFarlane 'serpent' on the Seine between Austerlitz and BnF: raw 1,220 m2 Quai space, riverside rooftop with 600 m2 privatisable, and modular L'Atelier — scaleable from a 150-person hack day to a closing party; design-school (IFM) crowd next door. Own site confirms tenants (Wanderlust, Cafe Oz Rooftop) and daily opening; event rental runs through their commercial office (no public email found on-site, phone 01 76 77 25 30).",
     "img": "https://www.citemodedesign.fr/uploads/Cite-de-la-Mode-et-du-Design-JAKOB-MACFARLANE-Myr-Muratet.jpg",
     "alt": "green wavy Docks building on the Seine quay at dusk",
-    "top": false
+    "top": false,
+    "lat": 48.8406153,
+    "lng": 2.3699666
   },
   {
     "k": "mk2_bibliothque_mk2",
@@ -160,7 +176,9 @@ const VENUES = [
     "note": "Cinema complex inside the BnF block, co-programmed with Centre Pompidou — mk2 agency runs turnkey corporate privatisations (screenings + foyer cocktails + talks) and smaller spaces suit a 50-200 demo/coffee morning with AV handled; daytime hack space is limited to reception areas rather than open worktables. Licence III service via their bar; weekday business rates apply.",
     "img": "https://images.prismic.io/mk2-paris-prod/YjYwYTdlM2UtNmM3NS00NDMzLTg4YjYtY2E5YzE5YWQwMTA0_b152d3eb-d30d-4cda-9641-36230ca49512_dscf7246_03.jpg?auto=compress%2Cformat&rect=0%2C309%2C4000%2C2250&w=3840",
     "alt": "auditorium rows at the mk2 Bibliotheque cinema",
-    "top": false
+    "top": false,
+    "lat": 48.832448,
+    "lng": 2.3754885
   },
   {
     "k": "esspace_tierslieu_du",
@@ -176,7 +194,9 @@ const VENUES = [
     "note": "Community-priced ESS tiers-lieu (restaurant-bar + coworking) with its own cultural programming — the budget-friendly, neighborhood-anchored option for a bilingual builders' day: modular open space, meeting rooms and bar service on-site, weekend openings on request. Events lead Agathe Torsello answers via the events email; association pricing keeps a 100-150 person day affordable.",
     "img": "https://static.wixstatic.com/media/e986a9_d27cf81aad8e44168abaaefc531e2898%7Emv2.jpg/v1/fit/w_2500,h_1330,al_c/e986a9_d27cf81aad8e44168abaaefc531e2898%7Emv2.jpg",
     "alt": "bright shared tables in the ESSpace cafe-coworking room",
-    "top": false
+    "top": false,
+    "lat": 48.8270088,
+    "lng": 2.3831178
   },
   {
     "k": "wework_198_avenue",
@@ -192,12 +212,14 @@ const VENUES = [
     "note": "Rive Gauche WeWork two blocks from BnF metro with eight-storey atrium, 'well-equipped Event Spaces' listed on the building page and an 8th-floor roof terrace — reliable bilingual ops and AV for a 50-100 person tech-week day, bookable through WeWork sales; day-pass coworking runs alongside for spillover seating. Capacity is unpublished (est from comparable WeWork event lounges) — confirm headcount against licence before booking 200.",
     "img": "https://cdn-images.wework.com/images/2F91F030-0828-11F1-B072-0E85BCBEC943/2f91f030-0828-11f1-b072-0e85bcbec943_0.jpg?width=800",
     "alt": "art-filled lounge in the WeWork 198 Avenue de France atrium",
-    "top": false
+    "top": false,
+    "lat": 48.8359466,
+    "lng": 2.3720255
   },
   {
     "k": "schoolab_saintlazare",
     "name": "Schoolab Saint-Lazare",
-    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère (edge of Silicon Sentier)",
+    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère",
     "type": "coffee",
     "addr": "15 rue de Milan, 75009 Paris",
     "cap": "~<b>110</b> seated / ~<b>150</b> cocktail (est, aggregated from ABC Salles + Zipcube listings of Le Préau; smaller breakout rooms Le Gymnase 70 m², Jardin d'Hiver 150 m², La Piscine)",
@@ -208,12 +230,14 @@ const VENUES = [
     "note": "Tour-trace seed via AI Tinkerers Paris — hosted the SundAI Hack x AIT OpenClaw Sprint #2 on Mar 15 2026 (office+café event, ~50 builders + NVIDIA/Mistral/Hugging Face attendees). 2000 m² former industrial building with in-house Schoolbar café for breaks; modular cabaret/îlots/round-table layouts fit a 50–200 coffee-hack day. Coached bilingual staff (EN+FR); minister / LVMH / Crédit Agricole client base books corporate+tech. Licence III (no full bar) — for a coffee/hack format this is irrelevant, but confirm for any evening-reception plan.",
     "img": "https://www.theschoolab.com/wp-content/uploads/2022/03/Header-Lieux-Bureaux-Saint-Lazare-1440x392-1-scaled.jpg",
     "alt": "Schoolab Saint-Lazare open workspace with industrial windows",
-    "top": true
+    "top": true,
+    "lat": 48.8787506,
+    "lng": 2.3278501
   },
   {
     "k": "le_grand_caf",
     "name": "Le Grand Café Capucines",
-    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère (edge of Silicon Sentier)",
+    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère",
     "type": "coffee",
     "addr": "4 boulevard des Capucines, 75009 Paris",
     "cap": "<b>220</b> seated (ground floor) / <b>120</b> seated + <b>120</b> cocktail (1st floor) / <b>22</b> semi-private salon",
@@ -224,12 +248,14 @@ const VENUES = [
     "note": "Belle-Époque brasserie directly on the Grands Boulevards with a 7j/7, 24h/24 licence — flexible for a long coffee/hack day. The 1st-floor 120 m² room is the right band for a 80–120-person hack day plus catering. Groupe Bertrand is the parent operator (Procope, Bofinger) — bilingual corporate sales contact but French booking form (Bookingshake) only. Licence III bar licence means beer/wine/spirits are on-site if a Friday-evening wrap-up drink is desired.",
     "img": "https://evenement.groupe-bertrand.com/wp-content/uploads/2026/05/9u5a0424web-1024x683.jpg",
     "alt": "Grand Café Capucines first-floor private event room",
-    "top": false
+    "top": false,
+    "lat": 48.8710379,
+    "lng": 2.3336243
   },
   {
     "k": "la_machine_du",
     "name": "La Machine du Moulin Rouge — Bar à Bulles",
-    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère (edge of Silicon Sentier)",
+    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère",
     "type": "coffee",
     "addr": "90 boulevard de Clichy, 75018 Paris (Pigalle, south edge against 9e)",
     "cap": "<b>70</b> seated / <b>150</b> cocktail (Bar à Bulles); Le Central <b>140</b> seated / <b>800</b> cocktail",
@@ -240,12 +266,14 @@ const VENUES = [
     "note": "Bar à Bulles is the plant-lined salon + 80 m² hidden rooftop terrace — the right intimate shape for a 50–150-person coffee/hack day in the Pigalle/Grands Boulevards strip. Two technical notes: (1) La Machine is corporate-only, no private anniversaries/weddings — fine for a tech-week sponsor. (2) It's a club venue with full Licence IV; for a daytime coffee/hack event confirm the day rate and the strict occupancy licence applies if running into evening hours. Closed 26 Jul – 28 Aug each August, so Sep 18 2026 is inside the operational window.",
     "img": "https://www.lamachinedumoulinrouge.com/wp-content/uploads/2026/07/bar-6348.jpg",
     "alt": "Bar à Bulles vegetal salon with rooftop terrace over Cité Véron",
-    "top": false
+    "top": false,
+    "lat": 48.8841152,
+    "lng": 2.3321741
   },
   {
     "k": "folies_bergre",
     "name": "Folies Bergère",
-    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère (edge of Silicon Sentier)",
+    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère",
     "type": "coffee",
     "addr": "32 rue Richer, 75009 Paris",
     "cap": "Hall: <b>1300</b> cocktail / <b>350</b> seated · Theatre: <b>1460</b> (504 orchestre / 570 1er balcon / 386 2e balcon)",
@@ -256,12 +284,14 @@ const VENUES = [
     "note": "Historic Art Deco music hall at the Folies Bergère edge of the cell. Capacity is well over the 50–200 band — Le Théâtre's smallest block (504-seat orchestre) and the 350-seat Hall dinner floor are both oversized — so this is a fit-scale reject, not a closure. Included transparently here per the closures/dropped rule; it remains a viable pick if the tour ever scales past ~350 in one room.",
     "img": "https://www.foliesbergere.com/sites/hubber_site_foliesbergere8/files/2025-11/dsc_4991-1.jpg",
     "alt": "Art Deco Hall of the Folies Bergère configured for cocktail",
-    "top": false
+    "top": false,
+    "lat": 48.8740806,
+    "lng": 2.3448971
   },
   {
     "k": "neon_noir",
     "name": "Neon Noir",
-    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère (edge of Silicon Sentier)",
+    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère",
     "type": "cowork",
     "addr": "14 rue Le Peletier, 75009 Paris",
     "cap": "~<b>80–120</b> hacking / <b>150+</b> standing (est — not published)",
@@ -272,12 +302,14 @@ const VENUES = [
     "note": "Tour-trace seed via AI-builder circuit: hosted the GPU MODE x PyTorch IRL hackathon (Apr 2026), the {TECH: EUROPE} Paris AI Hackathon (Feb 2026) and a “Code & Croissants” OSS breakfast — i.e. has literally run coffee + hack formats for builders in the exact Le Peletier patch. Room-shape fit: open industrial “Berlin squat” floor with arcade lights/neon, proven to hold a full-day hackathon with demo closing ceremony; email join@neon-noir.ai for hosting (no dedicated booking page — contact only). No indoor alcool licence issues for daytime coffee service; capacity is an estimate — confirm headcount ceiling when booking.",
     "img": "https://a.storyblok.com/f/289738674398668/6048x4032/9ec36bb94b/background_2.jpg",
     "alt": "Neon-lit industrial event floor inside Neon Noir’s Le Peletier community space",
-    "top": true
+    "top": true,
+    "lat": 48.8748399,
+    "lng": 2.3399568
   },
   {
     "k": "morning_laffitte",
     "name": "Morning Laffitte",
-    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère (edge of Silicon Sentier)",
+    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère",
     "type": "cowork",
     "addr": "34 rue Laffitte, 75009 Paris",
     "cap": "<b>140</b> total ; auditorium <b>110</b>, grand salon (200 m²) <b>100</b>, rooftop garden <b>90</b>",
@@ -288,12 +320,14 @@ const VENUES = [
     "note": "Coworking house under a 21 m glass atrium (“immense cube de verre et de verdure”) with an auditorium, a 200 m² salon for tables-of-laptops hacking and a suspended rooftop garden for coffee breaks — all learnable rooms for a 50–200 bilingual day. Dedicated événementiel page with enquiry form and events phone 07 44 09 76 31 (no published email — form/phone only). French-first booking flow; ask for EN speaker.",
     "img": "https://cdn.prod.website-files.com/66262c3776e3ffa036835fd4/6a01c229656b93c079cfce4a_oqhG76_hJ9SbAXm3lZAvG2vjONALgLBkwpIhIeROMks.jpeg",
     "alt": "Glass-roofed atrium coworking lounge at Morning Laffitte",
-    "top": false
+    "top": false,
+    "lat": 48.8736923,
+    "lng": 2.337983
   },
   {
     "k": "verso_maisona_centre",
     "name": "VERSO — MAISON.A (Centre de conférences Victoire)",
-    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère (edge of Silicon Sentier)",
+    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère",
     "type": "cowork",
     "addr": "52 rue de la Victoire, 75009 Paris",
     "cap": "Atrium <b>250</b> cocktail ; auditorium <b>224</b> ; salons up to <b>180</b> ; multiplex <b>374</b> théâtre",
@@ -304,12 +338,14 @@ const VENUES = [
     "note": "Purpose-built conference centre with a 300 m² glass-roofed Atrium, 234 m² winter garden and 224-seat auditorium — comfortable for a 150–200-person hack day with plenary + breakouts; reception, Wi-Fi and AV on site. Published events contact: contact@verso-victoire.com / 01 53 16 31 14. Corporate polish rather than café vibe — bring your own coffee activation; operages on French corporate licensing, no alcohol service built in for evening parties without catering add-on.",
     "img": "https://www.verso-victoire.com/wp-content/uploads/2019/02/sp11-01-201959.jpg",
     "alt": "Sunlit atrium conference hall at VERSO Victoire",
-    "top": false
+    "top": false,
+    "lat": 48.8752634,
+    "lng": 2.3350418
   },
   {
     "k": "la_casa_deskeo",
     "name": "La Casa Deskeo – Victoire",
-    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère (edge of Silicon Sentier)",
+    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère",
     "type": "cowork",
     "addr": "10 rue de la Victoire, 75009 Paris",
     "cap": "<b>150</b> standing incl. 80 m² terrace (~<b>80–100</b> seated hack layout, est)",
@@ -320,12 +356,14 @@ const VENUES = [
     "note": "Warm, modern 350 m² open space with an 80 m² planted terrace — good coffee-day layout (barista service included in house catering, F&B managed by Deskeo). EN + FR dedicated event-space page; enquiry via “Request a visit” form or (+33) 1 83 75 15 13, no published email. Terrace noise constraints mean daytime hack-plus-coffee better than loud evening party.",
     "img": "https://images.prismic.io/deskeo/ZytKzq8jQArT0SHk_La_Casa_Deskeo_%C2%A9_Amaury_Laparra_HD2-22.jpg?auto=compress,format",
     "alt": "Bright modern open event space with bar at La Casa Deskeo Victoire",
-    "top": false
+    "top": false,
+    "lat": 48.8750809,
+    "lng": 2.3401349
   },
   {
     "k": "hotel_rochechouart_orso",
     "name": "Hotel Rochechouart (Orso) — Maggie & Mikado",
-    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère (edge of Silicon Sentier)",
+    "area": "9th arrondissement — Le Peletier / Grands Boulevards / Folies Bergère",
     "type": "cowork",
     "addr": "55 boulevard de Rochechouart, 75009 Paris",
     "cap": "Maggie bar/resto <b>150</b> (12h–00h) ; Mikado Dancing <b>150</b> (19h–04h) ; rooftop <b>55</b>",
@@ -336,7 +374,9 @@ const VENUES = [
     "note": "Art-deco hotel at the foot of Montmartre with B2B privatization page: Maggie (154 m², up to 150) works as a daytime coffee/all-hands floor, rooftop views of Sacré-Cœur, and Mikado Dancing for the after-party. Published events email sales@hotelrochechouart.com / 01 42 81 99 17. Operates under hotel/bar licensing (licence III/IV) — note service windows honestly; less laptop-hack layout than the cowork options, so use as the social/ambience pick, not the primary build room.",
     "img": "https://cdn.prod.website-files.com/6543b2c91ab677016dcd0684/65673bce0c36d7d4c1504b9c_Privatisation%20Rochechouart.webp",
     "alt": "Rooftop terrace of Hotel Rochechouart overlooking Sacré-Cœur and Paris rooftops",
-    "top": false
+    "top": false,
+    "lat": 48.8820434,
+    "lng": 2.3409384
   },
   {
     "k": "ground_control",
@@ -352,7 +392,9 @@ const VENUES = [
     "note": "4,000 m² covered + 2,500 m² terrace food-court hall 5 min from Gare de Lyon; published per-room capacities in its privatisation plaquette, with a dedicated corporate-privatisation page and enquiry form. Self-contained day venue: Ground Flore Café for coffee service, Décanteur/Charolais Club sized exactly for 50–200, plus terrace. Very high footfall on Sept weekdays; book a named room, not the open halle. Evening licence on site.",
     "img": "https://www.groundcontrolparis.com/wp-content/uploads/2020/11/Selah-Sue-Ground-Control-Paris-2-scaled.jpeg",
     "alt": "Wide interior shot of Ground Control's main hall during a concert, stage and crowd visible",
-    "top": true
+    "top": true,
+    "lat": 48.8437478,
+    "lng": 2.3818132
   },
   {
     "k": "kawaa_lumire_caf",
@@ -368,7 +410,9 @@ const VENUES = [
     "note": "Community-built 'tiers-lieu' café whose brand DNA is hosting: afterworks, talks and weekly creative workshops; its dedicated privatisation page invites meetings, conferences, ateliers and afterworks with breakfast/coffee breaks included. Luminous, laptop-friendly room inside the Lumière office ecosystem, which adds a bookable 40-seat event room and stepped atrium for plenaries. Listed on Kactus for corporate evenings, confirming event operations.",
     "img": null,
     "alt": "High-ceilinged café interior with ping-pong table and laptop work zones",
-    "top": false
+    "top": false,
+    "lat": 48.8314729,
+    "lng": 2.3886399
   },
   {
     "k": "le_train_bleu",
@@ -384,7 +428,9 @@ const VENUES = [
     "note": "Historic listed restaurant inside Gare de Lyon with a published events contact and EN+FR pages; lounges and classified rooms suit a premium coffee-day salon format or a 50–100-person seated hack-social. It is a gastronomic SSP-operated restaurant, so food-led pricing and fixed service windows (restaurant 11:15–14:30 / 19:00–22:30, lounge 7:30–22:30) — frame as lounge-bar takeover or off-hours buyout, not a café takeover.",
     "img": "https://www.le-train-bleu.com/media/cache/jadro_resize/rc/g9U1nG4u1741249987/jadroRoot/medias/5aafbd3bc117c/le-train-bleu-014_2800x2100.jpg",
     "alt": "Ornate gilded dining hall of Le Train Bleu with painted ceilings and row of set tables",
-    "top": false
+    "top": false,
+    "lat": 48.8446832,
+    "lng": 2.3737743
   },
   {
     "k": "araku_coffee_aligre",
@@ -400,7 +446,9 @@ const VENUES = [
     "note": "New (2025) specialty roastery-café with in-house roasting visible behind the bar — strong coffee credibility for a bilingual tech-week coffee session, EN+FR site and a published contact email. Room suits a ~50-person morning coffee takeover or co-work slots rather than a 200-person day; no dedicated events page, so negotiate buyout directly. Chambelland bakery on site.",
     "img": "https://www.arakucoffee.com/cdn/shop/files/DELORDINAIRE_ARAKU-ALIGRE-BAR.jpg?v=1756285510&width=800",
     "alt": "Suspended blue Krion bar and roasting room of the Araku Aligre coffee shop",
-    "top": false
+    "top": false,
+    "lat": 48.8496832,
+    "lng": 2.3760154
   },
   {
     "k": "sapiens_caf",
@@ -416,7 +464,9 @@ const VENUES = [
     "note": "Hybrid science-and-culture café (opened Sept 2025) running weekly events — chemistry workshops, debate nights, live music — so a bilingual tech-talk + coffee format is native to the room, with a dedicated /events section and reservation flow on its site. Smallest room of the set; fits the 50-person end of the band or a fringe session paired with Ground Control as the main hub.",
     "img": "https://res.cloudinary.com/dmqwgd6sc/image/upload/v1766936030/logo_36adef9960.jpg",
     "alt": "Sapiens Café logo mark on its site header",
-    "top": false
+    "top": false,
+    "lat": 48.8439287,
+    "lng": 2.4024382
   },
   {
     "k": "wellio_paris_gare",
@@ -432,7 +482,9 @@ const VENUES = [
     "note": "Cowivio's pro-work brand on a quiet street by the Coulée Verte, 5 min from Gare de Lyon quays. À-la-carte event spaces (paillotes, rooftop, video studio) plus plug-and-play meeting rooms; coffee/tea included in every room — clean fit for a 50-100 bilingual hack day; published events email and EN+FR site.",
     "img": "https://wellio.com/app/uploads/2023/11/wellio-paris-gare-de-lyon-2018-olivier-ouadah-251.jpg",
     "alt": "Wellio Gare de Lyon paillote event space interior",
-    "top": false
+    "top": false,
+    "lat": 48.8461504,
+    "lng": 2.3711669
   },
   {
     "k": "urban_station_espace",
@@ -448,7 +500,9 @@ const VENUES = [
     "note": "RATP-heritage auditorium two blocks from Gare de Lyon with translation booths (genuinely useful for a bilingual tech-week program), hybrid capture/streaming, and a 255 m² reception hall for the coffee-hack floor. Dedicated Event Maker + two régisseurs; catering packages published (coffee break, cocktail from 100 pax). Upper end of the 50-200 band but divisible.",
     "img": "https://urbanstation.fr/media/image/e5/c6/7bb8146329dbff7cf09e0a56ef3a.webp",
     "alt": "Espace Centenaire 258-seat auditorium interior",
-    "top": false
+    "top": false,
+    "lat": 48.8435214,
+    "lng": 2.3733186
   },
   {
     "k": "comet_meetings_comet",
@@ -464,7 +518,9 @@ const VENUES = [
     "note": "B-Corp meetings/events house in Bercy, 4 min from Cour Saint-Émilion (M14). All-day F&B rhythm (breakfast, open mini-kitchens, lunch, snack) matches a coffee/hack day; vineyard-guinguette decor, terrace, English + French site with quote flow. All-inclusive per-person pricing simplifies a 50-200 budget.",
     "img": "https://cdn.sanity.io/images/g8jgfkf5/production/27636f7b6b15ddabae37b30449a9f4f2782a51b2-2400x1600.jpg?rect=0,50,2400,1500&w=960&h=600&auto=format",
     "alt": "The Plaza plenary room at Comet Bercy, 200-person capacity",
-    "top": false
+    "top": false,
+    "lat": 48.8309639,
+    "lng": 2.3879789
   },
   {
     "k": "wojo_paris_12e",
@@ -480,6 +536,8 @@ const VENUES = [
     "note": "Accor-backed coworking flagship <5 min from Gare de Lyon quays: green terrace, bar/snack, billiards, phone boxes — relaxed cowork-by-day shape for a smaller bilingual hack crew. Capacities for full privatization aren't published on the site (agregators list event rooms), so treat as the small-end option and request a quote.",
     "img": "https://wojo.s3.naitways.net/prod/sites/5/gallery/pih71for_1737985917757.jpg",
     "alt": "Wojo Gare de Lyon coworking lounge interior",
-    "top": false
+    "top": false,
+    "lat": 48.8448784,
+    "lng": 2.3715145
   }
 ];

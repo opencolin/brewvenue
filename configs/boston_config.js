@@ -43,7 +43,9 @@ const VENUES = [
     "note": "Café-style innovation space at CIC that runs weekly Thursday Gatherings (next: Aug 13, 2026) — flash talks, demos, roundtables for founders/engineers; 56 events and 11,492 attendees in 2025. A standing builder-event trace in its own right, in the same Kendall tower cluster where ClawCon Boston ran (that exact venue is gated behind Luma registration). Purpose-built for the 50-200 coffee/hack-day shape; ID check at lobby concierge.",
     "img": "https://venturecafecambridge.org/wp-content/uploads/sites/6/2021/05/IMG_1861-1.jpg",
     "alt": "Venture Café Thursday Gathering space at CIC Cambridge",
-    "top": true
+    "top": true,
+    "lat": 42.3610068,
+    "lng": -71.0649359
   },
   {
     "k": "broadsheetcoffeeroasters",
@@ -59,7 +61,9 @@ const VENUES = [
     "note": "Spacious roastery-café with communal tables between Harvard and Inman Squares; open daily (7:30am-4pm weekdays), roasts on site. No published events page — email for an after-hours buyout; realistic for the ~50-person end of a coffee-forward hack morning rather than 200.",
     "img": null,
     "alt": "Roastery café interior at Broadsheet Coffee",
-    "top": false
+    "top": false,
+    "lat": 42.3779685,
+    "lng": -71.1069488
   },
   {
     "k": "georgehowellcoffeeatthegodfreyhotel",
@@ -75,7 +79,9 @@ const VENUES = [
     "note": "Flagship café of the Boston specialty-coffee pioneer, open 7am-6:30pm, 365 days. On-site 'Exploratorium' retail/education area and a history of weekly public coffee classes make it a natural coffee-programming anchor; dedicated location email for event inquiries. Best for the 50-75 range; validated parking at Lafayette Garage.",
     "img": null,
     "alt": "Espresso bar at George Howell's Godfrey Hotel flagship",
-    "top": true
+    "top": true,
+    "lat": 42.354732,
+    "lng": -71.0614884
   },
   {
     "k": "ogawacoffee",
@@ -91,7 +97,9 @@ const VENUES = [
     "note": "US flagship of the Kyoto roaster, behind Old South Meeting House; open daily (Mon-Fri 8am-4pm), listed among Eater Boston's best coffee shops as of Dec 2025. Amphitheater seating suits demos/talks; snug for the lower bound of 50, closes 4pm so an evening buyout needs direct arrangement (site is order-focused with no events page — call/contact via site).",
     "img": null,
     "alt": "Amphitheater seating inside Ogawa Coffee Boston",
-    "top": false
+    "top": false,
+    "lat": 42.3568259,
+    "lng": -71.0579917
   },
   {
     "k": "caffnerocongressstfortpointseaport",
@@ -107,7 +115,9 @@ const VENUES = [
     "note": "The chain's original US flagship: two floors of lounge/sofa seating in Fort Point with a history of evening live-music events, the largest pure-café floorplate of the Seaport candidates. Corporate store-finder page is JS-based (no per-store detail rendered), so treat details as directory-corroborated (Tripadvisor/Yelp listings current to Oct 2025) and confirm buyout terms with the store directly.",
     "img": null,
     "alt": "Two-level lounge seating at Caffè Nero Fort Point",
-    "top": false
+    "top": false,
+    "lat": 42.3503671,
+    "lng": -71.047775
   },
   {
     "k": "ciccambridge",
@@ -123,7 +133,9 @@ const VENUES = [
     "note": "Kendall's tech-event institution and home of Venture Café's Thursday Gathering (verified active Aug 2026, hundreds weekly) — exactly the coffee-and-laptops crowd this event draws. Public rental via CIC's events form; coordinator, AV, WiFi, flexible seating included; catering via MAX Ultimate Food or outside vendors. No personal events.",
     "img": null,
     "alt": "Wood-paneled Venture Café event floor at One Broadway",
-    "top": false
+    "top": false,
+    "lat": 42.3622704,
+    "lng": -71.083197
   },
   {
     "k": "theengine750main",
@@ -139,7 +151,9 @@ const VENUES = [
     "note": "MIT-born tough-tech hub between Kendall and Central with a purpose-built, non-resident-bookable event theater: 200 event chairs, stage, podium, AV tech and setup support included — the only Kendall option that seats the full 200 for a hack-day program, with Gallery as breakout/coffee zone. Book via availability-request form (Jotform) plus walkthrough.",
     "img": null,
     "alt": "Open event theater at The Engine's 750 Main headquarters",
-    "top": true
+    "top": true,
+    "lat": 42.3629293,
+    "lng": -71.0962271
   },
   {
     "k": "microsoftnerdconferencecenter",
@@ -155,7 +169,9 @@ const VENUES = [
     "note": "Proven tour-trace host — AI Tinkerers Boston ran its Oct 2024 meetup here, and it houses a dedicated AI conference center over the Charles. Free of charge to qualifying groups (tech/AI meetups, hackathons, university events) via public reservation form, ~5-business-day response. Catch: event must be free and open to public registration — no ticketed or closed events. Mon-Sat only.",
     "img": "https://i0.wp.com/microsoftnewengland.com/wp-content/uploads/2025/06/Conference-Center.webp?resize=1024%2C683&ssl=1",
     "alt": "Conference center at Microsoft NERD",
-    "top": false
+    "top": false,
+    "lat": 42.3616283,
+    "lng": -71.081069
   },
   {
     "k": "cicboston50milkst",
@@ -171,7 +187,9 @@ const VENUES = [
     "note": "Downtown sibling of CIC Cambridge — five floors of startup workspace with 50+ conference rooms and a 'Host Your Event at CIC' path routed through the same events form as Cambridge. Downtown-specific room capacities aren't published, so confirm headcount fit by inquiry; steps from Downtown Crossing/State for commuter access.",
     "img": null,
     "alt": "Startup workspace floor at CIC Boston",
-    "top": false
+    "top": false,
+    "lat": 42.3667019,
+    "lng": -71.049326
   },
   {
     "k": "venturelane",
@@ -187,12 +205,14 @@ const VENUES = [
     "note": "Downtown's B2B startup hub (3,500+ founder/investor network) running regular founder events and workshops in-house — right audience, built-in community draw. No published event-rental page or capacities, so it fits the ~50-100 end of the range; email to scope a takeover of the hub for a hack day.",
     "img": null,
     "alt": "Coworking lounge at Venture Lane startup hub",
-    "top": false
+    "top": false,
+    "lat": 42.3592815,
+    "lng": -71.0591062
   },
   {
     "k": "the_foundry",
     "name": "The Foundry",
-    "area": "Kendall Square / MIT (Cambridge)",
+    "area": "Kendall Square / MIT",
     "type": "coffee",
     "addr": "101 Rogers St, Cambridge, MA 02142",
     "cap": "Community Hall <b>175</b> seated / <b>300</b> standing; STEAM Set performance space <b>115</b> seated / <b>150</b> standing; full building <b>400</b>",
@@ -203,12 +223,14 @@ const VENUES = [
     "note": "1890 industrial creative hub 0.4 mi from Kendall/MIT T actively recruiting a cafe operator; maker-space DNA (Design Lab built for hackathons), sliding-scale pricing for community events, and a three-story atrium Community Hall that fits the 50-200 hack-day band at public-event rates.",
     "img": null,
     "alt": "Three-story atrium Community Hall with 19th-century wooden beams and skylights",
-    "top": false
+    "top": false,
+    "lat": 42.3666151,
+    "lng": -71.0827636
   },
   {
     "k": "area_four_kendall",
     "name": "Area Four Kendall Square / A4 Café",
-    "area": "Kendall Square / MIT (Cambridge)",
+    "area": "Kendall Square / MIT",
     "type": "coffee",
     "addr": "500 Technology Square, Cambridge, MA 02139",
     "cap": "Private room <b>40</b> cocktail / <b>20</b> seated (published); full cafe+pizza-bar buyout larger but unpublished — inquire",
@@ -219,12 +241,14 @@ const VENUES = [
     "note": "Technology Square cafe-bar directly facing the MIT campus edge with an on-site A4 Café for coffee service, two private rooms and outdoor space; published private-room capacity (40 cocktail) sits below the 50-200 band, so this works only as a full-venue buyout play — events coordinator published by name.",
     "img": null,
     "alt": "Wood-fired cafe and bar dining room at 500 Technology Square",
-    "top": false
+    "top": false,
+    "lat": 42.3635382,
+    "lng": -71.0925994
   },
   {
     "k": "the_platform_kendall",
     "name": "The Platform Kendall (Takeda Theater + Tempo Stage + Commons)",
-    "area": "Kendall Square / MIT (Cambridge)",
+    "area": "Kendall Square / MIT",
     "type": "cowork",
     "addr": "585 Third St, Cambridge, MA 02142",
     "cap": "<b>404</b> seated (Takeda Theater) / <b>125</b> (Tempo Stage) / <b>150</b> auditorium or <b>50</b> seated (Rehearsal Studio) + ground-floor commons and Bar Tempo cafe",
@@ -235,12 +259,14 @@ const VENUES = [
     "note": "Brand-new 45,000-sq-ft cultural hub (BioMed Realty + Global Arts Live) that just opened in Kendall Square; can easily handle a 200-person bilingual coffee/hack day between the Tempo Stage commons and Rehearsal Studio, with Bar Tempo cafe on the ground floor. Rental inquiry form + 617.395.4323 (no public events email published).",
     "img": "https://www.theplatformkendall.org/wp-content/uploads/2026/05/WP-crowd2.jpg",
     "alt": "Takeda Theater auditorium and commons at The Platform Kendall",
-    "top": false
+    "top": false,
+    "lat": 42.3631324,
+    "lng": -71.0830448
   },
   {
     "k": "thos_cambridge",
     "name": "Æthos Cambridge",
-    "area": "Kendall Square / MIT (Cambridge)",
+    "area": "Kendall Square / MIT",
     "type": "cowork",
     "addr": "1 Broadway, 7th Floor (CIC), Cambridge, MA 02142",
     "cap": "~<b>120</b> standing / ~<b>80</b> seated (est; clubhouse floor at CIC)",
@@ -251,12 +277,14 @@ const VENUES = [
     "note": "AI-native members' clubhouse inside CIC in the heart of Kendall — built precisely for AI-engineer coffee/hack crowds. Tour-trace seed via AI Tinkerers Boston (Aug 2024 meetup hosted here): proven builder-event history. Room-shape fit: open clubhouse + cafe layout is a natural 50-150 hack-day room; contact hello@aethos.org for private takeovers.",
     "img": "https://aethos.org/uploads/images/1776532158173-1867hwop15b.png",
     "alt": "Æthos Cambridge clubhouse community gathering",
-    "top": false
+    "top": false,
+    "lat": 42.3626902,
+    "lng": -71.083913
   },
   {
     "k": "greentown_labs_town",
     "name": "Greentown Labs (Town Green)",
-    "area": "Kendall Square / MIT (Cambridge)",
+    "area": "Kendall Square / MIT",
     "type": "cowork",
     "addr": "444 Somerville Ave, Somerville, MA 02143",
     "cap": "<b>500</b> standing (Town Green event space; published)",
@@ -267,12 +295,14 @@ const VENUES = [
     "note": "World's largest climatetech incubator just over the Cambridge line near Union Sq; Town Green + roof deck regularly host demo days and hackathons (~300 events/yr). Easily absorbs a 200-person bilingual tech-week coffee/hack; reach events team for host/rental inquiry.",
     "img": "https://greentownlabs.com/wp-content/uploads/2025/05/042425-greentown-labs-01-037-copy-1536x1024.jpg",
     "alt": "Greentown Labs Town Green event space and prototyping floor",
-    "top": false
+    "top": false,
+    "lat": 42.3817054,
+    "lng": -71.1027709
   },
   {
     "k": "canalside_food_drink",
     "name": "CanalSide Food + Drink at CambridgeSide",
-    "area": "Kendall Square / MIT (Cambridge)",
+    "area": "Kendall Square / MIT",
     "type": "cowork",
     "addr": "100 CambridgeSide Place, Cambridge, MA 02141",
     "cap": "~<b>75</b> semi-private C-Side lounge (published) / ~<b>200</b> full food hall + canal-side patio buyout (est)",
@@ -283,12 +313,14 @@ const VENUES = [
     "note": "Waterfront food hall inside CambridgeSide with a dedicated private-events program: C-Side Bar/Viewing Corner, Community Meeting Room, outdoor patio, and full-hall buyouts. Casual coffee/Latin-food-hall energy suits a bilingual tech-week crowd; inquiry form on page, 617.621.8666.",
     "img": "https://cdn-files.eu.placewise.com/f/CKSFPRCIBhoTY21zX2NvbXBvbmVudF9pbWFnZSIVaWQtMTc2MTYwNjMxMzcyMC0xMTIwONe-q0wFNKlYMYpeykCBuNphdU-4?transform=output=format:webp,quality:80/resize=width:1920,height:1920,fit:clip",
     "alt": "CanalSide food hall interior with canal views at CambridgeSide",
-    "top": false
+    "top": false,
+    "lat": 42.3687832,
+    "lng": -71.0759859
   },
   {
     "k": "tatte_bakery_caf",
     "name": "Tatte Bakery & Café | Pier 4",
-    "area": "Seaport District (Boston)",
+    "area": "Seaport District",
     "type": "coffee",
     "addr": "200 Pier 4 Blvd, Boston, MA 02210",
     "cap": "~<b>80</b>-120</b> indoor + harbor-view patio (est)",
@@ -299,12 +331,14 @@ const VENUES = [
     "note": "Boston-born specialty coffee + bakery anchor with sweeping harbor views and ~3,600 sqft footprint on Pier 4's ground floor; Tatte's catering line (617-945-1205) books groups, and the size + specialty-coffee focus make it the strongest coffee-native Seaport room for a daytime hack-coffee format. Walk-in only by policy, so evening partial buyout via contact@tattebakery.com is the realistic ask.",
     "img": "https://a.mktgcdn.com/p/zDjgJm0zXf8RhO0-3f-PLaJVnWZTYs2GU9Peaxqbw1c/500x1000.jpg",
     "alt": "Interior of Tatte Pier 4 with pastry case and floor-to-ceiling harbor windows",
-    "top": false
+    "top": false,
+    "lat": 42.350956,
+    "lng": -71.0435389
   },
   {
     "k": "daily_provisions_seaport",
     "name": "Daily Provisions Seaport",
-    "area": "Seaport District (Boston)",
+    "area": "Seaport District",
     "type": "coffee",
     "addr": "200 Seaport Blvd, Suite 0101, Boston, MA 02210",
     "cap": "~<b>60</b>-100</b> (est; opened spring 2026, footprint not yet published)",
@@ -320,7 +354,7 @@ const VENUES = [
   {
     "k": "travelmug_caf_at",
     "name": "Travelmug Café at GrubStreet (Fabulist Café)",
-    "area": "Seaport District (Boston)",
+    "area": "Seaport District",
     "type": "coffee",
     "addr": "50 Liberty Dr, Boston, MA 02210 (inside GrubStreet Center for Creative Writing)",
     "cap": "~<b>50</b>-80</b> café + Writers' Stage event space (est)",
@@ -331,12 +365,14 @@ const VENUES = [
     "note": "New (2025-26) coffee shop inside Seaport's creative-writing nonprofit, co-run with Travelmug; harbor-view tables, next door to Porter Square Books, with GrubStreet's Writers' Stage used for monthly literary events — already set up for seated talk + reception formats. Café + stage combo fits an intimate builder coffee day of ~50-80; booking goes through GrubStreet's main line (617-695-0075).",
     "img": null,
     "alt": "Travelmug Café interior inside GrubStreet's Fabulist space with harbor windows",
-    "top": false
+    "top": false,
+    "lat": 42.3542066,
+    "lng": -71.0444979
   },
   {
     "k": "bsa_space_boston",
     "name": "BSA Space (Boston Society for Architecture)",
-    "area": "Seaport District (Boston)",
+    "area": "Seaport District",
     "type": "cowork",
     "addr": "290 Congress Street, Suite 200, Boston, MA 02210 (Atlantic Wharf)",
     "cap": "Full Gallery <b>500</b> reception; Salt Gallery <b>100</b> theater / <b>100</b> reception; Harbor Room <b>50</b> theater; Channel Room <b>40</b> theater",
@@ -347,12 +383,14 @@ const VENUES = [
     "note": "Hoeeler + Yoon-designed gallery on the Fort Point Channel edge of Seaport — daylit, exhibition-lined space with ceiling projectors, Bose sound, whiteboards, catering kitchenette, and a published rates schedule; rotating architecture exhibits double as decor for a builder-crowd hack day.",
     "img": "https://bsa-prod.nyc3.cdn.digitaloceanspaces.com/uploads/_auto1800/11360/BSA-8212.webp",
     "alt": "Full BSA Gallery with Fort Point Channel views",
-    "top": false
+    "top": false,
+    "lat": 42.3529918,
+    "lng": -71.0526392
   },
   {
     "k": "aloft_boston_seaport",
     "name": "Aloft Boston Seaport District",
-    "area": "Seaport District (Boston)",
+    "area": "Seaport District",
     "type": "cowork",
     "addr": "401-403 D Street, Boston, MA 02210",
     "cap": "Mann Ballroom <b>480</b> theater / <b>400</b> reception; Summer Ballroom <b>200</b> theater; 9 event rooms total (~9,400 sq ft)",
@@ -363,12 +401,14 @@ const VENUES = [
     "note": "Full Marriott-published room/dimension chart on its events page and 330-room room block next door to BCEC; hosted the Nymbl AI Hackathon, so a laptop-and-lanyard day is proven here. WXYZ Bar handles the after-hours coffee-to-cocktail shift.",
     "img": "https://img.partyslate.com/photos/3141268/photo-1e72205b-342b-4162-b338-c1a7cf60cb90.jpeg?tr=w-640",
     "alt": "Aloft Mann Ballroom set for a reception",
-    "top": false
+    "top": false,
+    "lat": 42.343647,
+    "lng": -71.0446391
   },
   {
     "k": "seaport_hotel_boston",
     "name": "Seaport Hotel Boston",
-    "area": "Seaport District (Boston)",
+    "area": "Seaport District",
     "type": "cowork",
     "addr": "1 Seaport Lane, Boston, MA 02210",
     "cap": "Plaza Ballroom <b>700</b> theater / <b>750</b> reception; Seaport Ballroom <b>420</b> theater / <b>450</b> reception; 27,000 sq ft total event space",
@@ -379,12 +419,14 @@ const VENUES = [
     "note": "Independent waterfront hotel with a public capacity chart across 13 spaces, harbor-view ballrooms, on-site catering/AV, and a direct meetings sales inbox — a safe scale-up option if the hack day pushes past 200.",
     "img": null,
     "alt": "Plaza Ballroom with floor-to-ceiling harbor windows",
-    "top": false
+    "top": false,
+    "lat": 42.3491401,
+    "lng": -71.0415199
   },
   {
     "k": "high_street_place",
     "name": "High Street Place (home of Gracenote Coffee, Wine & Coffee Cocktails)",
-    "area": "Downtown Boston / Financial District (incl. CIC Boston @ 50 Milk St, Downtown Crossing edge)",
+    "area": "Downtown Boston / Financial District",
     "type": "coffee",
     "addr": "100 High St, Boston, MA 02110",
     "cap": "Atrium up to <b>100</b>; Vinyl Store + Nano Patio combined <b>100</b>; Garden Patio <b>48</b> seated / <b>55</b> standing; full food-hall buyout ~<b>200+</b> (est, quote-based)",
@@ -395,12 +437,14 @@ const VENUES = [
     "note": "Best coffee-shaped room in the FiDi: Gracenote Coffee runs the espresso/coffee-cocktail bar on site (open to 10pm Thu-Sat), and the hall has four bookable semi-private zones plus buyout, 80-seat patio, 28ft LED wall and full A/V — a daytime coffee/hack day plugs straight into existing barista service. Fits 50-200 by choosing Atrium, patio combo, or full buyout.",
     "img": "https://www.highstreetplace.com/wp-content/uploads/2021/09/LIPBN_FH-03_Main-Entry-1a_200828-1024x682.jpg",
     "alt": "Wide shot of the High Street Place atrium entrance with green wall and food-hall seating",
-    "top": false
+    "top": false,
+    "lat": 42.3544401,
+    "lng": -71.0556228
   },
   {
     "k": "sip_cafe",
     "name": "Sip Cafe",
-    "area": "Downtown Boston / Financial District (incl. CIC Boston @ 50 Milk St, Downtown Crossing edge)",
+    "area": "Downtown Boston / Financial District",
     "type": "coffee",
     "addr": "0 Post Office Square, Boston, MA 02110",
     "cap": "~<b>40</b> seated / ~<b>80</b> standing (est; hosts wedding receptions and private functions)",
@@ -411,12 +455,14 @@ const VENUES = [
     "note": "Independent downtown coffee house one block from 50 Milk St that explicitly books private events, pours beer/wine alongside its coffee bar, and stays open to 8pm weekdays — sized for the 50-80 end of the hack-day crowd rather than a full 200. English-first, intimate room with counter service and event testimonials on the page.",
     "img": "http://www.sipboston.com/images/gallery/full-size/sip-cafe-boston-tables.jpg",
     "alt": "Sip Cafe interior with cafe tables and chairs",
-    "top": false
+    "top": false,
+    "lat": 42.3559051,
+    "lng": -71.055535
   },
   {
     "k": "convene_one_boston",
     "name": "Convene One Boston Place",
-    "area": "Downtown Boston / Financial District (incl. CIC Boston @ 50 Milk St, Downtown Crossing edge)",
+    "area": "Downtown Boston / Financial District",
     "type": "cowork",
     "addr": "201 Washington St, Boston, MA 02108",
     "cap": "Up to <b>400</b> guests venue-wide; The Gallery <b>172</b>, The Forum <b>172</b>, The Hub <b>161</b> + breakout rooms",
@@ -427,12 +473,14 @@ const VENUES = [
     "note": "Purpose-built 15,000 sq ft event floor in the heart of the FiDi with in-house catering (coffee service built in), white-box rooms for branding, on-site A/V team and a private outdoor terrace — the safest capacity match for a 50-200 bilingual coffee/hack day near Downtown Crossing.",
     "img": "https://images.ctfassets.net/rpinqlxtcitg/5fo07BrCQkK4xOOPPtDIx0/c9447a2860a8b45292ee3f30cb3d78ce/One_Boston_Place_-_Gallery.jpg",
     "alt": "Wide Gallery event room at Convene One Boston Place",
-    "top": false
+    "top": false,
+    "lat": 42.3585284,
+    "lng": -71.0583757
   },
   {
     "k": "wework_33_arch",
     "name": "WeWork 33 Arch Street",
-    "area": "Downtown Boston / Financial District (incl. CIC Boston @ 50 Milk St, Downtown Crossing edge)",
+    "area": "Downtown Boston / Financial District",
     "type": "cowork",
     "addr": "33 Arch St, Boston, MA 02110",
     "cap": "~<b>80</b>-<b>100</b> standing in converted lounge event space (est; no published figure)",
@@ -443,12 +491,14 @@ const VENUES = [
     "note": "Downtown tower between FiDi and Downtown Crossing with a bookable dedicated event space (sound system + lighting controls), cafe-style common areas and an events-active community team — reviewers repeatedly praise its hosted events. Good budget-flex option for a casual hack-day format.",
     "img": "https://ctfassets.imgix.net/vh7r69kgcki3/1CY7WxrVXzi713zq1ffCCc/db518aa612d78721d62088dd1786e219/event_space.webp",
     "alt": "WeWork event space lounge with rows of chairs facing a screen",
-    "top": false
+    "top": false,
+    "lat": 42.3561471,
+    "lng": -71.0582667
   },
   {
     "k": "workbar_downtown",
     "name": "Workbar Downtown",
-    "area": "Downtown Boston / Financial District (incl. CIC Boston @ 50 Milk St, Downtown Crossing edge)",
+    "area": "Downtown Boston / Financial District",
     "type": "cowork",
     "addr": "24 School St, 2nd Floor, Boston, MA 02108",
     "cap": "~<b>200</b> seated in large event space; <b>50</b> in intimate event space (est, via venue marketplace listing; 17,000 sq ft floor)",
@@ -459,12 +509,14 @@ const VENUES = [
     "note": "Historic 24 School St building on the Downtown Crossing edge, steps from Park Street / Downtown Crossing T, with an event-space amenity, fully stocked cafe zone and custom events programming — a natural coffee/hack-day room with an abundance of natural light and Downtown Crossing foot traffic outside.",
     "img": "https://www.workbar.com/hs-fs/hubfs/locations/downtown/Workbar_ss_10%20(1).jpg?width=900",
     "alt": "Workbar Downtown coworking area with high exposed ceilings",
-    "top": false
+    "top": false,
+    "lat": 42.3573365,
+    "lng": -71.0589528
   },
   {
     "k": "the_exchange_conference",
     "name": "The Exchange Conference Center",
-    "area": "Seaport District (Boston)",
+    "area": "Seaport District",
     "type": "cowork",
     "addr": "212 Northern Ave, Boston, MA 02210 (Boston Fish Pier)",
     "cap": "Exchange Hall <b>180</b> seated / <b>300</b> standing; full venue up to ~<b>300</b> reception",
@@ -475,12 +527,14 @@ const VENUES = [
     "note": "Historic Fish Exchange hall on the working fish pier — floor-to-ceiling harbor views, full liquor license, A/V, and exclusive in-house catering (East Meets West) that runs the venue; published event-planner contacts and a corporate events track. Swap assembly-line fish history for a hackathon.",
     "img": "https://exchangeconferencecenter.com/wp-content/uploads/2023/12/longview-1024x768.jpg",
     "alt": "Long view of Exchange Hall interior with harbor windows",
-    "top": false
+    "top": false,
+    "lat": 42.3518965,
+    "lng": -71.0374264
   },
   {
     "k": "vester_cafe_cambridge",
     "name": "Vester Cafe — Cambridge (Kendall Square)",
-    "area": "Kendall Square / MIT (Cambridge)",
+    "area": "Kendall Square / MIT",
     "type": "coffee",
     "addr": "73 Ames St, Cambridge, MA 02142",
     "cap": "~<b>80</b> seated / <b>300</b>+ catered standing (est; site advertises corporate catering for 300+ and full-venue buyouts)",
@@ -491,6 +545,8 @@ const VENUES = [
     "note": "Female/minority-owned international cafe purpose-built for remote work and networking in the heart of Kendall Sq; dedicated catering/events page explicitly offers full buyouts ('Make VESTER exclusively yours') — the closest match to a bilingual coffee-takeover hack day in the neighborhood.",
     "img": "https://images.squarespace-cdn.com/content/v1/65daae8958d6ef031fb95034/b4936dd8-2f4f-4305-ac9a-e3315d7952e6/_MG_7061.jpeg",
     "alt": "Bright modern cafe interior with communal tables at Vester Cambridge",
-    "top": false
+    "top": false,
+    "lat": 42.3632913,
+    "lng": -71.0882151
   }
 ];

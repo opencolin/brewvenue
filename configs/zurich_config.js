@@ -20,7 +20,7 @@ const VENUES = [
   {
     "k": "frau_gerolds_garten",
     "name": "Frau Gerolds Garten",
-    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "area": "Kreis 5 / Zurich West",
     "type": "coffee",
     "addr": "Geroldstrasse 23, 8005 Zürich",
     "cap": "Garden groups <b>10–120</b>; sister room Braschler's Bar <b>30–150</b> (plant-wrapped, covered)",
@@ -31,12 +31,14 @@ const VENUES = [
     "note": "Iconic shipping-container Stadtgarten at the foot of the Prime Tower, 2 min from Hardbrücke. Sep 16 falls inside the 2026 Sommersaison (until 26.09) and inside Braschler's Bar's event window (until 19.09, events until midnight, no DJ) — the covered bar is the rain fallback for a 50–200 coffee/hack day.",
     "img": "https://www.fraugerold.ch/data/images/2105_1.jpg",
     "alt": "Walled urban garden terrace with container structures and string lights",
-    "top": true
+    "top": true,
+    "lat": 47.3852865,
+    "lng": 8.5192736
   },
   {
     "k": "venice_bar_fusio",
     "name": "Venice Bar (Fusio AG)",
-    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "area": "Kreis 5 / Zurich West",
     "type": "coffee",
     "addr": "Schiffbauplatz, 8005 Zürich",
     "cap": "<b>20–150</b> guests across two floors",
@@ -47,12 +49,14 @@ const VENUES = [
     "note": "Rooftop wine/cocktail bar over the Schiffbau with 360° panorama and openable glass facade; industry-chic + Chesterfield lounges suit an apéro-style hack night. During the summer season it is exclusively an event location; booking runs through the published Typeform inquiry or +41 79 427 17 91 (no events email published).",
     "img": "https://venicebar.ch/wp-content/uploads/2023/07/VeniceBar-Location-P1039435-1-web.jpg",
     "alt": "Two-floor rooftop bar interior with panoramic windows over Zurich",
-    "top": false
+    "top": false,
+    "lat": 47.3885442,
+    "lng": 8.5196883
   },
   {
     "k": "amboss_rampe",
     "name": "Amboss Rampe",
-    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "area": "Kreis 5 / Zurich West",
     "type": "coffee",
     "addr": "Zollstrasse 80, 8005 Zürich",
     "cap": "<b>96</b> seated / <b>100</b> theatre / <b>120</b> standing (155 m²)",
@@ -63,12 +67,14 @@ const VENUES = [
     "note": "Industrial ex-garage event room off HB's north tracks with bar, Meyer sound system and plug-and-play layout; rents day-rate until 17:00 (CHF 1600) or evening (CHF 2600) — a daytime coffee/hack session followed by an evening social fits the published rental block exactly.",
     "img": "https://ambossrampe.ch/wp-content/uploads/2022/07/amboss-rampe-club.jpg",
     "alt": "Industrial event hall with plants, string lights and bar area",
-    "top": false
+    "top": false,
+    "lat": 47.3812683,
+    "lng": 8.5313811
   },
   {
     "k": "labor5_eventfactory",
     "name": "Labor5 eventfactory",
-    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "area": "Kreis 5 / Zurich West",
     "type": "coffee",
     "addr": "Schiffbaustrasse 3, 8005 Zürich",
     "cap": "up to ~<b>450</b> guests (est — per RA/eventlokale listings; venue site publishes no figure)",
@@ -79,12 +85,14 @@ const VENUES = [
     "note": "Former industrial hall next to the Schiffbau renting for private, corporate and public events with own café/day-night operation; explicit welcome for 'public events of all kinds at fair conditions' — useful overflow option if the headcount pushes past 150.",
     "img": "https://www.labor5.ch/media/output/Startseite5-5/Labor5-Eventfactory-day-night-Willkommen-im-Labor5-eventfactory-I-day-night-Impressionen-16-49.webp",
     "alt": "Wide hall interior shot from Labor5 impressions gallery",
-    "top": false
+    "top": false,
+    "lat": 47.3884382,
+    "lng": 8.5189441
   },
   {
     "k": "technopark_zrich",
     "name": "TECHNOPARK® Zürich",
-    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "area": "Kreis 5 / Zurich West",
     "type": "coffee",
     "addr": "Technoparkstrasse 1, 8005 Zürich",
     "cap": "<b>10–500</b> people; 500 m² transfer area for fairs/exhibitions",
@@ -95,12 +103,14 @@ const VENUES = [
     "note": "Zurich's tech anchor at Escher-Wyss with full AV (projectors, streaming, auditorium) plus on-site restaurant/food-court for coffee service — the most tech-week-native room in the cell, trade-off is a corporate conference feel rather than café charm.",
     "img": "https://www.technopark.ch/wp-content/uploads/2014/08/TechnoPark_Interiors-012-1160x755.jpg",
     "alt": "Bright atrium interior of the Technopark event facilities",
-    "top": false
+    "top": false,
+    "lat": 47.3896475,
+    "lng": 8.5148336
   },
   {
     "k": "westhive_zurich_hardturm",
     "name": "Westhive Zurich Hardturm",
-    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "area": "Kreis 5 / Zurich West",
     "type": "cowork",
     "addr": "Hardturmstrasse 161, 8005 Zürich",
     "cap": "<b>150</b> theater / <b>200</b> conference seating (Hall of Fame)",
@@ -111,12 +121,14 @@ const VENUES = [
     "note": "The only room in the hood that comfortably tops out the 200-person envelope: dedicated event floor with AV, stage, adjacents bookable, and an in-house Head of Event Management (Ramona Romer). Proven tech-crowd shape via Westhive's startup coworking base.",
     "img": "https://www.westhive.com/wp-content/uploads/westhive-hardturm-event-hall-of-fame-1200x900-1.jpg",
     "alt": "Westhive Hardturm Hall of Fame event hall with stage and seating",
-    "top": true
+    "top": true,
+    "lat": 47.3931963,
+    "lng": 8.5121106
   },
   {
     "k": "technopark_zrich_eventlocation",
     "name": "TECHNOPARK Zürich Eventlocation",
-    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "area": "Kreis 5 / Zurich West",
     "type": "cowork",
     "addr": "Technoparkstrasse 1, 8005 Zürich",
     "cap": "Rooms for <b>10–500</b>; <b>500 m²</b> transfer-area exhibition floor",
@@ -127,12 +139,14 @@ const VENUES = [
     "note": "The neighborhood's biggest hackable stock: 500m² open transfer area plus tiered auditoriums, AV and Wi-Fi zones built in, and a named event team. Home turf for the AI/data-science cluster, ideal for a tech-week bilingual hack day.",
     "img": "https://www.technopark.ch/wp-content/uploads/2022/07/tpz_events_hack-1160x340.jpg",
     "alt": "Wide view of a hackathon event inside Technopark Zürich transfer area",
-    "top": false
+    "top": false,
+    "lat": 47.3896475,
+    "lng": 8.5148336
   },
   {
     "k": "impact_hub_zrich",
     "name": "Impact Hub Zürich – Viadukt (Event Space Bogen D)",
-    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "area": "Kreis 5 / Zurich West",
     "type": "cowork",
     "addr": "Viaduktstrasse 93-95, 8005 Zürich",
     "cap": "Up to <b>100</b> (Bogen D event space, tribune-style)",
@@ -143,12 +157,14 @@ const VENUES = [
     "note": "Restored railway-arch event space 5 min from Hardbrücke under community-builder gravity: Impact Hub Zurich's birth site, with kitchenette and cafeteria in Arch D/E. Great fit for a 60-100 person coffee-hack format.",
     "img": "https://zurich.impacthub.ch/wp-content/uploads/2023/09/Viadukt_04-optimized.jpg",
     "alt": "Interior of Impact Hub Zürich viaduct arch event space",
-    "top": false
+    "top": false,
+    "lat": 47.3848681,
+    "lng": 8.5208415
   },
   {
     "k": "bluelion_zwz_eventpace",
     "name": "Bluelion ZWZ — Eventpace «Ombre»",
-    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "area": "Kreis 5 / Zurich West",
     "type": "cowork",
     "addr": "Josefstrasse 219, 8005 Zürich",
     "cap": "Up to <b>100</b> (Ombre) + rooftop terrace <b>80</b>",
@@ -159,12 +175,14 @@ const VENUES = [
     "note": "Purpose-built startup-hub event room in the Zentralwäscherei, 5 min from Hardbrücke: stage, video wall, café-style bistro seating, tribune, open kitchen, and an 80-person rooftop terrace for the apéro. CHF 300/h, 4h min — publish prices, easy ask.",
     "img": "https://bluelion.ch/wp-content/uploads/2022/03/Bluelion_Interior-259-1024x683.jpg",
     "alt": "Bluelion ZWZ interior coworking and event area",
-    "top": false
+    "top": false,
+    "lat": 47.387638,
+    "lng": 8.5208703
   },
   {
     "k": "impacthubzrichcolabcafauerco",
     "name": "Impact Hub Zürich – Colab & Café Auer & Co",
-    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "area": "Kreis 5 / Zurich West",
     "type": "cowork",
     "addr": "Sihlquai 131, 8005 Zürich",
     "cap": "Café Auer & Co banqueting <b>40</b> / reception <b>80</b>; Loft Corner <b>50</b>",
@@ -175,12 +193,14 @@ const VENUES = [
     "note": "1,700m² brick-building hub directly on the Limmat in Kreis 5 with its own barista café (Auer & Co) — the room is literally built around coffee service, and the terrace works for hack-day spillover. Sizes this one to the 50-80 end of the band.",
     "img": "https://zurich.impacthub.ch/wp-content/uploads/2023/09/Auer-Slider-01-optimized.jpg",
     "alt": "Café Auer & Co interior at Impact Hub Colab with long tables",
-    "top": false
+    "top": false,
+    "lat": 47.3848545,
+    "lng": 8.5334983
   },
   {
     "k": "cream_zrich_by",
     "name": "C.R.E.A.M. Zürich (by Bros Beans & Beats)",
-    "area": "Kreis 5 / Zurich West (Hardbrücke–Escher-Wyss–Technopark)",
+    "area": "Kreis 5 / Zurich West",
     "type": "cowork",
     "addr": "Josefstrasse 214, 8005 Zürich",
     "cap": "<b>50–80</b> (Veranstaltungssaal)",
@@ -191,12 +211,14 @@ const VENUES = [
     "note": "Specialty-coffee bar in the Orbiz Josef coworking house on Josefstrasse with a dedicated bilingual events page, lounge zones and apéro high table — the closest shape to the Cafe Cursor café-takeover format, sized for the small end of the brief.",
     "img": "https://cream-zurich.ch/wp-content/uploads/2024/10/CREAM_Stimmungsbild_Interior_3.jpeg",
     "alt": "C.R.E.A.M. Zürich café interior with lounge seating and bar",
-    "top": false
+    "top": false,
+    "lat": 47.3872757,
+    "lng": 8.523244
   },
   {
     "k": "haus_hiltl_hiltl",
     "name": "Haus Hiltl (Hiltl Academy + Seminar Rooms)",
-    "area": "City / Selnau (Kreis 1, Sihl riverfront by Bahnhof Selnau)",
+    "area": "City / Selnau",
     "type": "coffee",
     "addr": "Sihlstrasse 28, 8001 Zürich",
     "cap": "Ambrosius <b>100</b> theatre / <b>100</b> reception; Hiltl Academy indoor <b>100</b> / Terrasse <b>80</b>; Marthas Innenhof <b>250</b> reception; published",
@@ -207,12 +229,14 @@ const VENUES = [
     "note": "World's oldest vegetarian restaurant (since 1898) sits on Sihlstrasse — same street-name as the target Sihl riverfront, 3 min walk from Bahnhof Selnau — and runs a dedicated seminar/events program with in-house catering and café-grade coffee service. Ambrosius room + the 5th-floor Academy (with private terrace up to 80) cover 100–200 headcounts; on-site buffet/bar/bistro removes external catering logistics for a full-day bilingual tech-week coffee/hack day.",
     "img": "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_gastronomie_hiltl_02.jpg",
     "alt": "Haus Hiltl exterior on Sihlstrasse with summer boulevard seating",
-    "top": false
+    "top": false,
+    "lat": 47.3732115,
+    "lng": 8.5365731
   },
   {
     "k": "barfussbar_in_der",
     "name": "Barfussbar in der Frauenbadi",
-    "area": "City / Selnau (Kreis 1, Sihl riverfront by Bahnhof Selnau)",
+    "area": "City / Selnau",
     "type": "coffee",
     "addr": "Stadthausquai 12, 8001 Zürich (Frauenbadi, Schanzengraben-on-Limmat)",
     "cap": "<b>60–300</b> (full Frauenbadi); smaller groups 20–59 via 'Sounds am Dunnstig' séparée; published",
@@ -223,12 +247,14 @@ const VENUES = [
     "note": "Only viable in the May–Sep lido season — Sep 16, 2026 is inside the window (last few weeks before the Festival-setup takeover in late Sep). Caution for a Wednesday: season-time rentals run Mon/Tue/Fri/Sat 20:00–00:00 only — Wednesday is a public 'Sounds am Mittwuch' night with a séparée option rather than full hire, so this is a sunset afterparty pairing with Kraftwerk rather than the all-day hack host. On the Limmat (Schanzengraben outlet), Kreis 1 addresses, ~10 min walk from Bhf Selnau.",
     "img": null,
     "alt": "Barefoot bar in historic Frauenbadi at Stadthausquai on the Limmat",
-    "top": false
+    "top": false,
+    "lat": 47.3684507,
+    "lng": 8.542037
   },
   {
     "k": "caf_bar_odeon",
     "name": "Café Bar ODEON",
-    "area": "City / Selnau (Kreis 1, Sihl riverfront by Bahnhof Selnau)",
+    "area": "City / Selnau",
     "type": "coffee",
     "addr": "Limmatquai 2, 8001 Zürich (Kreis 1, Bellevue/Sechseläuten edge)",
     "cap": "Private hire by arrangement; published figures not listed on the events page — est ~<b>150</b> seated across the two rooms (est),.Layout handled in an on-site pre-meeting per ODEON.",
@@ -239,12 +265,14 @@ const VENUES = [
     "note": "Iconic 1911 Viennese-style grand café (Einstein, Joyce, Lenin were regulars) on the Limmat — Kreis 1 and 10-min walk from Bhf Selnau. ODEON does full private hire by custom agreement including weekday all-day bookings (unlike many Zurich cafés), and has hosted film-premieres, political events, and birthdays up to full-house scale. Good bilingual fit (both DE + EN published), in-house champagne-by-glass program. Note the address is on the Limmat street (not the Sihl); cross-check the exact 'by Bahnhof Selnau' proximity against the brief before short-listing.",
     "img": "https://fredhotelsallink-live-df2cb5dada9a4075a-471e907.divio-media.net/filer_public_thumbnails/filer_public/16/c6/16c67c76-828b-4f18-a120-41eed8cd4372/fredtschanz-odeon-mood2022-allink-dsc04828.jpg__992x496_q75_HIGH_RESOLUTION_crop_subsampling-2.jpg",
     "alt": "ODEON art-nouveau café interior with marble, brass and chandeliers",
-    "top": false
+    "top": false,
+    "lat": 47.3677184,
+    "lng": 8.5451725
   },
   {
     "k": "caf_auer_co",
     "name": "Café Auer & Co. at Impact Hub Colab",
-    "area": "City / Selnau (Kreis 1, Sihl riverfront by Bahnhof Selnau)",
+    "area": "City / Selnau",
     "type": "coffee",
     "addr": "Sihlquai 131, 8005 Zürich (Kreis 5, at Limmatplatz — borderline outside the strict Selnau/Kreis-1 target)",
     "cap": "Café floor + terrace est ~<b>80</b> seated / <b>120</b> standing (est); large Colab meeting/event spaces expandable from 8 → 150 via the shared Impact Hub booking stack",
@@ -255,12 +283,14 @@ const VENUES = [
     "note": "In-house café of Impact Hub Colab (brick warehouse at the north end of Sihlquai, technically Kreis 5, adjacent to Oberer Letten river bath). Open Mon–Fri only (closed weekends), which is actually aligned with a Wed Sep 16 hack-day. Seed via the same Impact Hub Zürich network as Kraftwerk; Comedy Kiss series + regular 'Auer Events' track record proves public event-hosting willingness. Flag: the address is just outside the strict Kreis 1 Selnau radius — treat as a backup sibling to Kraftwerk if Selnau proper proves saturated.",
     "img": null,
     "alt": "Auer & Co café in red-brick courtyard warehouse by Limmatplatz",
-    "top": false
+    "top": false,
+    "lat": 47.3848545,
+    "lng": 8.5334983
   },
   {
     "k": "kraftwerk_impact_hub",
     "name": "Kraftwerk (Impact Hub Zürich Kraftwerk)",
-    "area": "City / Selnau (Kreis 1, Sihl riverfront by Bahnhof Selnau)",
+    "area": "City / Selnau",
     "type": "cowork",
     "addr": "Selnaustrasse 25, 8001 Zürich",
     "cap": "Event Space: <b>160</b> theater / <b>250</b> flying apéro / <b>500</b> party; Kommandoraum <b>50</b>; Sihl terrace <b>100</b>; whole venue exklusiv up to <b>800</b>",
@@ -271,12 +301,14 @@ const VENUES = [
     "note": "Former ewz transformer hall 150m from Bahnhof Selnau, run with Impact Hub Zürich — café/bar + coworking + stage/AV event space that already hosts tech meetups, talks and Zürich Music Week; the bilingual tech-week coffee/hack fit is exact.",
     "img": "https://kraftwerk.zuerich/wp-content/uploads/KW_Event-Space_2023_160.jpg",
     "alt": "Wide shot of the Kraftwerk industrial event hall with tables and stage lighting",
-    "top": true
+    "top": true,
+    "lat": 47.3723041,
+    "lng": 8.5320589
   },
   {
     "k": "office_lab_sihlcity",
     "name": "Office LAB Sihlcity",
-    "area": "City / Selnau (Kreis 1, Sihl riverfront by Bahnhof Selnau)",
+    "area": "City / Selnau",
     "type": "cowork",
     "addr": "Kalandergasse 1, 8045 Zürich",
     "cap": "Event rooms Odermatt/Cancellara/Frei, combinable, up to <b>200</b> people; boardrooms + breakout rooms",
@@ -287,12 +319,14 @@ const VENUES = [
     "note": "Modern all-inclusive coworking+conferencing floor in Sihlcity on the Sihl riverfront (S-Bahn stop Sihlcity Nord); high ceilings, terrace, catering/tech/event management included — scales cleanly to the upper end of the 50–200 band.",
     "img": "https://cdn.prod.website-files.com/67b7357f78fede6b574b19eb/67dad566efc77b1c7e8da257_event.webp",
     "alt": "Office LAB Sihlcity bright event room with high ceilings and lounge seating",
-    "top": false
+    "top": false,
+    "lat": 47.3591634,
+    "lng": 8.5230157
   },
   {
     "k": "coworking_lounge_tessinerplatz",
     "name": "Coworking Lounge Tessinerplatz",
-    "area": "City / Selnau (Kreis 1, Sihl riverfront by Bahnhof Selnau)",
+    "area": "City / Selnau",
     "type": "cowork",
     "addr": "Tessinerplatz 7, 8002 Zürich",
     "cap": "Event Space up to <b>50</b> people (published); ~500 m² total, coffee bar + coworking floor",
@@ -303,12 +337,14 @@ const VENUES = [
     "note": "Boutique coffee-bar coworking at Enge, a 7-minute walk from Bahnhof Selnau along the Selnau/Enge corridor; instant hourly/day booking with AV, catering and coffee service — right fit for the smaller (50-side) bilingual coffee/hack format.",
     "img": "https://cdn.prod.website-files.com/5be2c2a5f498fc628d27a3aa/622b9ad9f8a8f0834212069f_Tessinerplatz.jpg",
     "alt": "Wide interior of the Coworking Lounge Tessinerplatz coffee bar and open workspace",
-    "top": false
+    "top": false,
+    "lat": 47.3640875,
+    "lng": 8.5320788
   },
   {
     "k": "stageone_event_convention",
     "name": "StageOne Event & Convention Hall",
-    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "area": "Oerlikon",
     "type": "coffee",
     "addr": "Elias-Canetti-Strasse 146, 8050 Zürich (Oerlikon)",
     "cap": "MainHall <b>500</b> conf / <b>800</b> cocktail; SideHall <b>750</b> / <b>950</b>; total up to <b>2,000</b>",
@@ -319,12 +355,14 @@ const VENUES = [
     "note": "The ETH AI Center's own flagship venue (hosts AI+X Summit and the Swiss Coffee Festival) on the former ABB grounds — walking distance to the ETH AI Center, industrial hall + in-house catering makes a 50-200 tech-week coffee/hack day easy to stage.",
     "img": "https://stage-one.ch/wp-content/uploads/2026/01/DSC_4905-scaled.jpg",
     "alt": "Industrial event hall with ambient lighting rigs and event seating",
-    "top": true
+    "top": true,
+    "lat": 47.4120167,
+    "lng": 8.541611
   },
   {
     "k": "giesserei_oerlikon_fidel",
     "name": "Giesserei Oerlikon (Fidel Gastro AG)",
-    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "area": "Oerlikon",
     "type": "coffee",
     "addr": "Birchstrasse 108, 8050 Zürich-Oerlikon",
     "cap": "Rooms from <b>26–80</b> (Szenograf / Hofkunstloft) to <b>96–220</b> (Cheminée / Werkstatt); whole venue up to <b>850</b>",
@@ -335,12 +373,14 @@ const VENUES = [
     "note": "Post-industrial restaurant/event café in a former metal foundry, in operation since 1996 and actively hosting corporate + private events; dedicated events team with per-room capacities and terraces gives a relaxed coffee-house shape inside a tech-week-sized footprint. Back from Betriebsferien on Aug 11, 2026 — open Sep 16.",
     "img": "https://diegiesserei.ch/wp-content/uploads/2025/04/cheminee-raum-11-1024x683.jpg",
     "alt": "Industrial-chic brick event room with cheminée and warm lighting",
-    "top": false
+    "top": false,
+    "lat": 47.408614,
+    "lng": 8.5376025
   },
   {
     "k": "chicago_1928_halle",
     "name": "Chicago 1928 — Halle 550",
-    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "area": "Oerlikon",
     "type": "coffee",
     "addr": "Halle 550, Ricarda-Huch-Strasse, 8050 Zürich-Oerlikon",
     "cap": "<b>300</b>m²; banquet <b>112–168</b>, theater ~<b>176</b>, exclusive rental up to <b>220</b>",
@@ -351,12 +391,14 @@ const VENUES = [
     "note": "Jazz-age themed event location that already hosts ETH AI Center events (Zurich AI Festival closing), StageOne's partner hall next door — English site, published floor plans, and in-house catering make exclusive rental for up to 220 a turnkey fit.",
     "img": "https://chicago1928.ch/wp-content/uploads/2025/11/CHI-Web-19-1024x819.jpg",
     "alt": "Wide industrial hall dining room with 1920s decor and long banquet tables",
-    "top": false
+    "top": false,
+    "lat": 47.4119723,
+    "lng": 8.5398935
   },
   {
     "k": "halle_622",
     "name": "Halle 622",
-    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "area": "Oerlikon",
     "type": "coffee",
     "addr": "Therese-Giehse-Strasse 10, 8050 Zürich Oerlikon",
     "cap": "Foyer <b>350</b> conf / <b>600</b> reception; hall + gallery up to <b>1,600–2,000</b> (max venue 3,500, est)",
@@ -367,12 +409,14 @@ const VENUES = [
     "note": "Pillar-free event hall with a spacious 880 m² foyer two minutes from Oerlikon Bahnhof — the foyer alone fits a 50-200 coffee/hack crowd with room for sponsor pods; MAAG events team handles corporate bookings.",
     "img": null,
     "alt": "Large open foyer with bar column-free industrial hall beneath gallery",
-    "top": false
+    "top": false,
+    "lat": 47.4131304,
+    "lng": 8.5418143
   },
   {
     "k": "fusio_oerlikon",
     "name": "FUSIO Oerlikon",
-    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "area": "Oerlikon",
     "type": "coffee",
     "addr": "Max-Bill-Platz 15, 8050 Zürich",
     "cap": "Group/private hire for ~<b>150</b> guests (est from eventlokale; no published room count)",
@@ -383,12 +427,14 @@ const VENUES = [
     "note": "Modern Italian restaurant-bar right on Max-Bill-Platz with a summer garden; their FAQ explicitly offers whole-venue private hire via an event form — works for a smaller coffee/hack morning or evening apéro in the 50-150 band.",
     "img": "https://fusio.ch/wp-content/uploads/2024/11/FUSIO_Olten-FUSIO_Oerlikon_Italian-Restaurant_Hand_1.webp",
     "alt": "Restaurant interior with open kitchen pizza counter and tiled walls",
-    "top": false
+    "top": false,
+    "lat": 47.4143393,
+    "lng": 8.5404433
   },
   {
     "k": "zum_frischen_max",
     "name": "Zum Frischen Max",
-    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "area": "Oerlikon",
     "type": "coffee",
     "addr": "Max-Frisch-Platz 25a, 8050 Zürich (by Bahnhof Oerlikon)",
     "cap": "Open-air summer garden, group reservations from <b>8</b>; eventlokale-style capacity ~<b>100–200</b> standing in tipis/garden (est)",
@@ -399,12 +445,14 @@ const VENUES = [
     "note": "MAAG's shady summer garden next to Oerlikon station — casual coffee-and-street-food format with tipis and shade, sells itself for group/company bookings; seasonal (April–end September) and weather-dependent, so treat as the relaxed open-air option for a hack-day wind-down rather than the all-weather base.",
     "img": null,
     "alt": "Shady urban summer garden with wooden tables tipis and string lights",
-    "top": false
+    "top": false,
+    "lat": 47.4122393,
+    "lng": 8.542865
   },
   {
     "k": "giesserei_oerlikon_restaurant",
     "name": "Giesserei Oerlikon (Restaurant & Eventlocation)",
-    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "area": "Oerlikon",
     "type": "cowork",
     "addr": "Birchstrasse 108, 8050 Zürich-Oerlikon",
     "cap": "<b>8</b>rooms up to <b>140</b> restaurant / <b>160</b> exclusive hire; Metalli <b>120</b> banquet / <b>200</b> reception; Terrasse <b>200</b>",
@@ -415,12 +463,14 @@ const VENUES = [
     "note": "Post-industrial foundry hall 8 min from Oerlikon station that runs 650+ corporate/tech banquets a year and rents rooms for seminars, conferences and team events — the 50–200 band slots straight into the Cheminée/Metalli combo with full in-house catering. Reopens from summer closure on Aug 11, 2026, well before Sep 16.",
     "img": "https://diegiesserei.ch/wp-content/uploads/2025/04/cheminee-raum-11-1024x683.jpg",
     "alt": "Cheminée room: wide former-foundry event space with long tables and pendant lighting",
-    "top": false
+    "top": false,
+    "lat": 47.408614,
+    "lng": 8.5376025
   },
   {
     "k": "swiss_game_hub",
     "name": "Swiss Game Hub",
-    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "area": "Oerlikon",
     "type": "cowork",
     "addr": "Erika-Mann-Strasse 11, 8050 Zürich (Oerlikon)",
     "cap": "Auditorium <b>42</b> seated; full creative hall up to <b>108</b> (per Zurich Convention Bureau); ~<b>100+</b> hack-day layout w/ breakout rooms (est)",
@@ -431,12 +481,14 @@ const VENUES = [
     "note": "2,400 m² cowork/event hall 3 min from Oerlikon HB, purpose-built for dev communities — the exact room-shape of a builder hack day, with coffee/water included and a track record of game-dev meetups; the same building hosts Bluelion's ETH AI Center-linked AI hub, so an AI-crowd takeover is a proven pattern. Max ~108 caps the top end of the 200 band.",
     "img": "https://www.zuerich.com/sites/default/files/image/2025/web_zurich_venue_swiss_game_hub_coworking_PT_57636.jpg",
     "alt": "Wide industrial coworking hall with desks,Meeting pods and mezzanine at Swiss Game Hub",
-    "top": false
+    "top": false,
+    "lat": 47.4109436,
+    "lng": 8.5395954
   },
   {
     "k": "halle_622_maag",
     "name": "Halle 622 (MAAG Music & Arts)",
-    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "area": "Oerlikon",
     "type": "cowork",
     "addr": "Therese-Giehse-Strasse 10, 8050 Zürich-Oerlikon",
     "cap": "Foyer <b>350</b> theater / <b>600</b> reception; Halle 622 + Gallery 20–<b>3,500</b>; a 50–200 crowd fits the foyer band or a sectioned hall",
@@ -447,12 +499,14 @@ const VENUES = [
     "note": "Swiss Location Award winner 2 min from Oerlikon HB, run by a dedicated MAAG events team used to corporate formats; pillar-free 1,818 m² hall plus an 880 m² foyer means a 100–200 person coffee/hack day can take the foyer alone and stay intimate, or spill into the hall. Less café-cozy than the others, but proven tech-expo infrastructure.",
     "img": "https://www.zuerich.com/sites/default/files/webhalle.jpg",
     "alt": "Wide pillar-free industrial hall interior of Halle 622 with gallery",
-    "top": false
+    "top": false,
+    "lat": 47.4131304,
+    "lng": 8.5418143
   },
   {
     "k": "bluelion_ai_coworking",
     "name": "Bluelion AI Coworking Space Oerlikon",
-    "area": "Oerlikon (Kreis 11, ETH AI Center / StageOne axis)",
+    "area": "Oerlikon",
     "type": "cowork",
     "addr": "Erika-Mann-Strasse 11, 8050 Zürich (Oerlikon)",
     "cap": "<b>26</b> desks on one floor; hack-day takeover ~<b>50–80</b> combined with adjacent Swiss Game Hub space (est)",
@@ -463,6 +517,8 @@ const VENUES = [
     "note": "ETH AI Center-co-launched AI startup hub that already hosted its first hackathon (Zurich Builds / mimic / Loki Robotics / OpenAI) weeks after opening — the strongest builder-trace in the neighborhood, 2 min from Oerlikon HB. Standalone it's small for 200, but as a coffee/hack-day anchor at 50–80 people or in tandem with the Game Hub floor below, it's the most on-theme room on the axis; book via the site's booking-request form.",
     "img": "https://bluelion.ch/wp-content/uploads/2025/05/oerlikon_ai-hub-1-scaled.jpeg",
     "alt": "Open AI coworking floor with rows of desks and café tables at Bluelion Oerlikon",
-    "top": false
+    "top": false,
+    "lat": 47.4109436,
+    "lng": 8.5395954
   }
 ];

@@ -21,7 +21,7 @@ const VENUES = [
   {
     "k": "helio_klarakvarteren_lounge",
     "name": "Helio Klarakvarteren – Lounge (Café Gro downstairs)",
-    "area": "Norrmalm / Hötorget–Regeringsgatan (City centre)",
+    "area": "Norrmalm / Hötorget–Regeringsgatan",
     "type": "coffee",
     "addr": "Gamla Brogatan 32, 111 20 Stockholm",
     "cap": "Up to <b>120</b>standing (seating table: 120); 220 sqm; on-site Café Gro serves fika",
@@ -32,12 +32,14 @@ const VENUES = [
     "note": "Steps from Hötorget T-bana in the Klarakvarteren block; architect-designed lounge with storefront windows, 1 Gb wifi, catering and a working café on the ground floor. Liquor license in-house, so host bar/fika service is built-in.",
     "img": "https://helio.se/app/uploads/2023/11/klarakvarteren-lounge-1200x768-2.jpg",
     "alt": "Architect-designed lounge at Helio Klarakvarteren with café service, one block from Hötorget",
-    "top": true
+    "top": true,
+    "lat": 59.3337492,
+    "lng": 18.0589789
   },
   {
     "k": "convendum_coffee_kungsgatan",
     "name": "CONVENDUM Coffee – Kungsgatan 9",
-    "area": "Norrmalm / Hötorget–Regeringsgatan (City centre)",
+    "area": "Norrmalm / Hötorget–Regeringsgatan",
     "type": "coffee",
     "addr": "Kungsgatan 9, 111 43 Stockholm",
     "cap": "<b>~80–120</b>standing (est) for the ground-floor café; full venue includes conference + seminar rooms",
@@ -48,12 +50,14 @@ const VENUES = [
     "note": "Flagship coworking house whose ground-floor premium café CONVENDUM Coffee is explicitly rentable for mingling or lectures. On Kungsgatan between Hötorget and Stureplan, perfect for a daytime tech-week coffee/hack day with in-house catering and meeting-room backup.",
     "img": "https://cdn.sanity.io/images/cjfl0cyg/production/95f84d5e112c4ff2661c83a39f9fe6f449bfec2b-3500x2334.jpg?fit=max&auto=format",
     "alt": "Ground-floor premium café at CONVENDUM Kungsgatan 9, rentable in full for private events",
-    "top": false
+    "top": false,
+    "lat": 59.3359621,
+    "lng": 18.0698387
   },
   {
     "k": "epicenter_stockholm_the",
     "name": "Epicenter Stockholm – The Terrace / Disruption Hall",
-    "area": "Norrmalm / Hötorget–Regeringsgatan (City centre)",
+    "area": "Norrmalm / Hötorget–Regeringsgatan",
     "type": "coffee",
     "addr": "Malmskillnadsgatan 44A, 111 57 Stockholm",
     "cap": "Disruption Hall: <b>20–300</b>pax (230 theatre / 300 mingle); The Terrace: 50–300 pax",
@@ -64,12 +68,14 @@ const VENUES = [
     "note": "Scandinavia's first digital innovation house, 3 min from Hötorget and T-Centralen. Own restaurant + coffee service onsite; Disruption Hall has LED wall and stage for keynotes, Terrace with glass ceiling is ideal for hack-day mingling. Built for exactly this kind of tech-week crowd.",
     "img": "https://cdn.prod.website-files.com/66bc8c107c8ef3a640d2af00/6718c69eab92af3cd68dd06e_melyna-valle-pvl9zYmy1kM-unsplash.jpg",
     "alt": "Epicenter Stockholm, Malmskillnadsgatan – innovation house with café + rentable day-event halls",
-    "top": false
+    "top": false,
+    "lat": 59.3341688,
+    "lng": 18.0661754
   },
   {
     "k": "vetekatten_kungsgatan",
     "name": "Vete-Katten Kungsgatan",
-    "area": "Norrmalm / Hötorget–Regeringsgatan (City centre)",
+    "area": "Norrmalm / Hötorget–Regeringsgatan",
     "type": "coffee",
     "addr": "Kungsgatan 55 (also Klara Norra Kyrkogata 26 / Gamla Brogatan 30), 111 22 Stockholm",
     "cap": "<b>~100+</b>seats across the main hall and inner courtyard (est)",
@@ -80,12 +86,14 @@ const VENUES = [
     "note": "Stockholm's most famous konditori (founded 1928), on Kungsgatan between Hötorget and Centralen. Large multi-room café with historic charm and a quiet inner courtyard — good for a daytime coffee/fika-format hack day. No formal events page, so contact info@vetekatten.se for full-venue hire.",
     "img": "https://vetekatten.se/wp-content/uploads/2021/09/Servering_Kategori-1344x936-1.jpg",
     "alt": "Historic 1928 Vete-Katten pastry café on Kungsgatan, Norrmalm",
-    "top": false
+    "top": false,
+    "lat": 59.334112,
+    "lng": 18.058346
   },
   {
     "k": "rc_caf_ptisserie",
     "name": "RC Café & Pâtisserie Regeringsgatan",
-    "area": "Norrmalm / Hötorget–Regeringsgatan (City centre)",
+    "area": "Norrmalm / Hötorget–Regeringsgatan",
     "type": "coffee",
     "addr": "Regeringsgatan 26, 111 53 Stockholm",
     "cap": "<b>~80</b>seats (reported by reviewers; est)",
@@ -96,12 +104,14 @@ const VENUES = [
     "note": "Family-run French-Swedish café named Sweden's Café of the Year (White Guide 2017) with branches across Stockholm. This Regeringsgatan flagship sits squarely in the target block. They take group lunch/fika orders and host private chocolate tastings — workable for a coffee-centred hack day.",
     "img": "https://static.thatsup.co/content/img/place/r/c/rc-chocolat-regeringsgatan-.jpg",
     "alt": "RC Café & Pâtisserie, French-Swedish pastry café on Regeringsgatan",
-    "top": false
+    "top": false,
+    "lat": 59.3315727,
+    "lng": 18.0684447
   },
   {
     "k": "epicenter_stockholm",
     "name": "Epicenter Stockholm",
-    "area": "Norrmalm / Hötorget–Regeringsgatan (City centre)",
+    "area": "Norrmalm / Hötorget–Regeringsgatan",
     "type": "cowork",
     "addr": "Mäster Samuelsgatan 36 // Disruption Hall street entrance: Malmskillnadsgatan 44A, 111 57 Stockholm",
     "cap": "Disruption Hall: <b>230</b>seated theatre, up to 300 mingle; other spaces 5–300; 20 meeting rooms 2–30",
@@ -112,12 +122,14 @@ const VENUES = [
     "note": "Purpose-built digital innovation house a 5-min walk from Hötorget; big LED-wall hall, on-site restaurant, catering and event-agency support — ideal for a bilingual tech-week coffee/hack day.",
     "img": "https://cdn.prod.website-files.com/66bc8c107c8ef3a640d2af00/6718c69eab92af3cd68dd06e_melyna-valle-pvl9zYmy1kM-unsplash.jpg",
     "alt": "Disruption Hall event space at Epicenter Stockholm with LED screen and stage",
-    "top": true
+    "top": true,
+    "lat": 59.3342125,
+    "lng": 18.0662496
   },
   {
     "k": "norrsken_house_stockholm",
     "name": "Norrsken House Stockholm",
-    "area": "Norrmalm / Hötorget–Regeringsgatan (City centre)",
+    "area": "Norrmalm / Hötorget–Regeringsgatan",
     "type": "cowork",
     "addr": "Birger Jarlsgatan 57 C, 113 56 Stockholm",
     "cap": "Townhall: <b>250</b>(200 standing / 120 seated); Moon: 100 (100 standing / 60 theatre)",
@@ -128,12 +140,14 @@ const VENUES = [
     "note": "Impact-tech hub ~700 m from Hötorget with an open-plan Townhall that turns into an event space by evening; strong coffee/startup vibe, bookable via its own events form.",
     "img": "https://cdn.prod.website-files.com/65e76a14af207274f46c7f5c/66b5fa6638af654d493a849a_Town%20Hall%203.avif",
     "alt": "Norrsken House Stockholm open-plan Townhall workspace",
-    "top": false
+    "top": false,
+    "lat": 59.3414768,
+    "lng": 18.064424
   },
   {
     "k": "7a_posthuset_centralposthuset",
     "name": "7A Posthuset (Centralposthuset)",
-    "area": "Norrmalm / Hötorget–Regeringsgatan (City centre)",
+    "area": "Norrmalm / Hötorget–Regeringsgatan",
     "type": "cowork",
     "addr": "Vasagatan 28, 111 20 Stockholm",
     "cap": "Palmsalen <b>up to 300</b>(326 m²); Boberghallen up to 350 (380 m²); multiple conference/event rooms",
@@ -144,12 +158,14 @@ const VENUES = [
     "note": "Landmark old post office right by Central Station (Arlanda Express); bright high-ceiling Palmsalen suits a 150–250-person hack/coffee day, with in-house catering, AV and meeting advisers.",
     "img": "https://cdn.inlycore.com/7a/website/post--konferens/7a-posthuset-palmsalen-pl-3.-fest-(84-kuvert)-326-kvm-(7)-copy.webp?quality=80",
     "alt": "Palmsalen at 7A Posthuset set up for an event, 326 m²",
-    "top": false
+    "top": false,
+    "lat": 59.3322954,
+    "lng": 18.0580946
   },
   {
     "k": "convendum_norrmalm_vasagatan",
     "name": "CONVENDUM (Norrmalm – Vasagatan 16 & Kungsgatan 9)",
-    "area": "Norrmalm / Hötorget–Regeringsgatan (City centre)",
+    "area": "Norrmalm / Hötorget–Regeringsgatan",
     "type": "cowork",
     "addr": "Vasagatan 16, 111 20 Stockholm (also Kungsgatan 9 café and Västra Järnvägsgatan 3)",
     "cap": "Vasagatan <b>16</b>lounge + winter garden up to ~150; (Kungsgatan 9 ground-floor CONVENDUM Coffee café rentable for mingle/lectures, cap on request) (est)",
@@ -160,12 +176,14 @@ const VENUES = [
     "note": "Design-led coworking/conference operator with a winter-garden lounge at Vasagatan 16 for 100–150-person mingle/hack formats; operator splits interest across multiple rooms, so book early.",
     "img": "https://cdn.sanity.io/images/cjfl0cyg/production/00f675ed5d051d059cbe783319225eced06632b6-3780x2523.jpg?fit=max&auto=format",
     "alt": "CONVENDUM event lounge with winter garden at Vasagatan 16",
-    "top": false
+    "top": false,
+    "lat": 59.3302356,
+    "lng": 18.0599581
   },
   {
     "k": "impact_hub_stockholm",
     "name": "Impact Hub Stockholm",
-    "area": "Norrmalm / Hötorget–Regeringsgatan (City centre)",
+    "area": "Norrmalm / Hötorget–Regeringsgatan",
     "type": "cowork",
     "addr": "Regeringsgatan 65, 111 56 Stockholm (recently relocated from Jakobsbergsgatan 22)",
     "cap": "Open community/event floor; bookable conference rooms <b>up to 10+</b>; event capacity on request (est)",
@@ -176,12 +194,14 @@ const VENUES = [
     "note": "Social-impact community now on Regeringsgatan 65, steps from Hötorget; good small-to-mid hack-day fit with built-in developer/impact network — but the dedicated room-booking page 404s, so confirm space+date by email.",
     "img": "https://b2007359.smushcdn.com/2007359/wp-content/uploads/2024/06/4-1024x676.jpg",
     "alt": "Impact Hub Stockholm coworking and community space",
-    "top": false
+    "top": false,
+    "lat": 59.3349812,
+    "lng": 18.0674976
   },
   {
     "k": "usine_le_caf",
     "name": "Usine – Le Café",
-    "area": "Södermalm / Skanstull–Hammarby Kaj (Goto10–Folkungagatan axis)",
+    "area": "Södermalm / Skanstull–Hammarby Kaj",
     "type": "coffee",
     "addr": "Södermalmsallén 36, 118 28 Stockholm",
     "cap": "<b>50–120</b>seated / 200 standing (published); two combinable rooms take 200 seated / 350 standing",
@@ -192,12 +212,14 @@ const VENUES = [
     "note": "A working café by day that converts into an award-winning industrial-chic event space between Medborgarplatsen and Skanstull — daylight-grade big windows, sound system, staffed, and squarely sized for a 50–200-person hack day.",
     "img": "https://www.usine.se/Bilder_Mellan/808-lokal.jpg",
     "alt": "Usine Le Cafés öppna industrilokal med serveringsbar och stora fönster",
-    "top": true
+    "top": true,
+    "lat": 59.3136578,
+    "lng": 18.0696196
   },
   {
     "k": "ersta_terrass",
     "name": "Ersta Terrass",
-    "area": "Södermalm / Skanstull–Hammarby Kaj (Goto10–Folkungagatan axis)",
+    "area": "Södermalm / Skanstull–Hammarby Kaj",
     "type": "coffee",
     "addr": "Erstagatan 1N / Fjällgatan 45, 116 41 Stockholm (Erstaklippan, Södermalm)",
     "cap": "<b>210</b>seated across 5 venues; terrace up to 250 mingle (published)",
@@ -208,12 +230,14 @@ const VENUES = [
     "note": "Hilltop café-restaurant above Skanstull with a 180° view of the inlet, five connected rooms plus a huge terrace — week-long daylight events, bilingual-friendly staff, and profits fund Ersta diakoni's social mission.",
     "img": "https://www.erstadiakoni.se/globalassets/verksamheter/bo-och-motas/konferens-hotell-terrass/erstaklippan-utsikt-6.jpg",
     "alt": "Ersta terrass utsikt över Stockholms inlopp från Erstaklippan",
-    "top": false
+    "top": false,
+    "lat": 59.3169622,
+    "lng": 18.0901725
   },
   {
     "k": "ffngan_caf_restaurang",
     "name": "Fåfängan Café & Restaurang",
-    "area": "Södermalm / Skanstull–Hammarby Kaj (Goto10–Folkungagatan axis)",
+    "area": "Södermalm / Skanstull–Hammarby Kaj",
     "type": "coffee",
     "addr": "Klockstapelsbacken 3, 116 41 Stockholm (Södermalm, Danviksberget)",
     "cap": "<b>~90</b>seated (published for dinners); events from 10 up to several hundred guests (est, per venue) incl. garden",
@@ -224,12 +248,14 @@ const VENUES = [
     "note": "Historic 1890s gazebo-café on the cliff above Ersta with newly renovated dining room, ballroom, bar and linden garden — books out for breakfast lectures, corporate mingles and full takeovers from 10 to several hundred.",
     "img": "https://static.thatsup.website/404/41155/FUJI5610.jpg",
     "alt": "Fåfängans pärlsort-sal och trädgård ovanför Saltsjön",
-    "top": false
+    "top": false,
+    "lat": 59.3148377,
+    "lng": 18.1013871
   },
   {
     "k": "louie_louie_mten",
     "name": "Louie Louie – Möten, Event & Teambuilding",
-    "area": "Södermalm / Skanstull–Hammarby Kaj (Goto10–Folkungagatan axis)",
+    "area": "Södermalm / Skanstull–Hammarby Kaj",
     "type": "coffee",
     "addr": "Bondegatan 13, 116 23 Stockholm (SoFo, Södermalm)",
     "cap": "<b>30</b>conference seating; 40 in cinema layout (published) — fits only the small end of a 50–200 brief with tight cinema setup",
@@ -240,12 +266,14 @@ const VENUES = [
     "note": "Literally 'your own Söder café for a day': exclusive hire with staff, own barista-grade fika/lunch, projector and mic, living room feel facing Bondegatan — ideal intimate hack-day pod venue; book the full day package.",
     "img": "https://impro.usercontent.one/appid/oneComWsb/domain/louielouie.se/media/louielouie.se/Konferenser/IMG_1794.jpg",
     "alt": "Louie Louies cafékonferenslokal mot Bondegatan",
-    "top": false
+    "top": false,
+    "lat": 59.3129522,
+    "lng": 18.079112
   },
   {
     "k": "fabriken_fabriken_hammarby",
     "name": "Fabriken (Fabriken Hammarby Sjöstad)",
-    "area": "Södermalm / Skanstull–Hammarby Kaj (Goto10–Folkungagatan axis)",
+    "area": "Södermalm / Skanstull–Hammarby Kaj",
     "type": "cowork",
     "addr": "Textilgatan 31–33, 120 30 Stockholm",
     "cap": "Auditorium <b>up to 200</b>(160 seated cinema/dinner, 350 m²); smaller rooms 6–40",
@@ -256,12 +284,14 @@ const VENUES = [
     "note": "Former paint-factory turned cowork+event hub with a professional multifunction Auditorium (full-wall projection, video wall, stage) that fits a 50–200 person hack-day; named event lead Venus; 10 min walk from Skanstull/Gullmarsplan T-bana.",
     "img": "https://fabrikenevent.se/wp-content/uploads/2021/03/Konferens-SES-scaled.jpg",
     "alt": "https://fabrikenevent.se/wp-content/uploads/2021/03/Konferens-SES-scaled.jpg",
-    "top": true
+    "top": true,
+    "lat": 59.302182,
+    "lng": 18.0895945
   },
   {
     "k": "eatery_lumafabriken",
     "name": "Eatery Lumafabriken",
-    "area": "Södermalm / Skanstull–Hammarby Kaj (Goto10–Folkungagatan axis)",
+    "area": "Södermalm / Skanstull–Hammarby Kaj",
     "type": "cowork",
     "addr": "Lumaparksvägen 7 (Hammarby Sjöstad), 120 31 Stockholm",
     "cap": "Mix of <b>11</b>conference rooms from 2 up to 68 (Edison); full restaurant buyout up to 330; Volt glass cube 48 mingel/25 dinner",
@@ -272,12 +302,14 @@ const VENUES = [
     "note": "Heritage-listed functionalist Luma lamp factory on the canal with canal-view terraces; scales from hack rooms to the 13th-floor Volt glass cube. Note: lunch restaurant closed for renovation 15 Jun–27 Sep 2026 (café stays open) — confirm konferens/full-day catering for 9–11 Sep.",
     "img": "https://static.thatsup.website/462/54982/FUJI7092.jpg",
     "alt": "https://static.thatsup.website/462/54982/FUJI7092.jpg",
-    "top": false
+    "top": false,
+    "lat": 59.3052914,
+    "lng": 18.0954655
   },
   {
     "k": "lokus_fest_konferens",
     "name": "Lokus Fest & Konferens — Folkungagatan 90 (Folkungakyrkan)",
-    "area": "Södermalm / Skanstull–Hammarby Kaj (Goto10–Folkungagatan axis)",
+    "area": "Södermalm / Skanstull–Hammarby Kaj",
     "type": "cowork",
     "addr": "Folkungagatan 90, 116 22 Stockholm",
     "cap": "Biosittning <b>up to 300</b>(200 on parkett + 100 on läktare); islands 136; mingellunch up to 310",
@@ -288,12 +320,14 @@ const VENUES = [
     "note": "Right on the Folkungagatan axis in SoFo, a renovated 150-year-old church with stage, dual projector screens, exhibition/registration läktare and in-house catering — strong fit for a 150–300 person hack-day plenary 2 min from Medborgarplatsen T-bana.",
     "img": "https://www.lokusfestkonferens.se/wp-content/uploads/2024/01/HGF4594b.jpg",
     "alt": "https://www.lokusfestkonferens.se/wp-content/uploads/2024/01/HGF4594b.jpg",
-    "top": false
+    "top": false,
+    "lat": 59.3146431,
+    "lng": 18.0771599
   },
   {
     "k": "a_house_katarinahuset",
     "name": "A House Katarinahuset (Slussen)",
-    "area": "Södermalm / Skanstull–Hammarby Kaj (Goto10–Folkungagatan axis)",
+    "area": "Södermalm / Skanstull–Hammarby Kaj",
     "type": "cowork",
     "addr": "Stadsgården 6, 116 45 Stockholm",
     "cap": "Event spaces <b>382</b>m² across destination (e.g. Domus up to 150, Sickla Central Våning 10 up to 150 network-wide); lobby ~100 seats",
@@ -304,12 +338,14 @@ const VENUES = [
     "note": "Landmark KF-huset at the NW mouth of the Söder axis with bilingual, creative-industries event/cowork infrastructure (Gondolen, Pet Sounds Bar in-house); day-event booking handled centrally at event@ahouse.se with venue contact katarinahuset@ahouse.se.",
     "img": "https://ahouse.se/wp-content/uploads/2024/08/Ahouse.exteriors.4761.NY_-scaled-e1725013174691-1-900x600.jpg",
     "alt": "https://ahouse.se/wp-content/uploads/2024/08/Ahouse.exteriors.4761.NY_-scaled-e1725013174691-1-900x600.jpg",
-    "top": false
+    "top": false,
+    "lat": 59.3178126,
+    "lng": 18.0883777
   },
   {
     "k": "eataly_stockholm_la",
     "name": "Eataly Stockholm — La Piazza & private rooms",
-    "area": "Östermalm / Birger Jarlsgatan–Stureplan (Norrsken axis)",
+    "area": "Östermalm / Birger Jarlsgatan–Stureplan",
     "type": "coffee",
     "addr": "Biblioteksgatan 5, 111 44 Stockholm",
     "cap": "La Piazza: <b>155</b>seated / 250 standing; Gyllene rummet 40/70; Vinrummet 20/30",
@@ -320,12 +356,14 @@ const VENUES = [
     "note": "Two blocks from Stureplan with a full caffetteria for barista service, plus La Piazza — the old Röda Kvarn cinema hall (12 m ceilings) taking 250 standing, and smaller rooms (La Scuola with projector/wifi and 'freshly brewed coffee from our café'). Dedicated event team; bookable whole-house.",
     "img": "https://www.eataly.se/wp-content/uploads/2022/06/hyr-anrik-biograf-till-event.jpg",
     "alt": "Wide shot of La Piazza, the former Röda Kvarn cinema hall event venue at Eataly Stockholm",
-    "top": false
+    "top": false,
+    "lat": 59.3344997,
+    "lng": 18.0727065
   },
   {
     "k": "convendum_biblioteksgatan_29",
     "name": "CONVENDUM Biblioteksgatan 29",
-    "area": "Östermalm / Birger Jarlsgatan–Stureplan (Norrsken axis)",
+    "area": "Östermalm / Birger Jarlsgatan–Stureplan",
     "type": "coffee",
     "addr": "Biblioteksgatan 29, 114 35 Stockholm",
     "cap": "Auditorium <b>80</b>; meeting/conference rooms up to 100; mingle lounge for standing event",
@@ -336,12 +374,14 @@ const VENUES = [
     "note": "Adjacent to Stureplan: premium conference center with in-house café/restaurant, 80-seat auditorium with sound and big screen plus breakout rooms and a mingle lounge — turnkey daytime infrastructure for a bilingual hack day. Operator explicitly rents out its CONVENDUM Coffee cafés as event venues.",
     "img": "https://cdn.sanity.io/images/cjfl0cyg/production/00f675ed5d051d059cbe783319225eced06632b6-3780x2523.jpg",
     "alt": "Wide interior photo of a CONVENDUM event space",
-    "top": false
+    "top": false,
+    "lat": 59.3372411,
+    "lng": 18.0721425
   },
   {
     "k": "hotel_kung_carl",
     "name": "Hotel Kung Carl — Stureplan event & banquet",
-    "area": "Östermalm / Birger Jarlsgatan–Stureplan (Norrsken axis)",
+    "area": "Östermalm / Birger Jarlsgatan–Stureplan",
     "type": "coffee",
     "addr": "Birger Jarlsgatan 21a, 111 45 Stockholm",
     "cap": "Up to <b>150</b>(seated dinner/buffet); Stureplan room theatre 40",
@@ -352,12 +392,14 @@ const VENUES = [
     "note": "Iconic 1889 hotel right on the Birger Jarlsgatan–Stureplan corner with a Parisian-style café/cocktail bar and published event/banquet offering for up to 150, multiple named rooms (Stureplan, Birger Jarlsgatan), and a rooftop terrace — polished fallback with hotel-grade catering and coffee service.",
     "img": "https://kungcarl.imgix.net/konflounge_170216_124559.jpg",
     "alt": "Wide photo of the conference/event lounge at Hotel Kung Carl",
-    "top": false
+    "top": false,
+    "lat": 59.3374174,
+    "lng": 18.0702618
   },
   {
     "k": "karla_caf",
     "name": "Karla Café",
-    "area": "Östermalm / Birger Jarlsgatan–Stureplan (Norrsken axis)",
+    "area": "Östermalm / Birger Jarlsgatan–Stureplan",
     "type": "coffee",
     "addr": "Karlavägen 71, 114 49 Stockholm",
     "cap": "<b>10–150</b>people (basement vault venue)",
@@ -368,12 +410,14 @@ const VENUES = [
     "note": "Beloved Östermalm café-restaurant at Karlavägen/Sibyllegatan (5 min from Stureplan) whose vaulted cellar venue hosts 10–150 for conferences, kick-offs and events, with in-house café/fika catering — authentic Swedish fika atmosphere for a bilingual coffee-hack day.",
     "img": "https://karlacafe.com/wp-content/uploads/2018/09/IMG_9036-1024x743.jpg",
     "alt": "Wide interior photo of Karla Café's vaulted event space",
-    "top": false
+    "top": false,
+    "lat": 59.3392918,
+    "lng": 18.0832016
   },
   {
     "k": "a_house_ark",
     "name": "A House Ark (Östermalm) — A Stage",
-    "area": "Östermalm / Birger Jarlsgatan–Stureplan (Norrsken axis)",
+    "area": "Östermalm / Birger Jarlsgatan–Stureplan",
     "type": "cowork",
     "addr": "Östermalmsgatan 26A, 114 26 Stockholm (venue entrance Uggelviksgatan 2A)",
     "cap": "<b>300</b>standing / 200 seated (405 m² incl. 135 m² balcony); combinable with A Backstage and A Yard courtyard",
@@ -384,12 +428,14 @@ const VENUES = [
     "note": "Creative cowork house in the old Architecture School on Östermalm; A Stage is a raw, high-ceiling (6.1 m) multi-purpose hall that has hosted conferences and fairs, with café/lounge coworking and a courtyard for coffee breaks.",
     "img": "https://ahouse.se/wp-content/uploads/2024/08/6_A-stage-2019-11-1-1-scaled-1-2000x1000.jpg",
     "alt": "A Stage interior at A House Ark",
-    "top": false
+    "top": false,
+    "lat": 59.3430476,
+    "lng": 18.0720178
   },
   {
     "k": "convendum_birger_jarlsgatan",
     "name": "CONVENDUM Birger Jarlsgatan 57 (Spårvagnshallarna)",
-    "area": "Östermalm / Birger Jarlsgatan–Stureplan (Norrsken axis)",
+    "area": "Östermalm / Birger Jarlsgatan–Stureplan",
     "type": "cowork",
     "addr": "Birger Jarlsgatan 57, 113 56 Stockholm (Spårvagnshallarna, Vasastan/Östermalm border)",
     "cap": "Auditorium up to <b>~110</b>people, plus lounge and smaller meeting rooms",
@@ -400,6 +446,8 @@ const VENUES = [
     "note": "Same Spårvagnshallarna tram-depot block as Norrsken; grand-lounge conference centre with an auditorium for ~110 and CONVENDUM Coffee café on the ground floor — reliable daytime infrastructure for a coffee/hack day of 50–110 participants, two minutes from Stureplan.",
     "img": null,
     "alt": "CONVENDUM Birger Jarlsgatan 57 conference lounge",
-    "top": false
+    "top": false,
+    "lat": 59.3414768,
+    "lng": 18.064424
   }
 ];

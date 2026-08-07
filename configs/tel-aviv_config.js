@@ -21,7 +21,7 @@ const VENUES = [
   {
     "k": "caf_landwer_sarona",
     "name": "Café Landwer Sarona | קפה לנדוור שרונה",
-    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "area": "Sarona / Derech Menachem Begin corridor",
     "type": "coffee",
     "addr": "13 Arania Osvaldo (Oswaldo Aranha) St, Sarona Park, Tel Aviv",
     "cap": "<b>~100</b>(est, large interior + lawn patio facing Sarona Park)",
@@ -32,12 +32,14 @@ const VENUES = [
     "note": "Coffee-roastery heritage brand on the Sarona lawn with an extravagant green patio — ideal bilingual daytime hack/coffee day. Chain runs a global 'Host Your Event' page with book-event form; Sarona branch answers at 03-6244806.",
     "img": "https://parksarona.com/wp-content/uploads/2022/07/לנדוור.png",
     "alt": "Cafe Landwer patio facing the Sarona Park lawns",
-    "top": true
+    "top": true,
+    "lat": 32.071929,
+    "lng": 34.786283
   },
   {
     "k": "max_brenner_sarona",
     "name": "Max Brenner Sarona | מקס ברנר שרונה",
-    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "area": "Sarona / Derech Menachem Begin corridor",
     "type": "coffee",
     "addr": "Aluf Kalman Magen 3 (Sarona Market), Tel Aviv",
     "cap": "<b>~120</b>(est, large flagship inside Sarona Market)",
@@ -48,12 +50,14 @@ const VENUES = [
     "note": "Big, playful flagship chocolate-coffee bar inside Sarona Market with long hours (Sun–Sat to 22:30/23:00) and a country-wide reservations center; published HQ email office@maxbrenner.co.il handles group/corporate requests.",
     "img": "https://max-brenner.co.il/cdn/shop/files/c4d68c45fe954165b94148f15a90abe2.webp?v=1775397796&width=1100",
     "alt": "Max Brenner Sarona Market interior",
-    "top": false
+    "top": false,
+    "lat": 32.0711035,
+    "lng": 34.7870617
   },
   {
     "k": "caf_nimrod_sarona",
     "name": "Café Nimrod Sarona | קפה נמרוד שרונה",
-    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "area": "Sarona / Derech Menachem Begin corridor",
     "type": "coffee",
     "addr": "12 Rav Aluf David Elazar St (Sarona), Tel Aviv",
     "cap": "<b>~80</b>(est, indoor + green pastoral patio)",
@@ -64,12 +68,14 @@ const VENUES = [
     "note": "Rosh-Pina-style lounge-cafe with a famously pastoral patio in the heart of Sarona — relaxed bilingual crowd, good morning-to-evening hours; branch reaches groups via +972-3-672-1344 / Ontopo group booking.",
     "img": "https://parksarona.com/wp-content/uploads/2022/07/קפה-נמרוד.jpg",
     "alt": "Cafe Nimrod Sarona pastoral patio",
-    "top": false
+    "top": false,
+    "lat": 32.0725046,
+    "lng": 34.7879396
   },
   {
     "k": "benedict_sarona_market",
     "name": "Benedict Sarona Market | בנדיקט שרונה מרקט",
-    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "area": "Sarona / Derech Menachem Begin corridor",
     "type": "coffee",
     "addr": "Aluf Kalman Magen 3 (Sarona Market), Tel Aviv",
     "cap": "<b>~100</b>(est, market-level restaurant; sister branch Bitan Aharon publishes 50 on covered patio)",
@@ -80,12 +86,14 @@ const VENUES = [
     "note": "Israel's best-known 24/7-style breakfast cafe with a dedicated events page ('בוקר טוב לאירועים טובים') inviting private celebrations across its restaurants; Sarona branch sits in the market and answers events at 03-686-8657.",
     "img": "https://www.benedict.co.il/cdn/shop/files/b2646e51a3f71c7e47f54b0176cab0eb_%7Bwidth%7Dx.jpg?v=1748173011",
     "alt": "Benedict breakfast spread",
-    "top": false
+    "top": false,
+    "lat": 32.0711035,
+    "lng": 34.7870617
   },
   {
     "k": "dubnov_8_8",
     "name": "Dubnov 8 | דובנוב 8",
-    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "area": "Sarona / Derech Menachem Begin corridor",
     "type": "coffee",
     "addr": "8 Dubnov St, Tel Aviv (off Derech Menachem Begin, by the Museum/Tel Aviv Performing Arts Center)",
     "cap": "<b>~70</b>(est, dining room + shaded garden)",
@@ -96,12 +104,14 @@ const VENUES = [
     "note": "Quiet bistro-cafe two minutes' walk from Azrieli Sarona with a shaded, calm garden — good for a small-mid daytime hack/coffee gathering; site publishes event contact email dubnov80@gmail.com (reservations 03-696-86-55).",
     "img": "https://dubnov8.com/images/intro_21.jpg",
     "alt": "Dubnov 8 shaded garden seating",
-    "top": false
+    "top": false,
+    "lat": 32.074597,
+    "lng": 34.783916
   },
   {
     "k": "point_by_azrieli",
     "name": "POINT by Azrieli Sarona (formerly LABS TLV)",
-    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "area": "Sarona / Derech Menachem Begin corridor",
     "type": "cowork",
     "addr": "121 Derech Menachem Begin, Azrieli Sarona Tower (floors 58-61), Tel Aviv-Yafo 6100000",
     "cap": "Conference complex <b>up to 200</b>(published by operator parent LABS/Azrieli); 7 floors, 15,500 sqm, 1,000 workstations",
@@ -117,7 +127,7 @@ const VENUES = [
   {
     "k": "wework_sarona",
     "name": "WeWork Sarona (ויוורק שרונה)",
-    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "area": "Sarona / Derech Menachem Begin corridor",
     "type": "cowork",
     "addr": "3 Aluf Kalman Magen St, Sarona Market (3rd floor), Tel Aviv 6107075",
     "cap": "<b>~150</b>-200 (est) — WeWork advertises 'indoor and outdoor venues for groups of all sizes'; specific Sarona capacity not published",
@@ -128,12 +138,14 @@ const VENUES = [
     "note": "Whole 3rd floor of Sarona Market with food-hall downstairs — perfect for a casual coffee/hack day where catering is built in. Sunlit common area converts to meetup space with sound/lighting controls; English-speaking community team.",
     "img": "https://cdn-images.wework.com/buildings/9ee00cc4-878a-11f1-a1f3-0e85bcbec943_1.jpg",
     "alt": "Building-level page (also fetched live): https://www.wework.com/en-IL/buildings/sarona--tel-aviv--israel",
-    "top": false
+    "top": false,
+    "lat": 32.0711035,
+    "lng": 34.7870617
   },
   {
     "k": "wework_azrieli_town",
     "name": "WeWork Azrieli Town (ויוורק עזריאלי טאון)",
-    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "area": "Sarona / Derech Menachem Begin corridor",
     "type": "cowork",
     "addr": "146 Derech Menachem Begin (Azrieli Town), Tel Aviv 6492102",
     "cap": "<b>~100</b>-180 (est) — 'indoor and outdoor venues for groups of all sizes'; includes a dedicated classroom per WeWork's building description; ~50th floor Midtown views",
@@ -144,12 +156,14 @@ const VENUES = [
     "note": "Upper floors of Midtown Tower, the corridor's tallest — high-impact skyline backdrop for a tech-week crowd, plus 'classroom' amenity for hands-on hack tracks. Direct access from Menachem Begin with Hashalom rail 10 min walk.",
     "img": "https://cdn-images.wework.com/buildings/a22cf856-86cc-11f1-ae4d-0e85bcbec943_0.jpg",
     "alt": "Building-level page (also fetched live): https://www.wework.com/en-IL/buildings/azrieli-town--tel-aviv--israel",
-    "top": false
+    "top": false,
+    "lat": 32.078791,
+    "lng": 34.793691
   },
   {
     "k": "sarona_space_haarbaa",
     "name": "Sarona Space HaArba'a (שרונה ספייס הארבעה)",
-    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "area": "Sarona / Derech Menachem Begin corridor",
     "type": "cowork",
     "addr": "18A HaArba'a St, Tel Aviv (corner of Sarona Market, inside the corridor)",
     "cap": "<b>~80</b>-150 (est) — boutique high-tech coworking with public 'events, pitch meetup' offering; specific guest count not published",
@@ -160,12 +174,14 @@ const VENUES = [
     "note": "Tech-only coworking backed by Sarona Ventures directly opposite Sarona Market, so deeply wired into Israel's startup scene — pitch meetups and launch events are their core business. Owner-managed and responsive to hack-day formats.",
     "img": "https://saronaspace.com/wp-content/uploads/2019/11/arbaha-11-scaled.jpg",
     "alt": "Second TLV branch at Hahashmonaim 103 is further from the corridor; stick with the HaArba'a branch for this brief",
-    "top": false
+    "top": false,
+    "lat": 32.0729646,
+    "lng": 34.7649928
   },
   {
     "k": "microsoft_reactor_tel",
     "name": "Microsoft Reactor Tel Aviv (מיקרוסופט ריאקטור)",
-    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "area": "Sarona / Derech Menachem Begin corridor",
     "type": "cowork",
     "addr": "Yigal Alon 98, Tel Aviv (moved from Dubnov 7 in c. 2023-24 — now on corridor edge, ~700 m south)",
     "cap": "Classroom <b>120</b>/ theater 170 (published by Microsoft Reactor program)",
@@ -176,12 +192,14 @@ const VENUES = [
     "note": "Free, community-driven Microsoft-owned event space purpose-built for developer meetups and hack days — bilingual staff and stack. Address has shifted from the original Dubnov 7 site, but it remains the closest true 'hack space' in the immediate area and is reachable from Sarona in under 10 min on foot.",
     "img": null,
     "alt": "Microsoft Reactor Tel Aviv (מיקרוסופט ריאקטור) interior",
-    "top": false
+    "top": false,
+    "lat": 32.070056,
+    "lng": 34.793963
   },
   {
     "k": "mindspace_rothschild",
     "name": "Mindspace Rothschild / מיינדספייס רוטשילד",
-    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "area": "Rothschild–Levontin / Lev Ha'ir",
     "type": "coffee",
     "addr": "Rothschild Blvd 45, Tel Aviv-Yafo",
     "cap": "Networking events for <b>100</b>; 4 floors + 2 sun terraces; ~100-150 (est)",
@@ -197,7 +215,7 @@ const VENUES = [
   {
     "k": "mindspace_ahad_haam",
     "name": "Mindspace Ahad Ha'am / מיינדספייס אחד העם",
-    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "area": "Rothschild–Levontin / Lev Ha'ir",
     "type": "coffee",
     "addr": "Ahad Ha'Am St 54, Tel Aviv-Yafo",
     "cap": "Networking events for <b>100</b>; two large event spaces + rooftop; ~100-150 (est)",
@@ -208,12 +226,14 @@ const VENUES = [
     "note": "Two design-forward event spaces plus a skyline rooftop two minutes off Rothschild; explicitly pitched for 100-person networking/coffee events with cafe-style community buzz.",
     "img": "https://www.mindspace.me/wp-content/uploads/2025/07/2.event-showstopper_1-5.jpg",
     "alt": "Mindspace Ahad Ha'am rooftop and event space",
-    "top": false
+    "top": false,
+    "lat": 32.064594,
+    "lng": 34.774322
   },
   {
     "k": "claro_tlv",
     "name": "Claro TLV / קלארו",
-    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "area": "Rothschild–Levontin / Lev Ha'ir",
     "type": "coffee",
     "addr": "Ha'arba'a St 23 (David Elazar 30 corner), Sarona, Tel Aviv-Yafo",
     "cap": "Private/business events <b>up to 180</b>; Balcony 50, Garden 45, two connected limestone halls 30-180",
@@ -224,12 +244,14 @@ const VENUES = [
     "note": "Sprawling restored Templar building at the Sarona/Rothschild edge with a dedicated events team, garden + balcony + halls, full sound/light/projector; coffee-bar atmosphere by day scales to a full hack-day crowd.",
     "img": "https://static.wixstatic.com/media/e1889d_3803cb99a18d45f6991ee496544b41d6~mv2.jpg/v1/fit/w_960",
     "alt": "Claro TLV Sarona event halls and garden",
-    "top": false
+    "top": false,
+    "lat": 32.070628,
+    "lng": 34.786398
   },
   {
     "k": "r48_48",
     "name": "R48 / רוטשילד 48",
-    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "area": "Rothschild–Levontin / Lev Ha'ir",
     "type": "coffee",
     "addr": "Rothschild Blvd 48, Tel Aviv-Yafo",
     "cap": "Events <b>up to 120</b>; Garden 70, Private Dining Room 30, rooftop Pool, Meeting Room 14",
@@ -240,12 +262,14 @@ const VENUES = [
     "note": "Historic Bauhaus building right on the boulevard with a garden, private dining and rooftop-pool spaces, dedicated events page with proposal request; boutique coffee-break/catering menus suit a daytime tech coffee event.",
     "img": "https://r48.co.il/wp-content/uploads/2024/10/R48_Garden_Event.jpg",
     "alt": "R48 garden event space on Rothschild",
-    "top": false
+    "top": false,
+    "lat": 32.063853,
+    "lng": 34.774928
   },
   {
     "k": "meet_in_place",
     "name": "Meet in Place, Rothschild 57 / מיט אין פלייס רוטשילד 57",
-    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "area": "Rothschild–Levontin / Lev Ha'ir",
     "type": "coffee",
     "addr": "Rothschild Blvd 57, Tel Aviv-Yafo",
     "cap": "Grand Loft + Roof Top, <b>108</b>seated / 108 standing",
@@ -261,7 +285,7 @@ const VENUES = [
   {
     "k": "villa_dallal_house",
     "name": "Villa Dallal / וילה דלאל (House of Dallal)",
-    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "area": "Rothschild–Levontin / Lev Ha'ir",
     "type": "coffee",
     "addr": "Kol Yisrael Chaverim 5, Neve Tzedek, Tel Aviv-Yafo",
     "cap": "Boutique/private events; <b>~50</b>-120 (est)",
@@ -277,7 +301,7 @@ const VENUES = [
   {
     "k": "rothschild_57_57",
     "name": "Rothschild 57 (רוטשילד 57)",
-    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "area": "Rothschild–Levontin / Lev Ha'ir",
     "type": "cowork",
     "addr": "57 Rothschild Blvd, Tel Aviv-Yafo",
     "cap": "<b>~100</b>(est; multi-room venue incl. rooftop)",
@@ -288,12 +312,14 @@ const VENUES = [
     "note": "Purpose-built boutique event/meeting complex on the boulevard with a boulevard-facing rooftop, several themed rooms and kosher-capable service; runs 8:00-23:00 and is already set up for corporate hack/workshop formats.",
     "img": "https://rothschild57.com/wp-content/uploads/2024/11/rooftop1.jpg",
     "alt": "Rothschild 57 rooftop event space overlooking Rothschild Blvd",
-    "top": true
+    "top": true,
+    "lat": 32.06475,
+    "lng": 34.775814
   },
   {
     "k": "brain_embassy_tel",
     "name": "Brain Embassy Tel Aviv (בריין אמבסי)",
-    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "area": "Rothschild–Levontin / Lev Ha'ir",
     "type": "cowork",
     "addr": "Adgar 360 Tower, 2 HaArba'a St, Tel Aviv-Yafo",
     "cap": "<b>100</b>-200 (published size filter)",
@@ -304,12 +330,14 @@ const VENUES = [
     "note": "Polish-origin creative campus on the Yitzhak Sadeh/Sarona edge of Lev Ha'ir; published 100-200 event-size filter, high-end AV/sound, modular rooms and chef-workshop options make it the biggest turn-key option on the list.",
     "img": "https://brainembassy.co.il/wp-content/uploads/2025/02/Events_HERO.webp",
     "alt": "Brain Embassy events floor with skyline view",
-    "top": false
+    "top": false,
+    "lat": 32.0765147,
+    "lng": 34.7668035
   },
   {
     "k": "urban_place_rothschild",
     "name": "Urban Place Rothschild (אורבן פלייס רוטשילד)",
-    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "area": "Rothschild–Levontin / Lev Ha'ir",
     "type": "cowork",
     "addr": "Psagot Tower, 1 Rothschild Blvd, Tel Aviv-Yafo",
     "cap": "<b>~80</b>(est)",
@@ -320,12 +348,14 @@ const VENUES = [
     "note": "Sea-view coworking floors in the Psagot Building at the south-western tip of the boulevard; happy-hour community culture and business lounges suit a relaxed coffee/hack day; bookings via on-site tour form.",
     "img": "https://urbanplace.me/wp-content/uploads/elementor/thumbs/R-1-r6fqpo6x8sj02707dcwg4wo3uidyvv5dn8sod37qtk.png",
     "alt": "Urban Place Rothschild coworking lounge",
-    "top": false
+    "top": false,
+    "lat": 32.0700644,
+    "lng": 34.7783631
   },
   {
     "k": "meetinplace57rothschild",
     "name": "Meet In Place, 57 Rothschild (מיט אין פלייס)",
-    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "area": "Rothschild–Levontin / Lev Ha'ir",
     "type": "cowork",
     "addr": "57 Rothschild Blvd, Tel Aviv-Yafo",
     "cap": "<b>108</b>(Grand Loft, published on PartySlate)",
@@ -341,7 +371,7 @@ const VENUES = [
   {
     "k": "migdalor_cafe",
     "name": "Migdalor Cafe (מגדלור)",
-    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "area": "Tel Aviv Port / Namal",
     "type": "coffee",
     "addr": "Rehavam Ze'evi (Gandi) 1, North Tel Aviv Port (inside the 1930s lighthouse, by the Yarkon estuary), Tel Aviv",
     "cap": "<b>~200+</b>(est) on the open deck; cinema/yoga nights and the Founders Running Club meetup run here regularly",
@@ -352,12 +382,14 @@ const VENUES = [
     "note": "Tel Aviv's most distinctive coffee setting: a cafe inside the city's first lighthouse, a short walk from Hangar 11/Reading. Its big seafront deck already hosts giant-screen nights and community events — a natural bilingual hack-day home; Sep weather suits the outdoor setup.",
     "img": "https://www.molet.org/wp-content/uploads/2022/05/migdalor-01eng.jpg",
     "alt": "Café seating inside the Tel Aviv lighthouse",
-    "top": true
+    "top": true,
+    "lat": 32.1457099,
+    "lng": 34.8108706
   },
   {
     "k": "cafe_cafe_namal",
     "name": "Cafe Cafe Namal (קפה קפה)",
-    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "area": "Tel Aviv Port / Namal",
     "type": "coffee",
     "addr": "Yordei HaSira 1, Tel Aviv Port, Tel Aviv",
     "cap": "<b>90</b>(published: \"אירועים עד 90 איש בקומה ממוזגת\" — events up to 90 in the air-conditioned floor; groups of 20+ bookable by advance arrangement)",
@@ -368,12 +400,14 @@ const VENUES = [
     "note": "Only port cafe with a published events capacity: an AC upper floor for up to 90 — realistic for a 50–90 person hack morning. Kosher (Rav Machpud), open till midnight Sun–Thu, parking; call 03-5440054 / 053-5727408 to book.",
     "img": null,
     "alt": "Upper-floor café room overlooking the port boardwalk",
-    "top": false
+    "top": false,
+    "lat": 32.096468,
+    "lng": 34.773922
   },
   {
     "k": "cafe_nimrod",
     "name": "Cafe Nimrod (קפה נמרוד)",
-    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "area": "Tel Aviv Port / Namal",
     "type": "coffee",
     "addr": "Hangar 8, Tel Aviv Port (האנגר 8, נמל ת\"א), Tel Aviv",
     "cap": "<b>~150–200</b>(est — large sea-facing deck + indoor hall; original branch of the chain, event-friendly)",
@@ -384,12 +418,14 @@ const VENUES = [
     "note": "Veteran Galil-style cafe right on the water with a huge open deck — founded at this very spot, now run independently and actively hosting events. Sea breeze + long tables suit an all-day bilingual hack/coffee day; evening hours \"until the last customer\".",
     "img": null,
     "alt": "gibeshizik@gmail.com (events, published on official Facebook page); 077-2133007 / 058-595-7273",
-    "top": false
+    "top": false,
+    "lat": 32.0969317,
+    "lng": 34.7735309
   },
   {
     "k": "maison_kayser_port",
     "name": "Maison Kayser Port (מייזון קייזר)",
-    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "area": "Tel Aviv Port / Namal",
     "type": "coffee",
     "addr": "Hangar 22, Tel Aviv Port (האנגר 22, נמל תל אביב), Tel Aviv",
     "cap": "<b>~80</b>(est — boulangerie-cafe with sea-facing terrace)",
@@ -400,12 +436,14 @@ const VENUES = [
     "note": "Eric Kayser's artisan French bakery-cafe with a prime port terrace facing the sea — strong coffee-and-pastry credibility for a morning hack session. Smaller footprint suits the 50–80 end; June 2026 port pop-ups show they're active on site.",
     "img": "https://media.getmood.io/warehouse/dynamic/222861.jpg",
     "alt": "Bakery-café terrace facing the marina",
-    "top": false
+    "top": false,
+    "lat": 32.0999592,
+    "lng": 34.7745298
   },
   {
     "k": "alma_cafe_namal",
     "name": "Alma Cafe Namal (קפה עלמה)",
-    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "area": "Tel Aviv Port / Namal",
     "type": "coffee",
     "addr": "Yordei HaSira 2, Tel Aviv Port (כ״ג יורדי הסירה 2), Tel Aviv",
     "cap": "<b>~100</b>(est — neighborhood cafe sized for business meetings, morning-to-night)",
@@ -416,12 +454,14 @@ const VENUES = [
     "note": "Warm neighborhood cafe whose own copy calls it \"the perfect place for a business meeting\" — Hebrew/English-friendly chain with vegan and kids' menus, open Sat too. Good shoulder option if the bigger decks are booked.",
     "img": "https://media.getmood.io/warehouse/dynamic/704153.jpg",
     "alt": "Warm timber-lined café interior at the Namal",
-    "top": false
+    "top": false,
+    "lat": 32.0962379,
+    "lng": 34.7745639
   },
   {
     "k": "hangar_11_11",
     "name": "Hangar 11 (האנגר 11)",
-    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "area": "Tel Aviv Port / Namal",
     "type": "cowork",
     "addr": "Hangar 11, 1 Yordei HaSira St, Tel Aviv Port, Tel Aviv-Yafo (נמל תל אביב, יורדי הסירה 1)",
     "cap": "<b>350</b>to 1,000+ hosted; main hangar concert capacity to ~3,000 (published)",
@@ -432,12 +472,14 @@ const VENUES = [
     "note": "The iconic events hangar of the district the brief already names. 360-degree synced projection on 8 m walls, L-Acoustics PA, 700-fixture lighting rig, dedicated private-events team with full production packages (bar, catering, DJ/VJ). Vast sea-facing entry plaza for registration + overflow; adjacent Reading parking is free. 50-200 is small for the main hall but they run the smaller Federation room for boutique events.",
     "img": "https://hangar11.co.il/private/wp-content/uploads/2015/08/DSC_9945-עותק.jpg",
     "alt": "Hangar 11 main hall with 360 projection at a private event",
-    "top": true
+    "top": true,
+    "lat": 32.098389,
+    "lng": 34.774496
   },
   {
     "k": "reading_3_3",
     "name": "Reading 3 (רדינג 3) Events",
-    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "area": "Tel Aviv Port / Namal",
     "type": "cowork",
     "addr": "Reading 3, North Tel Aviv Port / Reading compound, Tel Aviv-Yafo (רדינג 3, צפון נמל תל אביב)",
     "cap": "<b>500</b>seated; 700 standing (published)",
@@ -448,12 +490,14 @@ const VENUES = [
     "note": "A venue that literally has a Hebrew-language 'events for hi-tech companies' landing page. Live-show sound system, LED projection screens and experienced tech production staff in-house, plus a full team of waiters/bartenders. Adjacent Reading parking is free — at tech-week rush that's gold. Direct fit for a 50-200 bilingual coffee/hack day; scale up or down via partitions.",
     "img": "https://media.getmood.io/warehouse/dynamic/2039.jpg",
     "alt": "Reading 3 events hall interior, Port Tel Aviv",
-    "top": false
+    "top": false,
+    "lat": 32.1050861,
+    "lng": 34.7790248
   },
   {
     "k": "mixer_park_tlv",
     "name": "MIXER Park TLV / MIXER House TLV (מיקסר תל אביב)",
-    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "area": "Tel Aviv Port / Namal",
     "type": "cowork",
     "addr": "Tel Aviv Convention Center (מרכז הירידים / גני התערוכה), 101 Rokach Blvd, Tel Aviv-Yafo — adjacent to the Port/Reading quarter",
     "cap": "<b>1</b>-100 offices + private events lounges, indoor & outdoor venues; hosted multi-hundred-person hackathons (Maccabi 24h hackathon, Incredibles Hackathon) and NVIDIA's Jensen Huang private event — comfortable at 50-200",
@@ -469,7 +513,7 @@ const VENUES = [
   {
     "k": "namel_event_space",
     "name": "NAMEL Event Space Tel Aviv (נָמֵל אירועים תל אביב)",
-    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "area": "Tel Aviv Port / Namal",
     "type": "cowork",
     "addr": "Ground floor, ~500 m², Tel Aviv Port, Tel Aviv-Yafo (נמל תל אביב)",
     "cap": "<b>50</b>-150 people (published hourly, daytime 3-hour min; evening 4-hour min + ₪500/h)",
@@ -480,12 +524,14 @@ const VENUES = [
     "note": "Ground-floor sea-view event space in the Port with a private terrace, projector/screen, A/C, kitchen/coffee machine, Wi-Fi, accessible. Capacity band (50-150) hits the brief dead-centre — the only candidate sized exactly to the 50-200 brief without partitioning a bigger hangar. Coffee/tea service in-house fits the 'coffee/hack' brief directly.",
     "img": null,
     "alt": "NAMEL ground-floor event space terrace, Tel Aviv Port",
-    "top": false
+    "top": false,
+    "lat": 32.0638498,
+    "lng": 34.7814903
   },
   {
     "k": "the_white_pergola",
     "name": "The White Pergola (הסוכה הלבנה)",
-    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "area": "Tel Aviv Port / Namal",
     "type": "cowork",
     "addr": "1 Yordei HaSira St, Hangar 4, Tel Aviv Port, Tel Aviv-Yafo (יורדי הסירה 1, האנגר 4, נמל ת״א)",
     "cap": "Indoor hall <b>up to 120</b>/ covered balcony 50 / waterfront terrace ~200 seats (published); combined ~250+",
@@ -496,6 +542,8 @@ const VENUES = [
     "note": "Fish-and-seafood restaurant in Hangar 4, the hangar immediately next to Hangar 11 in the named events quarter. 200-seat waterfront terrace is genuinely on the water line — natural fit for an evening hack-day closing drink after daytime sessions in the 120-seat indoor hall. Bilingual EN/HE venue with full kitchen, cocktail bar, and dedicated events coordinator.",
     "img": "https://hasuka-halevana.co.il/wp-content/uploads/2017/09/dji_0297.jpg",
     "alt": "White Pergola waterfront terrace at Tel Aviv Port",
-    "top": false
+    "top": false,
+    "lat": 32.0965733,
+    "lng": 34.7729058
   }
 ];

@@ -21,7 +21,7 @@ const VENUES = [
   {
     "k": "booksays",
     "name": "BOOKSAYS 북쌔즈",
-    "area": "Gangnam (Teheran-ro / Yeoksam corridor)",
+    "area": "Gangnam",
     "type": "coffee",
     "addr": "서울특별시 강남구 테헤란로 311 아남타워 정면 2층 (후면길 1층) / 311 Teheran-ro, Anam Tower 2F, Yeoksam-dong, Gangnam-gu, Seoul 06151",
     "cap": "<b>100</b>(메인홀 Main Hall; lounges: 20인 우주선 / 10인 잠수함)",
@@ -37,7 +37,7 @@ const VENUES = [
   {
     "k": "ground_b",
     "name": "GROUND B 그라운드비 카페",
-    "area": "Gangnam (Teheran-ro / Yeoksam corridor)",
+    "area": "Gangnam",
     "type": "coffee",
     "addr": "서울특별시 강남구 테헤란로92길 7 바른빌딩 1층 / 1F, 7 Teheran-ro 92-gil, Daechi-dong, Gangnam-gu, Seoul",
     "cap": "<b>100</b>seated, 120 standing (테라스·실외 포함) — published by ShareIt host",
@@ -48,12 +48,14 @@ const VENUES = [
     "note": "삼성역 1분·층고 5m·80평 규모+테라스가 있는 순수 카페. 200인치 빔+무선마이크 2대 구비, 평일 16시 이후·주말 시간 협의(취소 최소 5H)로 저녁 해커톤/밋업과 주말 하프데이 모두 가능. 대관은 쉐어잇(Share.it)과 스페이스클라우드(공간ID 58414) 채널을 통해 신청하며, 카카오톡/전화 직통 이메일은 공개되어 있지 않다.",
     "img": null,
     "alt": "그라운드비 카페 내부 - 층고 5m 통창과 초록 식물, 테라스가 있는 대형 공간",
-    "top": false
+    "top": false,
+    "lat": 37.5580064,
+    "lng": 126.974399
   },
   {
     "k": "mode_lounge_yeoksam",
     "name": "모드라운지 역삼점 Mode Lounge Yeoksam",
-    "area": "Gangnam (Teheran-ro / Yeoksam corridor)",
+    "area": "Gangnam",
     "type": "coffee",
     "addr": "서울특별시 강남구 테헤란로22길 11 모닝타워 지하 1층 / B1, 11 Teheran-ro 22-gil, Yeoksam-dong, Gangnam-gu, Seoul",
     "cap": "기준 <b>10</b>명, 최대 80명 (직사각형 배치 시 108명) — published",
@@ -69,7 +71,7 @@ const VENUES = [
   {
     "k": "mmc",
     "name": "MMC 카페 마일드 모디쉬 클럽",
-    "area": "Gangnam (Teheran-ro / Yeoksam corridor)",
+    "area": "Gangnam",
     "type": "coffee",
     "addr": "서울특별시 강남구 언주로69길 6 제남빌딩 1층 101호 / 101, 1F Jenam Bldg, 6 Onju-ro 69-gil, Yeoksam-dong, Gangnam-gu, Seoul",
     "cap": "<b>~30</b>명 (카페 약 25평 규모, est)",
@@ -85,7 +87,7 @@ const VENUES = [
   {
     "k": "twoshot_coffee",
     "name": "강남 대관 전문 카페 투샷 (TWOSHOT Coffee)",
-    "area": "Gangnam (Teheran-ro / Yeoksam corridor)",
+    "area": "Gangnam",
     "type": "coffee",
     "addr": "서울특별시 강남구 강남대로 310 유니온센터 B121 / B121 Union Center, 310 Gangnam-daero, Yeoksam-dong, Gangnam-gu, Seoul",
     "cap": "<b>47</b>명 max (published by ShareIt host) — noted as smaller than the 50-200 target, listed for completeness",
@@ -101,7 +103,7 @@ const VENUES = [
   {
     "k": "maru180_180_asan",
     "name": "MARU180 마루180 (Asan Nanum Foundation)",
-    "area": "Gangnam (Teheran-ro / Yeoksam corridor)",
+    "area": "Gangnam",
     "type": "cowork",
     "addr": "서울특별시 강남구 역삼로 180 (Yeoksam-ro 180, Yeoksam-dong)",
     "cap": "<b>150</b>-200 (event hall, published)",
@@ -112,12 +114,14 @@ const VENUES = [
     "note": "Right on the Yeoksam corridor at the Yeoksam-ro/Teheran-ro intersection. Free rental of the B1 event hall for startup/enterprise-spirit events per the foundation's rental policy — perfect fit for a bilingual tech-week hack/coffee day. The dedicated rental microsite (maru.org/eventhall) is JS-only and would not render for verification, so we link the verified foundation contact page instead.",
     "img": "https://asan-nanum.org/wp-content/themes/base/images/maru/banner_2.ba66ec4de7f0a11fd73f.jpeg",
     "alt": "MARU180 - B1 event hall, cowork-cafe plus rooftop, startup hub at old Yeoksam tax office junction",
-    "top": true
+    "top": true,
+    "lat": 37.4979627,
+    "lng": 127.0393757
   },
   {
     "k": "dreamplus_gangnam_hanwha",
     "name": "DREAMPLUS Gangnam 드림플러스 강남 (Hanwha Life Innovation Hub)",
-    "area": "Gangnam (Teheran-ro / Yeoksam corridor)",
+    "area": "Gangnam",
     "type": "cowork",
     "addr": "서울특별시 서초구 강남대로 311, B1 (311 Gangnam-daero, Seocho-gu)",
     "cap": "<b>~200</b>(main event hall, published)",
@@ -128,12 +132,14 @@ const VENUES = [
     "note": "Main event hall with full stage, LED video wall, podium, mics/speakers included; explicitly suits hackathons and demo days per the rental brief. Walking distance of the Teheran-ro/Gangnam axis, adjacent to Gangnam Station. KakaoTalk inquiry channel also offered.",
     "img": "https://blogthumb.pstatic.net/MjAyMzA3MTJfMjM5/MDAxNjg5MTU1NzI2ODQ0.ZJ4V_E-fB48LSrnwco8jrK6o-GJNivDzO3hQUpUVnvsg.yPLmew3rLw8fhTEwFnvxpoEtvwey3km3KoF8xjfPzpsg.JPEG.hanwhadreamplus/IMG_4133.JPG?type=w2",
     "alt": "Main event hall at DreamPlus Gangnam, stage with LED video wall and 200-seat capacity",
-    "top": false
+    "top": false,
+    "lat": 37.490921,
+    "lng": 127.0303664
   },
   {
     "k": "corea_conference_center",
     "name": "Corea Conference Center (COCOC) 한국컨퍼런스센터, by MyWorkspace",
-    "area": "Gangnam (Teheran-ro / Yeoksam corridor)",
+    "area": "Gangnam",
     "type": "cowork",
     "addr": "서울특별시 서초구 강남대로53길 8 (8 Gangnam-daero 53-gil, Seocho-gu) — adjacent to MyWorkspace Gangnam Teheran-ro branch, 강남역 5번 출구 도보 2분",
     "cap": "<b>170</b>(auditorium, published) + conference rooms 30-54",
@@ -149,7 +155,7 @@ const VENUES = [
   {
     "k": "it_square_oakwood",
     "name": "IT Square 아이티스퀘어 (Oakwood Premier Coex Center)",
-    "area": "Gangnam (Teheran-ro / Yeoksam corridor)",
+    "area": "Gangnam",
     "type": "cowork",
     "addr": "서울특별시 강남구 테헤란로87길 46 오크우드 코엑스센터 2F (46 Teheran-ro 87-gil, Gangnam-gu)",
     "cap": "<b>200</b>-300 (437 m², published on venue site; theater 250 per layout chart)",
@@ -160,12 +166,14 @@ const VENUES = [
     "note": "Directly on the Teheran-ro corridor, a 437 m² convention-style hall on the Oakwood Coex 2nd floor with 7m-wide front LED. Published rental process (inquiry → review → approval → event). Cafés and partner hotels nearby.",
     "img": "https://cdn.imweb.me/thumbnail/20250319/be5fd19a397c3.jpg",
     "alt": "IT Square main hall with large LED front wall and round-banquet layout, 200-300 capacity",
-    "top": false
+    "top": false,
+    "lat": 37.5110213,
+    "lng": 127.0581061
   },
   {
     "k": "spaceshare_gangnam_center",
     "name": "SPACESHARE Gangnam Center 스페이스쉐어 강남센터",
-    "area": "Gangnam (Teheran-ro / Yeoksam corridor)",
+    "area": "Gangnam",
     "type": "cowork",
     "addr": "서울특별시 서초구 (Sinnonhyeon-area, 강남권) — 신논현역 2번 출구 동일빌딩",
     "cap": "Up to <b>200</b>(largest hall), 9 rooms total, 10-200 range",
@@ -181,7 +189,7 @@ const VENUES = [
   {
     "k": "dcamp_banks_foundation",
     "name": "D.CAMP 디캠프 선릉 (Banks Foundation for Young Entrepreneurs)",
-    "area": "Gangnam (Teheran-ro / Yeoksam corridor)",
+    "area": "Gangnam",
     "type": "cowork",
     "addr": "서울특별시 강남구 선릉로 551 새롬빌딩 2,4,5,6F (551 Seolleung-ro, Gangnam-gu)",
     "cap": "<b>150</b>-200 (multipurpose hall 6F, published in D.CAMP brochure)",
@@ -192,12 +200,14 @@ const VENUES = [
     "note": "Startup-focused hub inside the Teheran-ro/Seolleung corridor with a 6F multipurpose hall (150-200 seat) plus terrace with Seonjeongneung views. Free/low-fee rental for ecosystem events; catering zone included.",
     "img": "https://s3-ap-northeast-2.amazonaws.com/dcamp-web-public/styles/max_650x650/s3-public/2026-07/L1260640%28%EC%9E%91%EC%97%85%EB%B3%B8%29.jpg?itok=_PMpbxb-",
     "alt": "D.CAMP 6F multipurpose hall with terrace overlooking Seonjeongneung royal tomb, invited demos and talks",
-    "top": false
+    "top": false,
+    "lat": 37.5079994,
+    "lng": 127.0452499
   },
   {
     "k": "seongsu_jiang_seongsu",
     "name": "Seongsu Jiang / Seongsu Jiang Cooperative (성수지앵협동조합)",
-    "area": "Seongsu-dong (Seoul Forest east edge)",
+    "area": "Seongsu-dong",
     "type": "coffee",
     "addr": "101 Wangsimni-ro, Seongdong-gu, Seoul (서울특별시 성동구 왕십리로 101), 1F/2F cafe + 4F private workshop floor",
     "cap": "<b>4</b>-floor complex; 1F+2F large cafe floors plus 4F private workshop / party room — combined footprint well over 200 (est); each floor easily fits 50-80 seated",
@@ -213,7 +223,7 @@ const VENUES = [
   {
     "k": "cafe_onion_seongsu",
     "name": "Cafe Onion Seongsu (카페 어니언 성수)",
-    "area": "Seongsu-dong (Seoul Forest east edge)",
+    "area": "Seongsu-dong",
     "type": "coffee",
     "addr": "8 Achasan-ro 9-gil, Seongsu-dong 2-ga, Seongdong-gu, Seoul 04797 (서울특별시 성동구 아차산로9길 8)",
     "cap": "<b>~200</b>(est) — sprawling renovated metal-factory, two interior halls + rooftop terrace; no published event capacity",
@@ -224,12 +234,14 @@ const VENUES = [
     "note": "Iconic 1970s factory retrofit with huge industrial interior, mezzanine and rooftop — very photogenic backdrop for a tech-week coffee day, and corp email published on the official contact page. No dedicated events page; you negotiate a partial or full buyout via onion@onionkr.com / store phone 070-4353-3238. Weekend crowds make weekday booking advisable.",
     "img": "https://english.visitseoul.net/comm/getImage?srvcId=MEDIA&parentSn=14422&fileTy=MEDIA&fileNo=1&thumbTy=L",
     "alt": "Wide shot of Cafe Onion Seongsu interior (Visit Seoul official)",
-    "top": false
+    "top": false,
+    "lat": 37.5447135,
+    "lng": 127.0582322
   },
   {
     "k": "grandpa_factory",
     "name": "Grandpa Factory (할아버지공장)",
-    "area": "Seongsu-dong (Seoul Forest east edge)",
+    "area": "Seongsu-dong",
     "type": "coffee",
     "addr": "9 Seongsui-ro 7ga-gil, Seongdong-gu, Seoul (서울특별시 성동구 성수이로7가길 9)",
     "cap": "<b>~150</b>-200 (est) — 2 interior floors + treehouse courtyard + rooftop greenhouse; no published capacity",
@@ -240,12 +252,14 @@ const VENUES = [
     "note": "Converted factory cafe used as a Vincenzo filming set, with group terrace seating, treehouse, and greenhouse-style rooftop — memorable for a hack-day crowd. Instagram bio lists a separate 대관 (rental) line 010-3934-2301 plus booking phone 02-6402-2301; booking is largely over Kakao/DM, no published email.",
     "img": "https://danielfooddiary.com/wp-content/uploads/2023/04/grandpafactorycafe1.JPG",
     "alt": "Wide Grandpa Factory Cafe interior (DanielFoodDiary)",
-    "top": false
+    "top": false,
+    "lat": 37.5413017,
+    "lng": 127.0551995
   },
   {
     "k": "daelim_changgo_gallery",
     "name": "Daelim Changgo Gallery (성수동 대림창고 갤러리)",
-    "area": "Seongsu-dong (Seoul Forest east edge)",
+    "area": "Seongsu-dong",
     "type": "coffee",
     "addr": "78 Seongsui-ro, Seongsu-dong 2-ga, Seongdong-gu, Seoul 04784 (서울특별시 성동구 성수이로 78)",
     "cap": "<b>~150</b>-200 (est) — 1970s rice-mill building split into B/C/D halls plus cafe floor",
@@ -256,12 +270,14 @@ const VENUES = [
     "note": "Landmark red-brick rice-mill-turned-cafe-and-gallery that regularly runs brand pop-ups in its B/C/D halls, so event production is in-house muscle; cafe operates 11:00-22:00 daily and catering can ride on the on-site cafe. Book through Popup Korea listing — weekday event-hours also possible outside 12:00-20:00 with separate inquiry.",
     "img": "https://tong.visitkorea.or.kr/cms/resource/69/2721169_image2_1.jpg",
     "alt": "Wide Daelim Changgo Gallery interior (Korea Tourism Organization)",
-    "top": false
+    "top": false,
+    "lat": 37.5418247,
+    "lng": 127.0564591
   },
   {
     "k": "coffee_sigu_seongsu",
     "name": "Coffee Sigu Seongsu (커피식구 성수)",
-    "area": "Seongsu-dong (Seoul Forest east edge)",
+    "area": "Seongsu-dong",
     "type": "coffee",
     "addr": "Seongdong-gu, Seoul — 8-min walk from Seongsu Stn Exit 2 (exact street address via Shareit booking flow)",
     "cap": "<b>40</b>seated with tables / 50 standing (published on Shareit)",
@@ -272,12 +288,14 @@ const VENUES = [
     "note": "Dedicated rental cafe on a quiet Seongsu side-street with projector, wireless mic, speaker, free parking, host with multi-event experience — but published cap is 40-50, so it's only viable for a 50-person break-out / satellite session, not the full 100-200 hack day. Booking via ShareIT / Kakao channel @coffee.seekoo_seongsu.",
     "img": "https://img.shareit.kr/prod/img/2022-10-11/354256bb-1874-495e-92ee-f523fdf48cb1.jpg",
     "alt": "Wide hall interior of Coffee Sigu Seongsu (Shareit CDN)",
-    "top": false
+    "top": false,
+    "lat": 37.5446185,
+    "lng": 127.0573744
   },
   {
     "k": "sfactory_space_d",
     "name": "SFACTORY (에스팩토리) — SPACE [D]",
-    "area": "Seongsu-dong (Seoul Forest east edge)",
+    "area": "Seongsu-dong",
     "type": "cowork",
     "addr": "서울특별시 성동구 연무장15길 11 (성수동2가 중심), Seoul 04783",
     "cap": "<b>~300</b>standing (est); published footprint 1F 570py + 3F 430py ≈ 3,300 sqm — comfortably absorbs 50–200 with room to spare",
@@ -288,12 +306,14 @@ const VENUES = [
     "note": "Seongsu's largest dedicated event complex: red-brick converted factory, high ceilings, on-site cafe/tenants, bilingual-friendly operator. Ideal headline host for a 50–200 bilingual tech-week hack/coffee day; dedicated rental page lists direct email and weekday walk-throughs.",
     "img": "https://contents.sixshop.com/uploadedFiles/243585/default/image_1706235099324.jpg",
     "alt": "SFACTORY Space D interior - Seongsu's biggest event hall",
-    "top": true
+    "top": true,
+    "lat": 37.5428358,
+    "lng": 127.0589363
   },
   {
     "k": "hd_cafe_hongdae",
     "name": "HD Cafe (ㅎㄷ카페 / Hongdae Cafe)",
-    "area": "Sinchon / Hongdae (Mapo-Seodaemun university belt)",
+    "area": "Sinchon / Hongdae",
     "type": "coffee",
     "addr": "서울 마포구 어울마당로 68 (68 Eoulmadang-ro, Mapo-gu, Seoul) — B1 through 9F",
     "cap": "<b>~200</b>(est; eight distinct floors each rented as one block, B1 performance stage + 9F rooftop)",
@@ -309,7 +329,7 @@ const VENUES = [
   {
     "k": "teamplace_hongdae",
     "name": "TeamPlace (팀플레이스) Hongdae",
-    "area": "Sinchon / Hongdae (Mapo-Seodaemun university belt)",
+    "area": "Sinchon / Hongdae",
     "type": "coffee",
     "addr": "서울 마포구 월드컵북로4길 12 B1 SJ타워 (B1, 12 World Cup buk-ro 4-gil, Mapo-gu)",
     "cap": "<b>~100</b>(est; venue advertises 100평/~330㎡ floor, 8 breakout rooms plus large common lounge)",
@@ -325,7 +345,7 @@ const VENUES = [
   {
     "k": "catch_cafe_sinchon",
     "name": "Catch Cafe Sinchon (캐치카페 신촌)",
-    "area": "Sinchon / Hongdae (Mapo-Seodaemun university belt)",
+    "area": "Sinchon / Hongdae",
     "type": "coffee",
     "addr": "서울 서대문구 연세로 8-1 버티고타워 5층 (5F Vertigo Tower, 8-1 Yonsei-ro, Seodaemun-gu)",
     "cap": "<b>~50</b>(est; venue publishes '30명 이상 = full rental' threshold, so 30-60 realistic)",
@@ -336,12 +356,14 @@ const VENUES = [
     "note": "Genuine specialty coffee shop run by Jinhak that explicitly does free whole-cafe buyouts for 30+ groups (and partial rentals 4-30) including beam/large screen/mic loan — perfect budget option for a bilingual tech-week coffee day. Book by phone 070-7760-7765 (Korean only) Mon-Fri.",
     "img": "https://mblogthumb-phinf.pstatic.net/MjAyMjA4MjJfMTAz/MDAxNjYxMTM5MDk4Nzg4.1EazsWxvrrXAz3zODqq2obINK4phkvPv1H3IeSBVYVEg._cHk4heub96tcy5_Xzla_Zg-miwK3l0BzF4w6NEsHdcg.JPEG.palacej/KakaoTalk_20220822_122228305_12.jpg?type=w800",
     "alt": "Catch Cafe Sinchon 5F panoramic interior",
-    "top": false
+    "top": false,
+    "lat": 37.5641782,
+    "lng": 126.9361076
   },
   {
     "k": "gongjon_multicultural_space",
     "name": "Gongjon (공존) Multi-Cultural Space Sinchon",
-    "area": "Sinchon / Hongdae (Mapo-Seodaemun university belt)",
+    "area": "Sinchon / Hongdae",
     "type": "coffee",
     "addr": "서울 서대문구 연세로5다길 46 2층 (2F, 46 Yonsei-ro 5da-gil, Seodaemun-gu)",
     "cap": "<b>~50</b>(est; venue page shows 21 guests fitting '넓게' comfortably, layout swaps to ~50)",
@@ -352,12 +374,14 @@ const VENUES = [
     "note": "Sinchon's designated 복합문화공간 with beam screen, sound, sink + full kitchen zone — explicitly marketed for workshops, seminars and events; coffee is BYO/delivery so pair with a roastery partner. Booking channel is KakaoTalk only (no email/web form) — flag for international organizers.",
     "img": "https://mblogthumb-phinf.pstatic.net/MjAyMDEyMThfMzcg/MDAxNjA4MjY5MDk2ODA4.Z1OqkVtilJdDY3gqN8nU2qvreHH1fz16CJ3IRk9UTz0g.KMGqNvocaQu0TZNFzls9gCOuanwKOGaGF6IKhAjJVGgg.JPEG.heekyeung902/SE-2af6b665-1065-40f5-9fe3-37ef033e3801.jpg",
     "alt": "Gongjon Sinchon open hall with beam screen and flexible table layout",
-    "top": false
+    "top": false,
+    "lat": 37.5571826,
+    "lng": 126.9331879
   },
   {
     "k": "piknic_hongdae_gyeongui",
     "name": "Piknic Hongdae Gyeongui Line Forest (피크니크 홍대 경의선숲길점)",
-    "area": "Sinchon / Hongdae (Mapo-Seodaemun university belt)",
+    "area": "Sinchon / Hongdae",
     "type": "coffee",
     "addr": "서울 마포구 서강로13길 24 1-2층 (24 Seogang-ro 13-gil, Mapo-gu) — same park block as the listed Seogang-ro 13-gil 22 rental",
     "cap": "<b>~80</b>(est; indoor 1F+2F each ~20평 plus 120평 lawn/yard and rooftop on request)",
@@ -373,7 +397,7 @@ const VENUES = [
   {
     "k": "ryse_autograph_collection",
     "name": "RYSE, Autograph Collection (라이즈 오토그래프 컬렉션)",
-    "area": "Sinchon / Hongdae (Mapo-Seodaemun university belt)",
+    "area": "Sinchon / Hongdae",
     "type": "cowork",
     "addr": "130 Yanghwa-ro, Mapo-gu, Seoul 04038 (서울 마포구 양화로 130)",
     "cap": "<b>200</b>(RYSE Space, theatre); Studios A/E 60 each",
@@ -384,12 +408,14 @@ const VENUES = [
     "note": "Design-forward Marriott property in the heart of Hongdae with 6 meeting rooms, 552 sqm total, LED walls and full AV+catering. Largest room (RYSE Space) seats 200 theatre / 130 banquet, dead-center for a bilingual tech-week coffee+hack day.",
     "img": "https://cache.marriott.com/content/dam/marriott-renditions/SELSA/selsa-meeting-7040-hor-wide.jpg",
     "alt": "RYSE Space event room with LED wall, Hongdae",
-    "top": true
+    "top": true,
+    "lat": 37.5539158,
+    "lng": 126.9207281
   },
   {
     "k": "ktg_ktg_sangsangmadang",
     "name": "KT&G 상상마당 홍대 (KT&G SangsangMadang Hongdae)",
-    "area": "Sinchon / Hongdae (Mapo-Seodaemun university belt)",
+    "area": "Sinchon / Hongdae",
     "type": "cowork",
     "addr": "65 Eoulmadang-ro, Mapo-gu, Seoul (서울 마포구 어울마당로 65)",
     "cap": "Live Hall: <b>400</b>standing / ~189 seated; screens, stage, lighting",
@@ -400,12 +426,14 @@ const VENUES = [
     "note": "Iconic Hongdae culture complex with a basement Live Hall, galleries and classrooms; a dedicated rental desk (tel 02-330-6200) handles seminars and conferences. B2F Live Hall and 4F/5F academy rooms can be combined for hack-day plenary + workshop track.",
     "img": null,
     "alt": "KT&G SangsangMadang Hongdae building exterior and live hall",
-    "top": false
+    "top": false,
+    "lat": 37.5508753,
+    "lng": 126.9210599
   },
   {
     "k": "wework_hongdae",
     "name": "WeWork Hongdae (위워크 홍대)",
-    "area": "Sinchon / Hongdae (Mapo-Seodaemun university belt)",
+    "area": "Sinchon / Hongdae",
     "type": "cowork",
     "addr": "147 Yanghwa-ro, Mapo-gu, Seoul (서울 마포구 양화로 147)",
     "cap": "<b>~100</b>-150 (est) in lounge/common event space; meeting rooms smaller",
@@ -416,12 +444,14 @@ const VENUES = [
     "note": "WeWork Hongdae sits on the Hongik University strip and lists a bookable 'Event Spaces' amenity plus community-team support. The standalone events-solutions URL returned 404, so book via the building page contact form; barista bar and common areas suit a bilingual coffee hack day.",
     "img": "https://cdn-images.wework.com/images/12BA114A-542C-11EC-92AF-0E6A5DC689CD/12ba114a-542c-11ec-92af-0e6a5dc689cd_0.jpg?width=1600",
     "alt": "WeWork Hongdae common lounge with barista bar",
-    "top": false
+    "top": false,
+    "lat": 37.5560503,
+    "lng": 126.9220545
   },
   {
     "k": "front1_by",
     "name": "프론트원 FRONT1 by 디캠프 - 박병원홀",
-    "area": "Sinchon / Hongdae (Mapo-Seodaemun university belt)",
+    "area": "Sinchon / Hongdae",
     "type": "cowork",
     "addr": "122 Mapo-daero, Mapo-gu, Seoul (서울 마포구 마포대로 122, 4-5층)",
     "cap": "박병원홀: <b>200</b>; 세미나실A 40 / B 30; conference room 20",
@@ -432,12 +462,14 @@ const VENUES = [
     "note": "Dcamp-run startup campus near Gongdeok (5 min from Sinchon side of the belt) with the 5F Park Byoung-won Hall seating up to 200 plus AV, podium and 100-in screen. Startup-focused, English friendly, ideal for a 50-200 bilingual tech-week hack day; inquiries to venue@dcamp.kr.",
     "img": "https://dcamp.kr/images/og-image.jpg",
     "alt": "Front1 Park Byoung-won Hall seminar setup",
-    "top": false
+    "top": false,
+    "lat": 37.5453994,
+    "lng": 126.95256
   },
   {
     "k": "ecc_ewha_ecc",
     "name": "ECC 삼성홀 (Ewha ECC Samsung Hall, 이화여대)",
-    "area": "Sinchon / Hongdae (Mapo-Seodaemun university belt)",
+    "area": "Sinchon / Hongdae",
     "type": "cowork",
     "addr": "52 Ewhayeodae-gil, Seodaemun-gu, Seoul — Ewha Campus Complex B4 (서울 서대문구 이화여대길 52 이화캠퍼스복합단지 지하4층)",
     "cap": "<b>702</b>seats (incl. 8 wheelchair); 405 sqm stage",
@@ -448,6 +480,8 @@ const VENUES = [
     "note": "Sincher Ewha campus landmark auditorium with 702 seats, full stage rig and a dedicated rental desk (tel 02-6380-4430, perform@ewha.ac.kr). Right in the Sinchon core; fits the 200-person upper bound with room to scale, and is a natural bilingual venue for university-week programming.",
     "img": "https://samsunghall.ticketlink.co.kr/img/kor/pc/img_main_hall.jpg",
     "alt": "ECC Samsung Hall auditorium interior",
-    "top": false
+    "top": false,
+    "lat": 37.5621748,
+    "lng": 126.9460053
   }
 ];

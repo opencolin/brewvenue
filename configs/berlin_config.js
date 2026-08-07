@@ -21,7 +21,7 @@ const VENUES = [
   {
     "k": "w3hub",
     "name": "w3.hub",
-    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße",
     "type": "cowork",
     "addr": "Möckernstraße 120, 10963 Berlin (Kreuzberg West / Gleisdreieck)",
     "cap": "two ~<b>500</b> m² event lofts up to <b>250</b> guests (published); 2,500 m² listed factory loft total",
@@ -32,12 +32,14 @@ const VENUES = [
     "note": "✔ Added by request — Berlin's web3/AI builder hub in a listed factory loft: coworking, meeting rooms and two 500 m² event lofts; home turf of Berlin Blockchain Week events. betahaus took over operations in early 2026 and the site shows a transition countdown — confirm branding and booking path when reaching out (betahaus is already a relationship in this lineup).",
     "img": null,
     "alt": "Factory-loft event floor at w3.hub Berlin",
-    "top": false
+    "top": false,
+    "lat": 52.4980705,
+    "lng": 13.3802168
   },
   {
     "k": "42berlin",
     "name": "42 Berlin",
-    "area": "Neukölln — Harzer Str (42 Berlin campus)",
+    "area": "Neukölln — Harzer Str",
     "type": "cowork",
     "addr": "Harzerstraße 42, 12059 Berlin (Neukölln)",
     "cap": "24/7 campus: computer clusters + community spaces; hackathon-scale rooms ~<b>100</b>–<b>200</b> (est — confirm with partnerships)",
@@ -48,12 +50,14 @@ const VENUES = [
     "note": "✔ Added by request — the tuition-free 42-network coding school: 24/7 campus with computer clusters, collaborative zones and community spaces that regularly runs hackathons, tech talks and algoraves — and a direct pipeline to hundreds of Berlin student builders. Partnerships via partner.42berlin.de.",
     "img": null,
     "alt": "Computer cluster workspace at 42 Berlin",
-    "top": false
+    "top": false,
+    "lat": 52.4842705,
+    "lng": 13.4500839
   },
   {
     "k": "factory_berlin_mitte",
     "name": "Factory Berlin (Mitte)",
-    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str (incl. Factory Berlin Mitte at Rheinsberger Str 76/77 and the Wedding-border edge)",
+    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str",
     "type": "coffee",
     "addr": "Rheinsberger Str. 76/77, 10115 Berlin (Mitte, Bernauer Str edge)",
     "cap": "<b>~250–400</b>(est; Cvent/Eventup listings show First Floor 250, Basement 400, Volta room 350)",
@@ -64,12 +68,14 @@ const VENUES = [
     "note": "Purpose-built innovation campus at the Wedding border with in-house restaurant, AV/lighting crew and production team; hosted Forbes 30 Under 30 DACH (300+ guests) — built exactly for tech-week formats. Booking runs through a request form; contact email is Cloudflare-obfuscated on the page.",
     "img": "https://factory.network/img/articles/Article_Entertainment_1.jpeg",
     "alt": "Event crowd inside the Factory Berlin venue during a hosted evening format",
-    "top": false
+    "top": false,
+    "lat": 52.5371068,
+    "lng": 13.3945019
   },
   {
     "k": "the_barn_rosenthaler",
     "name": "THE BARN Rosenthaler Platz",
-    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str (incl. Factory Berlin Mitte at Rheinsberger Str 76/77 and the Wedding-border edge)",
+    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str",
     "type": "coffee",
     "addr": "Weinbergsweg 1, 10119 Berlin (at Rosenthaler Platz / Torstraße)",
     "cap": "<b>~40–60</b>(est; street-level café, seating across front bar + quiet back room)",
@@ -80,12 +86,14 @@ const VENUES = [
     "note": "World-renowned specialty roastery's newest flagship on car-free Weinbergsweg; global 'Host an Event' page offers their spaces for workshops, tastings and corporate events. Best as an off-peak/evening takeover given public hours until 18:00 daily.",
     "img": "https://thebarn.de/cdn/shop/files/cafes_ROSENTHALER_PLATZ_1.webp?v=1705567247&width=3200",
     "alt": "Wide interior shot of THE BARN café at Rosenthaler Platz, Weinbergsweg 1",
-    "top": false
+    "top": false,
+    "lat": 52.5300721,
+    "lng": 13.401766
   },
   {
     "k": "distrikt_coffee",
     "name": "Distrikt Coffee",
-    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str (incl. Factory Berlin Mitte at Rheinsberger Str 76/77 and the Wedding-border edge)",
+    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str",
     "type": "coffee",
     "addr": "Bergstraße 68, 10115 Berlin (Mitte, between Nordbahnhof and Rosenthaler Platz)",
     "cap": "<b>~50</b>(est; corner café with indoor room + sidewalk seating)",
@@ -96,12 +104,14 @@ const VENUES = [
     "note": "Third-wave café with exposed-brick gallery room and a documented event history (comedy nights, small operas) on a quiet side street between Nordbahnhof and Rosenthaler Platz — after-hours hire fits a 50-person hack-day base camp; enquiry email is published for events.",
     "img": null,
     "alt": "Distrikt Coffee interior",
-    "top": false
+    "top": false,
+    "lat": 52.5316011,
+    "lng": 13.3942037
   },
   {
     "k": "soho_house_berlin",
     "name": "Soho House Berlin",
-    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str (incl. Factory Berlin Mitte at Rheinsberger Str 76/77 and the Wedding-border edge)",
+    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str",
     "type": "cowork",
     "addr": "Torstrasse 1, 10119 Berlin",
     "cap": "Politbüro: <b>60</b>seated / 150 standing; Torstrasse I + II: 180 seated / 400 standing (published)",
@@ -112,12 +122,14 @@ const VENUES = [
     "note": "Directly on Torstraße with a dedicated event-spaces page + enquiry flow, open to non-members; the Politbüro (circular bar, balcony over Torstraße, 150 standing) hits the 50–200 sweet spot and Torstrasse I/II scales to 400 for the largest hack day. English-native operation, German contracts on request; phone +49 (0)30 405 0440.",
     "img": "https://media.fastly.sohohousedigital.com/f_auto,q_auto,fl_progressive:steep,w_1200/t_dc_base/sitecore-prod/images/from-the-houses/01_politburo_berlin.jpg",
     "alt": "Politbüro room with circular bar and balcony overlooking Torstrasse and Alexanderplatz.",
-    "top": false
+    "top": false,
+    "lat": 52.5277668,
+    "lng": 13.4158895
   },
   {
     "k": "the_lovers_leaders",
     "name": "The Lovers & Leaders Space",
-    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str (incl. Factory Berlin Mitte at Rheinsberger Str 76/77 and the Wedding-border edge)",
+    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str",
     "type": "cowork",
     "addr": "Torstraße 101, 10119 Berlin",
     "cap": "Up to <b>50</b>people, 101 m² divisible into 2 rooms (published by operator St. Oberholz)",
@@ -128,12 +140,14 @@ const VENUES = [
     "note": "Ground-floor, barrier-free 'mindful' studio right on Torstraße with full kitchen and modular set-up — a clean fit for the 50-person end of the coffee/hack-day series, splittable into two breakout rooms for bilingual tracks. Run by Yasmine Orth with booking via its own space@ email plus the St. Oberholz events desk.",
     "img": "https://b341092.assetcdn.net/2.0/341092/wp-content/uploads/2025/02/TheLoversandLeadersSpace_Oberholz-2.jpg",
     "alt": "Bright curated studio interior with plants, modular furniture and wooden floors on Torstrasse.",
-    "top": false
+    "top": false,
+    "lat": 52.5299624,
+    "lng": 13.4040088
   },
   {
     "k": "artloftberlin",
     "name": "artloft.berlin",
-    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str (incl. Factory Berlin Mitte at Rheinsberger Str 76/77 and the Wedding-border edge)",
+    "area": "Mitte — Rosenthaler Platz / Torstraße / Bernauer Str",
     "type": "cowork",
     "addr": "Gerichtstr. 23, Hof 3 | Aufgang 2, 13347 Berlin (Wedding, Mitte border)",
     "cap": "Up to <b>~280</b>people (est) — capacity cited by venue guides; official location page lists spaces without a figure",
@@ -144,12 +158,14 @@ const VENUES = [
     "note": "Industrial art-loft in the Gerichtstraße creative corridor right at the Wedding–Mitte border called out in the brief; three raw, white-washed gallery spaces in a historic factory courtyard, marketed for 'Kulturproduktion, Firmen-, Industrie- und Privatevents' with full event management — roomy enough for the 200-person upper end with a distinctly Berlin edge. German-first site, team handles English bookings via info@.",
     "img": "https://artloft.berlin/wp-content/uploads/sites/2/JV2A2655-3c_LuxFaber-scaled.jpg",
     "alt": "White-washed industrial gallery loft with exposed factory elements in a Gerichtstrasse courtyard.",
-    "top": false
+    "top": false,
+    "lat": 52.5426182,
+    "lng": 13.3784914
   },
   {
     "k": "caf_luzia",
     "name": "Café Luzia",
-    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße",
     "type": "coffee",
     "addr": "Oranienstr. 34, 10999 Berlin (Kreuzberg)",
     "cap": "<b>~120</b>(est) — Top10Berlin cites ~250 m² ground-floor bar/café with high ceilings",
@@ -160,12 +176,14 @@ const VENUES = [
     "note": "Independent Kreuzberg institution two blocks from Moritzplatz. Day-time café, evening bar; vinyl/DJ infrastructure already in-house; bilingual crowd; dedicated events page with published events inbox. Perfect stomping ground for a bilingual tech-week hack day that wants character over coworking polish.",
     "img": "http://relaunch.luzia.tc/wp-content/uploads/2019/10/1_bm-1.jpg",
     "alt": "Café Luzia interior",
-    "top": true
+    "top": true,
+    "lat": 52.5017422,
+    "lng": 13.4183219
   },
   {
     "k": "st_oberholz_caf",
     "name": "St. Oberholz Café Oranienstr.",
-    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße",
     "type": "coffee",
     "addr": "Oranienstr. 10/11 (Heinrich-Höfe), 10997 Berlin (Kreuzberg)",
     "cap": "Up to <b>50</b>people, 130 m² (published)",
@@ -176,12 +194,14 @@ const VENUES = [
     "note": "Ground-floor laptop café inside the Heinrich-Höfe backyard with a listening-bar sound system (JLB 4350b) and a quiet rear terrace. Fits the small end of the headcount, but the sibling event room GRACE at Luckenwalder Str. 6B (up to 100, 86 m², café attached) gives a same-operator upgrade path — both share the published event@sanktoberholz.de inbox.",
     "img": "https://sanktoberholz.coffee/wp-content/uploads/2025/02/Oberholz_ORA_cafe_lina_zangers_3-2-3.jpg",
     "alt": "St. Oberholz Café Oranienstr. interior",
-    "top": false
+    "top": false,
+    "lat": 52.5002518,
+    "lng": 13.4242377
   },
   {
     "k": "betahaus_innospace_kreuzberg",
     "name": "betahaus Innospace | Kreuzberg",
-    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße",
     "type": "coffee",
     "addr": "Rudi-Dutschke-Str. 23, 10969 Berlin (Kreuzberg)",
     "cap": "<b>100</b>theatre / 20 classroom (66 m² + 96 m²) — published",
@@ -192,12 +212,14 @@ const VENUES = [
     "note": "The anchor venue the brief is built around. betahaus runs an in-house café, German/English bilingual booking team, and an explicit hackathon track record (GitHub, Microsoft, N26 on the client wall). Liability insurance is enforced via on-site staff requirement — strictest contract language in this list, so plan for that.",
     "img": "https://cdn.prod.website-files.com/58b05372820eae3152b7065a/670ce250e9e241b80c8f869f_ducks-lead-singer-at-betahaus-event.avif",
     "alt": "betahaus Innospace | Kreuzberg interior",
-    "top": false
+    "top": false,
+    "lat": 52.5066312,
+    "lng": 13.3917104
   },
   {
     "k": "markthalle_neun_kaffee",
     "name": "Markthalle Neun (Kaffee 9 / Markthalle events)",
-    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße",
     "type": "coffee",
     "addr": "Eisenbahnstr. 42/43, 10997 Berlin (Kreuzberg); Kaffee 9 at the Eisenbahnstraße entrance",
     "cap": "Kaffee Neun room <b>up to 40</b>(published); whole hall 20–1,200 (published)",
@@ -208,12 +230,14 @@ const VENUES = [
     "note": "Historic 1891 market hall a stone's throw from Kottbusser Tor. Kaffee 9 supplies the espresso program inside; the hall's catering/events arm handles 20-1,200 guests with dedicated enquiry form. Best fit if you need to scale past 150 and want a real coffee operator embedded.",
     "img": null,
     "alt": "Markthalle Neun (Kaffee 9 / Markthalle events) interior",
-    "top": false
+    "top": false,
+    "lat": 52.5021661,
+    "lng": 13.4314886
   },
   {
     "k": "the_visit_coffee",
     "name": "The Visit Coffee Roastery",
-    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße",
     "type": "coffee",
     "addr": "Adalbertstr. 9, 10999 Berlin (Kreuzberg, one block from Kottbusser Tor)",
     "cap": "<b>~60</b>(est) — backyard roastery café, multiple rooms; capacity not published",
@@ -224,12 +248,14 @@ const VENUES = [
     "note": "Specialty roastery tucked into a quiet backyard off Adalbertstraße — big windows, communal tables, indoor/outdoor seating. No dedicated events page, but the roastery regularly hosts cuppings and takeovers and publishes a contact address. Good fit for a smaller hack-day spillover or satellite coffee-program anchor.",
     "img": null,
     "alt": "The Visit Coffee Roastery interior",
-    "top": false
+    "top": false,
+    "lat": 52.5007359,
+    "lng": 13.4191786
   },
   {
     "k": "betahaus_kreuzberg_checkpoint",
     "name": "betahaus | Kreuzberg (Checkpoint Charlie)",
-    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße",
     "type": "cowork",
     "addr": "Rudi-Dutschke-Str. 23, 10969 Berlin (U6 Kochstraße)",
     "cap": "Innospace: <b>100</b>theater / Loft: 50 / Arena & Bungalow: 70 with rooftop (FAQ: up to 160 combined)",
@@ -240,12 +266,14 @@ const VENUES = [
     "note": "Berlin's original coworking house (taz building) explicitly markets hackathons — the newly renovated Innospace holds 100 theater-style, with Arena+Bungalow and rooftop for spillover. Note: betahaus requires at least one staff member on site for insurance reasons; drinks must be ordered in-house.",
     "img": "https://cdn.prod.website-files.com/58b05372820eae3152b7065a/6a16e1d035ca38900bb849f1_Innospace%20Event%20Space%20Renovated.avif",
     "alt": "Innospace event space at betahaus Kreuzberg, bright industrial room with huge windows and rows of chairs",
-    "top": true
+    "top": true,
+    "lat": 52.5066312,
+    "lng": 13.3917104
   },
   {
     "k": "techspace_kreuzberg_the",
     "name": "Techspace Kreuzberg — The Annex",
-    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße",
     "type": "cowork",
     "addr": "Lobeckstraße 36-40, 10969 Berlin (U8 Moritzplatz, 4 min walk)",
     "cap": "<b>100</b>standing / 60 theater seated (150 m²)",
@@ -256,12 +284,14 @@ const VENUES = [
     "note": "Private 150 m² venue with 4 m ceilings, outdoor courtyard terrace (4 picnic tables + ping pong), 98\" 4K screen, mics and 1 Gbps WiFi — a ready-made hack-day room. No published email; enquire via form or Kreuzberg ops +49 30 5557 3474.",
     "img": "https://cdn.prod.website-files.com/5e185d81b1025a75a986bb6a/6a70a0ad7c308db0c8b17b49_LOB%20Annex%20Event.jpg",
     "alt": "The Annex at Techspace Kreuzberg set up for an event, high-ceiling room with AV screen and cafe tables",
-    "top": false
+    "top": false,
+    "lat": 52.5036422,
+    "lng": 13.4078736
   },
   {
     "k": "betahaus_moritzplatz_panorama",
     "name": "betahaus | Moritzplatz — Panorama Hub & Kitchen Lounge",
-    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße",
     "type": "cowork",
     "addr": "Entrance H, 2nd floor, Lobeckstraße 30, 10969 Berlin (U8 Moritzplatz)",
     "cap": "Panorama Hub: <b>50</b>seated (150 m²) / Kitchen Lounge: 60 (evenings + weekends)",
@@ -272,12 +302,14 @@ const VENUES = [
     "note": "A 2-minute walk from Techspace in the same GSG Aqua-Höfe block — pairs perfectly as a second room for a 100+ split format or a self-contained 50-person hack day. Wraparound windows, quirky terrace, fully equipped kitchen; Berlin AI Meetup already runs here.",
     "img": "https://cdn.prod.website-files.com/58b05372820eae3152b7065a/67bdce2b998e19ed0946b028_betahaus-Lobeckstra%C3%9Fe-BrandFrameMedia-web-9.avif",
     "alt": "Panorama Bar event space at betahaus Moritzplatz with terrace access, greenery and natural light",
-    "top": false
+    "top": false,
+    "lat": 52.5036623,
+    "lng": 13.4107479
   },
   {
     "k": "st_oberholz_grace",
     "name": "St. Oberholz GRACE — B-Part am Gleisdreieck",
-    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße (betahaus Moritzplatz + betahaus Kreuzberg HQ + St. Oberholz Oranienstr 10-11)",
+    "area": "Kreuzberg — Moritzplatz / Kottbusser Tor / Oranienstraße",
     "type": "cowork",
     "addr": "B-PART am Gleisdreieck, Luckenwalder Str. 6B, 10963 Berlin (U1/U2 Gleisdreieck)",
     "cap": "Up to <b>100, 86</b>m² (B-Part events venue: up to 120)",
@@ -288,12 +320,14 @@ const VENUES = [
     "note": "Barrier-free ground-floor room in the striking wooden B-Part pavilion right on the park, with direct wraparound terrace access, beamer/TV, whiteboards and community-event tradition. Slightly west of the Moritzplatz axis but still Kreuzberg — a parkside option for the 100-person end of the brief.",
     "img": null,
     "alt": "GRACE ground-floor event room in the wooden B-Part building, terrace overlooking Park am Gleisdreieck",
-    "top": false
+    "top": false,
+    "lat": 52.499062,
+    "lng": 13.3733828
   },
   {
     "k": "michelberger_hotel_caf",
     "name": "Michelberger Hotel — Café & Backstage",
-    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände",
     "type": "coffee",
     "addr": "Warschauer Straße 39–40, 10243 Berlin",
     "cap": "<b>100</b>standing / 50 seated (Backstage); Underlook 160 m² for larger setups",
@@ -304,12 +338,14 @@ const VENUES = [
     "note": "Iconic indie hotel 200 m from Warschauer Str S-Bahn; ground-floor café/restaurant serves specialty coffee and the Backstage room is purpose-built for 100-person cocktail / 50-seat events with private courtyard terrace. English-native operations with a Berlin-based events team; liability/Versicherung handled through their standard rental contract.",
     "img": "https://www.datocms-assets.com/5494/1547836343-backstage041v1rgbl.jpg?auto=format",
     "alt": "Michelberger Cafe und Backstage, Warschauer Str, Hotel-Café mit eigenem Veranstaltungsraum",
-    "top": true
+    "top": true,
+    "lat": 52.504618,
+    "lng": 13.4479619
   },
   {
     "k": "house_of_music",
     "name": "House of Music Berlin — HoM Stage & Café",
-    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände",
     "type": "coffee",
     "addr": "Revaler Str. 99 / Halle 20 (RAW-Gelände), 10245 Berlin",
     "cap": "<b>150+</b>standing / 90 seated (HoM Stage, 120 m², 6 m ceiling)",
@@ -320,12 +356,14 @@ const VENUES = [
     "note": "Purpose-built HoM Stage on the RAW-Gelände barista café during the day, 150-cap stage downstairs. Same gate as Thoughtworks at Revaler 31 — walk across the yard. Amendment: venue uses a Wix form on the landing page rather than a published mailto; bookings routed through their intake form.",
     "img": "https://static.wixstatic.com/media/6a7071_ce197f4fa05048a2b2cc01db03126e7b~mv2.jpg/v1/fill/w_980,h_401,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6a7071_ce197f4fa05048a2b2cc01db03126e7b~mv2.jpg",
     "alt": "House of Music Berlin, Café und Stage-Halle auf dem RAW-Gelände",
-    "top": false
+    "top": false,
+    "lat": 52.5076116,
+    "lng": 13.451645
   },
   {
     "k": "kult_caf_galerie",
     "name": "KULT — Café, Galerie & Coworking",
-    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände",
     "type": "coffee",
     "addr": "Altes Lager, Revaler Str. 99 (RAW-Gelände), 10245 Berlin",
     "cap": "<b>65</b>standing",
@@ -336,12 +374,14 @@ const VENUES = [
     "note": "Independent specialty-coffee + coworking + gallery in the old RAW warehouse (since 2022). Explicit rental format „mieten“ for workshops, team days, popups up to 65 standing — strongest pure-coffee fit for a smaller coder-coffee day; bilingual staff, German booking via short mail-in form. Cap below 200-min so pair with House of Music next door if attendance spikes.",
     "img": "https://www.kult-berlin.de/og-image.png?v=3",
     "alt": "KULT Café Berlin Friedrichshain, Café Galerie Coworking RAW",
-    "top": false
+    "top": false,
+    "lat": 52.5076116,
+    "lng": 13.451645
   },
   {
     "k": "urban_spree_galerie",
     "name": "Urban Spree — Galerie, Café & Biergarten",
-    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände",
     "type": "coffee",
     "addr": "Revaler Str. 99 (RAW-Gelände), 10245 Berlin",
     "cap": "<b>1700</b>m² campus; Galerie ~200 (est), Biergarten + Food Court several hundred",
@@ -352,12 +392,14 @@ const VENUES = [
     "note": "1.700 m² urban-culture compound with Galerie, Bookshop, Café/Biergarten on the same RAW site as Thoughtworks. No published event-hire page — published contact is Office Phone +49 30 740 78 597 and the about-page form; hire routed through office email. Strong bilingual (EN/DE) art-community audience matches a tech-week hack day.",
     "img": "https://www.urbanspree.com/assets/components/phpthumbof/cache/biergarten-01_1000px_nometa.1f44965636f814a6b9e151aba3c6e437.c65432bb47ab3da89cca0bbdff214c22.jpg",
     "alt": "Urban Spree Berlin RAW-Gelände, Biergarten und Galerie",
-    "top": false
+    "top": false,
+    "lat": 52.5076116,
+    "lng": 13.451645
   },
   {
     "k": "houseofmusichomstage",
     "name": "House of Music (HoM Stage)",
-    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände",
     "type": "cowork",
     "addr": "Revaler Str. 99 / Halle 20 (RAW-Gelände), 10245 Berlin",
     "cap": "<b>150+</b>standing / 90 seated (published); plus 900 m² of noisy Rooms floorspace for overflow",
@@ -368,12 +410,14 @@ const VENUES = [
     "note": "Dead-center on the RAW-Gelände with a dedicated event-location offer (stage, pro sound/light, 6m ceilings) plus a café-coworking floor — perfect for a bilingual coffee/hack day that shifts from daytime hacking to evening panels. Booking runs through the on-site operator noisy Rooms; expect German-language Mietvertrag with defined Haftung clauses.",
     "img": "https://static.wixstatic.com/media/6a7071_fcd23a1f94a447689f862341f5efee48~mv2.jpg/v1/fill/w_980,h_530,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/DSC06047_edited_edited.jpg",
     "alt": "House of Music café and lounge interior on the RAW-Gelände",
-    "top": true
+    "top": true,
+    "lat": 52.5076116,
+    "lng": 13.451645
   },
   {
     "k": "motionlabberlin_halle_20",
     "name": "MotionLab.Berlin — Halle 20 Campus Alt-Treptow",
-    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände",
     "type": "cowork",
     "addr": "Bouchéstraße 12, Halle 20, 12435 Berlin (Alt-Treptow, one stop east of Ostkreuz)",
     "cap": "Up to <b>300</b>(published, Main Event Space); Hackerspace 20; Blue Bus 6",
@@ -384,12 +428,14 @@ const VENUES = [
     "note": "Germany's hardtech innovation hub explicitly hosts hackathons and demo days in a former industrial hall, with a full events crew for staging, AV, catering and moderation — the most production-ready fit for a tech-week hack day. Just outside the RAW corridor but surrounded by the Ostkreuz/Warschauer crowd; German site + contracts available (de/veranstaltungen).",
     "img": "https://motionlab.berlin/wp-content/uploads/2026/06/20250523_ML_DemoDay_JW-136-4010-full.jpg",
     "alt": "MotionLab.Berlin main event space during a demo day, wide shot",
-    "top": false
+    "top": false,
+    "lat": 52.4936421,
+    "lng": 13.4488785
   },
   {
     "k": "urban_spree",
     "name": "Urban Spree",
-    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände",
     "type": "cowork",
     "addr": "Revaler Straße 99, 10245 Berlin",
     "cap": "<b>~250</b>(est, concert room) + large Biergarten and 1,700 m² total compound",
@@ -400,12 +446,14 @@ const VENUES = [
     "note": "Indie art/complex with a gallery, bookshop, concert room and the RAW area's most social beer garden — natural blistering venue for a casual coffee/hack crowd spilling between indoor and outdoor. No dedicated hire page; book via published office phone, and expect informal German-side paperwork rather than the Werksgelände-style lease you'd get at HoM.",
     "img": "https://www.urbanspree.com/assets/components/phpthumbof/cache/biergarten-01_1000px_nometa.1f44965636f814a6b9e151aba3c6e437.c65432bb47ab3da89cca0bbdff214c22.jpg",
     "alt": "Urban Spree Biergarten under graffiti-covered walls",
-    "top": false
+    "top": false,
+    "lat": 52.5076116,
+    "lng": 13.451645
   },
   {
     "k": "wework_warschauer_platz",
     "name": "WeWork Warschauer Platz 11–13",
-    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände",
     "type": "cowork",
     "addr": "Warschauer Platz 11-13, 10245 Berlin",
     "cap": "<b>~100</b>(est) — lounge conversions with sound systems and lighting controls; roof terrace",
@@ -416,12 +464,14 @@ const VENUES = [
     "note": "Three floors of lounges plus a 7th-floor roof terrace literally at Warschauer Str station, with barista bar and event-ready lounges — lowest-friction booking for repeat Sep 10/17/24 dates. No German events page here; inquiries go through the English web form, and their event-space microsite URL 404s, so expect heavier contract vs. indie venues.",
     "img": "https://cdn-images.wework.com/images/28861214-6227-11EB-9220-0E6A5DC689CD/28861214-6227-11eb-9220-0e6a5dc689cd_4.jpg?width=800",
     "alt": "WeWork Warschauer Platz coworking lounge with long shared tables",
-    "top": false
+    "top": false,
+    "lat": 52.5044164,
+    "lng": 13.449506
   },
   {
     "k": "werkhain",
     "name": "werkhain",
-    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände",
     "type": "cowork",
     "addr": "Frankfurter Allee 108, Fabrikgebäude 2. Hof, 10247 Berlin",
     "cap": "<b>~100</b>(est) — event space on request inside a 1,400 m² coworking floor + green rooftop terrace",
@@ -432,12 +482,14 @@ const VENUES = [
     "note": "New industrial-charm coworking space between Frankfurter Tor and Ostkreuz with a dedicated 'event space' line item, rooftop terrace for after-work spillover and bilingual site (DE/EN toggle). Small local operator, so expect to negotiate a bilingual Anfrage — good value vs. WeWork for a daytime September buyout.",
     "img": "https://static.wixstatic.com/media/0783c4_b5366dd2acfc455bbe87c7e4f95fff29~mv2.jpg/v1/fill/w_980,h_806,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/werkhain-coworkingspace1.jpg",
     "alt": "werkhain coworking hall with height-adjustable desks and monitors",
-    "top": false
+    "top": false,
+    "lat": 52.5154453,
+    "lng": 13.4551976
   },
   {
     "k": "techtelmechtel_coworking_eventlocation",
     "name": "Techtelmechtel — Coworking & Eventlocation am Ostkreuz",
-    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände (Thoughtworks Berlin, Revaler Str 31)",
+    "area": "Friedrichshain — Warschauer Str / Revaler Str / RAW-Gelände",
     "type": "cowork",
     "addr": "Gürtelstr. 25, 10247 Berlin",
     "cap": "<b>~50</b>-80 (est) for full 330 m² loft buyout; two conference rooms 2–12 people (published)",
@@ -448,6 +500,8 @@ const VENUES = [
     "note": "Deep-work tech loft that explicitly brands itself as event venue, hosts regular tech/entrepreneurship meetups and includes premium coffee in bookings — suits the smaller end (50–80) of the crowd, e.g. the Sep 17 mid-series date. German site is primary (English toggle exists); expect classic German Nebenpflichten and damage deposit rather than US-style liability waivers.",
     "img": "https://techtelmechtel.space/wp-content/uploads/2025/12/FTWK-Coworking-Event-Space-Berlin-Friedrichshain-Kreuzberg-Ostkreuz.png",
     "alt": "Techtelmechtel industrial loft coworking with long communal tables",
-    "top": false
+    "top": false,
+    "lat": 52.5079894,
+    "lng": 13.472963
   }
 ];

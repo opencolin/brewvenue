@@ -18,7 +18,7 @@ const VENUES = [
   {
     "k": "nio_house_amsterdam",
     "name": "NIO House Amsterdam",
-    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "area": "Amsterdam-Centrum",
     "type": "coffee",
     "addr": "Leidsestraat 32-34 (Metz Building, hoek Keizersgracht), 1017 PB Amsterdam",
     "cap": "<b><b>75</b></b> plenary / <b>120</b> party / <b>335</b> max across 19 spaces",
@@ -29,12 +29,14 @@ const VENUES = [
     "note": "Tour-trace seed via AI Tinkerers Amsterdam (hosted the May 2026 MotherDuck demo night) — a pre-vetted builder crowd in a café-cum-event house: first-floor NIO Café, Forum for workshops, sixth-floor event floor plus Rietveld rooftop pavilion. Open loft-like rooms with coffee service in-house fit a 50–200 bilingual coffee/hack day exactly; events run through Vermaat Events with catering on site.",
     "img": "https://api.mvrdv.com/media/uploads/project/926/MVRDV NIO House Amsterdam 3 © Ossip van Duivenbode.jpg?width=1920",
     "alt": "NIO House Amsterdam café and event floors, MVRDV-renovated Metz building",
-    "top": true
+    "top": true,
+    "lat": 52.3662768,
+    "lng": 4.8869211
   },
   {
     "k": "caf_de_jaren",
     "name": "Café de Jaren",
-    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "area": "Amsterdam-Centrum",
     "type": "coffee",
     "addr": "Nieuwe Doelenstraat 20-22, 1012 CP Amsterdam",
     "cap": "<b><b>220</b></b> reception max; Event Loft <b>180</b> reception; Backhouse/Annex ~<b>45</b>",
@@ -45,12 +47,14 @@ const VENUES = [
     "note": "Iconic high-ceiling grand café on the Amstel between Muntplein and Stopera with a private Event Loft + balcony terrace (306 m²); they routinely host 80–150-guest networking and corporate events, and the café floor and reading table are built for all-day laptop lingers — natural bilingual NL/EN crowd.",
     "img": "https://cafedejaren.nl/wp-content/uploads/cdj_events_white.jpg",
     "alt": "Event Loft with balcony over the Amstel at Café de Jaren",
-    "top": false
+    "top": false,
+    "lat": 52.3680398,
+    "lng": 4.8950349
   },
   {
     "k": "mindspace_dam",
     "name": "Mindspace Dam",
-    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "area": "Amsterdam-Centrum",
     "type": "coffee",
     "addr": "Nieuwezijds Voorburgwal 162, 1012 SJ Amsterdam",
     "cap": "~<b><b>100</b></b> event space (est; multi-billion listing band), boardroom 20",
@@ -61,12 +65,14 @@ const VENUES = [
     "note": "Tour-trace seed via AI Tinkerers Amsterdam (Nov 2025 meetup, +130 RSVPs, venue sponsor Mindspace) — a café-styled coworking floor with lounges, coffee bar and terrace inside a former bank by Dam Square; hack-day layout (open coworking + breakouts) is its native shape. Booking via the on-page form, no published events email.",
     "img": "https://www.mindspace.me/wp-content/uploads/2025/06/Mindspace-Dam-Amsterdam-Wouter-van-der-Wolk-43.jpg",
     "alt": "Coworking lounge with coffee bar in the former bank at Mindspace Dam",
-    "top": false
+    "top": false,
+    "lat": 52.3743906,
+    "lng": 4.8909705
   },
   {
     "k": "bimhuis_bimhuis_caf",
     "name": "BIMHUIS (Bimhuis Café)",
-    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "area": "Amsterdam-Centrum",
     "type": "coffee",
     "addr": "Piet Heinkade 3, 1019 BR Amsterdam",
     "cap": "<b><b>250</b></b> seated hall / <b>150</b> cocktail foyer / up to <b>400</b> reception",
@@ -77,12 +83,14 @@ const VENUES = [
     "note": "IJ-waterfront music house with a daytime café/restaurant and broad windows over the water; foyer and hall rent for day conferences, summits and receptions with in-house catering — flexible 40–400 layouts suit a 50–200 builder day. Daytime rental enquiries via the venue-rental contact form (no published direct email on the page).",
     "img": "https://backend.bimhuis.nl/app/uploads/2019/02/2016-Bimhuis-Amsterdam-c-John-Post.jpg",
     "alt": "Bimhuis hall and foyer overlooking the IJ waterfront",
-    "top": false
+    "top": false,
+    "lat": 52.3779694,
+    "lng": 4.9128862
   },
   {
     "k": "the_hoxton_amsterdam",
     "name": "The Hoxton, Amsterdam (The Apartment)",
-    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "area": "Amsterdam-Centrum",
     "type": "coffee",
     "addr": "Herengracht 255, 1016 BJ Amsterdam",
     "cap": "<b><b>80</b></b> exclusive hire; Living Room <b>50</b>, Pantry <b>30</b>",
@@ -93,12 +101,14 @@ const VENUES = [
     "note": "Canal-house hotel in the 9 Straatjes edge of the Canal Belt whose Apartment (Pantry kitchen, Living Room, Games Room, courtyard) runs as a coffee-house-style suite; Lotti's lobby café keeps the brews flowing. Right size for an intimate 50–80-person hack day; enquiries via form or phone +31 (0)20 888 5555.",
     "img": "https://thehoxton.com/wp-content/uploads/sites/5/2020/06/Amsterdam_Mez.jpg?w=848",
     "alt": "Mezzanine lounge with bookcases and armchairs at The Hoxton Amsterdam",
-    "top": false
+    "top": false,
+    "lat": 52.37181,
+    "lng": 4.8873904
   },
   {
     "k": "bimhuis",
     "name": "Bimhuis",
-    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "area": "Amsterdam-Centrum",
     "type": "cowork",
     "addr": "Piet Heinkade 3, 1019 BR Amsterdam",
     "cap": "Concert Hall <b><b>250</b></b> seated / <b>385</b> mixed; Café <b>150</b> reception; Foyer up to <b>400</b>",
@@ -109,12 +119,14 @@ const VENUES = [
     "note": "Waterfront jazz landmark with a glass-walled concert hall plus a café/foyer perfect for coffee service and hack-style breakouts. Dedicated venue-rental team, bilingual rental brochures, and full AV already in-house.",
     "img": "https://backend.bimhuis.nl/app/uploads/2025/07/2-Concertzaal-c-Marie-Broeckman-1200x630.jpg",
     "alt": "Wooden concert hall with tiered seating and harbour views",
-    "top": false
+    "top": false,
+    "lat": 52.3779694,
+    "lng": 4.9128862
   },
   {
     "k": "mindspace_herengracht",
     "name": "Mindspace Herengracht",
-    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "area": "Amsterdam-Centrum",
     "type": "cowork",
     "addr": "Herengracht 168, 1016 BP Amsterdam",
     "cap": "~<b><b>80</b></b> seated / <b>150</b> reception (est — two event rooms plus garden; published numbers not listed)",
@@ -125,12 +137,14 @@ const VENUES = [
     "note": "UNESCO canal-house coworking brand with a dedicated event-spaces page, marble halls and a hidden garden — good for an intimate coffee/hack day of 50-100 rather than the full 200. Direct events contact form and phone on the page.",
     "img": "https://www.mindspace.me/wp-content/uploads/2025/06/2.event-showstopper_1.jpg",
     "alt": "Historic canal-house event room with frescoed ceilings and garden",
-    "top": false
+    "top": false,
+    "lat": 52.374181,
+    "lng": 4.8869525
   },
   {
     "k": "spaces_herengracht",
     "name": "Spaces Herengracht",
-    "area": "Amsterdam-Centrum (Canal Belt + Oostelijke Eilanden / Herengracht–Singel–Piet Heinkade)",
+    "area": "Amsterdam-Centrum",
     "type": "cowork",
     "addr": "Herengracht 124-128, 1015 BT Amsterdam",
     "cap": "~<b><b>60–120</b></b> standing (est — event spaces offered but capacities not published)",
@@ -141,12 +155,14 @@ const VENUES = [
     "note": "Canal-belt coworking flagship with event spaces explicitly listed among its products; suitable for mid-size hack/coffee events in a light-filled historic building. Capacity scarce online — treat as a qualified backup once a site recce confirms size.",
     "img": "https://assets.iwgplc.com/image/upload/c_fill,f_auto,q_auto,w_1000,h_667//CentreImagery/3177/3177_13.jpg",
     "alt": "Bright canal-side coworking lounge with communal tables",
-    "top": false
+    "top": false,
+    "lat": 52.3756605,
+    "lng": 4.8882722
   },
   {
     "k": "pllek",
     "name": "Pllek",
-    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "area": "Amsterdam-Noord / NDSM-werf",
     "type": "coffee",
     "addr": "T.T. Neveritaweg 59, 1033 WB Amsterdam (NDSM-werf)",
     "cap": "~<b><b>175</b></b> theater / <b>200</b> reception / <b>350</b> standing (est)",
@@ -157,12 +173,14 @@ const VENUES = [
     "note": "Raw industrial events space in upcycled shipping containers right on the NDSM dock, with private terrace and beach on the IJ; 198 m² private room fits our full 50-200 band and hosts meetings, congresses and launches, with in-house catering and tech included. The most turnkey coffee-and-hack day room on the wharf.",
     "img": "https://pllek.nl/wp-content/uploads/2022/02/pllek-evenement-1024x647.jpg",
     "alt": "Wide interior of Pllek's private events room set for a large gathering",
-    "top": true
+    "top": true,
+    "lat": 52.3991339,
+    "lng": 4.8930985
   },
   {
     "k": "ijver",
     "name": "IJver",
-    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "area": "Amsterdam-Noord / NDSM-werf",
     "type": "coffee",
     "addr": "Scheepsbouwkade 72, 1033 WM Amsterdam (NDSM-werf)",
     "cap": "<b><b>150</b></b> plenary in NDSM-Theater; rooms <b>24-130</b> (published)",
@@ -173,12 +191,14 @@ const VENUES = [
     "note": "Cafe-restaurant in a converted shipyard shed with a purpose-built 150 m² NDSM-Theater plus three smaller rooms (Boeg 60-130, Achtersteven 24-50, Ruim 20-50) and its own bar; explicitly hosts seminars, presentations and custom events with full catering and tech, so a hack day with coffee service slots in cleanly.",
     "img": null,
     "alt": "Industrial cafe interior at IJver with long tables and 19 beer taps",
-    "top": false
+    "top": false,
+    "lat": 52.4013744,
+    "lng": 4.8951228
   },
   {
     "k": "the_coffee_virus",
     "name": "The Coffee Virus @ A Lab",
-    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "area": "Amsterdam-Noord / NDSM-werf",
     "type": "coffee",
     "addr": "Overhoeksplein 1, 1031 KS Amsterdam (A Lab)",
     "cap": "~<b><b>130</b></b> theater / <b>70</b> workshop / <b>60</b> terrace (est)",
@@ -189,12 +209,14 @@ const VENUES = [
     "note": "Specialty-coffee bar embedded in A Lab, the former Shell Lab startup hub, with The Playground basement event space (up to 130), a 60-person terrace and explicitly 'hackathon-proof' superfast wifi; built for meetups, workshops and hackathons with the coffee crowd on the doorstep, one ferry stop from CS.",
     "img": "https://thecoffeevirus.nl/img/alab/locationslider/thecoffeevirus-alab-ahk-grootlab-cafe.jpg",
     "alt": "Open cafe hall of The Coffee Virus inside A Lab with bar and tables",
-    "top": false
+    "top": false,
+    "lat": 52.383911,
+    "lng": 4.9025604
   },
   {
     "k": "noorderlicht",
     "name": "Noorderlicht",
-    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "area": "Amsterdam-Noord / NDSM-werf",
     "type": "coffee",
     "addr": "NDSM-Plein 102, 1033 WB Amsterdam",
     "cap": "~<b><b>80</b></b> seated / <b>150</b> standing (est)",
@@ -205,12 +227,14 @@ const VENUES = [
     "note": "Beloved cultural greenhouse-cafe on the wharf offering exclusive venue hire, presentations and networking events with live music and barbecues possible; flexible indoor-plus-garden setting that reads like a creative clubhouse and suits a casual bilingual builder day.",
     "img": "https://www.noorderlichtndsm.nl/api/uploads/foto's%20jur/3780a71ef6c2e1c64387291ae406ba30.webp?w=1920",
     "alt": "Greenhouse interior of Noorderlicht filled with plants, lamps and long tables",
-    "top": false
+    "top": false,
+    "lat": 52.3995686,
+    "lng": 4.8969802
   },
   {
     "k": "bar_restaurant_van",
     "name": "Bar Restaurant Van de Werf",
-    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "area": "Amsterdam-Noord / NDSM-werf",
     "type": "coffee",
     "addr": "NDSM-Kade 2, 1033 PG Amsterdam",
     "cap": "~<b><b>60</b></b> inside / <b>100</b> incl. panorama deck (est)",
@@ -221,12 +245,14 @@ const VENUES = [
     "note": "Waterside bar-restaurant opposite the NDSM ferry with long indoor tables, a panorama deck, €1 morning coffee and advertised laptop-friendly work spots with good wifi; 'space for groups of almost any size', booked via the site contact route rather than a dedicated events page, so best for the smaller end of the band.",
     "img": null,
     "alt": "Panorama deck of Van de Werf overlooking the IJ",
-    "top": false
+    "top": false,
+    "lat": 52.4014307,
+    "lng": 4.8919612
   },
   {
     "k": "ndsm_loods",
     "name": "NDSM Loods",
-    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "area": "Amsterdam-Noord / NDSM-werf",
     "type": "cowork",
     "addr": "NDSM-Plein 85, 1033 WC Amsterdam",
     "cap": "<b><b>250–9,000</b></b> guests; rooms up to <b>6,000</b> reception (published)",
@@ -237,12 +263,14 @@ const VENUES = [
     "note": "The monumental shipyard warehouse with rentable halls (Noordstrook, Underskate, Upperskate, NDSM Theater) for congresses, fairs and company events. Right at the corridor's NDSM-Plein end; scale is overshoot, but smaller sections fit 200.",
     "img": "https://www.ndsmloods.nl/wp-content/uploads/2019/02/main-8-1800x1200.jpg",
     "alt": "Vast industrial interior of the former NDSM shipbuilding hall",
-    "top": false
+    "top": false,
+    "lat": 52.4013333,
+    "lng": 4.8957134
   },
   {
     "k": "tolhuistuin",
     "name": "Tolhuistuin",
-    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "area": "Amsterdam-Noord / NDSM-werf",
     "type": "cowork",
     "addr": "IJpromenade 2, 1031 KT Amsterdam",
     "cap": "Club <b><b>220</b></b> seated / <b>550</b> standing; Galerij to <b>250</b> (published)",
@@ -253,12 +281,14 @@ const VENUES = [
     "note": "Cultural complex across the IJ from Centraal (Noord end of the corridor) with a dozen rentable halls full-AV, in-house veg catering and garden. Dedicated brochure PDF and verhuur email; conference and festival proven.",
     "img": null,
     "alt": "Club concert hall at the Tolhuistuin cultural complex",
-    "top": false
+    "top": false,
+    "lat": 52.3830883,
+    "lng": 4.9030297
   },
   {
     "k": "spaces_mt_lincolnweg",
     "name": "Spaces Mt. Lincolnweg (NDSM-werf)",
-    "area": "Amsterdam-Noord / NDSM-werf (Van der Pek–NDSM-Plein corridor)",
+    "area": "Amsterdam-Noord / NDSM-werf",
     "type": "cowork",
     "addr": "Mt. Lincolnweg 38-40, 1033 SN Amsterdam",
     "cap": "~<b><b>50–100</b></b> event-style (est)",
@@ -269,12 +299,14 @@ const VENUES = [
     "note": "Global cowork operator physically on the NDSM-werf listing 'offices, cowork and meeting rooms' with bookable common areas. Office-box rather than café soul, but an on-corridor professional fallback bookable via their site form.",
     "img": null,
     "alt": "Coworking lounge at Spaces Mt. Lincolnweg on the NDSM-werf",
-    "top": false
+    "top": false,
+    "lat": 52.4036138,
+    "lng": 4.8886482
   },
   {
     "k": "matrix_one_caf",
     "name": "Matrix ONE (Café NEO)",
-    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "area": "Amsterdam-Oost / Science Park",
     "type": "coffee",
     "addr": "Matrix ONE, Science Park 301, 1098 XH Amsterdam",
     "cap": "Auditorium <b><b>100</b></b> seated; Cafe NEO restaurant + terrace for receptions (est. ~<b>150</b> standing)",
@@ -285,12 +317,14 @@ const VENUES = [
     "note": "Seed: AI Tinkerers/ElevenLabs traced to Science Park cluster; Matrix ONE's open social area + Cafe NEO catering is purpose-built for bilingual tech meetups. Room-shape fit: 100-seat auditorium plus open atrium adjacent to cafe = classic coffee+hack layout at 50-150 pax.",
     "img": "https://www.matrixic.nl/wp-content/uploads/2023/05/10-©-Daria--scaled.jpg",
     "alt": "Matrix ONE atrium and social staircase with cafe seating",
-    "top": true
+    "top": true,
+    "lat": 52.3561405,
+    "lng": 4.9582949
   },
   {
     "k": "startup_village_cantine",
     "name": "Startup Village Cantine / Venture Studio",
-    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "area": "Amsterdam-Oost / Science Park",
     "type": "coffee",
     "addr": "Science Park 608, 1098 XH Amsterdam",
     "cap": "Eventspace up to <b><b>150</b></b> (<b>200-300</b> via connected halls, est); Coffee Virus catering",
@@ -301,12 +335,14 @@ const VENUES = [
     "note": "Deep-tech AI/quantum hub at Science Park; Coffee Virus runs a hackathon-proof 150-pax eventspace and cantine with free-cowork Fridays. Room-shape fit: cafe cantine + break-out rooms + outdoor village square in campus heart.",
     "img": "https://images.squarespace-cdn.com/content/v1/60701561519ce6103b1c7c2d/95fe95c5-db76-4c5b-8b32-2b75f2933e55/DCSA-IATA-multimodal-hackathon-BFF-Visuals-0099.jpg",
     "alt": "Startup Village eventspace during a hackathon",
-    "top": false
+    "top": false,
+    "lat": 52.3543768,
+    "lng": 4.9593106
   },
   {
     "k": "eetcaf_oerknal_usc",
     "name": "Eetcafé Oerknal (USC Universum)",
-    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "area": "Amsterdam-Oost / Science Park",
     "type": "coffee",
     "addr": "Science Park 306, 1098 XH Amsterdam",
     "cap": "<b><b>200–300</b></b> for private events; <b>60</b> terrace",
@@ -317,12 +353,14 @@ const VENUES = [
     "note": "Sports cafe with dedicated rental page (stage, beamer, glass-walled Komeet room). Room-shape fit: real cafe floor + AV + dedicated events email; student-crowd pricing helps a free community hack day.",
     "img": "https://eetcafeoerknal.nl/wp-content/uploads/2023/11/5A8B0933-Bew-scaled.jpg",
     "alt": "Oerknal cafe interior during an event",
-    "top": false
+    "top": false,
+    "lat": 52.3556497,
+    "lng": 4.9562998
   },
   {
     "k": "the_coffee_virus",
     "name": "The Coffee Virus — A Lab locations & Startup Village",
-    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "area": "Amsterdam-Oost / Science Park",
     "type": "coffee",
     "addr": "Multiple; A Lab: Overhoeksplein 2, 1031 KS Amsterdam (Noord) and Startup Village Science Park 608, 1098 XH Amsterdam",
     "cap": "<b>5</b>to <b>500</b> indoor+outdoor; The Playground (A Lab) up to <b>130</b>, Terrace <b>60</b>",
@@ -333,12 +371,14 @@ const VENUES = [
     "note": "Coffee-catering company that runs the cafe inside both A Lab (Shell's startup campus) and Startup Village. Room-shape fit: 'hackathon-proof wifi' advertised, 130-pax workshop space, cafe-first floor plan — the most event-shape-matched cafe operator in Amsterdam.",
     "img": "https://images.squarespace-cdn.com/content/v1/60701561519ce6103b1c7c2d/a0ebb1ce-4046-4f86-a99f-eb7da4f0bd83/Afbeelding+3.jpg",
     "alt": "Coffee Virus cantine floor at Startup Village",
-    "top": false
+    "top": false,
+    "lat": 52.384253,
+    "lng": 4.9029922
   },
   {
     "k": "impact_hub_amsterdam",
     "name": "Impact Hub Amsterdam",
-    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "area": "Amsterdam-Oost / Science Park",
     "type": "coffee",
     "addr": "Marineterrein Gebouw 27A, Kattenburgerstraat 5, 1018 JA Amsterdam",
     "cap": "Unknown on site; estimate ~<b><b>80–150</b></b> across bookable rooms (est)",
@@ -349,12 +389,14 @@ const VENUES = [
     "note": "Builder/impact-meetup hub now located on the Marineterrein (moved from Linnaeusstraat). Room-shape fit: proven hack-event host network with cafe-style incubator layout; routing goes through a form, no public events page fetched this session.",
     "img": "https://app.thefeedfactory.nl/api/assets/695e2e4d9481831098febbbe/Grote_Zaal_1.webp",
     "alt": "Pakhuis de Zwijger main hall auditorium with stage and projection screen",
-    "top": false
+    "top": false,
+    "lat": 52.3745343,
+    "lng": 4.9155587
   },
   {
     "k": "startup_village_amsterdam",
     "name": "Startup Village Amsterdam — Venture Studio",
-    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "area": "Amsterdam-Oost / Science Park",
     "type": "cowork",
     "addr": "Science Park 608, 1098 XH Amsterdam",
     "cap": "up to <b><b>180</b></b> seated / <b>300</b> standing (combined Day+Night); Night room <b>120</b>, Day room <b>50</b>",
@@ -365,12 +407,14 @@ const VENUES = [
     "note": "Self-described hub for AI & quantum computing; sliding-wall Day+Night event space, foyer bar for coffee/check-in, and an events calendar full of AI meetups. Perfect shape-size match for a 50-200 bilingual hack/coffee day.",
     "img": "https://images.squarespace-cdn.com/content/v1/60701561519ce6103b1c7c2d/35470c9d-18b5-4344-b793-5ffc2a935017/thecoffeevirus-startupvillage-coworkingspace-space_barviewwide-slider.jpg",
     "alt": "Venture Studio bar and open event space",
-    "top": true
+    "top": true,
+    "lat": 52.3543768,
+    "lng": 4.9593106
   },
   {
     "k": "codam_coding_college",
     "name": "Codam Coding College — Codam Spaces (Auditorium + Open Space)",
-    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "area": "Amsterdam-Oost / Science Park",
     "type": "cowork",
     "addr": "Kattenburgerstraat 7, Gebouw 039, Marineterrein, 1018 JA Amsterdam",
     "cap": "Auditorium <b><b>100</b></b> seated; Open Space <b>45</b> seated / <b>120</b> standing",
@@ -381,12 +425,14 @@ const VENUES = [
     "note": "Peer-to-peer coding school (École 42 network) on Marineterrein; auditorium has 4K livestream/mixing kit, Open Space has terrace access, Kanteen25 catering. Non-profit — rental income funds free tuition, a story hack-day crowds like.",
     "img": "https://www.codam.nl/wp-content/uploads/2025/02/Codam_auditorium1.jpg",
     "alt": "Codam auditorium with tiered seating and stage",
-    "top": false
+    "top": false,
+    "lat": 52.3745343,
+    "lng": 4.9155587
   },
   {
     "k": "lab42_uva_ai",
     "name": "LAB42 — UvA AI & digital-innovation hub",
-    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "area": "Amsterdam-Oost / Science Park",
     "type": "cowork",
     "addr": "Science Park 900, 1098 XH Amsterdam",
     "cap": "~<b><b>60</b></b> (est) per seminar room; hosted 36+ AI Tinkerers June 2024 (est)",
@@ -397,12 +443,14 @@ const VENUES = [
     "note": "Tour-trace seed: hosted AI Tinkerers Amsterdam June 2024 (room 36, 3rd floor, demos + 36+ practitioners) — proven willingness to host builder meetups. Book via UvA Lab42 / Science & Business org; open circular building with atrium for coffee networking.",
     "img": "https://www.amsterdamsciencepark.nl/wp-content/uploads/2022/09/918_UVA_Science_Park_N95_websitenew-960x640.jpg",
     "alt": "LAB42 circular building atrium and facade",
-    "top": false
+    "top": false,
+    "lat": 52.3549619,
+    "lng": 4.9544743
   },
   {
     "k": "matrix_one_one",
     "name": "Matrix ONE — ONE Auditorium + SustainaLab",
-    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "area": "Amsterdam-Oost / Science Park",
     "type": "cowork",
     "addr": "Science Park 301, 1098 XH Amsterdam",
     "cap": "ONE Auditorium <b><b>100</b></b> seats; SustainaLab <b>40</b>; Cafe NEO catering on-site",
@@ -413,12 +461,14 @@ const VENUES = [
     "note": "MVRDV's 2023-opened circular innovation hub (social staircase, restaurant NEO). Auditorium + SustainaLab combo covers plenary + breakouts; the campus' flagship room for a polished bilingual tech-week crowd.",
     "img": "https://www.amsterdamsciencepark.nl/wp-content/uploads/2023/10/Auditorium-Matrix-ONE_meeting-rooms-1280x800.jpg",
     "alt": "Matrix ONE auditorium with tiered seating",
-    "top": false
+    "top": false,
+    "lat": 52.3553841,
+    "lng": 4.9549064
   },
   {
     "k": "eetcaf_oerknal_sports",
     "name": "Eetcafé Oerknal (Sports Café, Universum)",
-    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "area": "Amsterdam-Oost / Science Park",
     "type": "cowork",
     "addr": "Science Park 306, 1098 XH Amsterdam",
     "cap": "<b><b>200</b>-300</b> persons (published); cafe with stage, beamer, LED lights",
@@ -429,12 +479,14 @@ const VENUES = [
     "note": "The campus' living-room: stage, beamer and hot/cold catering, bookable up to 200-300 — the best pure coffee/hack-day room shape on the park. Still operating (event listed Oct 2026); student-budget pricing.",
     "img": "https://eetcafeoerknal.nl/wp-content/uploads/2023/11/tom3-scaled.jpg",
     "alt": "Oerknal cafe interior with long tables and bar",
-    "top": false
+    "top": false,
+    "lat": 52.3556497,
+    "lng": 4.9562998
   },
   {
     "k": "polderzaal_cafrestaurant_polder",
     "name": "Polderzaal — Café-Restaurant Polder",
-    "area": "Amsterdam-Oost / Science Park (Mathematical routes Matrix One, Lab42, Startup Village, MARINETERREIN)",
+    "area": "Amsterdam-Oost / Science Park",
     "type": "cowork",
     "addr": "Science Park 201, 1098 XH Amsterdam",
     "cap": "Theater <b><b>75</b></b> / carré <b>30</b> / reception <b>100</b> (published)",
@@ -445,6 +497,8 @@ const VENUES = [
     "note": "Free-standing cafe-restaurant room with its own terrace and kitchen, sound system and screen — a self-contained coffee-day room for the ~50-100 end of the range, inside the park's leafy quads.",
     "img": "https://www.amsterdamsciencepark.nl/wp-content/uploads/2019/05/Polderzaal-e1646920242839.jpg",
     "alt": "Polderzaal freestanding event pavilion with terrace",
-    "top": false
+    "top": false,
+    "lat": 52.3545731,
+    "lng": 4.9527374
   }
 ];

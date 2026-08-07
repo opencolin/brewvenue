@@ -4,12 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Singapore — Venue Options · ComputeCafe</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <!--
   COMPUTE CAFE EXPLORER TEMPLATE
   Edit ONLY the CONFIG, TYPE_META, and VENUES blocks in the <script> at the
   bottom (plus <title> above). Filter chips, section headers, and header stats
   all derive from the data — no markup edits needed for a new city or venue mix.
-  Keep the file self-contained: no external CSS/JS/fonts, no localStorage.
+  Keep the file self-contained: no external CSS/JS/fonts beyond Leaflet from unpkg;
+  geocoding caches per-browser via the browser Cache API (works without localStorage).
 -->
 <style>
   :root {
@@ -92,17 +94,75 @@
     border-radius: 999px; padding: 6px 12px; cursor: pointer;
   }
   .themebtn:hover { color: var(--ink-1); }
+  .mapbtn {
+    position: absolute; top: 34px; right: 20px; z-index: 11; float: none;
+    font-size: 12px; color: var(--ink-2); background: var(--surface);
+    border: 1px solid var(--hairline); border-radius: 999px; padding: 6px 12px;
+    cursor: pointer;
+  }
+  .mapbtn:hover { color: var(--ink-1); }
+  .mapbtn.open { color: var(--accent-a); border-color: var(--accent-a); }
+  .starh { display: inline-flex; align-items: center; gap: 4px; font-size: 13px;
+    border: 1px solid var(--hairline); background: var(--surface);
+    border-radius: 999px; padding: 3px 9px; cursor: pointer; user-select: none; }
+  .starh:hover { background: var(--accent-a-soft); }
+  .starh .cnt { font-size: 11.5px; color: var(--ink-2); }
+  .starh.on { color: #c2570f; border-color: #c2570f; }
+  .starh.on .cnt { color: var(--ink-1); font-weight: 600; }
+
+  .submitbtn {
+    position: absolute; top: 34px; right: 130px; z-index: 11; float: none;
+    font-size: 12px; font-weight: 600; color: var(--accent-b);
+    background: var(--accent-b-soft);
+    border: 1px solid var(--accent-b); border-radius: 999px; padding: 6px 12px;
+    cursor: pointer;
+  }
+  .submitbtn:hover { color: var(--ink-1); }
+  .submission-modal {
+    display: none; position: fixed; inset: 0; z-index: 20;
+    background: rgba(0,0,0,0.45); align-items: center; justify-content: center;
+  }
+  .submission-modal.open { display: flex; }
+  .submission-modal .dialog {
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 16px; padding: 24px; width: min(480px, 92vw);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .submission-modal h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+  .submission-modal label { display: block; font-size: 12px; color: var(--ink-3); margin: 10px 0 4px; }
+  .submission-modal input, .submission-modal textarea, .submission-modal select {
+    width: 100%; padding: 8px 10px; font-size: 13px;
+    background: var(--page); color: var(--ink-1);
+    border: 1px solid var(--hairline); border-radius: 8px;
+    font-family: inherit;
+  }
+  .submission-modal .foot { margin-top: 16px; display: flex; gap: 10px; align-items: center; }
+  .submission-modal .status { font-size: 12px; color: var(--ink-3); margin-left: auto; }
+  .submission-modal .error { color: #d65a4a; }
+  .submission-modal .success { color: var(--good); }
+  #mapbox {
+    display: none; position: fixed; top: 0; right: 0;
+    width: 50vw; height: 100vh; z-index: 10;
+    border-left: 1px solid var(--hairline);
+    background: var(--page);
+    box-shadow: -8px 0 24px rgba(0,0,0,0.15);
+  }
+  #mapbox .leaflet-container { height: 100%; }
+  @media (max-width: 860px) {
+    #mapbox { width: 100vw; }
+    .mapbtn { top: 108px; }
+  }
   .filters {
     position: sticky; top: 0; z-index: 5; background: var(--page);
     padding: 12px 0 10px; margin: 8px 0 6px;
     border-bottom: 1px solid var(--grid);
     display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
   }
-  .fgroup { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 999px; padding: 3px; }
+  .fgroup { display: flex; flex-wrap: wrap; gap: 4px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 18px; padding: 3px; }
   .chip {
     font-size: 12.5px; font-weight: 500; color: var(--ink-2);
     padding: 5px 12px; border-radius: 999px; border: none; background: transparent;
-    cursor: pointer; white-space: nowrap;
+    cursor: pointer; text-align: left;
   }
   .chip:hover { color: var(--ink-1); }
   .chip.on { background: var(--chip-on); color: var(--chip-on-ink); font-weight: 600; }
@@ -173,6 +233,10 @@
     h1 { font-size: 22px; }
     .count { flex-basis: 100%; margin-left: 2px; }
   }
+  @media (min-width: 901px) {
+    body.map-open .wrap { max-width: calc(50vw - 44px); margin: 0; }
+    body.map-open .grid { grid-template-columns: 1fr; }
+  }
   .homelink { font-size: 12.5px; font-weight: 600; color: var(--ink-3); text-decoration: none; display: inline-block; margin-bottom: 8px; }
   .homelink:hover { color: var(--ink-1); }
 </style>
@@ -181,6 +245,8 @@
 <div class="wrap">
   <header class="hero">
     <button class="themebtn" id="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <button class="mapbtn" id="mapbtn" onclick="toggleCityMap()">🗺️ View Map</button>
+    <button class="submitbtn" id="submitbtn" onclick="toggleSubmitModal(true)">＋ Submit Venue</button>
     <a class="homelink" href="/">← ComputeCafe</a>
     <div class="kicker" id="kicker"></div>
     <h1 id="title"></h1>
@@ -196,10 +262,133 @@
     <div class="count" id="count"></div>
   </div>
   <div id="content"></div>
+  <div id="mapbox" aria-hidden="true"></div>
+  <div class="submission-modal" id="submission-modal" role="dialog" aria-modal="true" aria-labelledby="submission-title">
+    <div class="dialog">
+      <h3 id="submission-title">Suggest a venue for <span id="submit-city-name"></span></h3>
+      <form id="venue-form" novalidate>
+        <label>Name * <input name="name" required maxlength="80"></label>
+        <label>Address * <input name="addr" required maxlength="120" placeholder="e.g. 123 Main St, City"></label>
+        <label>Capacity * <input name="cap" required maxlength="60" placeholder="e.g. ~100 standing / 150"></label>
+        <label>Private-events URL * <input name="link" required type="url" maxlength="240" placeholder="https://…"></label>
+        <label>Type * <select name="type"><option value="coffee">Coffee shop</option><option value="cowork">Coworking / event space</option><option value="event">Event space</option></select></label>
+        <label>Area <input name="area" maxlength="60" placeholder="neighborhood (optional)"></label>
+        <label>Events email <input name="email" type="email" maxlength="80" placeholder="events@… (optional)"></label>
+        <label>Photo URL <input name="img" type="url" maxlength="240" placeholder="hotlinked interior/patio (optional)"></label>
+        <label>Why it works for a 50–200 coffee/hack * <textarea name="note" required rows="2" maxlength="400"></textarea></label>
+        <label>What's the photo of? <input name="alt" maxlength="80" placeholder="short photo caption"></label>
+        <div class="foot">
+          <button type="submit" class="btn pri" id="submit-send">Submit.</button>
+          <button type="button" class="btn sec" onclick="toggleSubmitModal(false)">Cancel</button>
+          <span class="status" id="submit-status"></span>
+        </div>
+      </form>
+    </div>
+  </div>
   <footer id="foot"></footer>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
+/* Map primitives — Leaflet helpers (also used by index.html) */
+(function () {
+  const ACCENT = { live: "#0ca30c", rsvp: "#2a78d6", soon: "#898781" };
+  const isDark = () => {
+    const t = document.documentElement.getAttribute("data-theme");
+    return t === "dark" || (t !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  };
+  function baseLayers(L) {
+    return {
+      light: L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }),
+      dark: L.tileLayer("https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Black_Marble/default/2016-01-01/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg", {
+        maxZoom: 19, maxNativeZoom: 8,
+        attribution: "NASA Earth at Night (VIIRS Black Marble) · EOSDIS GIBS",
+      }),
+    };
+  }
+  window.__syncMapTheme = function () {
+    const map = window.__map;
+    if (!map || !map.__layers) return;
+    const want = isDark() ? map.__layers.dark : map.__layers.light;
+    const other = isDark() ? map.__layers.light : map.__layers.dark;
+    if (!map.hasLayer(want)) map.addLayer(want);
+    if (map.hasLayer(other)) map.removeLayer(other);
+  };
+
+
+  window.initMap = function (container, data) {
+    const L = window.L;
+    if (!L) return null;
+    const el = container;
+    el.innerHTML = "";
+    const map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
+    map.__layers = baseLayers(L);
+    (isDark() ? map.__layers.dark : map.__layers.light).addTo(map);
+    const pts = [];
+    (data.venues || []).forEach(v => pts.push(v));
+    (data.cities || []).forEach(c => pts.push(c));
+    const latLngs = [];
+    pts.forEach(it => {
+      const isCity = !!it.kind && it.kind === "city";
+      const color = isCity ? (ACCENT[it.status] || ACCENT.soon) : ACCENT.live;
+      const m = L.circleMarker([it.lat, it.lng], {
+        radius: isCity ? 7 : 6, color, weight: 2, fillColor: color, fillOpacity: 0.55,
+      });
+      const href = it.href;
+      const label = it.name;
+      const sub = it.area || it.date || "";
+      const popup = `<div style="max-width:220px"><b>${label}</b><div style="font-size:12px;color:#666">${sub}</div>${href ? `<div style="margin-top:6px"><a href="${href}" ${href.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>Open →</a></div>` : ""}</div>`;
+      m.bindPopup(popup);
+      m.addTo(map);
+      if (href) m.on("click", () => m.openPopup());
+      latLngs.push(m.getLatLng());
+    });
+    if (latLngs.length === 1) map.setView(latLngs[0], 12);
+    else if (latLngs.length > 1) { map.__bounds = L.latLngBounds(latLngs); map.fitBounds(map.__bounds, { padding: [30, 30] }); }
+    else map.setView([0, 0], 2);
+    return map;
+  };
+
+  window.toggleMap = function (container, data) {
+    const el = container;
+    if (el.style.display === "block") {
+      el.style.display = "none";
+      el.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("map-open");
+      return false;
+    }
+    el.style.display = "block";
+    el.setAttribute("aria-hidden", "false");
+    document.body.classList.add("map-open");
+    if (!el.dataset.mounted) {
+      el.dataset.mounted = "1";
+      window.__map = window.initMap(el, data);
+      requestAnimationFrame(() => {
+        window.__map.invalidateSize();
+        if (window.__map.__bounds) window.__map.fitBounds(window.__map.__bounds, { padding: [30, 30] });
+      });
+    }
+    return true;
+  };
+
+  // Venues carry build-time lat/lng (scripts/geocode_configs.py) — no client geocoding.
+  window.toggleCityMap = function () {
+    const el = document.getElementById("mapbox");
+    const pts = (typeof VENUES !== "undefined" ? VENUES : [])
+      .filter(v => v.lat && v.lng)
+      .map(v => ({ name: v.name, area: v.area, href: v.link, lat: v.lat, lng: v.lng }));
+    const open = window.toggleMap(el, { venues: pts });
+    const btn = document.getElementById("mapbtn");
+    btn.textContent = open ? "🗺️ Hide Map" : "🗺️ View Map";
+    btn.classList.toggle("open", !!open);
+    btn.setAttribute("aria-pressed", String(!!open));
+  };
+})();
+
+
 /* ============================ EDIT BELOW ============================ */
 
 // Page copy — CONFIG + TYPE_META + VENUES
@@ -225,7 +414,7 @@ const VENUES = [
   {
     "k": "plain_vanilla_telok",
     "name": "Plain Vanilla (Telok Ayer)",
-    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe (Cross St, Cecil St, Guoco Midtown)",
+    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe",
     "type": "coffee",
     "addr": "134 Telok Ayer Street, Singapore 068600",
     "cap": "<b>40</b>seated / 70 standing",
@@ -236,12 +425,14 @@ const VENUES = [
     "note": "Published venue-hire page with full buyout (indoor + alfresco patio) of the Telok Ayer store, 3-hr blocks, min spend from $1,200++ weekday; Allpress coffee served by an on-site kitchen — the largest published cafe buyout in the core Telok Ayer strip, steps from Telok Ayer MRT.",
     "img": "https://cdn.shopify.com/s/files/1/0562/6727/6450/t/11/assets/1-1651629267776.jpg?v=1651629279",
     "alt": "Plain Vanilla Telok Ayer storefront and alfresco dining space at 134 Telok Ayer Street",
-    "top": true
+    "top": true,
+    "lat": 1.2816925,
+    "lng": 103.8479575
   },
   {
     "k": "group_therapy_coffee",
     "name": "Group Therapy Coffee (Cross Street Exchange)",
-    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe (Cross St, Cecil St, Guoco Midtown)",
+    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe",
     "type": "coffee",
     "addr": "181 South Bridge Road, #01-05 & #K1-04, Cross Street Exchange, Singapore 058743",
     "cap": "<b>45</b>seated / 50 standing (entire venue); Gallery Space 30 (semi-private)",
@@ -252,12 +443,14 @@ const VENUES = [
     "note": "Dedicated Events & Workshops page plus rate card; the Cross Street Exchange outlet explicitly bills its indoor hall + outdoor verandah for corporate workshops and networking, with all-inclusive coffee/catering packages and live coffee-station add-ons. 200 m from Telok Ayer MRT.",
     "img": "https://static.wixstatic.com/media/ab5262_c267edbb5b554b16b18a16cfe986451d~mv2.png/v1/fill/w_600,h_424,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1.png",
     "alt": "Group Therapy Coffee Cross Street Exchange interior with lofty ceiling, mural art and mismatched seating",
-    "top": false
+    "top": false,
+    "lat": 1.2837294,
+    "lng": 103.8471823
   },
   {
     "k": "the_social_space",
     "name": "The Social Space (Kreta Ayer)",
-    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe (Cross St, Cecil St, Guoco Midtown)",
+    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe",
     "type": "coffee",
     "addr": "333 Kreta Ayer Road, #01-14, Singapore 080333",
     "cap": "Whole cafe: <b>51</b>seated (35 in + 16 out) / 85 standing (50 in + 35 out)",
@@ -268,12 +461,14 @@ const VENUES = [
     "note": "Dedicated Space Rental page publishing per-zone capacities, past corporate events (product launches, panel discussions, workshops) and catering menus; pet-friendly sheltered patio. Social-enterprise cafe on the Chinatown/Outram fringe, 5 min from Maxwell and Outram Park MRT.",
     "img": "https://thesocialspace.co/cdn/shop/files/TSS_Space-38_300x.jpg?v=1633840356",
     "alt": "The Social Space Kreta Ayer cafe interior with communal tables and island-style decor",
-    "top": false
+    "top": false,
+    "lat": 1.2808847,
+    "lng": 103.8423591
   },
   {
     "k": "elephant_grounds_guoco",
     "name": "Elephant Grounds (Guoco Midtown)",
-    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe (Cross St, Cecil St, Guoco Midtown)",
+    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe",
     "type": "coffee",
     "addr": "124 Beach Road, #01-04 Guoco Midtown (Midtown Market), Singapore 189771",
     "cap": "<b>70</b>seats + pet-friendly outdoor terrace (per Straits Times)",
@@ -284,12 +479,14 @@ const VENUES = [
     "note": "HK-born specialty coffee roastery/cafe (opened Jan 2026) whose SG team publicly takes corporate events, brand activations and private celebrations via @elephantgroundssg booking link; open airy indoor + outdoor layout in Guoco Midtown, direct link to Bugis MRT. No standalone SG events page found — enquiry via Instagram/venue phone +65 6018 8468.",
     "img": "https://www.guocomidtown.com/wp-content/uploads/2025/09/EG-April0191-scaled.jpg",
     "alt": "Elephant Grounds Singapore at Guoco Midtown Midtown Market, wide shot of the indoor-outdoor cafe frontage",
-    "top": false
+    "top": false,
+    "lat": 1.2968593,
+    "lng": 103.8575312
   },
   {
     "k": "workspace_grains_cafe",
     "name": "Workspace Grains + Cafe by Cedele (Guoco Midtown Network Hub)",
-    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe (Cross St, Cecil St, Guoco Midtown)",
+    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe",
     "type": "coffee",
     "addr": "128 Beach Road, Network Hub #01-11, Guoco Midtown, Singapore 189773",
     "cap": "<b>~60</b>(est) open-plan lobby cafe; Network Hub meeting rooms 14-88 pax bookable on-site",
@@ -300,12 +497,14 @@ const VENUES = [
     "note": "Cedele-group coffee and grain-bowl cafe inside the Guoco Midtown Network Hub with tall ceilings and work-friendly seating; their Instagram publishes events@cedele.com for bookings, and the same building offers bookable meeting/event rooms for scaling a hack-day programme upstairs.",
     "img": "https://www.guocomidtown.com/wp-content/uploads/2023/09/Workspace-58-1.jpg",
     "alt": "Workspace Grains + Cafe by Cedele interior at Guoco Midtown Network Hub lobby with high ceilings",
-    "top": false
+    "top": false,
+    "lat": 1.2968773,
+    "lng": 103.8577822
   },
   {
     "k": "the_work_boulevard",
     "name": "The Work Boulevard — Guoco Midtown Network Hub",
-    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe (Cross St, Cecil St, Guoco Midtown)",
+    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe",
     "type": "cowork",
     "addr": "126 Beach Road, Guoco Midtown Network Hub, Singapore 189772",
     "cap": "MICE Room: <b>up to 166</b>seated / 250 standing; Meeting Rooms 2-7 for 10-16 pax breakouts",
@@ -316,12 +515,14 @@ const VENUES = [
     "note": "Purpose-built MICE floor with a 2,336 sq ft MICE Room (166 seated / 250 standing) plus a Terrace and seven breakout meeting rooms, so a 50-200 pax tech-week hack day with coffee, town-hall and parallel tracks fits in one venue. Direct MRT + on-site catering and built-in AV make a bilingual EN/ZH program painless.",
     "img": "https://www.theworkboulevard.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmic-room.729d867d.jpg&w=828&q=75",
     "alt": "Wide shot of the MICE Room at Guoco Midtown Network Hub, a large flexible event hall with stage and AV",
-    "top": true
+    "top": true,
+    "lat": 1.2968773,
+    "lng": 103.8577822
   },
   {
     "k": "the_working_capitol",
     "name": "The Working Capitol - Overlap",
-    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe (Cross St, Cecil St, Guoco Midtown)",
+    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe",
     "type": "cowork",
     "addr": "1 Keong Saik Road, Singapore 089109",
     "cap": "Overlap: <b>up to 50+</b>pax (standing/cluster); The Common Space: up to 40 pax; Rooftop (89 Neil Rd): up to 20 pax",
@@ -332,12 +533,14 @@ const VENUES = [
     "note": "Heritage-shophouse cowork campus on Keong Saik/Telok Ayer with a dedicated events team and per-hour pricing (Overlap from S$500+/hr). Ground-floor flexible layout suits an intimate 50-person bilingual hack day, coffee social or workshop track.",
     "img": "https://images.squarespace-cdn.com/content/v1/6509091695d2fb63ff1b90d1/9a0c65bb-bcea-4dfc-a8fb-8c3f292a7f83/Overlap+%28Cluster+Seating%29+-+4.jpg",
     "alt": "Overlap event space at The Working Capitol with cluster seating and wood floors in a heritage shophouse",
-    "top": false
+    "top": false,
+    "lat": 1.2788195,
+    "lng": 103.8415262
   },
   {
     "k": "industrious_at_afroasia",
     "name": "Industrious at Afro-Asia (formerly The Great Room)",
-    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe (Cross St, Cecil St, Guoco Midtown)",
+    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe",
     "type": "cowork",
     "addr": "63 Robinson Road, Level 8, Afro-Asia Building, Singapore 068894",
     "cap": "Drawing Room event lounge: <b>40</b>-160 pax; Studio: 15-50 pax; State Room boardroom: 10-14 pax",
@@ -348,12 +551,14 @@ const VENUES = [
     "note": "Industrious' Singapore events program with enterprise-grade Wi-Fi, projector/screen, mics and pantry coffee included - the Drawing Room at Afro-Asia scales 40-160, covering the whole 50-200 target. Evening/weekend exclusive bookings give a hack day full privacy steps from Telok Ayer MRT.",
     "img": "https://www-assets.industriousoffice.com/images/tgr/events-singapore/drawing-room.jpg?width=2048&quality=90&format=webp",
     "alt": "Wide interior of the Industrious Drawing Room event lounge with sofas, bar seating and city views",
-    "top": false
+    "top": false,
+    "lat": 1.2789323,
+    "lng": 103.8491404
   },
   {
     "k": "justco_18_cross",
     "name": "JustCo 18 Cross",
-    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe (Cross St, Cecil St, Guoco Midtown)",
+    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe",
     "type": "cowork",
     "addr": "18 Cross Street, #02-101, Cross Street Exchange, Singapore 048423",
     "cap": "Event space for <b>20</b>-80+ pax (published range); fully equipped meeting rooms on demand",
@@ -364,12 +569,14 @@ const VENUES = [
     "note": "Chinatown-fringe cowork hub directly above Telok Ayer MRT (Exit A) with retro shophouse-inspired interiors, games area and a reservable event space. Best for the 50-80 pax end of the brief as a bilingual workshop/coffee day; self-serve booking plus on-site support.",
     "img": "https://www.justcoglobal.com/wp-content/uploads/2023/10/SG-06_CrossStreet-carousel-2.jpg",
     "alt": "Wide interior of the JustCo 18 Cross coworking lounge with hot-desking area and shophouse-inspired design",
-    "top": false
+    "top": false,
+    "lat": 1.2833699,
+    "lng": 103.8471414
   },
   {
     "k": "wework_22_cross",
     "name": "WeWork 22 Cross Street",
-    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe (Cross St, Cecil St, Guoco Midtown)",
+    "area": "Tanjong Pagar / Telok Ayer / Chinatown fringe",
     "type": "cowork",
     "addr": "22 Cross Street, #01-01, Singapore 048421",
     "cap": "<b>~70</b>seated / ~90 standing (est, published via WeWork events partner PVM)",
@@ -380,7 +587,9 @@ const VENUES = [
     "note": "Three-storey converted shophouse at China Square Central, 3 min from Telok Ayer MRT, with an on-site barista, event-ready lounge, VW-van breakout and outdoor space - natural fit for a casual tech-week coffee/hack day capped around 90 standing.",
     "img": "https://cdn-images.wework.com/images/BF07F70A-251F-11EC-870A-0E6A5DC689CD/bf07f70a-251f-11ec-870a-0e6a5dc689cd_0.jpg?width=800",
     "alt": "Wide shot of the WeWork 22 Cross Street common lounge with communal tables and pantry bar",
-    "top": false
+    "top": false,
+    "lat": 1.2843667,
+    "lng": 103.8467937
   },
   {
     "k": "room2f_bras_basah",
@@ -396,7 +605,9 @@ const VENUES = [
     "note": "Cafe-like multi-use event space minutes from City Hall / Bugis / Bras Basah MRT, with bar counter, stage, projector, mics, board/retro games and a gallery wall — a turnkey bilingual tech-week coffee/hack day canvas.",
     "img": "https://static.wixstatic.com/media/d40fea_9890318b4abf4ec8848fdcff2e663081~mv2.jpg/v1/fill/w_355,h_237,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/bartogames.jpg",
     "alt": "Wide interior of room2f, a vintage cafe-like event space inside Bras Basah Complex",
-    "top": true
+    "top": true,
+    "lat": 1.2968408,
+    "lng": 103.8536077
   },
   {
     "k": "chye_seng_huat",
@@ -412,7 +623,9 @@ const VENUES = [
     "note": "Papa Palheta's flagship roastery-café in a converted Art Deco shophouse right inside Jalan Besar; 360-degree coffee bar, roastery, courtyard beer garden — perfect vibe for a bilingual coffee/hackathon day; they explicitly offer full or partial venue hire with packages.",
     "img": "https://cshhcoffee.com/cdn/shop/files/Main_Banner_The_Roastery_Tour_04_300x.jpg?v=1772703528",
     "alt": "CSHH interior roastery and coffee bar banner",
-    "top": false
+    "top": false,
+    "lat": 1.3115122,
+    "lng": 103.8604373
   },
   {
     "k": "average_service",
@@ -428,7 +641,9 @@ const VENUES = [
     "note": "Bold 2,400 sqft café + cocktail bar in a Jalan Besar shophouse with open-plan layout, in-house kitchen, projector, sound system, and published capacity 80 seated / 100 standing — a strong bilingual coffee workspace vibe; published events email singapore@averageservice.com.",
     "img": "https://www.tagvenue.com/resize/202505/a5/bc/widen-1680-noupsize;95012-entire-venue-room-enhanced-v1-4400504.jpg",
     "alt": "Wide interior of Average Service café with wooden tables, blue floor, pendant lights",
-    "top": false
+    "top": false,
+    "lat": 1.3115405,
+    "lng": 103.8591829
   },
   {
     "k": "21above_lofty_spaces",
@@ -444,7 +659,9 @@ const VENUES = [
     "note": "Lofty Spaces' Jalan Besar eclectic loft with 4m concrete bar island, attic karaoke suite, projector, fibre WiFi and whiteboards — 2 minutes from Jalan Besar / Rochor MRT, well set up for a casual tech-week hangout / hack day.",
     "img": "https://static.wixstatic.com/media/dc0970_b888c030daa0459bbf636237920b6007~mv2.jpg/v1/fill/w_1280,h_594,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/dc0970_b888c030daa0459bbf636237920b6007~mv2.jpg",
     "alt": "Wide interior of 21&Above with bar island and neon-lit eclectic decor",
-    "top": false
+    "top": false,
+    "lat": 1.3040431,
+    "lng": 103.8544499
   },
   {
     "k": "socioqbesar",
@@ -460,7 +677,9 @@ const VENUES = [
     "note": "Futuristic-retro 1,400 sqft event floor on Jalan Besar with mounted projector, 65\" TV, KTV system, foldable tables and dual lighting — 5 min walk from Farrer Park MRT, lift access and wheelchair-friendly; slots in as the compact-cohort option for this bilingual coffee/hack day.",
     "img": "https://static.wixstatic.com/media/1b7049_5c4827d476a34dcbad644a335a7c44f9~mv2.jpg/v1/crop/x_575,y_0,w_2052,h_2401/fill/w_188,h_220,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_3525-min.jpg",
     "alt": "SOCIOQ@BESAR main room with neon lighting and gaming/lounge corner",
-    "top": false
+    "top": false,
+    "lat": 1.3114311,
+    "lng": 103.8592531
   },
   {
     "k": "industrious_raffles_arcade",
@@ -476,7 +695,9 @@ const VENUES = [
     "note": "Premium cowork lounge in the heritage Raffles Hotel Arcade beside Bugis MRT/City Hall; published town-hall/cocktail capacity of 100+ with AV, Wi-Fi, pantry and evening/weekend exclusive buyouts — ideal for a tech-week coffee/hack day with bilingual community crowds. Enquiry form on the dedicated events page.",
     "img": "https://www-assets.industriousoffice.com/images/tgr/events-singapore/drawing-room.jpg?width=2048&quality=90&format=webp",
     "alt": "Industrious Singapore Drawing Room event lounge",
-    "top": true
+    "top": true,
+    "lat": 1.2960226,
+    "lng": 103.8542164
   },
   {
     "k": "national_design_centre",
@@ -492,7 +713,9 @@ const VENUES = [
     "note": "Heritage arts/design hub between Bugis and Bras Basah MRTs that routinely hosts design/tech talks and showcases; atrium blocks plus a 122-pax auditorium with published day rates from ~S$1,060 (4-hr blocks from S$340), managed by University of the Arts Singapore. Email on page is bot-obfuscated; phone +65 6837 9735 (managing agent Cyclect Facilities Management).",
     "img": "https://uas.edu.sg/images/default-source/default-album/contact-us/venue-for-hire/atrium-01.jpg?sfvrsn=87d46cd1_1",
     "alt": "National Design Centre Atrium Level 1 event space",
-    "top": false
+    "top": false,
+    "lat": 1.298732,
+    "lng": 103.8534274
   },
   {
     "k": "village_hotel_bugis",
@@ -508,7 +731,9 @@ const VENUES = [
     "note": "Kampong Glam-edge hotel above Bugis with halal-certified catering and AV-equipped function rooms plus poolside decks up to 200 — comfortable fit for a 100-200 person bilingual coffee/hack day; published events email and request-proposal flow.",
     "img": "https://www.villagehotels.asia/globalassets/media-library/stayfareast/images/village/event/meeting/hotels/village-hotel-bugis/venues/venue-detail/desktop/vhb_sapphire_meeting_masthead_image.jpg",
     "alt": "Village Hotel Bugis Sapphire function room set for an event",
-    "top": false
+    "top": false,
+    "lat": 1.3018614,
+    "lng": 103.8576705
   },
   {
     "k": "andaz_singapore_alley",
@@ -524,7 +749,9 @@ const VENUES = [
     "note": "Design-led Hyatt hotel directly linked to Bugis MRT; its Alley on 3 floor bundles three naturally lit studios (one with private Garden Terrace) and a glass ballroom — great split-room setup for hack tracks plus plenary coffee service. Hyatt site blocked our fetcher, so link is the verified Singapore Tourism Board venue page.",
     "img": "https://www.visitsingapore.com/content/dam/mice2-0/venues/andaz-singapore/carousel-1.jpg",
     "alt": "Andaz Singapore Alley on 3 event floor",
-    "top": false
+    "top": false,
+    "lat": 1.2992451,
+    "lng": 103.8577334
   },
   {
     "k": "wework_380_jalan",
@@ -540,7 +767,9 @@ const VENUES = [
     "note": "Top two floors of a Green Mark tower by Lavender MRT at the Jalan Besar end of the corridor; bookable event spaces with sound/lighting, rooftop sky terrace and on-site parking — good fit for an evening tech community mixer. Bookings via the on-page sales/tour form; capacity is an estimate.",
     "img": "https://cdn-images.wework.com/images/752D0930-581F-11EC-8DEC-0E6A5DC689CD/752d0930-581f-11ec-8dec-0e6a5dc689cd_0.jpg?width=800",
     "alt": "WeWork 380 Jalan Besar coworking lounge interior",
-    "top": false
+    "top": false,
+    "lat": 1.3130844,
+    "lng": 103.860476
   },
   {
     "k": "wework_funan_109",
@@ -556,12 +785,14 @@ const VENUES = [
     "note": "Cowork floors inside Funan mall at the Bras Basah/City Hall end of the corridor; published 60-guest event venue suits a smaller 50-60 person tech-week coffee session, with mall F&B, parking and bike storage. Enquire via the building's tour/sales form.",
     "img": "https://cdn-images.wework.com/images/2014368E-3B29-11EC-8453-0E6A5DC689CD/2014368e-3b29-11ec-8453-0e6a5dc689cd_0.jpg?width=800",
     "alt": "WeWork 109 North Bridge Rd (Funan) coworking lounge",
-    "top": false
+    "top": false,
+    "lat": 1.2914066,
+    "lng": 103.8494056
   },
   {
     "k": "timbre_one_north",
     "name": "Timbre+ One North 添柏",
-    "area": "one-north / Ayer Rajah (BLOCK71, JTC LaunchPad, Fusionopolis, Science Park)",
+    "area": "one-north / Ayer Rajah",
     "type": "coffee",
     "addr": "73A Ayer Rajah Crescent, JTC LaunchPad @ one-north, Singapore 139957",
     "cap": "<b>800</b>main hall + 300 courtyard (published); 50-200 hack-day fits easily in a zoned section",
@@ -572,12 +803,14 @@ const VENUES = [
     "note": "Singapore's first container food park inside JTC LaunchPad itself — 24,000 sq ft industrial-chic hall with specialty coffee stalls (Kopifellas) and a Huggs x Timbre collab outlet; hosts tech meetups and corporate buyouts nightly with stage, AV and live-music rig.",
     "img": "https://timbreplus.sg/wp-content/uploads/2024/01/timbre-onenorth-1024x1024-1.jpeg",
     "alt": "Wide interior of Timbre+ One North container food park at JTC LaunchPad @ one-north",
-    "top": true
+    "top": true,
+    "lat": 1.2979001,
+    "lng": 103.7874482
   },
   {
     "k": "cafe_melba_at",
     "name": "Cafe Melba at Mediapolis",
-    "area": "one-north / Ayer Rajah (BLOCK71, JTC LaunchPad, Fusionopolis, Science Park)",
+    "area": "one-north / Ayer Rajah",
     "type": "coffee",
     "addr": "1 Stars Avenue, #03-01 Mediacorp Campus, Singapore 138507",
     "cap": "Event area <b>70</b>seated / up to ~120 with patio (published by venues); full-venue buyout larger",
@@ -588,12 +821,14 @@ const VENUES = [
     "note": "Melbourne-style all-day café inside the one-north Mediacorp campus with dedicated event area + lush green patio, published 2026 event packages, and a 5-min walk from one-north MRT — proven tech-week-crowd fit.",
     "img": "https://images.squarespace-cdn.com/content/v1/56120223e4b0e1ea7533e421/063da5bc-d129-4f00-9d58-00c7359e56c0/Event-Page-Events.jpg",
     "alt": "Cafe Melba at Mediapolis interior",
-    "top": false
+    "top": false,
+    "lat": 1.2954036,
+    "lng": 103.7922522
   },
   {
     "k": "pen_inc_onenorth",
     "name": "PEN & INC One-North Café",
-    "area": "one-north / Ayer Rajah (BLOCK71, JTC LaunchPad, Fusionopolis, Science Park)",
+    "area": "one-north / Ayer Rajah",
     "type": "coffee",
     "addr": "11 Slim Barracks Rise, NTU@one-north, #03-01, Singapore 138664",
     "cap": "<b>120</b>seated / 150 standing (published)",
@@ -604,12 +839,14 @@ const VENUES = [
     "note": "Tropical-themed café/event hall 2 mins from one-north MRT run by NJ Group's events arm; open 7am-11:30pm daily with bar, AV and customizable F&B — sized exactly for a 50-150 person coffee/hack day.",
     "img": "https://www.thelegacy.sg/wp-content/uploads/2023/09/Pen-Inc-One-North-Cafe--1024x789.jpg",
     "alt": "Wide interior of PEN & INC One-North Café event space",
-    "top": false
+    "top": false,
+    "lat": 1.3037719,
+    "lng": 103.7898919
   },
   {
     "k": "cali_park_avenue",
     "name": "CALI, Park Avenue Rochester",
-    "area": "one-north / Ayer Rajah (BLOCK71, JTC LaunchPad, Fusionopolis, Science Park)",
+    "area": "one-north / Ayer Rajah",
     "type": "coffee",
     "addr": "31 Rochester Drive, #01-01/02, Singapore 138637",
     "cap": "<b>~80</b>seated / ~100 standing (est — aggregator listings, confirm on booking)",
@@ -620,12 +857,14 @@ const VENUES = [
     "note": "All-day café-restaurant-bistro 250m from Buona Vista MRT beside Rochester Park, pet-friendly with outdoor lawn edge; NJ Group events team handles corporate bookings and multi-cuisine catering.",
     "img": "https://www.cali.sg/images/cali-rochester14.jpg",
     "alt": "Wide interior shot of CALI Park Avenue Rochester dining room",
-    "top": false
+    "top": false,
+    "lat": 1.3050345,
+    "lng": 103.7889147
   },
   {
     "k": "huggs_coffee_galaxis",
     "name": "Huggs Coffee — Galaxis @ Fusionopolis",
-    "area": "one-north / Ayer Rajah (BLOCK71, JTC LaunchPad, Fusionopolis, Science Park)",
+    "area": "one-north / Ayer Rajah",
     "type": "coffee",
     "addr": "1 Fusionopolis Place, #01-K1/K2, Singapore 138522",
     "cap": "<b>~30</b>-50 in-unit (est); better used with its coffee catering/live-station packages for 100+",
@@ -636,12 +875,14 @@ const VENUES = [
     "note": "Specialty coffee chain rooted in the district (Galaxis kiosk + Timbre+ One North collab) with a published events/venue-rental catalogue and TEDxSG track record — ideal to power the coffee program or small breakout corner rather than a full buyout.",
     "img": "https://huggscoffee.com/cdn/shop/files/IMG_0371.jpg?crop=center&height=1536&v=1756889807&width=3072",
     "alt": "Wide shot of Huggs Coffee interior / event catering setup",
-    "top": false
+    "top": false,
+    "lat": 1.2888851,
+    "lng": 103.8465192
   },
   {
     "k": "jimmy_monkey_one",
     "name": "Jimmy Monkey @ One North",
-    "area": "one-north / Ayer Rajah (BLOCK71, JTC LaunchPad, Fusionopolis, Science Park)",
+    "area": "one-north / Ayer Rajah",
     "type": "coffee",
     "addr": "#01-51 One-North Residences, 9 One-north Gateway, Singapore 138643",
     "cap": "<b>~40</b>-60 (est) — intimate buyout; closes 4pm weekdays at this outlet",
@@ -652,12 +893,14 @@ const VENUES = [
     "note": "One of one-north's original indie cafés in a converted army barracks setting; site confirms private event bookings and corporate catering with live-barista stations — best for a daytime hack sprint of under 60.",
     "img": "https://jimmymonkey.com/wp-content/uploads/2025/08/One-North.jpg",
     "alt": "Jimmy Monkey One North café exterior/interior among greenery",
-    "top": false
+    "top": false,
+    "lat": 1.3018978,
+    "lng": 103.7902619
   },
   {
     "k": "peninconenorthfunctionhallnjgroup",
     "name": "PEN & INC One-North Function Hall (NJ Group)",
-    "area": "one-north / Ayer Rajah (BLOCK71, JTC LaunchPad, Fusionopolis, Science Park)",
+    "area": "one-north / Ayer Rajah",
     "type": "cowork",
     "addr": "11 Slim Barracks Rise, NTU@one-north, #03-00, Singapore 138664",
     "cap": "Up to <b>450</b>theatre / 350 banquet",
@@ -668,12 +911,14 @@ const VENUES = [
     "note": "Pillarless fully air-conditioned hall with a 7m x 3m curved LED stage wall, in-house catering and a bar — about as plug-and-play as it gets for a 200-person hack day coffee-and-code event. 3 min walk from Buona Vista MRT.",
     "img": "https://www.thelegacy.sg/wp-content/uploads/2023/09/Pen-Inc-One-North-Cafe--1024x789.jpg",
     "alt": "Interior of PEN & INC One-North tropical-themed event hall",
-    "top": false
+    "top": false,
+    "lat": 1.3037719,
+    "lng": 103.7898919
   },
   {
     "k": "ntuonenorth_executive_centre",
     "name": "NTU@one-north — Executive Centre & Alumni House",
-    "area": "one-north / Ayer Rajah (BLOCK71, JTC LaunchPad, Fusionopolis, Science Park)",
+    "area": "one-north / Ayer Rajah",
     "type": "cowork",
     "addr": "11 Slim Barracks Rise, Singapore 138664",
     "cap": "Function halls <b>80</b>-150 pax; Auditorium 215 pax",
@@ -684,12 +929,14 @@ const VENUES = [
     "note": "University-run event floors adjacent to one-north & Buona Vista MRT; tiered 215-seat auditorium plus 80 & 150-pax function halls, ideal for a bilingual bilingual keynote + breakout format at a reputable price point.",
     "img": null,
     "alt": "NTU@one-north Executive Centre auditorium",
-    "top": false
+    "top": false,
+    "lat": 1.3037719,
+    "lng": 103.7898919
   },
   {
     "k": "uclub_launchpad_one",
     "name": "UClub LaunchPad @ One North",
-    "area": "one-north / Ayer Rajah (BLOCK71, JTC LaunchPad, Fusionopolis, Science Park)",
+    "area": "one-north / Ayer Rajah",
     "type": "cowork",
     "addr": "67 Ayer Rajah Crescent, #02-10/17, LaunchPad @ one-north, Singapore 139950",
     "cap": "<b>60</b>-pax Event Hall (est. listed)",
@@ -700,12 +947,14 @@ const VENUES = [
     "note": "In-building cowork with an on-site 60-pax event hall, movie-screening lounge, games area, and Timbre+ food court downstairs — great as the coffee-side anchor for a smaller hack day or as a bilingual breakout hub paired with Timbre+.",
     "img": "https://uclubgroup.com.sg/wp-content/uploads/2024/05/O8-scaled.jpg",
     "alt": "UClub LaunchPad@one-north lounge/event hall interior",
-    "top": false
+    "top": false,
+    "lat": 1.2979001,
+    "lng": 103.7874482
   },
   {
     "k": "block71_singapore_nus",
     "name": "BLOCK71 Singapore (NUS Enterprise)",
-    "area": "one-north / Ayer Rajah (BLOCK71, JTC LaunchPad, Fusionopolis, Science Park)",
+    "area": "one-north / Ayer Rajah",
     "type": "cowork",
     "addr": "71 Ayer Rajah Crescent, #02-01, Singapore 139951",
     "cap": "<b>~150</b>pax (est, venue policy: entrepreneurial events only)",
@@ -716,12 +965,14 @@ const VENUES = [
     "note": "The original Ayer Rajah startup block, home to 1,600+ ventures — perfect fit for a tech-week hack day since BLOCK71 opens its venue to entrepreneurship-aligned events; need 3 weeks' lead time on the request.",
     "img": null,
     "alt": "BLOCK71 Singapore hall filled with founders at a hackathon",
-    "top": false
+    "top": false,
+    "lat": 1.2967887,
+    "lng": 103.7865224
   },
   {
     "k": "vidacity_onenorth_blk",
     "name": "Vidacity @ one-north (Blk 69 LaunchPad)",
-    "area": "one-north / Ayer Rajah (BLOCK71, JTC LaunchPad, Fusionopolis, Science Park)",
+    "area": "one-north / Ayer Rajah",
     "type": "cowork",
     "addr": "69 Ayer Rajah Crescent, LaunchPad @ one-north, Singapore 139961",
     "cap": "<b>20</b>-200 pax configurable (per Vidacity site)",
@@ -732,11 +983,14 @@ const VENUES = [
     "note": "95,000 sq ft sustainability hub inside LaunchPad with purpose-built event floors, AV logistics and shuttered industrial vibe; bidirectional bilingual programming fits their community-gathering charter.",
     "img": null,
     "alt": "Vidacity @ one-north configurable event floor",
-    "top": false
+    "top": false,
+    "lat": 1.2979001,
+    "lng": 103.7874482
   }
 ];
 
 /* ============================ EDIT ABOVE ============================ */
+const CITY_SLUG = location.pathname.split("/").filter(Boolean).pop() || "";
 
 const state = { area: "all", type: "all", dedicatedOnly: false };
 const AREAS = [...new Set(VENUES.map(v => v.area))];
@@ -771,7 +1025,7 @@ function card(v){
       <div class="cap">${v.cap}</div>
       ${flagHtml}
       <div class="note">${v.note}</div>
-      <div class="links"><a class="btn pri" href="${v.link}" target="_blank" rel="noopener">${v.linkText} ↗</a>${emailBtn}</div>
+      <div class="links"><a class="btn pri" href="${v.link}" target="_blank" rel="noopener">${v.linkText} ↗</a>${emailBtn}<button class="starh" data-k="${v.k}" data-city="${CITY_SLUG}"></button></div>
     </div>
   </div>`;
 }
@@ -839,8 +1093,135 @@ function cycleTheme(){
   const next = cur === "dark" ? "light" : cur === "light" ? "dark"
     : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
   r.setAttribute("data-theme", next);
+  if (window.__syncMapTheme) window.__syncMapTheme();
+}
+
+/* star-venue wiring */
+const STAR_KEY = (c,k) => 'starred:'+c+':'+k;
+async function hydrateStars(){
+  const btns = document.querySelectorAll('.starh');
+  const city = CITY_SLUG || 'unknown';
+  for (const b of btns) {
+    const k = b.dataset.k;
+    if (!k) continue;
+    // hydrate per-browser star state
+    try {
+      if (localStorage.getItem(STAR_KEY(city,k)) === '1') b.classList.add('on');
+    } catch{}
+    // display count from KV if available
+    try {
+      const r = await fetch('/api/star-venue/'+encodeURIComponent(city)+'/'+encodeURIComponent(k));
+      if (r.ok) {
+        const j = await r.json();
+        b.innerHTML = '<span class="star">★</span><span class="cnt">'+(j.newCount||j.count||0)+'</span>';
+      } else {
+        b.innerHTML = '<span class="star">☆</span>';
+      }
+    } catch {
+      b.innerHTML = '<span class="star">☆</span>';
+    }
+    b.addEventListener('click', async () => {
+      const key = STAR_KEY(city,k);
+      let saved = false;
+      try { saved = localStorage.getItem(key) === '1'; } catch{}
+      if (saved) return; // already starred on this browser
+      try { localStorage.setItem(key,'1'); saved = true; } catch{}
+      b.classList.add('on');
+      try {
+        const resp = await fetch('/api/star-venue', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({k, city})
+        });
+        const j = await resp.json();
+        if (j.ok && j.newCount != null) b.querySelector('.cnt').textContent = j.newCount;
+      } catch {}
+    });
+  }
 }
 init();
+hydrateStars();
+
+
+/* Submit Venue modal + GitHub Issues-backed pipeline */
+const cityNames = (CONFIG.title || "").replace(/— Venue Options|,.*$/, "").trim();
+document.getElementById("submit-city-name").textContent = cityNames || CONFIG.kicker;
+function toggleSubmitModal(open) {
+  const m = document.getElementById("submission-modal");
+  m.classList.toggle("open", open);
+  m.setAttribute("aria-hidden", String(!open));
+  if (open) setTimeout(() => m.querySelector("input[name='name']")?.focus(), 0);
+}
+window.toggleSubmitModal = toggleSubmitModal;
+
+function renderSubmissionCard(venue) {
+  const t = TYPE_META[venue.type] || { label: venue.type, icon: "📍" };
+  const flagHtml = venue.flag === "dedicated"
+    ? '<span class="flag dedicated">✓ Dedicated events page</span>'
+    : '<span class="flag contact">✉ Events contact only</span>';
+  const imgHtml = venue.img
+    ? `<img src="${venue.img}" alt="${venue.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.card').classList.add('noimg')">`
+    : "";
+  const emailBtn = venue.email ? `<a class="btn sec" href="mailto:${venue.email}">${venue.email}</a>` : "";
+  return `<div class="card${venue.img ? "" : " noimg"}">
+    <div class="imgbox">
+      ${imgHtml}
+      <div class="ph"><span class="icn">${t.icon}</span><span class="mono">${venue.name.replace(/[^a-zA-Z ]/g,"").split(" ").slice(0,2).map(w=>w[0].toUpperCase()).join("")}</span></div>
+      <div class="areatag">${venue.area || "Submitted"}</div>
+    </div>
+    <div class="body">
+      <div class="titlerow"><div class="vname">${venue.name}</div><span class="typechip">${t.icon} ${t.label}</span></div>
+      <div class="addr"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venue.name + " " + (venue.addr || ""))}" target="_blank" rel="noopener">📍 ${venue.addr}</a></div>
+      <div class="cap">${venue.cap}</div>
+      ${flagHtml}
+      <div class="note">${venue.note}</div>
+      <div class="links"><a class="btn pri" href="${venue.link}" target="_blank" rel="noopener">${venue.linkText || "Visit"} ↗</a>${emailBtn}</div>
+    </div>
+  </div>`;
+}
+
+document.getElementById("venue-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const status = document.getElementById("submit-status");
+  const send = document.getElementById("submit-send");
+  send.disabled = true;
+  status.textContent = "Checking link…";
+  status.className = "status";
+  const data = Object.fromEntries(new FormData(form).entries());
+  data.city = (CONFIG.title || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "unknown";
+  data.flag = data.flag || "contact";
+  try {
+    const resp = await fetch("/api/submit-venue", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    const json = await resp.json();
+    if (!resp.ok || !json.ok) {
+      status.textContent = json.error === "dead_link" ? "That URL did not respond — please double-check it." : (json.detail || "Submission failed.");
+      status.className = "status error";
+      send.disabled = false;
+      return;
+    }
+    status.textContent = "Published — it's in " + (CONFIG.title || "the grid") + " now. Issue #" + json.issue.number + " tracks the review.";
+    status.className = "status success";
+    form.reset();
+    toggleSubmitModal(false);
+    // auto-publish: append the returned venue card into the first area section (no re-fetch)
+    const content = document.getElementById("content");
+    const sectors = content.querySelectorAll(".grid section");
+    if (sectors.length === 0) {
+      content.insertAdjacentHTML("beforeend", renderSubmissionCard(json.venue));
+    } else {
+      sectors[0].insertAdjacentHTML("afterbegin", renderSubmissionCard(json.venue));
+    }
+  } catch (err) {
+    status.textContent = "Network error — try again.";
+    status.className = "status error";
+    send.disabled = false;
+  }
+});
 </script>
 </body>
 </html>

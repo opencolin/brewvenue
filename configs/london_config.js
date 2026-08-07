@@ -21,7 +21,7 @@ const VENUES = [
   {
     "k": "encodehub",
     "name": "Encode Hub (Encode Club)",
-    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "area": "Shoreditch / Old Street",
     "type": "cowork",
     "addr": "41 Pitfield St, London N1 6DA",
     "cap": "whole venue up to <b>300</b> standing (published, from £12k/day); rooftop terrace <b>120</b> reception; meeting rooms 8–20",
@@ -32,12 +32,14 @@ const VENUES = [
     "note": "✔ Added by request — London's AI & web3 builder space by Encode Club: multi-level industrial venue (6,000+ sq ft) with coworking floors, event rooms and a rooftop terrace, minutes from Old Street. The Encode London hackathon + conference runs here, so the room is proven at exactly our event shape. Hire direct or via HireSpace/HeadBox.",
     "img": null,
     "alt": "Industrial multi-level event floor at Encode Hub Shoreditch",
-    "top": false
+    "top": false,
+    "lat": 51.5275694,
+    "lng": -0.0837896
   },
   {
     "k": "lantana_shoreditch",
     "name": "Lantana Shoreditch",
-    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "area": "Shoreditch / Old Street",
     "type": "coffee",
     "addr": "2 Oliver's Yard, 55 City Road, London EC1Y 1HQ",
     "cap": "Up to <b>150</b>standing / 60 seated (exclusive hire); Mural Zone 50 standing / 40 seated",
@@ -48,12 +50,14 @@ const VENUES = [
     "note": "Cafe-by-day with a dedicated private-hire page that publishes capacity bands and minimum spends, a covered outdoor terrace and explicit networking/team-social positioning — the room shape, coffee service and 150-guest band are an exact match for a 50-200-person Tech Week coffee/hack day one minute from Old St roundabout.",
     "img": "https://images.prismic.io/lantanacafe/ac5DY5GXnQHGZMrC__D3A3486.jpg?auto=format%2Ccompress&fit=max&w=1200&q=50",
     "alt": "Lantana Shoreditch semi-private event zone with warm timber, mural wall and cafe seating",
-    "top": true
+    "top": true,
+    "lat": 51.524236,
+    "lng": -0.0868712
   },
   {
     "k": "the_cafe_venue",
     "name": "The Cafe Venue (Proper Office, 2 Bath Place)",
-    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "area": "Shoreditch / Old Street",
     "type": "coffee",
     "addr": "2 Bath Place, London EC2A 3DR (Shoreditch, 4 min from Old St)",
     "cap": "Up to <b>100</b>standing",
@@ -64,12 +68,14 @@ const VENUES = [
     "note": "Purpose-built cafe-style event space with booth seating, communal tables, unlimited tea/coffee included and an on-site reception team — explicitly pitched at networking events, workshops and company socials, 4 min from Old St, fits the 50-100-person end of the hack-day brief perfectly.",
     "img": "https://www.properoffice.com/wp-content/uploads/2025/02/cafevenue-04-scaled.jpg",
     "alt": "Communal cafe-style event space at The Cafe Venue with booth seating, lounge areas and natural light",
-    "top": false
+    "top": false,
+    "lat": 51.5261991,
+    "lng": -0.0825717
   },
   {
     "k": "ozone_coffee_roasters",
     "name": "Ozone Coffee Roasters Shoreditch",
-    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "area": "Shoreditch / Old Street",
     "type": "coffee",
     "addr": "11 Leonard St, London EC2A 4AQ (next to Old Street station)",
     "cap": "Private meeting room (est. <b>~30</b>-50) + larger private-dining / whole-venue hire on enquiry — see brochure (est)",
@@ -80,12 +86,14 @@ const VENUES = [
     "note": "Working specialty coffee roastery two minutes from Old St roundabout with a dedicated private-hire page, an explicit meeting-room hire tier (£10/person/hr including unlimited specialty coffee) and a private-hire brochure for larger bookings — the room is a proven builder/freelancer haunt on weekdays, good for a coffee-led hack-day breakout wave.",
     "img": "https://ozonecoffee.co.uk/cdn/shop/files/Ozone_leonard_St_interior_1500x.jpg?v=1710942538",
     "alt": "Ozone Coffee Roasters Shoreditch interior",
-    "top": false
+    "top": false,
+    "lat": 51.5247047,
+    "lng": -0.0867384
   },
   {
     "k": "potter_reid",
     "name": "Potter & Reid",
-    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "area": "Shoreditch / Old Street",
     "type": "coffee",
     "addr": "20-22 Toynbee Street, London E1 7NE (Spitalfields, 10 min from Old St)",
     "cap": "<b>~50</b>-80 standing (est); whole-venue private hire available",
@@ -96,12 +104,14 @@ const VENUES = [
     "note": "Tour-trace seed: Potter & Reid hosted Cafe Cursor London in Dec 2025 (Cursor founders took over the cafe with a laptop-crowd co-working day, two slots 9am-1pm / 1pm-5pm) — the room is proven to say yes to a coffee takeover for AI builders at our exact event shape, across two rooms with a marble counter, natural-wine fridges and pavement tables.",
     "img": "https://images.squarespace-cdn.com/content/v1/62d02857d7ab9827ec9895d8/1698615357664-O4QNI5FYP1CUUQR8DEXP/DSCF5913.jpg",
     "alt": "Potter & Reid cafe interior on Toynbee Street with marble counter, dark wood and warm lighting",
-    "top": false
+    "top": false,
+    "lat": 51.5176146,
+    "lng": -0.0745621
   },
   {
     "k": "attendant_shoreditch",
     "name": "Attendant Shoreditch",
-    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "area": "Shoreditch / Old Street",
     "type": "coffee",
     "addr": "5 Ravey Street, London EC2A 4QP (Shoreditch, 6 min from Old St)",
     "cap": "Whole-venue hire (est. <b>~80</b>-120 standing via Hirespace/Headbox listings)",
@@ -112,12 +122,14 @@ const VENUES = [
     "note": "Small-batch coffee roasters' Shoreditch outpost on a quiet Victorian back street of Old St with industrial-chic interiors, a living-wall breakout and a biophilic feel — listed for whole-venue private hire through Hirespace/Headbox with networking-reception and morning-breakfast layouts, so the booking route runs through those marketplaces rather than a dedicated on-site events page.",
     "img": null,
     "alt": "Attendant Shoreditch rustic-industrial cafe interior with living wall and counter",
-    "top": false
+    "top": false,
+    "lat": 51.5244038,
+    "lng": -0.0820546
   },
   {
     "k": "shoreditch_grind",
     "name": "Shoreditch Grind",
-    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "area": "Shoreditch / Old Street",
     "type": "coffee",
     "addr": "213 Old Street, London EC1V 9NR (Old Street roundabout)",
     "cap": "Up to <b>50</b>guests (full venue hire, published)",
@@ -128,12 +140,14 @@ const VENUES = [
     "note": "The original Grind coffee bar on Old St roundabout — cylindrical black building that's a Silicon Roundabout landmark — with a dedicated venue-hire page that publishes a 50-guest cap, evening license until midnight and an all-day coffee-to-cocktail format, good for the lower end of the hack-day brief or a side-event espresso-martini reception.",
     "img": "https://grind.co.uk/cdn/shop/files/shoreditch_interior_1_340x340.webp?v=1760515772",
     "alt": "Shoreditch Grind interior with white marble counters and bar stools on Old Street",
-    "top": false
+    "top": false,
+    "lat": 51.5259566,
+    "lng": -0.0881542
   },
   {
     "k": "second_home_spitalfields",
     "name": "Second Home Spitalfields - The Auditorium",
-    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "area": "Shoreditch / Old Street",
     "type": "cowork",
     "addr": "68 Hanbury Street, Spitalfields, London E1 5JL",
     "cap": "<b>120</b>theatre / 150 standing / 65 cabaret",
@@ -144,12 +158,14 @@ const VENUES = [
     "note": "Iconic cowork-native venue 5 min from Shoreditch High St and Liverpool St; purpose-built for panel talks, conferences, hack days and launches with stage, PA and plug-and-play AV. Selgas Cano-designed biophilic space reads perfectly for a bilingual tech-week crowd.",
     "img": "https://secondhome.io/wp-content/uploads/2019/09/Bettina-Martin-82-scaled.jpg",
     "alt": "Tiered auditorium with warm lighting and the iconic Flying Table inside Second Home Spitalfields",
-    "top": true
+    "top": true,
+    "lat": 51.5199099,
+    "lng": -0.068815
   },
   {
     "k": "techspace_goswell_road",
     "name": "Techspace Goswell Road - The Gallery",
-    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "area": "Shoreditch / Old Street",
     "type": "cowork",
     "addr": "140 Goswell Road, London EC1V 7DY",
     "cap": "<b>80</b>seated / 150 standing (with breakout)",
@@ -160,12 +176,14 @@ const VENUES = [
     "note": "Home of the London AI Hub, 10 min walk from Old Street; double-height gallery with 105in screen, 1Gbps WiFi both directions and stage lighting made for tech conferences and hybrid streams. Dry hire with dedicated events team.",
     "img": "https://cdn.prod.website-files.com/5e185d81b1025a75a986bb6a/689a03e0b93ac82e86e1af39_The%20Gallery-02.avif",
     "alt": "Double-height, skylight-flooded interior of The Gallery at Techspace Goswell Road",
-    "top": false
+    "top": false,
+    "lat": 51.5249386,
+    "lng": -0.0992545
   },
   {
     "k": "rich_mix_the",
     "name": "Rich Mix - The Mix",
-    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "area": "Shoreditch / Old Street",
     "type": "cowork",
     "addr": "35-47 Bethnal Green Road, Shoreditch, London E1 6LA",
     "cap": "<b>200</b>max",
@@ -176,12 +194,14 @@ const VENUES = [
     "note": "Five-storey arts landmark moments from Brick Lane with a 200-cap modern conference room, three cinema screens for demos, and an events team that has staged SXSW and Netflix. Independent charity, so hire fees support the local creative community.",
     "img": "https://rich-mix.transforms.svdcdn.com/production/Private-Hires/Spaces/The-Mix/Untitled-design-22.jpg?w=540&h=334&q=100&auto=format&fit=crop&dm=1778593861&s=49dc99cb2f4993139ecc7b33ef156172",
     "alt": "The Mix event room at Rich Mix with high ceilings, high tables and ambient blue lighting",
-    "top": false
+    "top": false,
+    "lat": 51.5244023,
+    "lng": -0.0733464
   },
   {
     "k": "village_underground",
     "name": "Village Underground",
-    "area": "Shoreditch / Old Street (Silicon Roundabout)",
+    "area": "Shoreditch / Old Street",
     "type": "cowork",
     "addr": "54 Holywell Lane, Shoreditch, London EC2A 3PQ",
     "cap": "<b>130</b>seated / 200 theatre (700 standing)",
@@ -192,12 +212,14 @@ const VENUES = [
     "note": "Victorian brick warehouse 2 min from Shoreditch High St with state-of-the-art sound and lighting, natural daylight and a late licence; explicit conferences-and-meetings hire track. Scales comfortably past 200 if the bilingual tech week grows.",
     "img": "https://cdn.villageunderground.co.uk/spio/ret_img,q_cdnize,to_avif,s_avif,p_h/villageunderground.co.uk/wp-content/uploads/2024/05/LOreal_MainSpace3-800x533.jpg",
     "alt": "Wide stripped-back main space at Village Underground set up for a conference",
-    "top": false
+    "top": false,
+    "lat": 51.5235955,
+    "lng": -0.0786639
   },
   {
     "k": "liverpool_street_grind",
     "name": "Liverpool Street Grind",
-    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "area": "Spitalfields / Aldgate East",
     "type": "coffee",
     "addr": "38 Broadgate Circle, London EC2M 2QS",
     "cap": "Up to <b>130</b>(full venue hire)",
@@ -208,12 +230,14 @@ const VENUES = [
     "note": "Buzzing espresso bar + all-day restaurant right outside Liverpool Street, open til 1am. Best pick for a 100+ coffee-week hack day that wants to blend into evening networking by Broadgate Circle.",
     "img": "https://grind.co.uk/cdn/shop/files/hire_liverpool_1024x.webp?v=1730386747",
     "alt": "Liverpool Street Grind interior at Broadgate Circle",
-    "top": false
+    "top": false,
+    "lat": 51.5186195,
+    "lng": -0.0835089
   },
   {
     "k": "the_caf_venue",
     "name": "The Café Venue (Proper Office, Shoreditch)",
-    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "area": "Spitalfields / Aldgate East",
     "type": "coffee",
     "addr": "2 Bath Place, London EC2A 3DR",
     "cap": "Up to <b>100</b>standing",
@@ -224,12 +248,14 @@ const VENUES = [
     "note": "Purpose-built cafe-style networking space (1,200 sq ft) four minutes from Old Street, fully stocked kitchen + unlimited coffee/tea included. Solid mid-size venue hire for a 50-100 person daytime hack sprint.",
     "img": "https://www.properoffice.com/wp-content/uploads/2025/02/cafevenue-06-scaled.jpg",
     "alt": "The Café Venue lounge seating, Shoreditch",
-    "top": false
+    "top": false,
+    "lat": 51.5261991,
+    "lng": -0.0825717
   },
   {
     "k": "secondhomespitalfields",
     "name": "Second Home Spitalfields",
-    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "area": "Spitalfields / Aldgate East",
     "type": "cowork",
     "addr": "68 Hanbury Street, London E1 5JL",
     "cap": "<b>150</b>seated (Auditorium) / up to 200 standing (whole-venue)",
@@ -240,12 +266,14 @@ const VENUES = [
     "note": "Iconic biophilic coworking house in the heart of Spitalfields' creative-tech corridor with seven bookable event spaces (Auditorium, Rooftop, Cafe) 5 min from Liverpool St and Brick Lane — a natural home for a hack day.",
     "img": "https://secondhome.io/wp-content/uploads/2019/09/Spitafields-1-scaled.jpg",
     "alt": "Second Home Spitalfields interior coworking space with abundant greenery and natural light",
-    "top": true
+    "top": true,
+    "lat": 51.5200465,
+    "lng": -0.0703716
   },
   {
     "k": "wallacespace_spitalfields",
     "name": "wallacespace spitalfields",
-    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "area": "Spitalfields / Aldgate East",
     "type": "cowork",
     "addr": "15-25 Artillery Lane, London E1 7HA",
     "cap": "<b>up to 220</b>(apollo + soyuz combined)",
@@ -256,12 +284,14 @@ const VENUES = [
     "note": "Purpose-built training/event space with a rooftop kitchen (cap 150) and combinable rooms up to 220; all-inclusive day-delegate model and a direct events email make it very hack-day friendly.",
     "img": "https://www.wallacespace.com/wp-content/uploads/apollo-soyuz-1849x835.jpg",
     "alt": "wallacespace spitalfields combined apollo and soyuz event room in cabaret layout",
-    "top": false
+    "top": false,
+    "lat": 51.5185352,
+    "lng": -0.0786177
   },
   {
     "k": "fora_folgate_street",
     "name": "FORA - Folgate Street (The Conservatory)",
-    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "area": "Spitalfields / Aldgate East",
     "type": "cowork",
     "addr": "35-41 Folgate Street, London E1 6BX",
     "cap": "<b>up to 120</b>standing / 110 theatre (Conservatory)",
@@ -272,12 +302,14 @@ const VENUES = [
     "note": "Design-led coworking campus with tiered seating, nine-metre skylights and a video wall in The Conservatory, plus garden and wrap-around terrace — very strong tech-week aesthetic 8 min from Liverpool St.",
     "img": "https://www.foraspace.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2F8vw7318k%2Fproduction%2F0cc47fb1ca6704f46a2b6354879996f0a31e121e-6429x5799.jpg%3Fw%3D2000%26q%3D75%26fit%3Dmax%26auto%3Dformat&w=2000&q=70",
     "alt": "FORA Folgate Street Conservatory event space with tiered seating and large skylights",
-    "top": false
+    "top": false,
+    "lat": 51.517264,
+    "lng": -0.0186168
   },
   {
     "k": "the_aldgate_centre",
     "name": "The Aldgate Centre",
-    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "area": "Spitalfields / Aldgate East",
     "type": "cowork",
     "addr": "Aldgate High Street, London EC3N 1AB (Aldgate station)",
     "cap": "<b>125</b>reception / 120 theatre",
@@ -288,12 +320,14 @@ const VENUES = [
     "note": "Bright, accessible, eco-friendly dry-hire hall with moveable acoustic walls and superfast Wi-Fi, right next to Aldgate station — a budget-friendly, flexible blank canvas for a community hack day.",
     "img": "https://aldgatecentre.org/images/TheAldgateCentre-2sq.jpg",
     "alt": "The Aldgate Centre open-plan event hall with natural light",
-    "top": false
+    "top": false,
+    "lat": 51.5140976,
+    "lng": -0.0763961
   },
   {
     "k": "events_no_6",
     "name": "Events @ No 6 (Royal College of Pathologists)",
-    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "area": "Spitalfields / Aldgate East",
     "type": "cowork",
     "addr": "6 Alie Street, London E1 8QT",
     "cap": "<b>up to 250</b>(whole venue) / 120 rooftop terrace",
@@ -304,12 +338,14 @@ const VENUES = [
     "note": "Award-winning modern conference venue over nine rooms plus an open-air top-floor terrace with City views, a short walk from Aldgate East; in-house AV and a dedicated events team suit a polished bilingual tech-week day.",
     "img": "https://images.squarespace-cdn.com/content/v1/5bbf51c5840b1645150cef7d/1738333022511-OPDTFWEL50ZG064MD3I3/No.6+Event+Space-32.jpg",
     "alt": "Events @ No 6 flexible event space with views over the City of London skyline",
-    "top": false
+    "top": false,
+    "lat": 51.5131617,
+    "lng": -0.072539
   },
   {
     "k": "christ_church_spitalfields",
     "name": "Christ Church Spitalfields (The Spitalfields Venue)",
-    "area": "Spitalfields / Aldgate East (E1 / EC2A)",
+    "area": "Spitalfields / Aldgate East",
     "type": "cowork",
     "addr": "Commercial Street, London E1 6LY",
     "cap": "<b>250</b>seated / 600 standing (Nave); 10-600 across Crypt & Nave",
@@ -320,12 +356,14 @@ const VENUES = [
     "note": "Hawksmoor Grade-I listed landmark turned blank-canvas event venue with in-house AV, Wi-Fi and wheelchair access — a striking, high-capacity Spitalfields backdrop that scales easily to a 200-person tech-week reception.",
     "img": null,
     "alt": "Christ Church Spitalfields Nave event space with white columns and vaulted ceiling",
-    "top": false
+    "top": false,
+    "lat": 51.5188309,
+    "lng": -0.0745979
   },
   {
     "k": "watchhouse_fitzrovia",
     "name": "WatchHouse Fitzrovia",
-    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "area": "Soho / Fitzrovia",
     "type": "coffee",
     "addr": "56 Wells Street, London W1T 3PT",
     "cap": "<b>~100</b>-150 (est, multiple floors inc. basement and outdoor terrace)",
@@ -336,12 +374,14 @@ const VENUES = [
     "note": "The newest and largest WatchHouse branch sits dead-centre in Fitzrovia — a Kandinsky-inspired, design-led flagship with specialty coffee, brunch and multi-level seating. The brand runs a formal private-hire programme across Houses via a single events email, making a bilingual tech-week hack day easy to book. Steps from Goodge Street and Tottenham Court Road tube for the three London tech clusters to converge on.",
     "img": "https://watchhouse.com/cdn/shop/files/WatchHouse-Fitzrovia-Feature2.jpg?v=1776252647&width=1600",
     "alt": "Kandinsky-inspired circular column and sleek counters inside WatchHouse Fitzrovia on Wells St",
-    "top": true
+    "top": true,
+    "lat": 51.5178902,
+    "lng": -0.1390999
   },
   {
     "k": "caravan_fitzrovia",
     "name": "Caravan Fitzrovia",
-    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "area": "Soho / Fitzrovia",
     "type": "coffee",
     "addr": "152 Great Portland Street, London W1W 6QA",
     "cap": "Full venue <b>up to 150</b>; Record Room up to 50 (private); Bolsover up to 34 (semi-private)",
@@ -352,12 +392,14 @@ const VENUES = [
     "note": "Specialty coffee roastery plus all-day restaurant in the former BBC Radio 1 HQ on Great Portland St. Whole-venue hire up to 150 makes it one of the few Fitzrovia coffee venues big enough for a 200-person hack-day hand-off; the lower-ground Record Room (ex-BBC studio, with AV screen and PA) is a built-in break-out / demo space.",
     "img": "https://caravanandco.com/cdn/shop/files/GlG08xOA.jpg?v=1682272601&width=1600",
     "alt": "Wide dining-room and bar of Caravan Fitzrovia on Great Portland Street",
-    "top": false
+    "top": false,
+    "lat": 51.5238146,
+    "lng": -0.1437048
   },
   {
     "k": "riding_house_fitzrovia",
     "name": "Riding House Fitzrovia",
-    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "area": "Soho / Fitzrovia",
     "type": "coffee",
     "addr": "43-51 Great Titchfield Street, London W1W 7PQ",
     "cap": "Whole venue <b>up to 165</b>; Dining Room private for 55; Lounge up to 25; Stables 14",
@@ -368,12 +410,14 @@ const VENUES = [
     "note": "Iconic all-day café-restaurant on Great Titchfield Street right in the heart of Fitzrovia. The dedicated events page offers whole-venue hire to 165, plus the large private Dining Room (55) and the Stables snug for speakers and sponsors. A long-time morning fixture of Fitzrovia's creative/tech workers.",
     "img": "https://www.riding.house/img/assets/fitzrovia-stamp-square.jpg",
     "alt": "Riding House Café Fitzrovia branded stamp and interior",
-    "top": false
+    "top": false,
+    "lat": 51.5183333,
+    "lng": -0.140642
   },
   {
     "k": "attendant_fitzrovia",
     "name": "Attendant Fitzrovia",
-    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "area": "Soho / Fitzrovia",
     "type": "coffee",
     "addr": "27A Foley Street, London W1W 6DY",
     "cap": "Up to <b>~30</b>reception (est, single room) — best for press/kick-off pods",
@@ -384,12 +428,14 @@ const VENUES = [
     "note": "London's best-known converted-Victorian-restroom specialty café, two streets off Great Portland St and playground-adjacent to BBC Broadcasting House. The venue is small but Gotham-grade photogenic for an affiliated soirée; evening-only private hire 19:00-23:30 published on the events page.",
     "img": "https://hb-prod.gumlet.io/uploads/space_photo/filename/38417/Soho_Grind_210.-3228469848-O.jpg?fit=crop&w=1600",
     "alt": "Wide interior hallway of Attendant Fitzrovia on Foley Street",
-    "top": false
+    "top": false,
+    "lat": 51.5192171,
+    "lng": -0.140697
   },
   {
     "k": "grind_soho",
     "name": "Grind Soho",
-    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "area": "Soho / Fitzrovia",
     "type": "coffee",
     "addr": "19 Beak Street, London W1F 9RP",
     "cap": "Up to <b>30</b>(in-house page); up to 50 standing in basement per headbox listing",
@@ -400,12 +446,14 @@ const VENUES = [
     "note": "B-Corp specialty coffee + cocktail bar in the heart of Soho, two blocks off Brewer St. Whole-venue private hire via dedicated Grind page gives a turnkey hack-day wrap-up venue immediately after sessions elsewhere; cocktail / espresso martini programme makes it a natural tech-week after-hours anchor.",
     "img": "https://grind.co.uk/cdn/shop/files/hire_soho_1_800x.webp?v=1730386508",
     "alt": "Coffee shop and cocktail bar interior of Grind Soho on Beak Street",
-    "top": false
+    "top": false,
+    "lat": 51.5121521,
+    "lng": -0.1383137
   },
   {
     "k": "honey_co_studio",
     "name": "Honey & Co. Studio",
-    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "area": "Soho / Fitzrovia",
     "type": "coffee",
     "addr": "47 Lamb's Conduit Street, London WC1N 3NG",
     "cap": "<b>70</b>standing / 50 seated",
@@ -416,12 +464,14 @@ const VENUES = [
     "note": "Honey & Co's deli + creative events space just south of Fitzrovia across the street from their flagship restaurant. Mornings are light-filled with deli and café culture; afternoons convert to a dedicated events room with sound system and bar counter. A roomy option in the Fitzrovia/Bloomsbury triangle when direct W1D/W1T cafes are full.",
     "img": "https://honeyandco-cdn-1.s3.eu-west-2.amazonaws.com/wp-content/uploads/2025/04/16120008/4.-Honey-Co-Studio-interior-events-space.jpg",
     "alt": "Honey & Co Studio light-filled interior events space",
-    "top": false
+    "top": false,
+    "lat": 51.5217657,
+    "lng": -0.1186293
   },
   {
     "k": "fora_broadwick_street",
     "name": "Fora Broadwick Street (The Hideaway)",
-    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "area": "Soho / Fitzrovia",
     "type": "cowork",
     "addr": "33 Broadwick Street, Soho, London W1F 0DQ",
     "cap": "<b>150</b>standing / 100 theatre / 50 cabaret (published; whole venue up to 220 per Fora workspace page)",
@@ -432,12 +482,14 @@ const VENUES = [
     "note": "Purpose-built subterranean event venue ('The Hideaway') beneath a Soho coworking hub, with reception area, bar, modular extensions and theatre/cabaret layouts — dead centre of Soho, 6 min from Oxford Circus and Tottenham Court Road. Biggest confirmed capacity in the postcode band and a dedicated events team; natural fit for a 50-200-person tech-week coffee/hack day.",
     "img": "https://cdn.sanity.io/images/8vw7318k/production/cba994c6cacef4d3b3106042636415a7eda0efcb-4000x2667.jpg",
     "alt": "Fora Broadwick Street (The Hideaway) interior",
-    "top": true
+    "top": true,
+    "lat": 51.5136207,
+    "lng": -0.1356763
   },
   {
     "k": "mortimer_house_by",
     "name": "Mortimer House by Maslow's (Loft & Gallery)",
-    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "area": "Soho / Fitzrovia",
     "type": "cowork",
     "addr": "37-41 Mortimer Street, Fitzrovia, London W1T 3JH",
     "cap": "<b>120</b>standing / 70 theatre (published, Loft & Gallery); whole house up to 300 across 5 spaces",
@@ -448,12 +500,14 @@ const VENUES = [
     "note": "Members-club coworking house in the heart of Fitzrovia with a light-filled penthouse Loft & Gallery (rooftop terrace attached, in-house catering, late licence). Regularly hired for talks, presentations and standing receptions; flexible layouts suit an all-day bilingual coffee/hack format, and the rooftop adds breakout air.",
     "img": "https://www.maslows.com/propeller/uploads/sites/6/2025/08/MH_LoftGallery_AH_070725_HighRes_jpeg_3722-1200x788.jpg",
     "alt": "Mortimer House by Maslow's (Loft & Gallery) interior",
-    "top": false
+    "top": false,
+    "lat": 51.5180007,
+    "lng": -0.1388111
   },
   {
     "k": "1_warwick_by",
     "name": "1 Warwick by Maslow's (Nolita Social / Library & Drawing Room / Yasmin)",
-    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "area": "Soho / Fitzrovia",
     "type": "cowork",
     "addr": "1 Warwick Street, Soho, London W1B 5LR",
     "cap": "<b>100</b>standing (Yasmin exclusive hire) / 80 standing (Library & Drawing Room) (published)",
@@ -464,12 +518,14 @@ const VENUES = [
     "note": "Sister Maslow's house on the Soho/Fitzrovia border: Library + Drawing Room (80 standing, DJ setup, bar) and the Yasmin floor with semi-private rooftop terrace (100 standing) give a built-in coffee-bar plus room for hacking clusters. Same dedicated events page/team as Mortimer House — good overflow or alternate date option.",
     "img": "https://www.maslows.com/propeller/uploads/sites/6/2025/08/21W_LivingRoom_HighRes_jpeg_170225_-1200x788.jpg",
     "alt": "1 Warwick by Maslow's (Nolita Social / Library & Drawing Room / Yasmin) interior",
-    "top": false
+    "top": false,
+    "lat": 51.5111617,
+    "lng": -0.1381036
   },
   {
     "k": "soho_works_dean",
     "name": "Soho Works Dean Street",
-    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "area": "Soho / Fitzrovia",
     "type": "cowork",
     "addr": "72-74 Dean Street, Soho, London W1D 3SG",
     "cap": "<b>10</b>-120 across 8 bookable meeting/event spaces (published range on Soho House event-spaces page)",
@@ -480,12 +536,14 @@ const VENUES = [
     "note": "Soho House's work arm on Dean Street (W1D) — non-members can book, so no membership gate for a public tech-week day. Eight lounge/boardroom-style rooms across four floors (10-120) with in-house catering and podcast studio; cluster of rooms lets you run bilingual tracks plus coffee service from the members' kitchen.",
     "img": null,
     "alt": "Soho Works Dean Street interior",
-    "top": false
+    "top": false,
+    "lat": 51.5136604,
+    "lng": -0.1328812
   },
   {
     "k": "huckletree_soho_elwood",
     "name": "Huckletree Soho (Elwood Cafe / Ellwood Gallery)",
-    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "area": "Soho / Fitzrovia",
     "type": "cowork",
     "addr": "Ingestre Court, Ingestre Place, Soho, London W1F 0JL",
     "cap": "<b>50</b>standing / 20 seated (Elwood Cafe, Huckletree site: evenings & weekends only); third-party listings cite ~80 standing for Ellwood Gallery (~est)",
@@ -496,12 +554,14 @@ const VENUES = [
     "note": "Tech-native coworking hub by Carnaby Street with an in-house cafe (Elwood) that converts to an evening/weekend event space — literally built around coffee. Smaller confirmed capacity (50) makes it best for the 50-80 end, or as an evening demo/social slot within a tech-week programme.",
     "img": "https://cdn.buttercms.com/Q1tUwO5oRTyh8zDl3jJE",
     "alt": "Huckletree Soho (Elwood Cafe / Ellwood Gallery) interior",
-    "top": false
+    "top": false,
+    "lat": 51.5129792,
+    "lng": -0.1351883
   },
   {
     "k": "huckletree_oxford_circus",
     "name": "Huckletree Oxford Circus (The Parlour)",
-    "area": "Soho / Fitzrovia (W1D / W1T)",
+    "area": "Soho / Fitzrovia",
     "type": "cowork",
     "addr": "Floor 4, 213 Oxford Street, London W1D 2LG",
     "cap": "<b>80</b>standing / 40 seated (published on Huckletree London event-spaces page)",
@@ -512,6 +572,8 @@ const VENUES = [
     "note": "Huckletree's Web3/tech-curated hub literally in W1D (213 Oxford St), one minute from Oxford Circus. The Parlour (80 standing) plus sun terrace gives a compact but perfectly located option for a 50-100-person hack/coffee day; same events team and email as the Soho hub.",
     "img": "https://cdn.buttercms.com/VMuFdGsnTdqFjWPlhubA",
     "alt": "Huckletree Oxford Circus (The Parlour) interior",
-    "top": false
+    "top": false,
+    "lat": 51.5153901,
+    "lng": -0.1400219
   }
 ];

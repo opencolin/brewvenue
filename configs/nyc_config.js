@@ -46,7 +46,9 @@ const VENUES = [
     "note": "✔ CONFIRMED HOST of the Sep 25 NYC event. Cafe/podcast/social club from the FROM dating-app team (opened May 2025): coffee bar, DJ + podcast setup, pool-table social floor — built for exactly this crowd. Daily 8am–4pm; evening events by arrangement. Own site was down at research time — Linktree is the live link.",
     "img": null,
     "alt": "Neon-lit social floor at Cafe Social Club",
-    "top": true
+    "top": true,
+    "lat": 40.7465163,
+    "lng": -73.9973214
   },
   {
     "k": "devocinwilliamsburgflagship",
@@ -62,7 +64,9 @@ const VENUES = [
     "note": "Greenhouse-style flagship with skylight, lush plantings, dual espresso bars and an on-site training lab already used for public classes and cuppings — the strongest coffee/hack-day room in Brooklyn. Open 7am-6pm daily.",
     "img": "https://www.devocion.com/cdn/shop/files/Devocion_Wburg_1025_LizClayman_012_3.jpg",
     "alt": "Sunlit greenhouse-style café interior with skylight and tropical plants",
-    "top": true
+    "top": true,
+    "lat": 40.7147568,
+    "lng": -73.9622348
   },
   {
     "k": "usaginy",
@@ -78,7 +82,9 @@ const VENUES = [
     "note": "Sou Fujimoto-designed café/gallery/library hybrid in DUMBO with 15 removable track-mounted panels for reconfiguring the room — purpose-built for takeovers, talks and workshops. Direct events email listed.",
     "img": null,
     "alt": "Minimalist white café-gallery interior with movable panels",
-    "top": false
+    "top": false,
+    "lat": 40.7038562,
+    "lng": -73.9869538
   },
   {
     "k": "brooklynroastingcompanymetropolitanave",
@@ -94,7 +100,9 @@ const VENUES = [
     "note": "The roaster's surviving Williamsburg café — open 7am-7pm daily with private tours/tastings offered, so staff are used to groups. Best as an overflow or satellite room; too small to solo-host 200. Phone (347) 799-1173.",
     "img": null,
     "alt": "Industrial roastery café with coffee sacks and brew bar",
-    "top": false
+    "top": false,
+    "lat": 40.7141926,
+    "lng": -73.9508267
   },
   {
     "k": "devocinflatiron",
@@ -110,7 +118,9 @@ const VENUES = [
     "note": "Devoción's large Flatiron room two blocks from Union Square carries the same plant-filled, high-design DNA as the Brooklyn flagship, and one brand relationship could cover both boroughs of the tour. Open 7am-6pm.",
     "img": null,
     "alt": "Plant-lined café interior with leather seating and espresso bar",
-    "top": false
+    "top": false,
+    "lat": 40.7343759,
+    "lng": -73.9850131
   },
   {
     "k": "thinkcoffeeunionsquare",
@@ -126,7 +136,9 @@ const VENUES = [
     "note": "Spacious, laptop-friendly room just off Union Square, open 7am-7pm with every subway line nearby; chain also runs a Flatiron shop at 568 6th Ave and does catering via EZCater. Book by phone (646) 991-0342.",
     "img": null,
     "alt": "Open-plan coffee shop with communal work tables",
-    "top": false
+    "top": false,
+    "lat": 40.733002,
+    "lng": -73.9897704
   },
   {
     "k": "irvingfarmnewyorkgramercy71irvingplace",
@@ -142,7 +154,9 @@ const VENUES = [
     "note": "The original Irving Farm café a block from Union Square — confirmed operating on the current locations page. Cozy neighborhood energy for a smaller-format hack morning rather than the full 200-person day.",
     "img": null,
     "alt": "Classic brick-walled café on a tree-lined Gramercy corner",
-    "top": false
+    "top": false,
+    "lat": 40.736822,
+    "lng": -73.9869914
   },
   {
     "k": "zeroirving",
@@ -158,7 +172,9 @@ const VENUES = [
     "note": "Purpose-built Union Square tech hub (opened 2023): flexible office/coworking floors, a tech training center, and a dedicated double-height conference/event venue — the strongest hack-day shape in the cell. Event page not linked from homepage; inquire via zeroirving.com/contact.",
     "img": "https://zeroirving.com/wp-content/themes/zeroirving/_content/building/home_lobby_rendering_intro.jpg",
     "alt": "Double-height lobby at 124 E 14th St",
-    "top": true
+    "top": true,
+    "lat": 40.7336511,
+    "lng": -73.9887397
   },
   {
     "k": "theyardflatironsouth",
@@ -174,7 +190,9 @@ const VENUES = [
     "note": "Coworking floors with exposed brick, Fifth Ave views, art-lined lounges, and a private conference room per floor; meeting/space rental via FlexSpace, larger buyouts by inquiry. No published event capacity — confirm headcount for 50+.",
     "img": "https://theyard.com/wp-content/uploads/2025/02/copy-of-006-min-1024x683.jpg",
     "alt": "Art-lined coworking lounge over Fifth Avenue",
-    "top": false
+    "top": false,
+    "lat": 40.7597438,
+    "lng": -73.9767802
   },
   {
     "k": "newlab",
@@ -190,7 +208,9 @@ const VENUES = [
     "note": "Deep-tech innovation hub in the Navy Yard with a long history of hosting hackathons and demo days; dedicated event-rental intake via TripleSeat (newlab.tripleseat.com). Note: paid rentals only — they state no free event space or tours currently.",
     "img": null,
     "alt": "Vaulted machine-shop hall turned innovation hub",
-    "top": true
+    "top": true,
+    "lat": 40.6990595,
+    "lng": -73.9751523
   },
   {
     "k": "theyardwilliamsburg",
@@ -206,7 +226,9 @@ const VENUES = [
     "note": "South Williamsburg coworking with 24/7 access, conference rooms, spacious lounges and a monthly events program; meeting rooms bookable via FlexSpace, staffed M-F with an on-site community manager ((646) 233-2786). Buyout capacity for 50+ needs confirmation.",
     "img": "https://theyard.com/wp-content/uploads/2023/12/12132023_pf_the_yard_williamsburg_19-1024x683.jpg",
     "alt": "Sunlit coworking lounge at 195 Broadway",
-    "top": false
+    "top": false,
+    "lat": 40.7099086,
+    "lng": -73.9617985
   },
   {
     "k": "greendeskdumbo",
@@ -222,7 +244,9 @@ const VENUES = [
     "note": "Dumbo-born flexible coworking operator with multiple buildings in the neighborhood; advertises 'conference and events in one of our fantastic large event spaces,' pricing varies by location. Good budget-friendly hack-day base steps from the waterfront.",
     "img": null,
     "alt": "Loft-style Dumbo coworking floor",
-    "top": false
+    "top": false,
+    "lat": 40.7038955,
+    "lng": -73.9854328
   },
   {
     "k": "dumboloft",
@@ -238,12 +262,14 @@ const VENUES = [
     "note": "1891 loft with high ceilings, wood columns, exposed brick and Manhattan Bridge views; a flexible raw rental space (run by BK Venues) that comfortably fits a 50-200 person coffee/hack day — bring your own AV/furniture plan. Same building also houses Green Desk coworking.",
     "img": "https://www.thedumboloft.com/wp-content/uploads/2019/04/DUMBO-Loft-Events_3.jpg",
     "alt": "Exposed-brick loft with wood columns",
-    "top": false
+    "top": false,
+    "lat": 40.7033003,
+    "lng": -73.9877572
   },
   {
     "k": "citizens_of_soho",
     "name": "Citizens of SoHo",
-    "area": "SoHo / NoLita (lower Manhattan, roughly Houston-Canal, Broadway-Lafayette)",
+    "area": "SoHo / NoLita",
     "type": "coffee",
     "addr": "201 Lafayette St, New York, NY 10012",
     "cap": "<b>60</b> seated / <b>120</b> standing",
@@ -254,12 +280,14 @@ const VENUES = [
     "note": "Australian-style all-day café directly on Lafayette in the heart of the target zone; whole-venue hire with in-house coffee/kitchen, so a bilingual hack day runs natively on their espresso bar. Listed on Tagvenue with published capacity and bookable form (their own domain is parked, so Tagvenue is the live booking surface).",
     "img": "https://www.tagvenue.com/resize/202511/4a/ff/widen-1680-noupsize;61817-citizens-of-soho-venue-pjRqwavT.jpg",
     "alt": "Daylit café floor at Citizens of SoHo",
-    "top": false
+    "top": false,
+    "lat": 40.7213537,
+    "lng": -73.9977481
   },
   {
     "k": "two_hands_noho",
     "name": "Two Hands NoHo",
-    "area": "SoHo / NoLita (lower Manhattan, roughly Houston-Canal, Broadway-Lafayette)",
+    "area": "SoHo / NoLita",
     "type": "coffee",
     "addr": "74 Bleecker St, New York, NY 10012",
     "cap": "~<b>80</b> seated / ~<b>150</b> standing (est)",
@@ -270,12 +298,14 @@ const VENUES = [
     "note": "Australian café/restaurant with a dedicated private-events page and a published per-location events email (noho@). On the eastern edge of the target block (Bleecker at Lafayette/Bowery corner); room reads café-first with communal tables and an open bar, well-suited to a 100-person bilingual coffee-hack takeover.",
     "img": "https://images.getbento.com/accounts/3cca86fd1cad92b59651204131a0ae59/media/images/35137TwoHands_NoHo_Mar24_LAlmeida-4652.jpg?w=1200&fit=crop&auto=compress,format&cs=origin&crop=focalpoint&fp-x=0.5&fp-y=0.5",
     "alt": "Airy dining room at Two Hands NoHo",
-    "top": false
+    "top": false,
+    "lat": 40.726242,
+    "lng": -73.9955434
   },
   {
     "k": "the_farm_soho",
     "name": "The Farm SoHo",
-    "area": "SoHo / NoLita (lower Manhattan, roughly Houston-Canal, Broadway-Lafayette)",
+    "area": "SoHo / NoLita",
     "type": "coffee",
     "addr": "447 Broadway, 2nd Floor, New York, NY 10013",
     "cap": "<b>50</b> seated / <b>75</b> standing",
@@ -286,12 +316,14 @@ const VENUES = [
     "note": "Hybrid cowork/event loft with a dedicated events page and published capacities on Broadway just below Canal; bottoms out the room-shape curve (50 max) but is the closest thing to a built-for-hack-day blank canvas with in-house coffee. Custom layouts, A/V, and booking flow at thefarmsoho.flexspace.ai are already live.",
     "img": "https://www.thefarmsoho.com/wp-content/uploads/2023/11/2-Loft-Venue-scaled.jpg",
     "alt": "Reclaimed-wood communal worktables at The Farm SoHo",
-    "top": false
+    "top": false,
+    "lat": 40.720641,
+    "lng": -74.0011862
   },
   {
     "k": "218_nolita_event",
     "name": "218 Nolita Event Space",
-    "area": "SoHo / NoLita (lower Manhattan, roughly Houston-Canal, Broadway-Lafayette)",
+    "area": "SoHo / NoLita",
     "type": "cowork",
     "addr": "218 Bowery, New York, NY 10012",
     "cap": "~<b>120</b> seated / ~<b>200</b> standing (est)",
@@ -302,12 +334,14 @@ const VENUES = [
     "note": "Industrial-chic NoLita venue on Bowery with exposed brick, wooden floors, and a marble bar. The open-floor plan gives plenty of room for hack-day tables and mingling, and the 4,000 sq ft footprint can absorb a 50–200 person bilingual tech crowd.",
     "img": "https://www.tagvenue.com/resize/8f/88/fit-900-600;91673-218-event-space-room.jpg",
     "alt": "Exposed brick Nolita event loft with wooden floors and pendant lights",
-    "top": false
+    "top": false,
+    "lat": 40.725056,
+    "lng": -73.9922289
   },
   {
     "k": "spring_place",
     "name": "Spring Place",
-    "area": "SoHo / NoLita (lower Manhattan, roughly Houston-Canal, Broadway-Lafayette)",
+    "area": "SoHo / NoLita",
     "type": "cowork",
     "addr": "6 St Johns Lane, New York, NY 10013",
     "cap": "~<b>80</b> seated / ~<b>150</b> standing (est)",
@@ -318,12 +352,14 @@ const VENUES = [
     "note": "Members-only creative coworking and event hub in a converted Tribeca printing building. Multiple lounges, a restaurant/bar, and modular event spaces support a blended coffee-service + hacking format; on-site event team handles 50–200 person cultural and tech gatherings.",
     "img": "https://cdn.prod.website-files.com/68273a941eff82b585262fe9/68c9bf8cf8867fd3ccb540e8_Restaurant_1.webp",
     "alt": "Modern Spring Place lounge with contemporary furniture and warm lighting",
-    "top": false
+    "top": false,
+    "lat": 40.7208622,
+    "lng": -74.0059469
   },
   {
     "k": "neuehouse_madison_square",
     "name": "NeueHouse Madison Square",
-    "area": "SoHo / NoLita (lower Manhattan, roughly Houston-Canal, Broadway-Lafayette)",
+    "area": "SoHo / NoLita",
     "type": "cowork",
     "addr": "110 East 25th Street, New York, NY 10010",
     "cap": "<b>100</b> seated / <b>235</b> standing (Gallery); <b>240</b> (Penthouse)",
@@ -334,12 +370,14 @@ const VENUES = [
     "note": "Premium Flatiron creative workspace with terracotta-walled Gallery (projector, stepped seating) and a sunlit Penthouse. High-end coffee service and hospitality team are built for tech-adjacent gatherings; location is a short walk north of the strict SoHo/NoLita boundary.",
     "img": "https://images.ctfassets.net/rpinqlxtcitg/2bi4WkK97O0RdSblqGitCT/dc2a3b1c61f57288bd19fdc3d0a765d9/NH_-_Penthouse.jpg",
     "alt": "NeueHouse Madison Square Penthouse event space with city views",
-    "top": false
+    "top": false,
+    "lat": 40.7410116,
+    "lng": -73.9849372
   },
   {
     "k": "verci",
     "name": "Verci",
-    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "area": "Flatiron / Union Square",
     "type": "coffee",
     "addr": "45 E 20th St, New York, NY 10003",
     "cap": "~<b>80</b> seated / <b>150</b> standing (est)",
@@ -350,12 +388,14 @@ const VENUES = [
     "note": "3-story members' club with cafe/bar, social space, and rooftop (tour-trace seed via AI Tinkerers NY Tech Week Demo Day — hosted Builder of Things NY Tech Week 2026). Open floor plan and barista bar suit bilingual coffee/hack flow; can open to public bookings via 'Rent the space' link.",
     "img": "https://images.squarespace-cdn.com/content/v1/633267f31b2e7a42908c8155/68384256-1c82-4b4a-a3e3-639dffc7999a/2045+Clubhouse+-+Cafe%CC%81+%26+Bar.png",
     "alt": "Verci events space",
-    "top": false
+    "top": false,
+    "lat": 40.7343759,
+    "lng": -73.9850131
   },
   {
     "k": "moxy_chelsea_event",
     "name": "Moxy Chelsea Event Space + Lobby Cafe",
-    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "area": "Flatiron / Union Square",
     "type": "coffee",
     "addr": "105 W 28th St, New York, NY 10001",
     "cap": "<b>150</b> standing / <b>120</b> seated; Lobby Bar full buyout <b>200</b> reception",
@@ -366,12 +406,14 @@ const VENUES = [
     "note": "Lobby cafe converts into day-to-night event space with terrace; meeting studios offer flexible hack-day layout. Hotel events team handles catering and AV; published capacities fit 50–200.",
     "img": "https://moxychelsea.com/content/uploads/sites/3/2025/06/tinywow_Feroce-Caffe_81898489-1-1920x1280.jpg",
     "alt": "Moxy Chelsea meeting and event space",
-    "top": false
+    "top": false,
+    "lat": 40.74638,
+    "lng": -73.9910396
   },
   {
     "k": "resident_madison_park",
     "name": "Resident Madison Park / Union Square",
-    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "area": "Flatiron / Union Square",
     "type": "coffee",
     "addr": "115 E 23rd St, New York, NY 10010",
     "cap": "~<b>50</b>–<b>120</b> (est, across spaces)",
@@ -382,12 +424,14 @@ const VENUES = [
     "note": "Curated startup coworking with event management support and lounge/cafe areas (tour-trace seed via AI Tinkerers Builder Co-working Day at Resident). Two nearby locations; contact directly for events availability.",
     "img": "https://ik.imagekit.io/7uki45mt9/images/tr:w-3840,f-webp,q-50/3f5fb63912ed68bd87020363704b806963a55cfa-2000x1333.jpg/19-DSC02313.webp",
     "alt": "Resident coworking lounge",
-    "top": false
+    "top": false,
+    "lat": 40.7400208,
+    "lng": -73.985548
   },
   {
     "k": "blender_workspace",
     "name": "Blender Workspace",
-    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "area": "Flatiron / Union Square",
     "type": "cowork",
     "addr": "135 Madison Ave, 8th Fl (at E 31st St), New York, NY 10016",
     "cap": "Auditorium: <b>250</b> theater / <b>300</b> standing · Event Suite: <b>100</b> theater / <b>200</b> standing (published)",
@@ -398,12 +442,14 @@ const VENUES = [
     "note": "Best all-around fit: 15,000 sq ft NoMad floor with a 5,000 sq ft auditorium and separate Event Suite sized exactly for a 50-200-person coffee/hack day, in-house hospitality bar, coffee, AV and catering, and a published client list (Google, Netflix, JPMorgan) that proves corporate tech events land here.",
     "img": null,
     "alt": "Modern lounge seating at Blender Workspace",
-    "top": false
+    "top": false,
+    "lat": 40.7460832,
+    "lng": -73.9839897
   },
   {
     "k": "betaworks",
     "name": "Betaworks",
-    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "area": "Flatiron / Union Square",
     "type": "cowork",
     "addr": "29 Little W 12th St, New York, NY 10014 (just west of the cell, Meatpacking edge)",
     "cap": "<b>200</b> person street-level event space; 110 audience chairs; board room fits <b>25-40</b> (published)",
@@ -414,12 +460,14 @@ const VENUES = [
     "note": "Pre-vetted builder room: hosted AI Tinkerers OpenClaw Demo Night (Feb 2026) and the ClawHack NY 12-hour hackathon (Feb 28, 2026) — proven hack-day layout with stage, 160-inch projector, mics, bar, check-in lobby and back-of-house coffee prep. Tour-trace seed via AI Tinkerers NYC.",
     "img": null,
     "alt": "Betaworks stage hero shot facing the presentation wall in the street-level lounge",
-    "top": false
+    "top": false,
+    "lat": 40.7399624,
+    "lng": -74.0071199
   },
   {
     "k": "nyc_seminar_conference",
     "name": "NYC Seminar & Conference Center",
-    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "area": "Flatiron / Union Square",
     "type": "cowork",
     "addr": "114 W 26th St, 3rd Fl, New York, NY 10001",
     "cap": "Event Hall <b>2</b>: <b>200</b> seated / <b>250</b> standing (published); halls range 800-2,300 sq ft",
@@ -430,12 +478,14 @@ const VENUES = [
     "note": "20-year Flatiron workhorse with combinable event halls up to ~2,300 sq ft, online Tripleseat booking, in-house catering and value pricing — a practical mid-budget room that comfortably swallows a 100-200-person day of hacking plus coffee service.",
     "img": null,
     "alt": "NYC Seminar & Conference Center exterior entrance at 114 West 26th Street",
-    "top": false
+    "top": false,
+    "lat": 40.7449805,
+    "lng": -73.9923808
   },
   {
     "k": "the_malin_flatiron",
     "name": "The Malin Flatiron",
-    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "area": "Flatiron / Union Square",
     "type": "cowork",
     "addr": "895 Broadway, 5th Fl, New York, NY 10003",
     "cap": "<b>32,700</b>sq ft floor; meeting rooms up to <b>30</b> ppl; private events from intimate to full buyout ~<b>60-120</b> (est)",
@@ -446,12 +496,14 @@ const VENUES = [
     "note": "Design-forward coworking floor one block off Union Square whose private-events section offers hires from offsites to full buyouts; AI/VC-heavy member base is the exact crowd for a tech-week coffee day. Bookable-capacity details only via inquiry, hence contact flag.",
     "img": null,
     "alt": "The Malin Flatiron bright communal lounge with velvet seating and artwork",
-    "top": false
+    "top": false,
+    "lat": 40.738896,
+    "lng": -73.9899828
   },
   {
     "k": "public_records_cafe",
     "name": "Public Records (Cafe Public)",
-    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge",
     "type": "coffee",
     "addr": "233 Butler St, Brooklyn, NY 11217",
     "cap": "<b>200</b> standing / <b>200</b> seated across rooms (published by EventUp venue listing); five linked rooms let a 50–200 hack-day scale up/down",
@@ -462,12 +514,14 @@ const VENUES = [
     "note": "In-zone at 233 Butler, ~never more than a 2-min walk from 337 Butler. The historic ASPCA HQ holds a record bar + all-day vegan Cafe Public + Sound Room + Atrium + plant-nursery courtyard (The Nursery) — daytime cafe over Sitting-capacity performance rooms, exactly the coffee+builder shape; full-time events inbox parties@publicrecords.nyc and a dedicated 'PRIVATE EVENTS' form linked from the homepage. Room-shape fit: Cafe Public is the coffee front-room, Sound Room/Nursery absorb 50–200 builders with house sound and backing kitchen.",
     "img": "https://publicrecords.nyc/wp-content/uploads/2025/11/atrium-cheers-3-copy-450x300.jpg",
     "alt": "Public Records Atrium interior with guests seated around the bar under exposed steel beams",
-    "top": false
+    "top": false,
+    "lat": 40.6821674,
+    "lng": -73.9863886
   },
   {
     "k": "devocin_downtown_brooklyn",
     "name": "Devoción — Downtown Brooklyn",
-    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge",
     "type": "coffee",
     "addr": "276 Livingston St, Brooklyn, NY 11201 (corner of Bond)",
     "cap": "~<b>80</b> seated / ~<b>120</b> standing (est) — 1,700+ sq ft hall with 18-ft floor-to-ceiling windows and indoor tropical garden, Boerum Hill × Downtown BK edge",
@@ -478,12 +532,14 @@ const VENUES = [
     "note": "Devoción's largest Downtown-Brooklyn room sits right at the Boerum Hill edge of the cell, ~never a 10-min walk from 337 Butler. A high-ceiling, plant-filled cafe that routinely runs community pop-ups — the direct-trade farm-fresh Colombian coffee program is also a bilingual hook (EN/ES on menus and bags). No published events inbox on this page; flag as contact via the cafe's main line listed on-site.",
     "img": "https://www.devocion.com/cdn/shop/files/DowntownBK_Devocion_LizClayman_001_1.jpg",
     "alt": "Devoción Downtown Brooklyn cafe interior with tropical indoor garden and 18-foot windows",
-    "top": false
+    "top": false,
+    "lat": 40.6902844,
+    "lng": -73.9870711
   },
   {
     "k": "brooklyn_roasting_company",
     "name": "Brooklyn Roasting Company — Navy Yard Roastery HQ",
-    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge",
     "type": "coffee",
     "addr": "Building 123, Brooklyn Navy Yard, Brooklyn, NY 11205",
     "cap": "~<b>150</b> standing (est) — 120-year-old industrial roastery with 60-ft ceilings, private-event buyouts offered by the roastery",
@@ -494,12 +550,14 @@ const VENUES = [
     "note": "Working roastery inside the Navy Yard (adjacent to Newlab) that explicitly opens its shipyard-scale floor for fully-customizable private events ('no idea is too big'). On-site coffee program is the venue's own roast — a self-catering hack-day room. Reachable events contact published as info@brooklynroasting.com on the linked contact page.",
     "img": "https://www.brooklynroasting.com/cdn/shop/files/OneClintonDSCF0911.jpg",
     "alt": "Latte art in a Brooklyn Roasting Company mug at the Navy Yard roastery cafe",
-    "top": false
+    "top": false,
+    "lat": 40.6993266,
+    "lng": -73.9755562
   },
   {
     "k": "the_shop_at",
     "name": "The Shop at 420 Carroll",
-    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge",
     "type": "cowork",
     "addr": "420 Carroll St, 2nd Floor, Brooklyn, NY 11215",
     "cap": "~<b>150</b>–<b>200</b> event / <b>12,000</b> sq ft total (est)",
@@ -510,12 +568,14 @@ const VENUES = [
     "note": "New 12,000-sq-ft Gowanus coworking space with outdoor patio deck, breakout rooms, hospitality support and FlexSpace booking; walking distance to Union St R station, Beanmonger coffee on site.",
     "img": "https://shopworkspace.com/wp-content/uploads/2026/05/Screenshot-2026-05-18-152000_1240x880_acf_cropped.png",
     "alt": "Outdoor patio deck at The Shop Brooklyn, Gowanus Canal",
-    "top": false
+    "top": false,
+    "lat": 40.6777929,
+    "lng": -73.9885111
   },
   {
     "k": "zerospace",
     "name": "ZeroSpace",
-    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge",
     "type": "cowork",
     "addr": "337-345 Butler St, Brooklyn, NY 11217",
     "cap": "~<b>300</b>+ across <b>40,000</b> sq ft of rentable warehouse (est; Studio B alone 16,500 sq ft)",
@@ -526,12 +586,14 @@ const VENUES = [
     "note": "Sits literally at the target address (337-345 Butler St). Four interconnected mostly column-free studios with 16–35 ft ceilings, drive-in loading bays, plus a Luma-hosted community events calendar for tech/arts meetups.",
     "img": "https://images.squarespace-cdn.com/content/v1/61c4a90f724d79385b3a744d/1640722734890-YBHYZAK147LAEF64IDL2/DSC09381.jpg",
     "alt": "ZeroSpace Studio B, 16,500 sq ft daylight warehouse",
-    "top": false
+    "top": false,
+    "lat": 40.6803057,
+    "lng": -73.9819596
   },
   {
     "k": "littlefield",
     "name": "littlefield",
-    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge",
     "type": "cowork",
     "addr": "635 Sackett St, Brooklyn, NY 11217",
     "cap": "<b>300</b> in Performance Space / <b>150</b> full-venue private rental",
@@ -542,12 +604,14 @@ const VENUES = [
     "note": "Converted 6,200 sq ft Gowanus warehouse with stage, EAW A/V, gallery/bar front room; 300-capacity performance room or movable-partition 100-cap gallery + bar. Day-time coffee-hack friendly industrial shape in the heart of the target zone.",
     "img": null,
     "alt": "littlefield Gowanus industrial performance room with stage",
-    "top": false
+    "top": false,
+    "lat": 40.6784807,
+    "lng": -73.9833773
   },
   {
     "k": "civic_hall_nyc",
     "name": "Civic Hall NYC (The Bernard Goldstein Center)",
-    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge",
     "type": "cowork",
     "addr": "124 East 14th St, New York, NY 10003",
     "cap": "<b>250</b> gala / <b>300</b>+ keynote / <b>500</b>+ standing in Craig Newmark Auditorium; 10–800 overall",
@@ -558,12 +622,14 @@ const VENUES = [
     "note": "Tour-trace seed via NYC AI Tinkerers (hosted the ElevenLabs Worldwide Hackathon Dec 2025 and several 2026 chapter events). Union Square transit hub, nonprofit rates, proven 100–150-person hackathon room; a short F/L/N/R/W hop from Downtown Brooklyn.",
     "img": "https://cdn.prod.website-files.com/65c43c2479e30f10b200c063/65d2e688c520c9a4b7ddd009_20231115_151913%201.png",
     "alt": "Craig Newmark Auditorium wall of glass facing Irving Place",
-    "top": false
+    "top": false,
+    "lat": 40.7336511,
+    "lng": -73.9887397
   },
   {
     "k": "union_square_loft",
     "name": "Union Square Loft",
-    "area": "Flatiron / Union Square / Chelsea (roughly 14th-30th St, 5th-7th Ave)",
+    "area": "Flatiron / Union Square",
     "type": "cowork",
     "addr": "873 Broadway, Suite 408, New York, NY 10003 (Flatiron)",
     "cap": "<b>60</b> total: 45 theater / 35 seated / 55 standing (published)",
@@ -574,12 +640,14 @@ const VENUES = [
     "note": "Intimate all-inclusive Flatiron loft with 13-ft ceilings, pro Fulcrum sound and everything included (furniture, lighting, AV) — a plug-and-play room for the 50-60-person end of the range; partners with neighboring spaces for larger builds.",
     "img": null,
     "alt": "Open loft interior at Union Square Loft with tall windows and exposed industrial ceiling",
-    "top": false
+    "top": false,
+    "lat": 40.7380125,
+    "lng": -73.9902216
   },
   {
     "k": "brooklynroastingcompany200flushingaveout",
     "name": "Brooklyn Roasting Company — 200 Flushing Ave Outpost",
-    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge (around 337 Butler St, plus adjacent Navy Yard / Newlab)",
+    "area": "Gowanus / Boerum Hill / Downtown Brooklyn edge",
     "type": "coffee",
     "addr": "200 Flushing Ave, Brooklyn, NY 11205 (Navy Yard edge, by Newlab)",
     "cap": "~<b>40</b> seated (est) — satellite outpost cafe open 6am–7pm daily, walkable to Newlab",
@@ -590,6 +658,8 @@ const VENUES = [
     "note": "BRC's newest full-service outpost sits at the Navy Yard edge right by Newlab, open 6am–7pm daily — best as an overflow/day-two brew base for smaller workshop pods (est. 40 seats) while the roastery hosts the main room. Same published contact as HQ: info@brooklynroasting.com / (718) 855-1000.",
     "img": null,
     "alt": "Brooklyn Roasting Company 200 Flushing Ave cafe storefront at the Brooklyn Navy Yard",
-    "top": false
+    "top": false,
+    "lat": 40.6975995,
+    "lng": -73.9679808
   }
 ];

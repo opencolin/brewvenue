@@ -158,11 +158,11 @@
     border-bottom: 1px solid var(--grid);
     display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
   }
-  .fgroup { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 999px; padding: 3px; }
+  .fgroup { display: flex; flex-wrap: wrap; gap: 4px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 18px; padding: 3px; }
   .chip {
     font-size: 12.5px; font-weight: 500; color: var(--ink-2);
     padding: 5px 12px; border-radius: 999px; border: none; background: transparent;
-    cursor: pointer; white-space: nowrap;
+    cursor: pointer; text-align: left;
   }
   .chip:hover { color: var(--ink-1); }
   .chip.on { background: var(--chip-on); color: var(--chip-on-ink); font-weight: 600; }
@@ -233,6 +233,10 @@
     h1 { font-size: 22px; }
     .count { flex-basis: 100%; margin-left: 2px; }
   }
+  @media (min-width: 901px) {
+    body.map-open .wrap { max-width: calc(50vw - 44px); margin: 0; }
+    body.map-open .grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -286,8 +290,31 @@
 /* Map primitives — Leaflet helpers (also used by index.html) */
 (function () {
   const ACCENT = { live: "#0ca30c", rsvp: "#2a78d6", soon: "#898781" };
-  const NOMINATIM = "https://nominatim.openstreetmap.org/search?format=json&limit=1&q=";
-  const CACHE_NS = "venue-coords:";
+  const isDark = () => {
+    const t = document.documentElement.getAttribute("data-theme");
+    return t === "dark" || (t !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  };
+  function baseLayers(L) {
+    return {
+      light: L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }),
+      dark: L.tileLayer("https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Black_Marble/default/2016-01-01/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg", {
+        maxZoom: 19, maxNativeZoom: 8,
+        attribution: "NASA Earth at Night (VIIRS Black Marble) · EOSDIS GIBS",
+      }),
+    };
+  }
+  window.__syncMapTheme = function () {
+    const map = window.__map;
+    if (!map || !map.__layers) return;
+    const want = isDark() ? map.__layers.dark : map.__layers.light;
+    const other = isDark() ? map.__layers.light : map.__layers.dark;
+    if (!map.hasLayer(want)) map.addLayer(want);
+    if (map.hasLayer(other)) map.removeLayer(other);
+  };
+
 
   window.initMap = function (container, data) {
     const L = window.L;
@@ -295,10 +322,8 @@
     const el = container;
     el.innerHTML = "";
     const map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+    map.__layers = baseLayers(L);
+    (isDark() ? map.__layers.dark : map.__layers.light).addTo(map);
     const pts = [];
     (data.venues || []).forEach(v => pts.push(v));
     (data.cities || []).forEach(c => pts.push(c));
@@ -319,7 +344,7 @@
       latLngs.push(m.getLatLng());
     });
     if (latLngs.length === 1) map.setView(latLngs[0], 12);
-    else if (latLngs.length > 1) map.fitBounds(L.latLngBounds(latLngs), { padding: [30, 30] });
+    else if (latLngs.length > 1) { map.__bounds = L.latLngBounds(latLngs); map.fitBounds(map.__bounds, { padding: [30, 30] }); }
     else map.setView([0, 0], 2);
     return map;
   };
@@ -329,61 +354,34 @@
     if (el.style.display === "block") {
       el.style.display = "none";
       el.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("map-open");
       return false;
     }
     el.style.display = "block";
     el.setAttribute("aria-hidden", "false");
+    document.body.classList.add("map-open");
     if (!el.dataset.mounted) {
       el.dataset.mounted = "1";
       window.__map = window.initMap(el, data);
-      requestAnimationFrame(() => window.__map.invalidateSize());
+      requestAnimationFrame(() => {
+        window.__map.invalidateSize();
+        if (window.__map.__bounds) window.__map.fitBounds(window.__map.__bounds, { padding: [30, 30] });
+      });
     }
     return true;
   };
 
-  window.__geoCache = {};
-  function cacheKeyForCities() { return CACHE_NS + "cities:1"; }
-  function getCityCenters() { return window.__citiesCache || null; }
-
-  window.toggleCityMap = async function () {
+  // Venues carry build-time lat/lng (scripts/geocode_configs.py) — no client geocoding.
+  window.toggleCityMap = function () {
     const el = document.getElementById("mapbox");
-    if (el.style.display === "block") {
-      el.style.display = "none";
-      document.getElementById("mapbtn").textContent = "🗺️ View Map";
-      return;
-    }
-    document.getElementById("mapbtn").textContent = "🗺️ Loading…";
-    if (!el.dataset.mounted) {
-      el.dataset.mounted = "1";
-      const cache = caches && caches.open ? await caches.open("compute-cafe") : null;
-      const cachedCoords = cache ? await cache.match(CACHE_NS + "venues") : null;
-      let out;
-      if (cachedCoords) {
-        try { out = await cachedCoords.json(); } catch {}
-      }
-      if (!out) {
-        out = [];
-        const batch = VENUES.slice(0, 50);
-        await Promise.all(batch.map(async v => {
-          if (!v.addr) { out.push({...v, lat: null, lng: null}); return; }
-          try {
-            const resp = await fetch(NOMINATIM + encodeURIComponent(v.addr));
-            const arr = await resp.json();
-            const first = arr[0] || {};
-            out.push({...v, lat: first.lat ? parseFloat(first.lat) : null, lng: first.lon ? parseFloat(first.lon) : null});
-          } catch {
-            out.push({...v, lat: null, lng: null});
-          }
-        }));
-        if (cache) await cache.put(CACHE_NS + "venues", new Response(JSON.stringify(out)));
-      }
-      const pts = out.filter(v => v.lat !== null && v.lng !== null);
-      window.__map = window.initMap(el, { venues: pts });
-      requestAnimationFrame(() => window.__map.invalidateSize());
-    }
-    el.style.display = "block";
-    el.setAttribute("aria-hidden", "false");
-    document.getElementById("mapbtn").textContent = "🗺️ Hide Map";
+    const pts = (typeof VENUES !== "undefined" ? VENUES : [])
+      .filter(v => v.lat && v.lng)
+      .map(v => ({ name: v.name, area: v.area, href: v.link, lat: v.lat, lng: v.lng }));
+    const open = window.toggleMap(el, { venues: pts });
+    const btn = document.getElementById("mapbtn");
+    btn.textContent = open ? "🗺️ Hide Map" : "🗺️ View Map";
+    btn.classList.toggle("open", !!open);
+    btn.setAttribute("aria-pressed", String(!!open));
   };
 })();
 
@@ -425,7 +423,6 @@ const TYPE_META = {
 //   note: 1-2 lines on why it works — layout, vibe, logistics, caveats
 //   img: hotlinked photo url found during research, or null for placeholder
 //   alt: what the photo shows
-const CITY_SLUG = (CONFIG.title||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
 const VENUES = [
   {k:"sample-1", name:"Sample Roasters", area:"Northside", type:"coffee", top:true,
    addr:"123 Main St, Sample City", cap:"Espresso service up to <b>200</b> · patio",
@@ -445,6 +442,7 @@ const VENUES = [
 ];
 
 /* ============================ EDIT ABOVE ============================ */
+const CITY_SLUG = location.pathname.split("/").filter(Boolean).pop() || "";
 
 const state = { area: "all", type: "all", dedicatedOnly: false };
 const AREAS = [...new Set(VENUES.map(v => v.area))];
@@ -547,6 +545,7 @@ function cycleTheme(){
   const next = cur === "dark" ? "light" : cur === "light" ? "dark"
     : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
   r.setAttribute("data-theme", next);
+  if (window.__syncMapTheme) window.__syncMapTheme();
 }
 
 /* star-venue wiring */

@@ -31,7 +31,9 @@ const VENUES = [
     "note": "Bilingual JP/EN dedicated rental page with 3 rentable floors sized exactly at 100/100/300, published hourly rates, equipment list and charter forms. Ground-floor cafe bar serves barista coffee all day, escalator links straight to Miyashita Park for outdoor hack-day overflow; PA/DJ/lighting + dedicated staff make it the strongest tech-week fit. Phone 03-6712-5277 listed for large inquiries.",
     "img": "https://www.ortokyo.com/wp-content/themes/or-renewal/images/index/top/00_AJAJAJAJ.jpg",
     "alt": "OR Miyashita Park atrium event floor",
-    "top": true
+    "top": true,
+    "lat": 35.6619561,
+    "lng": 139.7019265
   },
   {
     "k": "jinnan_cafe_shibuya",
@@ -47,7 +49,9 @@ const VENUES = [
     "note": "Coffee-forward loft cafe in Jinnan with its own 貸切 FAQ confirming corporate/Promotion use, projector, mic/PA/screen/stage all on-site, 24h option (advance arrangement) and Wi-Fi. B1 (~100 seats at 120 standing capacity) plus 1F + terrace gives natural breakout zones for a hack-day; bookings via 03-5728-3786 or reservations hotline 050-1720-1399.",
     "img": "https://jinnancafe.com/shibuya/wp-content/uploads/sites/2/2022/12/渋谷店店舗トップ加工.jpg",
     "alt": "Jinnan Cafe Shibuya loft cafe",
-    "top": false
+    "top": false,
+    "lat": 35.662968,
+    "lng": 139.6999485
   },
   {
     "k": "eight_space",
@@ -63,7 +67,9 @@ const VENUES = [
     "note": "Startup-incubation cafe that already runs monthly pitch nights and hands-on AI workshops for 20–40 pax, so the tech-week format is native. Wi-Fi + power at all seats, 100-inch projector + 5.1ch audio + streaming gear + kitchen, cafe space ¥19,800/h and event space listed for up to 60 with revenue-share sponsorship option.",
     "img": null,
     "alt": "Eight space coworking cafe interior",
-    "top": false
+    "top": false,
+    "lat": 35.6731903,
+    "lng": 139.7084267
   },
   {
     "k": "goblin_5_crossties",
@@ -79,7 +85,9 @@ const VENUES = [
     "note": "Working Scramble Square 17F coffee hall configured as a rental floor — glass-walled with direct skyline views over the crossing, elevator-accessible, barrier-free, with 2 free mic/PA/projector units on 3F policies documented. Direct station access is the best logistics in this set for a Sept tech-week shuttle.",
     "img": null,
     "alt": "GOBLIN Scramble Square cafe interior",
-    "top": false
+    "top": false,
+    "lat": 35.6583792,
+    "lng": 139.7022161
   },
   {
     "k": "goblin_cafehotel_hotel",
@@ -127,7 +135,9 @@ const VENUES = [
     "note": "Iconic green-carpet creative space inside Hikarie, 200-inch screen + full AV. Curated by the 8/ committee — screenings, exhibitions, talks, hack events. Committee approval required. Tel 03-6418-4718.",
     "img": "https://space.hikarie8.com/hubfs/hikarie8_2024/assets/images/home/kv.jpg",
     "alt": "Green-carpet open event space COURT on Hikarie 8F",
-    "top": false
+    "top": false,
+    "lat": 35.6591803,
+    "lng": 139.7036853
   },
   {
     "k": "sakura_deeptech_shibuya",
@@ -143,7 +153,9 @@ const VENUES = [
     "note": "Purpose-built deeptech innovation hub run by Tokyu Land + Scrum Studio. Event space from ¥200k, food OK, open to public booking (not just members). Direct Shibuya Station New South Gate. Event-request form on /contact/.",
     "img": "https://www.sakuradeeptechshibuya.com/wp/wp-content/uploads/2026/06/event_01-1024x614.jpg",
     "alt": "Modern deeptech event space inside Shibuya Sakura Stage 12F",
-    "top": false
+    "top": false,
+    "lat": 35.6562589,
+    "lng": 139.702431
   },
   {
     "k": "shibuya_cast_space",
@@ -159,7 +171,9 @@ const VENUES = [
     "note": "Hybrid indoor 190sqm hall + 290sqm outdoor garden with bar counter; 190-inch LED display. Combined-use 20% discount. Operated by Theatre Workshop with bilingual coordination. 1 min from Shibuya Sta B1 exit. Tel 03-5778-9172.",
     "img": "https://eventspace.shibuyacast.jp/hubfs/SHIBUYA-CAST2022/assets/images/top/img-main01.jpg",
     "alt": "SHIBUYA CAST ground-floor event hall opening onto garden plaza",
-    "top": false
+    "top": false,
+    "lat": 35.662681,
+    "lng": 139.7026492
   },
   {
     "k": "shibuya_solasta_conference",
@@ -175,7 +189,9 @@ const VENUES = [
     "note": "Designer conference floor with 7 rooms (22-199sqm) + 200sqm shared designer lounge. NURO 10G internet, 120-inch projectors, full-day coordinators. Full buyout lets you run parallel tracks + reception — strong for a 150-200 person hackday. Tel 03-5784-2604.",
     "img": "https://shibuya.infield95.com/asset/media/images/home/variation_img01.jpg",
     "alt": "Solasta designer conference room and lounge interior",
-    "top": false
+    "top": false,
+    "lat": 35.6563754,
+    "lng": 139.6964751
   },
   {
     "k": "bloom_gate_at",
@@ -191,12 +207,14 @@ const VENUES = [
     "note": "Three linked zones + 675sqm outdoor NIGIWAI STAGE. Permanent W8.13m x H4.5m LED visions in zones A/B, kitchen in C. 4-language site incl. full English — easiest bilingual booking path. Direct from JR Shibuya Shinminami gate.",
     "img": "https://www.shibuya-sakura-stage.com/assets/images/media/eventspace/gage_zonea_img1.jpg",
     "alt": "BLOOM GATE open event floor with LED screen at Shibuya Sakura Stage",
-    "top": false
+    "top": false,
+    "lat": 35.6570527,
+    "lng": 139.7020474
   },
   {
     "k": "cafe_salvador_business",
     "name": "CAFE SALVADOR BUSINESS SALON (カフェ サルバドル ビジネスサロン)",
-    "area": "Nihonbashi / Kayabacho (Chūō)",
+    "area": "Nihonbashi / Kayabacho",
     "type": "coffee",
     "addr": "103-0025 東京都中央区日本橋茅場町1-5-8 東京証券会館1階 (Kayabacho Station Exit 8, direct)",
     "cap": "<b>130</b>standing / 80 seated (whole-venue buyout); B meeting space up to 50, A up to 20",
@@ -212,7 +230,7 @@ const VENUES = [
   {
     "k": "muromachi_cafe_hachi",
     "name": "muromachi cafe HACHI (ムロマチカフェハチ)",
-    "area": "Nihonbashi / Kayabacho (Chūō)",
+    "area": "Nihonbashi / Kayabacho",
     "type": "coffee",
     "addr": "104-0032 東京都中央区日本橋室町4-4-10 東短室町ビルB1F (directly connected to Shin-Nihonbashi Exit 4; 2 min Mitsukoshimae)",
     "cap": "<b>150</b>standing / 90 seated (own site); buyouts from 60",
@@ -223,12 +241,14 @@ const VENUES = [
     "note": "True Nihonbashi cafe (breakfast-to-dinner) that actively promotes private hire with projector and mics; own site publishes buyout up to 150 standing/90 seated and its UI is localized in JP/EN/KO/ZH. Minimum guarantee around JPY 300,000 + JPY 50,000 venue fee per gnavi Wedding. Booking is JP-first (phone 03-3527-9108 or Hot Pepper); confirm English support when inquiring.",
     "img": "https://cdn.r-corona.jp/prd.rb.r-corona.jp/assets/site_files/fqxgiq4v/7341012/qsjr_w500h500.jpg",
     "alt": "muromachi cafe HACHI interior",
-    "top": false
+    "top": false,
+    "lat": 35.742581,
+    "lng": 139.337602
   },
   {
     "k": "two_rooms_cafe",
     "name": "TWO ROOMS CAFE GRILL BAR NIHOMBASHI",
-    "area": "Nihonbashi / Kayabacho (Chūō)",
+    "area": "Nihonbashi / Kayabacho",
     "type": "coffee",
     "addr": "103-0027 東京都中央区日本橋2-1-3 FUNDES日本橋2F (日本橋駅直結 / Nihonbashi Sta. connected)",
     "cap": "<b>250</b>standing exclusive hire / 100 dining-room standing / 70 seated; terrace 50",
@@ -239,12 +259,14 @@ const VENUES = [
     "note": "The only venue here with a fully bilingual JA/EN party page (plans from JPY 6,000/person, terrace add-on) and up to 250 guests standing - easily covers a 200-person coffee-and-hack reception. Cafe-grill by day, strong AV staff; Nihonbashi Station direct connection. Definitely handles English inquiries.",
     "img": "https://tworooms-nihombashi.jp/images/page/party/party001.jpg",
     "alt": "Wide interior of TWO ROOMS Nihonbashi dining room and terrace set for a standing party",
-    "top": false
+    "top": false,
+    "lat": 35.6637088,
+    "lng": 139.7108201
   },
   {
     "k": "keshiki_aa_multipurpose",
     "name": "景色 Keshiki — AA (multipurpose space at the SR Coffee Roaster complex)",
-    "area": "Nihonbashi / Kayabacho (Chūō)",
+    "area": "Nihonbashi / Kayabacho",
     "type": "coffee",
     "addr": "103-0026 東京都中央区日本橋兜町6-5 兜町第6平和ビル B1F-1F (2 min from Kayabacho Exit 11)",
     "cap": "<b>110</b>standing max / 60 seated (published)",
@@ -260,7 +282,7 @@ const VENUES = [
   {
     "k": "sikito_cafe_nihonbashi",
     "name": "SiKiTO CAFE Nihonbashi (シキトカフェ 日本橋)",
-    "area": "Nihonbashi / Kayabacho (Chūō)",
+    "area": "Nihonbashi / Kayabacho",
     "type": "coffee",
     "addr": "103-0027 東京都中央区日本橋2-10-4 (2 min from Nihonbashi Station)",
     "cap": "<b>70</b>standing / 50 seated (published via OZmall listing; 59 seats on Tabelog); own page shows 3 bookable spaces",
@@ -271,12 +293,14 @@ const VENUES = [
     "note": "Bright two-floor specialty cafe (1F counter + tables, 2F big tables) with dedicated party page listing Wi-Fi, mic, projector and screen for buyouts; works for a 50-70-person coffee track or overflow lounge next to a bigger hub. JP-first inquiry form plus chat on site; confirm English handling, cashless payment only.",
     "img": "https://sikito.com/cdn/shop/files/seminar_image_520x.png?v=1756368964",
     "alt": "Seminar-style setup inside SiKiTO CAFE Nihonbashi's bright two-floor cafe space",
-    "top": false
+    "top": false,
+    "lat": 35.6808971,
+    "lng": 139.7749006
   },
   {
     "k": "fingate_kayaba",
     "name": "FinGATE KAYABA (フィンゲート・カヤバ)",
-    "area": "Nihonbashi / Kayabacho (Chūō)",
+    "area": "Nihonbashi / Kayabacho",
     "type": "cowork",
     "addr": "〒103-0025 東京都中央区日本橋茅場町1-8-1 茅場町一丁目平和ビル (1Fイベントスペース)",
     "cap": "<b>1</b>Fイベントスペース 100〜200名 (60坪 / 227.19㎡) — 定期開催のFinGATE Campus、Japan Fintech Week 2024の主要会場としても実績あり",
@@ -287,12 +311,14 @@ const VENUES = [
     "note": "The standout pick. Japan's largest fintech/startup cluster in the Kabutocho-Kayabacho financial district; dedicated 1F event space fits 100–200 with coffee bar, FinGATE CLUB lounge on 3F, and bilingual (JP/EN) website + community manager. Frequently hosts 100+ person fintech, blockchain and startup events; the FSA and Fintech Association are tenants. High-speed Wi-Fi, projector, screen, sound, kitchen, and a rooftop-adjacent 8F shared lounge. Ideal for a Sept 9 tech-week coffee/hack day with bilingual attendees — they explicitly run English-language community events.",
     "img": "https://assets.st-note.com/img/1726796872-uyA24F89Bfozt0UwOmXiGrsI.jpg?width=1200",
     "alt": "FinGATE KAYABA event hall",
-    "top": true
+    "top": true,
+    "lat": 35.6802291,
+    "lng": 139.7794236
   },
   {
     "k": "muromachi_mitsui_hall",
     "name": "室町三井ホール＆カンファレンス (Muromachi Mitsui Hall & Conference)",
-    "area": "Nihonbashi / Kayabacho (Chūō)",
+    "area": "Nihonbashi / Kayabacho",
     "type": "cowork",
     "addr": "〒103-0022 東京都中央区日本橋室町3-2-1 COREDO室町テラス3F",
     "cap": "Hall: シアター<b>420</b>席 / スクール306席 / 立食200名 (373㎡ 天井高5.9m) + 213㎡ foyer + Room A+B conference 108席",
@@ -303,12 +329,14 @@ const VENUES = [
     "note": "The premium conference option. Direct connection to Mitsukoshimae (Metro) and Shin-Nihonbashi (JR) stations, 9-min walk from Tokyo Station. Recently hosted Metaverse Japan Summit, FIN/SUM (Nikkei × FSA fintech conference), HIMSS Health 2.0 — proven for 300+ tech/bilingual crowds. NURO Premium dedicated 2Gbps line (bandwidth-guaranteed) included free, in-house catering, English contact page. Foyer (100 standing) could serve as coffee/networking zone while Hall hosts talks + hack demos. Bookable 1 year ahead, so Sept 9 2026 must be locked in by ~Sept 2025 —— reserve now.",
     "img": "https://www.mitsui-mice.jp/nihonbashi/wp/wp-content/themes/mitsui-mice/assets/img/pic/floormap.png",
     "alt": "Muromachi Mitsui Hall concourse",
-    "top": false
+    "top": false,
+    "lat": 35.6879574,
+    "lng": 139.7724472
   },
   {
     "k": "businessairport_nihonbashi",
     "name": "ビジネスエアポート日本橋 (Business-Airport Nihonbashi)",
-    "area": "Nihonbashi / Kayabacho (Chūō)",
+    "area": "Nihonbashi / Kayabacho",
     "type": "cowork",
     "addr": "〒103-0027 東京都中央区日本橋3-6-2 日本橋フロント1F",
     "cap": "イベントスペース 約<b>80</b>㎡ / シアター形式 約80名 (会員33,000円/時、非会員49,500円/時) + 会議室A 8名 + B 4名 + C 6名",
@@ -319,12 +347,14 @@ const VENUES = [
     "note": "Most coffee-shop-like of the bunch: warm wood 'Memory of the Bridge' interior on the ground floor of a street-front building — feels like a café, not a conference room, perfect for the 'coffee/hack day' mood. Tokyu Fudosan-run with bilingual staff and bilingual web booking. 2 min from Nihonbashi Station B1 exit / 5 min from Tokyo Station Yaesu. Regularly hosts its own startup meetups, marketing night, product night — staff are used to tech-crowd events. Wi-Fi, power, phone booths, on-site konbini, projector loan. Cap of ~80 means it fits the lower end of 50-200; pair with FinGATE for overflow.",
     "img": "https://business-airport.net/wordpress/wp-content/uploads/2025/09/nihonbashi-gallery_img09.jpg",
     "alt": "Business-Airport Nihonbashi lounge",
-    "top": false
+    "top": false,
+    "lat": 35.6796286,
+    "lng": 139.7725443
   },
   {
     "k": "xbridgeyaesu",
     "name": "xBridge-Yaesu (クロスブリッジヤエス)",
-    "area": "Nihonbashi / Kayabacho (Chūō)",
+    "area": "Nihonbashi / Kayabacho",
     "type": "cowork",
     "addr": "〒103-0028 東京都中央区八重洲1-5-20",
     "cap": "コワーキング約<b>44</b>席; 夜間イベントスペース貸切 ~60名 (立食) / 着席約50名 — プロジェクター・スクリーン・音響込み ¥20,000/時",
@@ -335,7 +365,9 @@ const VENUES = [
     "note": "Run by Tokyo Tatemono with on-site VC (XTech Ventures). Explicitly marketed for evening pitch events, networking and study sessions — bilingual staff accustomed to global startup community (the xBridge-Global sister site has an English café, GOOD COFFEE FARMS, run by Guatemalan founder Carlos Melen). 3 min from Nihonbashi Station A3/B3 (Metro Ginza/Tozai/Asakusa), 3 min from Tokyo Station Yaesu north. Sized for the small end (50-60) but the most 'tech-week' vibe per square meter, with a real coffee bar at the entrance.",
     "img": null,
     "alt": "xBridge-Yaesu open lounge",
-    "top": false
+    "top": false,
+    "lat": 36.2881671,
+    "lng": 138.4651608
   },
   {
     "k": "hills_cafspace_roppongi",
@@ -351,7 +383,9 @@ const VENUES = [
     "note": "True café with terrace inside Roppongi Hills, run by Mori Building's media/events arm — the link above is the venue-operator's own rental page with full spec, rate card and application flow. JP booking path is fully published (content review → 申込書 → 50% deposit); an English twin page (/en/space_rh_detail03.html) also fetched successfully, and Mori Building's team routinely handles international/bilingual tech and brand events at the Hills complex. Phone 03-6406-6666 (Mori Media Business Planning) — form-only otherwise. (Contact is via Hills Café breakfast-hotline mailbox hillsbfast@gmail.com — nonstandard channel for event bookings; phone recommended.)",
     "img": "https://transithospitalitymanagement.com/_wp/wp-content/uploads/2024/10/01-1-64.jpg",
     "alt": "Wide interior/patio shot of the Hills Café/Space event floor inside Roppongi Hills",
-    "top": true
+    "top": true,
+    "lat": 35.6605115,
+    "lng": 139.7296581
   },
   {
     "k": "park6_powered_by",
@@ -383,7 +417,9 @@ const VENUES = [
     "note": "Standalone café at the Karajan Place entrance of ARK Hills facing Spain-zaka — a real, day-to-day café that also runs a full buy-out programme. Open terrace, movable furniture, big rollable projector screen + 2 wireless mics + dedicated sound and a green room; 1 min from Roppongi-itchome Stn (Namboku Line). One floor, fully private when rented. Phone 03-6229-2666 (café) or kasikiru concierge 03-6732-3904 (bilingual-concierge style support); listed as English-friendly in tourist-facing listings.",
     "img": "https://cdn.kasikiru.com/upload/photos/73746f72655f333430/gallery/ins7eqpund.jpg",
     "alt": "Open-plan Café interior at ARK HiLLS CAFE with terrace access",
-    "top": false
+    "top": false,
+    "lat": 35.6663085,
+    "lng": 139.7402676
   },
   {
     "k": "caf_deli_ggco",
@@ -399,7 +435,9 @@ const VENUES = [
     "note": "Urban café operated by Mori Trust Hotels & Resorts, inside the Shiroyama Trust Tower lobby — high ceilings, bright natural light, two big screens, pro audio, designer furniture that can be rearranged for lectures or hack sessions. 6-8 min from Roppongi-itchome Stn (Namboku) or 3 min from Kamiyacho (Hibiya), so it's on the Roppongi fringe but very 'tech-week' practical. Rental desk runs through kasikiru (JP); venue phone 03-6435-6443. Group runs 4 GGCo. cafés across Tokyo; English handling via hotel-group staff is standard.",
     "img": "https://cdn.kasikiru.com/upload/photos/73746f72655f31303739/GGco_%E5%86%85%E8%A6%B3a.jpg",
     "alt": "Daylight, high-ceiling interior of Café & Deli GGCo. Shiroyama",
-    "top": false
+    "top": false,
+    "lat": 35.6648481,
+    "lng": 139.7430934
   },
   {
     "k": "kafli_roppongi_nogizaka",
@@ -415,7 +453,9 @@ const VENUES = [
     "note": "Café-lounge styled single-floor rental space between Roppongi and Nogizaka with an ivory interior, atrium, and classic chandeliers — more 'stylish café lounge' than bar-club, and it has DJ booth, sound/vision kit and a small stage that doubles well for talks. Operator works with both JP corporate parties and music/culture events, accustomed to international crowds in this district. Booking via kaijosearch form (JP) — venue staff reachable through the form for both JP and EN inquiries.",
     "img": null,
     "alt": "Atrium café-lounge interior at KAFLI Roppongi",
-    "top": false
+    "top": false,
+    "lat": 35.66346521447368,
+    "lng": 139.7330041618421
   },
   {
     "k": "blink_roppongi_blink",
@@ -431,7 +471,9 @@ const VENUES = [
     "note": "Bilingual JA/EN staff and a fully bilingual booking site. 1F cafe lounge is rented as an event space (events, seminars, workshops, filming), open to non-members, with on-site coffee bar — perfect coffee/hack-day vibe. Hosts 200+ events/year; easy EN email flow via contact form.",
     "img": "https://blinkcommunity.com/wp-content/themes/blink/assets/images/space/sp-detail-floor-img.jpg",
     "alt": "BLINK Roppongi 1F international cafe lounge / event space",
-    "top": true
+    "top": true,
+    "lat": 35.6568255,
+    "lng": 139.7304082
   },
   {
     "k": "bellesalle_roppongi_grand",
@@ -463,7 +505,9 @@ const VENUES = [
     "note": "Standalone event hall on the green Izumi Garden grounds, 3 min walk from Roppongi-itchome. 6 m ceilings, 5x 250-inch screens, dedicated line — proven for embassy + global tech events (IPEF launch, Nijisanji live viewings). Same Sumitomo Bellesalle team; EN via email, JP-only on-site.",
     "img": "https://www.bellesalle.co.jp/wp-content/uploads/izumigg_building_hall_8013.jpg",
     "alt": "Izumi Garden Gallery interior, 6 m ceiling exhibition hall",
-    "top": false
+    "top": false,
+    "lat": 35.6645054,
+    "lng": 139.7395009
   },
   {
     "k": "cirq_roppongi",
@@ -479,7 +523,9 @@ const VENUES = [
     "note": "TKP-operated dedicated event hall 2 min from Roppongi Sta, with rescindable 5-business-day provisional hold, VR tours of both rooms and published floor layouts — well-suited for a 50–100-person hack/coffee day. TKP has an English corporate site; JP-primary on booking flow.",
     "img": "https://www.cirq-hall.jp/wp-content/uploads/2020/09/plazzo_ducale_la_foresta.jpg",
     "alt": "CIRQ Roppongi La Foresta hall, B1",
-    "top": false
+    "top": false,
+    "lat": 35.6649728,
+    "lng": 139.738849
   },
   {
     "k": "bellesalle_roppongi",
@@ -495,7 +541,9 @@ const VENUES = [
     "note": "Sister Sumitomo Bellesalle hall 2 min from Roppongi Sta exit 2. Smaller sister of the Grand Conference Center, useful for mid-size tech meetups / 50–200 people. Same EN email on the 'For overseas corporations' panel; do not confuse with the Grand CC address.",
     "img": "https://www.bellesalle.co.jp/wp-content/uploads/keyvisual_bs_roppongi.png",
     "alt": "Bellesalle Roppongi 1F and B1 hall",
-    "top": false
+    "top": false,
+    "lat": 35.6649728,
+    "lng": 139.738849
   },
   {
     "k": "azabuballoon",
@@ -511,6 +559,8 @@ const VENUES = [
     "note": "Independent live/event space 4 min from Azabu-Juban, 8 min from Akabanebashi — short hop from Roppongi. Pro audio/lighting, 6.6 m stage, onsite kitchen and bar; ok on the smaller end for a 50–100-person casual coffee/hack day. JP-primary site — partner with a JP speaker to book.",
     "img": "https://azabuballoon.com/wp-content/uploads/azabu_zumen1.jpg",
     "alt": "AZABUballoon event space, stage + counter bar",
-    "top": false
+    "top": false,
+    "lat": 35.6550169,
+    "lng": 139.7352363
   }
 ];
