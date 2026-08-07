@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tel Aviv — Venue Options · ComputeCafe</title>
+<!--
+  COMPUTE CAFE EXPLORER TEMPLATE
+  Edit ONLY the CONFIG, TYPE_META, and VENUES blocks in the <script> at the
+  bottom (plus <title> above). Filter chips, section headers, and header stats
+  all derive from the data — no markup edits needed for a new city or venue mix.
+  Keep the file self-contained: no external CSS/JS/fonts, no localStorage.
+-->
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --ink-1: #0b0b0b;
+    --ink-2: #52514e;
+    --ink-3: #898781;
+    --hairline: rgba(11,11,11,0.10);
+    --grid: #e1e0d9;
+    --accent-a: #eb6834;
+    --accent-a-soft: rgba(235,104,52,0.12);
+    --accent-b: #2a78d6;
+    --accent-b-soft: rgba(42,120,214,0.12);
+    --accent-c: #6f4fce;
+    --accent-c-soft: rgba(111,79,206,0.12);
+    --good: #0ca30c;
+    --good-soft: rgba(12,163,12,0.10);
+    --chip-on: #0b0b0b;
+    --chip-on-ink: #fcfcfb;
+    --ph-a: #f3e7dc;
+    --ph-b: #e8d5c2;
+    --ph-c: #dde8f3;
+    --ph-d: #c9d9ec;
+    --ph-e: #e7ddf3;
+    --ph-f: #d6c8ec;
+    --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+      --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+      --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+      --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+      --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+      --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+      --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+      --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+      --ph-e: #291f38; --ph-f: #382a4e;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19;
+    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+    --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+    --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+    --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+    --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+    --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+    --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e;
+    --ph-e: #291f38; --ph-f: #382a4e;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page); color: var(--ink-1);
+    line-height: 1.45; padding: 28px 20px 40px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  header.hero { margin-bottom: 18px; }
+  .kicker {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent-a); margin-bottom: 6px;
+  }
+  h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+  .sub { color: var(--ink-2); font-size: 14px; margin-top: 6px; max-width: 70ch; }
+  .statrow { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 16px; }
+  .stat .n { font-size: 22px; font-weight: 700; }
+  .stat .l { font-size: 12px; color: var(--ink-3); }
+  .themebtn {
+    float: right; margin-top: -2px; font-size: 12px; color: var(--ink-2);
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  }
+  .themebtn:hover { color: var(--ink-1); }
+  .filters {
+    position: sticky; top: 0; z-index: 5; background: var(--page);
+    padding: 12px 0 10px; margin: 8px 0 6px;
+    border-bottom: 1px solid var(--grid);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .fgroup { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 999px; padding: 3px; }
+  .chip {
+    font-size: 12.5px; font-weight: 500; color: var(--ink-2);
+    padding: 5px 12px; border-radius: 999px; border: none; background: transparent;
+    cursor: pointer; white-space: nowrap;
+  }
+  .chip:hover { color: var(--ink-1); }
+  .chip.on { background: var(--chip-on); color: var(--chip-on-ink); font-weight: 600; }
+  .count { margin-left: auto; font-size: 12px; color: var(--ink-3); }
+  .section-h { display: flex; align-items: baseline; gap: 10px; margin: 26px 2px 12px; }
+  .section-h h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-h .hint { font-size: 12px; color: var(--ink-3); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  .imgbox { position: relative; aspect-ratio: 16/9.5; overflow: hidden; }
+  .imgbox img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ph {
+    position: absolute; inset: 0; z-index: 0; display: flex;
+    align-items: center; justify-content: center; flex-direction: column; gap: 6px;
+  }
+  .card.noimg img { display: none; }
+  .ph.t0 { background: linear-gradient(135deg, var(--ph-a), var(--ph-b)); }
+  .ph.t1 { background: linear-gradient(135deg, var(--ph-c), var(--ph-d)); }
+  .ph.t2 { background: linear-gradient(135deg, var(--ph-e), var(--ph-f)); }
+  .ph .mono { font-size: 30px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-2); opacity: 0.85; }
+  .ph .icn { font-size: 22px; }
+  .toppick {
+    position: absolute; top: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 700; background: rgba(11,11,11,0.78); color: #fff;
+    padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .areatag {
+    position: absolute; bottom: 10px; left: 10px; z-index: 2;
+    font-size: 11px; font-weight: 600; background: rgba(11,11,11,0.62); color: #fff;
+    padding: 3px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+  }
+  .body { padding: 14px 16px 15px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .titlerow { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .vname { font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .typechip { flex: none; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; margin-top: 1px; }
+  .typechip.t0 { color: var(--accent-a); background: var(--accent-a-soft); }
+  .typechip.t1 { color: var(--accent-b); background: var(--accent-b-soft); }
+  .typechip.t2 { color: var(--accent-c); background: var(--accent-c-soft); }
+  .addr { font-size: 12.5px; }
+  .addr a { color: var(--ink-3); text-decoration: none; }
+  .addr a:hover { color: var(--ink-1); text-decoration: underline; }
+  .cap { font-size: 12.5px; color: var(--ink-2); }
+  .cap b { color: var(--ink-1); font-weight: 600; }
+  .flag {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 7px; align-self: flex-start;
+  }
+  .flag.dedicated { color: var(--good); background: var(--good-soft); }
+  .flag.contact { color: var(--ink-2); background: var(--page); border: 1px solid var(--hairline); }
+  .note { font-size: 13px; color: var(--ink-2); flex: 1; }
+  .links { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+  .btn { font-size: 12.5px; font-weight: 600; text-decoration: none; padding: 7px 13px; border-radius: 8px; }
+  .btn.pri { background: var(--ink-1); color: var(--page); }
+  .btn.pri:hover { opacity: 0.85; }
+  .btn.sec { color: var(--ink-2); border: 1px solid var(--hairline); }
+  .btn.sec:hover { color: var(--ink-1); border-color: var(--ink-3); }
+  .empty { color: var(--ink-3); font-size: 14px; padding: 40px 0; text-align: center; }
+  footer { margin-top: 34px; border-top: 1px solid var(--grid); padding-top: 18px; display: grid; gap: 14px; }
+  .fnote { font-size: 13px; color: var(--ink-2); max-width: 90ch; }
+  .fnote b { color: var(--ink-1); }
+  .prov { font-size: 11.5px; color: var(--ink-3); }
+  @media (max-width: 640px) {
+    body { padding: 18px 12px 30px; }
+    h1 { font-size: 22px; }
+    .count { flex-basis: 100%; margin-left: 2px; }
+  }
+  .homelink { font-size: 12.5px; font-weight: 600; color: var(--ink-3); text-decoration: none; display: inline-block; margin-bottom: 8px; }
+  .homelink:hover { color: var(--ink-1); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <button class="themebtn" id="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <a class="homelink" href="/">← ComputeCafe</a>
+    <div class="kicker" id="kicker"></div>
+    <h1 id="title"></h1>
+    <div class="sub" id="subtitle"></div>
+    <div class="statrow" id="stats"></div>
+  </header>
+  <div class="filters">
+    <div class="fgroup" id="f-area"></div>
+    <div class="fgroup" id="f-type"></div>
+    <div class="fgroup" id="f-flag">
+      <button class="chip" data-v="dedicated">✓ Dedicated events page only</button>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+  <div id="content"></div>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+/* ============================ EDIT BELOW ============================ */
+
+// Page copy — CONFIG + TYPE_META + VENUES
+const CONFIG = {
+  kicker: "Tel Aviv · ComputeCafe",
+  title: "Tel Aviv — Venue Options",
+  subtitle: "Event-capable cafes & event spaces in Sarona / Rothschild–Lev Ha'ir / Tel Aviv Port — for a Sept 16, 2026 bilingual (HE/EN) tech-week coffee/hack event (~50–200 people). Links verified (Hebrew scripts preserved).",
+  extraStat: {"n":"Sep 16","l":"Tel Aviv event date, 2026"},
+  footnotes: [
+    "<b>Neighborhood analysis:</b> Sarona / Begin corridor (Azrieli Sarona, Microsoft Reactor Dubnov, AWS Floor28) is where AI Tinkerers Tel Aviv's main series actually ran; Rothschild–Lev Ha'ir (monday.com HQ, Mindspace Rothschild) is the startup spine; Tel Aviv Port (Wix campus) is the third cluster.",
+    "<b>Gone / don't route inquiries here:</b> Biga Sarona (26 Eliezer Kaplan St, Sarona) — marked 'שרונה סגור זמנית' (Sarona branch temporarily closed) on the official biga-bakery.co.il/branches page, so it was NOT included even though third-party listings still show hours. Confirm reopening before shortlisting. · Cafe Nimrod official domain www.cafenimrod.com now resolves to a parked AI-generated English blog, not the restaurant — do NOT use that URL; use Ontopo listing/phone instead. · Google for Startups Campus Tel Aviv (HaUmanim 12) — physical campus closed: campus.co/tel-aviv now 302-redirects to generic startup.google.com/campus site with no TLV address [UNVERIFIED — needs a fetched source before this claim is relied on] · Microsoft Reactor Tel Aviv — original Dubnov 7 venue closed c. 2023-24; Reactor program moved to Yigal Alon 98 (inside Microsoft's TLV campus, south edge of corridor). Kept in venue list as it remains the closest purpose-built hack space, but logged here to flag the move · Rothschild 12 (רוטשילד 12), Rothschild Blvd 12 — permanently closed cafe-bar; removed from consideration (per Secret Tel Aviv). [UNVERIFIED — needs a fetched source before this claim is relied on] · Cafe Sarona (Paradiso / קפה שרונה), 1 Mordechai Maklef St, Sarona — סגור לצמיתות, permanently closed kosher cafe that advertised private-event space; removed. · WeWork no longer operates a Rothschild Blvd location — WeWork's current Tel Aviv portfolio page (fetched) lists only Midtown, London Ministore, 23 Shoken, 10 HaZerem, Sarona and Azrieli Town; the legacy Rothschild 18 building appears closed/rebranded, so it was dropped. · SOSA (13 Shoken St) shows on older lists but has pivoted/closed its public cowork-event offering; could not verify a live dedicated events page this session, dropped to avoid a dead link. [UNVERIFIED — needs a fetched source before this claim is relied on] · Landwer Cafe Namal — port branch missing from the chain's current official branch list (fetched); still ghost-listed on 2eat. Treat as closed/relocated: do not book.",
+    "<b>Booking note:</b> Many event spaces require a security badge (sponsor-host relationship) — cold booking is rare; surface that on the cards.",
+  ],
+  provenance: "Researched Aug 2026 · Bilingual HE/EN · 30 → 30 shipped after contract (drops: none) · Capacities published or estimated.",
+};
+
+const TYPE_META = {
+  coffee: { label: "Coffee shop", icon: "☕" },
+  cowork: { label: "Coworking / event space", icon: "🏢" },
+};
+
+const VENUES = [
+  {
+    "k": "caf_landwer_sarona",
+    "name": "Café Landwer Sarona | קפה לנדוור שרונה",
+    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "type": "coffee",
+    "addr": "13 Arania Osvaldo (Oswaldo Aranha) St, Sarona Park, Tel Aviv",
+    "cap": "<b>~100</b>(est, large interior + lawn patio facing Sarona Park)",
+    "flag": "dedicated",
+    "link": "https://landwercafe.com/events",
+    "linkText": "landwercafe.com/events",
+    "email": null,
+    "note": "Coffee-roastery heritage brand on the Sarona lawn with an extravagant green patio — ideal bilingual daytime hack/coffee day. Chain runs a global 'Host Your Event' page with book-event form; Sarona branch answers at 03-6244806.",
+    "img": "https://parksarona.com/wp-content/uploads/2022/07/לנדוור.png",
+    "alt": "Cafe Landwer patio facing the Sarona Park lawns",
+    "top": true
+  },
+  {
+    "k": "max_brenner_sarona",
+    "name": "Max Brenner Sarona | מקס ברנר שרונה",
+    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "type": "coffee",
+    "addr": "Aluf Kalman Magen 3 (Sarona Market), Tel Aviv",
+    "cap": "<b>~120</b>(est, large flagship inside Sarona Market)",
+    "flag": "contact",
+    "link": "https://max-brenner.co.il/pages/branches?lang=en",
+    "linkText": "max-brenner.co.il/pages/branches",
+    "email": "office@maxbrenner.co.il",
+    "note": "Big, playful flagship chocolate-coffee bar inside Sarona Market with long hours (Sun–Sat to 22:30/23:00) and a country-wide reservations center; published HQ email office@maxbrenner.co.il handles group/corporate requests.",
+    "img": "https://max-brenner.co.il/cdn/shop/files/c4d68c45fe954165b94148f15a90abe2.webp?v=1775397796&width=1100",
+    "alt": "Max Brenner Sarona Market interior",
+    "top": false
+  },
+  {
+    "k": "caf_nimrod_sarona",
+    "name": "Café Nimrod Sarona | קפה נמרוד שרונה",
+    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "type": "coffee",
+    "addr": "12 Rav Aluf David Elazar St (Sarona), Tel Aviv",
+    "cap": "<b>~80</b>(est, indoor + green pastoral patio)",
+    "flag": "contact",
+    "link": "https://ontopo.com/en/il/page/40514500",
+    "linkText": "ontopo.com/en/il/page/40514500",
+    "email": null,
+    "note": "Rosh-Pina-style lounge-cafe with a famously pastoral patio in the heart of Sarona — relaxed bilingual crowd, good morning-to-evening hours; branch reaches groups via +972-3-672-1344 / Ontopo group booking.",
+    "img": "https://parksarona.com/wp-content/uploads/2022/07/קפה-נמרוד.jpg",
+    "alt": "Cafe Nimrod Sarona pastoral patio",
+    "top": false
+  },
+  {
+    "k": "benedict_sarona_market",
+    "name": "Benedict Sarona Market | בנדיקט שרונה מרקט",
+    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "type": "coffee",
+    "addr": "Aluf Kalman Magen 3 (Sarona Market), Tel Aviv",
+    "cap": "<b>~100</b>(est, market-level restaurant; sister branch Bitan Aharon publishes 50 on covered patio)",
+    "flag": "dedicated",
+    "link": "https://www.benedict.co.il/pages/event",
+    "linkText": "benedict.co.il/pages/event",
+    "email": null,
+    "note": "Israel's best-known 24/7-style breakfast cafe with a dedicated events page ('בוקר טוב לאירועים טובים') inviting private celebrations across its restaurants; Sarona branch sits in the market and answers events at 03-686-8657.",
+    "img": "https://www.benedict.co.il/cdn/shop/files/b2646e51a3f71c7e47f54b0176cab0eb_%7Bwidth%7Dx.jpg?v=1748173011",
+    "alt": "Benedict breakfast spread",
+    "top": false
+  },
+  {
+    "k": "dubnov_8_8",
+    "name": "Dubnov 8 | דובנוב 8",
+    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "type": "coffee",
+    "addr": "8 Dubnov St, Tel Aviv (off Derech Menachem Begin, by the Museum/Tel Aviv Performing Arts Center)",
+    "cap": "<b>~70</b>(est, dining room + shaded garden)",
+    "flag": "contact",
+    "link": "https://dubnov8.com",
+    "linkText": "dubnov8.com",
+    "email": "dubnov80@gmail.com",
+    "note": "Quiet bistro-cafe two minutes' walk from Azrieli Sarona with a shaded, calm garden — good for a small-mid daytime hack/coffee gathering; site publishes event contact email dubnov80@gmail.com (reservations 03-696-86-55).",
+    "img": "https://dubnov8.com/images/intro_21.jpg",
+    "alt": "Dubnov 8 shaded garden seating",
+    "top": false
+  },
+  {
+    "k": "point_by_azrieli",
+    "name": "POINT by Azrieli Sarona (formerly LABS TLV)",
+    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "type": "cowork",
+    "addr": "121 Derech Menachem Begin, Azrieli Sarona Tower (floors 58-61), Tel Aviv-Yafo 6100000",
+    "cap": "Conference complex <b>up to 200</b>(published by operator parent LABS/Azrieli); 7 floors, 15,500 sqm, 1,000 workstations",
+    "flag": "contact",
+    "link": "https://point-az.com",
+    "linkText": "POINT by Azrieli — Sarona (single-page site with #event-space section)",
+    "email": "info-as@point-az.com;",
+    "note": "Top-floor 'Meet. Host. Celebrate.' branded event space in Tel Aviv's most coveted tower; parent Azrieli Group site explicitly lists an event offering, and the venue publicly hosts tech meetups (Startup Grind TLV, REACH Israel Scale-Up Summit, Azrieli Pop-Up Academy) so a bilingual coffee/hack day slots straight in.",
+    "img": "https://point-az.com/wp-content/uploads/2024/10/Point-18.5.24-©-LUZ-26.jpg",
+    "alt": "Hebrew: פוינט בי עזריאלי שרונה / לאבס TLV; was LABS TLV until Azrieli rebrand",
+    "top": true
+  },
+  {
+    "k": "wework_sarona",
+    "name": "WeWork Sarona (ויוורק שרונה)",
+    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "type": "cowork",
+    "addr": "3 Aluf Kalman Magen St, Sarona Market (3rd floor), Tel Aviv 6107075",
+    "cap": "<b>~150</b>-200 (est) — WeWork advertises 'indoor and outdoor venues for groups of all sizes'; specific Sarona capacity not published",
+    "flag": "dedicated",
+    "link": "https://www.wework.com/en-IL/solutions/events",
+    "linkText": "WeWork — Event spaces (dedicated booking page covering the Sarona building)",
+    "email": null,
+    "note": "Whole 3rd floor of Sarona Market with food-hall downstairs — perfect for a casual coffee/hack day where catering is built in. Sunlit common area converts to meetup space with sound/lighting controls; English-speaking community team.",
+    "img": "https://cdn-images.wework.com/buildings/9ee00cc4-878a-11f1-a1f3-0e85bcbec943_1.jpg",
+    "alt": "Building-level page (also fetched live): https://www.wework.com/en-IL/buildings/sarona--tel-aviv--israel",
+    "top": false
+  },
+  {
+    "k": "wework_azrieli_town",
+    "name": "WeWork Azrieli Town (ויוורק עזריאלי טאון)",
+    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "type": "cowork",
+    "addr": "146 Derech Menachem Begin (Azrieli Town), Tel Aviv 6492102",
+    "cap": "<b>~100</b>-180 (est) — 'indoor and outdoor venues for groups of all sizes'; includes a dedicated classroom per WeWork's building description; ~50th floor Midtown views",
+    "flag": "dedicated",
+    "link": "https://www.wework.com/en-IL/solutions/events",
+    "linkText": "WeWork — Event spaces (same dedicated booking page, this location has classroom + event space)",
+    "email": null,
+    "note": "Upper floors of Midtown Tower, the corridor's tallest — high-impact skyline backdrop for a tech-week crowd, plus 'classroom' amenity for hands-on hack tracks. Direct access from Menachem Begin with Hashalom rail 10 min walk.",
+    "img": "https://cdn-images.wework.com/buildings/a22cf856-86cc-11f1-ae4d-0e85bcbec943_0.jpg",
+    "alt": "Building-level page (also fetched live): https://www.wework.com/en-IL/buildings/azrieli-town--tel-aviv--israel",
+    "top": false
+  },
+  {
+    "k": "sarona_space_haarbaa",
+    "name": "Sarona Space HaArba'a (שרונה ספייס הארבעה)",
+    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "type": "cowork",
+    "addr": "18A HaArba'a St, Tel Aviv (corner of Sarona Market, inside the corridor)",
+    "cap": "<b>~80</b>-150 (est) — boutique high-tech coworking with public 'events, pitch meetup' offering; specific guest count not published",
+    "flag": "contact",
+    "link": "https://saronaspace.com",
+    "linkText": "Sarona Space (main site — HaArba'a location)",
+    "email": "contact@saronaspace.com",
+    "note": "Tech-only coworking backed by Sarona Ventures directly opposite Sarona Market, so deeply wired into Israel's startup scene — pitch meetups and launch events are their core business. Owner-managed and responsive to hack-day formats.",
+    "img": "https://saronaspace.com/wp-content/uploads/2019/11/arbaha-11-scaled.jpg",
+    "alt": "Second TLV branch at Hahashmonaim 103 is further from the corridor; stick with the HaArba'a branch for this brief",
+    "top": false
+  },
+  {
+    "k": "microsoft_reactor_tel",
+    "name": "Microsoft Reactor Tel Aviv (מיקרוסופט ריאקטור)",
+    "area": "Sarona / Derech Menachem Begin corridor (Azrieli Sarona, Dubnov, Ha'arba'a)",
+    "type": "cowork",
+    "addr": "Yigal Alon 98, Tel Aviv (moved from Dubnov 7 in c. 2023-24 — now on corridor edge, ~700 m south)",
+    "cap": "Classroom <b>120</b>/ theater 170 (published by Microsoft Reactor program)",
+    "flag": "contact",
+    "link": "https://www.meetup.com/microsoft-reactor-tel-aviv/",
+    "linkText": "Microsoft Reactor Tel Aviv on Meetup (live community page with published space-contact email)",
+    "email": "ReactorTLV@Microsoft.com",
+    "note": "Free, community-driven Microsoft-owned event space purpose-built for developer meetups and hack days — bilingual staff and stack. Address has shifted from the original Dubnov 7 site, but it remains the closest true 'hack space' in the immediate area and is reachable from Sarona in under 10 min on foot.",
+    "img": null,
+    "alt": "Microsoft Reactor Tel Aviv (מיקרוסופט ריאקטור) interior",
+    "top": false
+  },
+  {
+    "k": "mindspace_rothschild",
+    "name": "Mindspace Rothschild / מיינדספייס רוטשילד",
+    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "type": "coffee",
+    "addr": "Rothschild Blvd 45, Tel Aviv-Yafo",
+    "cap": "Networking events for <b>100</b>; 4 floors + 2 sun terraces; ~100-150 (est)",
+    "flag": "dedicated",
+    "link": "https://www.mindspace.me/tel-aviv/rothschild/event-spaces",
+    "linkText": "mindspace.me — Rothschild Event Spaces",
+    "email": null,
+    "note": "Dedicated event-spaces page steps from the boulevard with sunlit terraces, built-in A/V and full-service support; the classic startup-cafe-coworking triangle host, ideal for a bilingual tech-week coffee/hack day.",
+    "img": "https://www.mindspace.me/wp-content/uploads/2025/06/events-45.jpg",
+    "alt": "Mindspace Rothschild event space and terrace",
+    "top": true
+  },
+  {
+    "k": "mindspace_ahad_haam",
+    "name": "Mindspace Ahad Ha'am / מיינדספייס אחד העם",
+    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "type": "coffee",
+    "addr": "Ahad Ha'Am St 54, Tel Aviv-Yafo",
+    "cap": "Networking events for <b>100</b>; two large event spaces + rooftop; ~100-150 (est)",
+    "flag": "dedicated",
+    "link": "https://www.mindspace.me/tel-aviv/ahad-haam/event-spaces",
+    "linkText": "mindspace.me — Ahad Ha'am Event Spaces",
+    "email": null,
+    "note": "Two design-forward event spaces plus a skyline rooftop two minutes off Rothschild; explicitly pitched for 100-person networking/coffee events with cafe-style community buzz.",
+    "img": "https://www.mindspace.me/wp-content/uploads/2025/07/2.event-showstopper_1-5.jpg",
+    "alt": "Mindspace Ahad Ha'am rooftop and event space",
+    "top": false
+  },
+  {
+    "k": "claro_tlv",
+    "name": "Claro TLV / קלארו",
+    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "type": "coffee",
+    "addr": "Ha'arba'a St 23 (David Elazar 30 corner), Sarona, Tel Aviv-Yafo",
+    "cap": "Private/business events <b>up to 180</b>; Balcony 50, Garden 45, two connected limestone halls 30-180",
+    "flag": "dedicated",
+    "link": "https://www.clarotlv.com/en/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D",
+    "linkText": "clarotlv.com — Events",
+    "email": "events@clarotlv.com",
+    "note": "Sprawling restored Templar building at the Sarona/Rothschild edge with a dedicated events team, garden + balcony + halls, full sound/light/projector; coffee-bar atmosphere by day scales to a full hack-day crowd.",
+    "img": "https://static.wixstatic.com/media/e1889d_3803cb99a18d45f6991ee496544b41d6~mv2.jpg/v1/fit/w_960",
+    "alt": "Claro TLV Sarona event halls and garden",
+    "top": false
+  },
+  {
+    "k": "r48_48",
+    "name": "R48 / רוטשילד 48",
+    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "type": "coffee",
+    "addr": "Rothschild Blvd 48, Tel Aviv-Yafo",
+    "cap": "Events <b>up to 120</b>; Garden 70, Private Dining Room 30, rooftop Pool, Meeting Room 14",
+    "flag": "dedicated",
+    "link": "https://r48.co.il/r48_events",
+    "linkText": "r48.co.il — R48 Events",
+    "email": null,
+    "note": "Historic Bauhaus building right on the boulevard with a garden, private dining and rooftop-pool spaces, dedicated events page with proposal request; boutique coffee-break/catering menus suit a daytime tech coffee event.",
+    "img": "https://r48.co.il/wp-content/uploads/2024/10/R48_Garden_Event.jpg",
+    "alt": "R48 garden event space on Rothschild",
+    "top": false
+  },
+  {
+    "k": "meet_in_place",
+    "name": "Meet in Place, Rothschild 57 / מיט אין פלייס רוטשילד 57",
+    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "type": "coffee",
+    "addr": "Rothschild Blvd 57, Tel Aviv-Yafo",
+    "cap": "Grand Loft + Roof Top, <b>108</b>seated / 108 standing",
+    "flag": "contact",
+    "link": "https://partyslate.com/venues/meet-in-place-57-rothschild",
+    "linkText": "partyslate.com — Meet in Place Rothschild 57",
+    "email": null,
+    "note": "Four-floor Bauhaus events complex on the boulevard with a 108-cap windowed loft plus a huge rooftop balcony over Rothschild; on-demand coffee-culture meeting venue tuned to offsites, meetups and customer events.",
+    "img": "https://img.partyslate.com/photos/1131170/photo-624c4913-cd5d-4cff-badd-329dccd53907.jpg?tr=w-640",
+    "alt": "Meet in Place Rothschild 57 Grand Loft and rooftop",
+    "top": false
+  },
+  {
+    "k": "villa_dallal_house",
+    "name": "Villa Dallal / וילה דלאל (House of Dallal)",
+    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "type": "coffee",
+    "addr": "Kol Yisrael Chaverim 5, Neve Tzedek, Tel Aviv-Yafo",
+    "cap": "Boutique/private events; <b>~50</b>-120 (est)",
+    "flag": "dedicated",
+    "link": "https://www.dallal.co.il/villa",
+    "linkText": "dallal.co.il — Villa Dallal Events",
+    "email": "villa@dallal.co.il",
+    "note": "Enchanting preserved villa with a green courtyard in Neve Tzedek just south of the boulevard, dedicated events arm of a beloved cafe-bakery institution; brunch/coffee heritage with tailored chef menus for an intimate hack-day.",
+    "img": "https://media.getmood.io/warehouse/dynamic/629488.webp",
+    "alt": "Villa Dallal Neve Tzedek courtyard",
+    "top": false
+  },
+  {
+    "k": "rothschild_57_57",
+    "name": "Rothschild 57 (רוטשילד 57)",
+    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "type": "cowork",
+    "addr": "57 Rothschild Blvd, Tel Aviv-Yafo",
+    "cap": "<b>~100</b>(est; multi-room venue incl. rooftop)",
+    "flag": "dedicated",
+    "link": "https://rothschild57.com/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D-%D7%A2%D7%A1%D7%A7%D7%99%D7%99%D7%9D",
+    "linkText": "Dedicated business-events page (Hebrew)",
+    "email": "info@rothschild57.com",
+    "note": "Purpose-built boutique event/meeting complex on the boulevard with a boulevard-facing rooftop, several themed rooms and kosher-capable service; runs 8:00-23:00 and is already set up for corporate hack/workshop formats.",
+    "img": "https://rothschild57.com/wp-content/uploads/2024/11/rooftop1.jpg",
+    "alt": "Rothschild 57 rooftop event space overlooking Rothschild Blvd",
+    "top": true
+  },
+  {
+    "k": "brain_embassy_tel",
+    "name": "Brain Embassy Tel Aviv (בריין אמבסי)",
+    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "type": "cowork",
+    "addr": "Adgar 360 Tower, 2 HaArba'a St, Tel Aviv-Yafo",
+    "cap": "<b>100</b>-200 (published size filter)",
+    "flag": "dedicated",
+    "link": "https://brainembassy.co.il/en/meetings-events",
+    "linkText": "Meetings & Events page",
+    "email": null,
+    "note": "Polish-origin creative campus on the Yitzhak Sadeh/Sarona edge of Lev Ha'ir; published 100-200 event-size filter, high-end AV/sound, modular rooms and chef-workshop options make it the biggest turn-key option on the list.",
+    "img": "https://brainembassy.co.il/wp-content/uploads/2025/02/Events_HERO.webp",
+    "alt": "Brain Embassy events floor with skyline view",
+    "top": false
+  },
+  {
+    "k": "urban_place_rothschild",
+    "name": "Urban Place Rothschild (אורבן פלייס רוטשילד)",
+    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "type": "cowork",
+    "addr": "Psagot Tower, 1 Rothschild Blvd, Tel Aviv-Yafo",
+    "cap": "<b>~80</b>(est)",
+    "flag": "contact",
+    "link": "https://urbanplace.me/tel-aviv/rothschild",
+    "linkText": "Rothschild Blvd TLV location page",
+    "email": null,
+    "note": "Sea-view coworking floors in the Psagot Building at the south-western tip of the boulevard; happy-hour community culture and business lounges suit a relaxed coffee/hack day; bookings via on-site tour form.",
+    "img": "https://urbanplace.me/wp-content/uploads/elementor/thumbs/R-1-r6fqpo6x8sj02707dcwg4wo3uidyvv5dn8sod37qtk.png",
+    "alt": "Urban Place Rothschild coworking lounge",
+    "top": false
+  },
+  {
+    "k": "meet_in_place",
+    "name": "Meet In Place, 57 Rothschild (מיט אין פלייס)",
+    "area": "Rothschild–Levontin / Lev Ha'ir (Rothschild Blvd, Ahad Ha'am, Yitzhak Sadeh edge)",
+    "type": "cowork",
+    "addr": "57 Rothschild Blvd, Tel Aviv-Yafo",
+    "cap": "<b>108</b>(Grand Loft, published on PartySlate)",
+    "flag": "contact",
+    "link": "https://www.partyslate.com/venues/meet-in-place-57-rothschild",
+    "linkText": "Venue profile (PartySlate)",
+    "email": null,
+    "note": "Bauhaus four-floor complex: windowed Grand Loft seats 108 plus a 50-seat boulevard rooftop, all A/V-equipped and pet-friendly — good combined indoor+outdoor hack-day container. Brand's own site is currently unreachable, hence the aggregator link.",
+    "img": "https://img.partyslate.com/companies-cover-image/14717/image-6011f622-edc4-47fe-819a-2ffe3c67fe9c.jpg?tr=w-3840",
+    "alt": "Meet In Place 57 Rothschild Grand Loft interior",
+    "top": false
+  },
+  {
+    "k": "migdalor_cafe",
+    "name": "Migdalor Cafe (מגדלור)",
+    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "type": "coffee",
+    "addr": "Rehavam Ze'evi (Gandi) 1, North Tel Aviv Port (inside the 1930s lighthouse, by the Yarkon estuary), Tel Aviv",
+    "cap": "<b>~200+</b>(est) on the open deck; cinema/yoga nights and the Founders Running Club meetup run here regularly",
+    "flag": "contact",
+    "link": "https://www.facebook.com/MigdalorTLV",
+    "linkText": "Migdalor on Facebook (official, active Aug 2026 — message to book)",
+    "email": null,
+    "note": "Tel Aviv's most distinctive coffee setting: a cafe inside the city's first lighthouse, a short walk from Hangar 11/Reading. Its big seafront deck already hosts giant-screen nights and community events — a natural bilingual hack-day home; Sep weather suits the outdoor setup.",
+    "img": "https://www.molet.org/wp-content/uploads/2022/05/migdalor-01eng.jpg",
+    "alt": "Café seating inside the Tel Aviv lighthouse",
+    "top": true
+  },
+  {
+    "k": "cafe_cafe_namal",
+    "name": "Cafe Cafe Namal (קפה קפה)",
+    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "type": "coffee",
+    "addr": "Yordei HaSira 1, Tel Aviv Port, Tel Aviv",
+    "cap": "<b>90</b>(published: \"אירועים עד 90 איש בקומה ממוזגת\" — events up to 90 in the air-conditioned floor; groups of 20+ bookable by advance arrangement)",
+    "flag": "dedicated",
+    "link": "https://www.cafecafe.co.il/he/company/snifim/view?ContentID=785",
+    "linkText": "Official branch page with events info (פירטי אירועים, טלפון)",
+    "email": null,
+    "note": "Only port cafe with a published events capacity: an AC upper floor for up to 90 — realistic for a 50–90 person hack morning. Kosher (Rav Machpud), open till midnight Sun–Thu, parking; call 03-5440054 / 053-5727408 to book.",
+    "img": null,
+    "alt": "Upper-floor café room overlooking the port boardwalk",
+    "top": false
+  },
+  {
+    "k": "cafe_nimrod",
+    "name": "Cafe Nimrod (קפה נמרוד)",
+    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "type": "coffee",
+    "addr": "Hangar 8, Tel Aviv Port (האנגר 8, נמל ת\"א), Tel Aviv",
+    "cap": "<b>~150–200</b>(est — large sea-facing deck + indoor hall; original branch of the chain, event-friendly)",
+    "flag": "contact",
+    "link": "https://www.rol.co.il/restaurant/cafe-nimrod",
+    "linkText": "ROL venue listing + events planning entry (תכנן אירוע)",
+    "email": "gibeshizik@gmail.com",
+    "note": "Veteran Galil-style cafe right on the water with a huge open deck — founded at this very spot, now run independently and actively hosting events. Sea breeze + long tables suit an all-day bilingual hack/coffee day; evening hours \"until the last customer\".",
+    "img": null,
+    "alt": "gibeshizik@gmail.com (events, published on official Facebook page); 077-2133007 / 058-595-7273",
+    "top": false
+  },
+  {
+    "k": "maison_kayser_port",
+    "name": "Maison Kayser Port (מייזון קייזר)",
+    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "type": "coffee",
+    "addr": "Hangar 22, Tel Aviv Port (האנגר 22, נמל תל אביב), Tel Aviv",
+    "cap": "<b>~80</b>(est — boulangerie-cafe with sea-facing terrace)",
+    "flag": "contact",
+    "link": "https://www.kayser.co.il",
+    "linkText": "Official site — locations list (צור קשר form / WhatsApp)",
+    "email": null,
+    "note": "Eric Kayser's artisan French bakery-cafe with a prime port terrace facing the sea — strong coffee-and-pastry credibility for a morning hack session. Smaller footprint suits the 50–80 end; June 2026 port pop-ups show they're active on site.",
+    "img": "https://media.getmood.io/warehouse/dynamic/222861.jpg",
+    "alt": "Bakery-café terrace facing the marina",
+    "top": false
+  },
+  {
+    "k": "alma_cafe_namal",
+    "name": "Alma Cafe Namal (קפה עלמה)",
+    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "type": "coffee",
+    "addr": "Yordei HaSira 2, Tel Aviv Port (כ״ג יורדי הסירה 2), Tel Aviv",
+    "cap": "<b>~100</b>(est — neighborhood cafe sized for business meetings, morning-to-night)",
+    "flag": "contact",
+    "link": "https://www.almacafe.co.il/ourplaces/NamalTlv",
+    "linkText": "Official branch page (phone 03-5449449)",
+    "email": null,
+    "note": "Warm neighborhood cafe whose own copy calls it \"the perfect place for a business meeting\" — Hebrew/English-friendly chain with vegan and kids' menus, open Sat too. Good shoulder option if the bigger decks are booked.",
+    "img": "https://media.getmood.io/warehouse/dynamic/704153.jpg",
+    "alt": "Warm timber-lined café interior at the Namal",
+    "top": false
+  },
+  {
+    "k": "hangar_11_11",
+    "name": "Hangar 11 (האנגר 11)",
+    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "type": "cowork",
+    "addr": "Hangar 11, 1 Yordei HaSira St, Tel Aviv Port, Tel Aviv-Yafo (נמל תל אביב, יורדי הסירה 1)",
+    "cap": "<b>350</b>to 1,000+ hosted; main hangar concert capacity to ~3,000 (published)",
+    "flag": "dedicated",
+    "link": "https://hangar11.co.il/private",
+    "linkText": "Dedicated private events division (אירועים פרטיים / אירועים עסקיים)",
+    "email": "info@hangar11.co.il",
+    "note": "The iconic events hangar of the district the brief already names. 360-degree synced projection on 8 m walls, L-Acoustics PA, 700-fixture lighting rig, dedicated private-events team with full production packages (bar, catering, DJ/VJ). Vast sea-facing entry plaza for registration + overflow; adjacent Reading parking is free. 50-200 is small for the main hall but they run the smaller Federation room for boutique events.",
+    "img": "https://hangar11.co.il/private/wp-content/uploads/2015/08/DSC_9945-עותק.jpg",
+    "alt": "Hangar 11 main hall with 360 projection at a private event",
+    "top": true
+  },
+  {
+    "k": "reading_3_3",
+    "name": "Reading 3 (רדינג 3) Events",
+    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "type": "cowork",
+    "addr": "Reading 3, North Tel Aviv Port / Reading compound, Tel Aviv-Yafo (רדינג 3, צפון נמל תל אביב)",
+    "cap": "<b>500</b>seated; 700 standing (published)",
+    "flag": "dedicated",
+    "link": "https://www.reading3-events.co.il/BusinessEvents/events-for-hi-tech",
+    "linkText": "Dedicated hi-tech events production page (הפקת אירועים לחברות הייטק)",
+    "email": null,
+    "note": "A venue that literally has a Hebrew-language 'events for hi-tech companies' landing page. Live-show sound system, LED projection screens and experienced tech production staff in-house, plus a full team of waiters/bartenders. Adjacent Reading parking is free — at tech-week rush that's gold. Direct fit for a 50-200 bilingual coffee/hack day; scale up or down via partitions.",
+    "img": "https://media.getmood.io/warehouse/dynamic/2039.jpg",
+    "alt": "Reading 3 events hall interior, Port Tel Aviv",
+    "top": false
+  },
+  {
+    "k": "mixer_park_tlv",
+    "name": "MIXER Park TLV / MIXER House TLV (מיקסר תל אביב)",
+    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "type": "cowork",
+    "addr": "Tel Aviv Convention Center (מרכז הירידים / גני התערוכה), 101 Rokach Blvd, Tel Aviv-Yafo — adjacent to the Port/Reading quarter",
+    "cap": "<b>1</b>-100 offices + private events lounges, indoor & outdoor venues; hosted multi-hundred-person hackathons (Maccabi 24h hackathon, Incredibles Hackathon) and NVIDIA's Jensen Huang private event — comfortable at 50-200",
+    "flag": "dedicated",
+    "link": "https://mixer.work/events/",
+    "linkText": "Dedicated Events page with 'Book an event' and named tech-hackathon/NVIDIA case studies",
+    "email": null,
+    "note": "The only cowork-and-event hybrid in the quarter that already runs the exact format: the Maccabi Hackathon lived here 24+ hours, and Jensen Huang did a private event with chef Eyal Shani on the garden. Soups-to-nuts event production — dedicated event manager, event staff, kitchen, A/V, coffee service — plus adjacent train (Tel Aviv University) and gates 7/9 parking at the Convention Center. Bilingual EN/HE site.",
+    "img": "https://mixer.work/wp-content/uploads/2019/11/mixer-time.png",
+    "alt": "MIXER TLV hosted event space, Convention Center",
+    "top": false
+  },
+  {
+    "k": "namel_event_space",
+    "name": "NAMEL Event Space Tel Aviv (נָמֵל אירועים תל אביב)",
+    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "type": "cowork",
+    "addr": "Ground floor, ~500 m², Tel Aviv Port, Tel Aviv-Yafo (נמל תל אביב)",
+    "cap": "<b>50</b>-150 people (published hourly, daytime 3-hour min; evening 4-hour min + ₪500/h)",
+    "flag": "dedicated",
+    "link": "https://www.spacez.co.il/space/namel-event-space-tel-aviv",
+    "linkText": "Spacez venue listing with 50-150 capacity, hourly rates, full amenities and 073-776-0244 phone",
+    "email": null,
+    "note": "Ground-floor sea-view event space in the Port with a private terrace, projector/screen, A/C, kitchen/coffee machine, Wi-Fi, accessible. Capacity band (50-150) hits the brief dead-centre — the only candidate sized exactly to the 50-200 brief without partitioning a bigger hangar. Coffee/tea service in-house fits the 'coffee/hack' brief directly.",
+    "img": null,
+    "alt": "NAMEL ground-floor event space terrace, Tel Aviv Port",
+    "top": false
+  },
+  {
+    "k": "the_white_pergola",
+    "name": "The White Pergola (הסוכה הלבנה)",
+    "area": "Tel Aviv Port / Namal (Wix campus, Bitan 26, Reading/Hangar 11 events quarter)",
+    "type": "cowork",
+    "addr": "1 Yordei HaSira St, Hangar 4, Tel Aviv Port, Tel Aviv-Yafo (יורדי הסירה 1, האנגר 4, נמל ת״א)",
+    "cap": "Indoor hall <b>up to 120</b>/ covered balcony 50 / waterfront terrace ~200 seats (published); combined ~250+",
+    "flag": "dedicated",
+    "link": "https://hasuka-halevana.co.il/english",
+    "linkText": "Bilingual site with dedicated '#events' section, capacity breakdown and event contact (Liliane +972-3-546-4747)",
+    "email": "bossseafood@gmail.com",
+    "note": "Fish-and-seafood restaurant in Hangar 4, the hangar immediately next to Hangar 11 in the named events quarter. 200-seat waterfront terrace is genuinely on the water line — natural fit for an evening hack-day closing drink after daytime sessions in the 120-seat indoor hall. Bilingual EN/HE venue with full kitchen, cocktail bar, and dedicated events coordinator.",
+    "img": "https://hasuka-halevana.co.il/wp-content/uploads/2017/09/dji_0297.jpg",
+    "alt": "White Pergola waterfront terrace at Tel Aviv Port",
+    "top": false
+  }
+];
+
+/* ============================ EDIT ABOVE ============================ */
+
+const state = { area: "all", type: "all", dedicatedOnly: false };
+const AREAS = [...new Set(VENUES.map(v => v.area))];
+const typeKeys = Object.keys(TYPE_META);
+const tcls = t => "t" + (typeKeys.indexOf(t) % 3);
+
+function initials(name){
+  return name.replace(/[^a-zA-Z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join("");
+}
+function mapsUrl(v){
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(v.name + " " + v.addr);
+}
+function card(v){
+  const t = TYPE_META[v.type] || { label: v.type, icon: "📍" };
+  const flagHtml = v.flag === "dedicated"
+    ? '<span class="flag dedicated">✓ Dedicated events page</span>'
+    : '<span class="flag contact">✉ Events contact only</span>';
+  const imgHtml = v.img
+    ? `<img src="${v.img}" alt="${v.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.card').classList.add('noimg')">`
+    : "";
+  const emailBtn = v.email ? `<a class="btn sec" href="mailto:${v.email}">${v.email}</a>` : "";
+  return `<div class="card${v.img ? "" : " noimg"}">
+    <div class="imgbox">
+      ${imgHtml}
+      <div class="ph ${tcls(v.type)}"><span class="icn">${t.icon}</span><span class="mono">${initials(v.name)}</span></div>
+      ${v.top ? '<div class="toppick">★ Top pick</div>' : ""}
+      <div class="areatag">${v.area}</div>
+    </div>
+    <div class="body">
+      <div class="titlerow"><div class="vname">${v.name}</div><span class="typechip ${tcls(v.type)}">${t.icon} ${t.label}</span></div>
+      <div class="addr"><a href="${mapsUrl(v)}" target="_blank" rel="noopener">📍 ${v.addr}</a></div>
+      <div class="cap">${v.cap}</div>
+      ${flagHtml}
+      <div class="note">${v.note}</div>
+      <div class="links"><a class="btn pri" href="${v.link}" target="_blank" rel="noopener">${v.linkText} ↗</a>${emailBtn}</div>
+    </div>
+  </div>`;
+}
+function render(){
+  const match = v =>
+    (state.area === "all" || v.area === state.area) &&
+    (state.type === "all" || v.type === state.type) &&
+    (!state.dedicatedOnly || v.flag === "dedicated");
+  const shown = VENUES.filter(match);
+  const areas = AREAS.filter(a => state.area === "all" || a === state.area);
+  let html = "";
+  for (const a of areas){
+    const items = shown.filter(v => v.area === a);
+    if (!items.length) continue;
+    const hint = typeKeys.map(k => {
+      const n = items.filter(v => v.type === k).length;
+      return n ? `${n} ${TYPE_META[k].label.toLowerCase()}` : null;
+    }).filter(Boolean).join(" · ");
+    html += `<div class="section-h"><h2>${a}</h2><span class="hint">${hint}</span></div>
+             <div class="grid">${items.map(card).join("")}</div>`;
+  }
+  document.getElementById("content").innerHTML = html || '<div class="empty">No venues match these filters.</div>';
+  document.getElementById("count").textContent = `Showing ${shown.length} of ${VENUES.length} venues`;
+}
+function buildChips(el, values, key){
+  el.innerHTML = `<button class="chip on" data-v="all">All ${key === "area" ? "areas" : "types"}</button>` +
+    values.map(v => `<button class="chip" data-v="${v.v}">${v.label}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(btn => btn.addEventListener("click", () => {
+    el.querySelectorAll(".chip").forEach(b => b.classList.remove("on"));
+    btn.classList.add("on");
+    state[key] = btn.dataset.v;
+    render();
+  }));
+}
+function init(){
+  if (document.title === "Compute Cafe") document.title = CONFIG.title; // standalone use only; built pages keep their spliced title
+  document.getElementById("kicker").textContent = CONFIG.kicker;
+  document.getElementById("title").textContent = CONFIG.title;
+  document.getElementById("subtitle").textContent = CONFIG.subtitle;
+  const dedicated = VENUES.filter(v => v.flag === "dedicated").length;
+  const stats = [
+    { n: String(VENUES.length), l: "venues vetted" },
+    { n: String(dedicated), l: "with dedicated events pages" },
+    { n: String(AREAS.length), l: AREAS.length === 1 ? "neighborhood" : "neighborhoods" },
+  ];
+  if (CONFIG.extraStat) stats.push(CONFIG.extraStat);
+  document.getElementById("stats").innerHTML =
+    stats.map(s => `<div class="stat"><div class="n">${s.n}</div><div class="l">${s.l}</div></div>`).join("");
+  document.getElementById("foot").innerHTML =
+    CONFIG.footnotes.map(f => `<div class="fnote">${f}</div>`).join("") +
+    `<div class="prov">${CONFIG.provenance}</div>`;
+  buildChips(document.getElementById("f-area"), AREAS.map(a => ({v:a, label:a})), "area");
+  buildChips(document.getElementById("f-type"), typeKeys.map(k => ({v:k, label:`${TYPE_META[k].icon} ${TYPE_META[k].label}s`})), "type");
+  const flagBtn = document.querySelector('#f-flag .chip');
+  flagBtn.addEventListener("click", () => {
+    state.dedicatedOnly = !state.dedicatedOnly;
+    flagBtn.classList.toggle("on", state.dedicatedOnly);
+    render();
+  });
+  render();
+}
+function cycleTheme(){
+  const r = document.documentElement;
+  const cur = r.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : cur === "light" ? "dark"
+    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
+  r.setAttribute("data-theme", next);
+}
+init();
+</script>
+</body>
+</html>
