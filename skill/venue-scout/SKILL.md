@@ -33,6 +33,33 @@ assumptions and proceed):
 Defaults that served well: ~50-200 attendees, 5-8 venues per neighborhood/type
 combination, ranked best-first.
 
+## Step 1.5 — Seed from tour traces (before cold discovery)
+
+Global tech-event tours and chapter networks have already solved "find a
+hackable café in this city" — and their past event pages *name the venues*. A
+venue that hosted a 50-300 person builder event is a pre-vetted seed: proven
+capacity, proven willingness to host, proven tech-crowd fit. The event page
+itself is stronger capacity evidence than the venue's own marketing copy, and
+it also feeds Step 1's framing (where events actually clustered beats where a
+blog says they should).
+
+Work `references/venue-sources.md` top-down before any cold search:
+
+1. **Tier 0 — our own history** (Dabl Club past events on Luma): venues
+   already used, hosts already known. Harvest first, always.
+2. **Tier 1 — AI-builder tours** (Cafe Cursor, ElevenLabs Worldwide
+   Hackathon, AI Tinkerers chapters, ClawCon, Lovable, Supabase meetups):
+   same event shape as ours — check each series' calendar for the target city.
+3. **Tier 2/3 — venue-native series and meta-directories** (CreativeMornings,
+   Luma Discover): right venue shape, broader crowd.
+
+Rules: a tour trace is a **seed, never a verification bypass** — every lead
+still passes Step 2's fetch-verification (venues close between tours). Log
+the event-page fetch like any other evidence (`used_for: "tour-trace seed via
+<series>"`). Luma pages may hide the street address until registration, but
+the venue *name* is public — enough to seed. A tour stop at a sponsor's
+private office is a partner lead, not a venue, unless it's publicly bookable.
+
 ## Step 2 — Research with verification (subagents)
 
 Spawn one general-purpose subagent per neighborhood×type combination, in
@@ -51,7 +78,8 @@ prose. Require from every agent, for every venue:
 4. Open-status check — search "[venue] closed [year]" when in doubt; collect
    closures separately (they become a "gone since last year" footnote that
    users love)
-5. Any event-hosting history (shows the venue actually says yes)
+5. Any event-hosting history (shows the venue actually says yes — a tour
+   trace from Step 1.5 satisfies this; cite the event page)
 
 Non-negotiables to write into every agent prompt: *only output URLs you
 fetched successfully; if a URL 404s, search the site for the right one; flag
