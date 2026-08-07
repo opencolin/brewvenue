@@ -52,6 +52,9 @@
     border-radius: 999px; padding: 6px 12px; cursor: pointer;
   }
   .themebtn:hover { color: var(--ink-1); }
+  .topnav { float: right; display: flex; gap: 16px; margin: 4px 18px 0 0; flex-wrap: wrap; }
+  .topnav a { font-size: 12.5px; font-weight: 600; color: var(--ink-2); text-decoration: none; }
+  .topnav a:hover { color: var(--ink-1); text-decoration: underline; text-underline-offset: 2px; }
   .homelink { font-size: 12.5px; font-weight: 600; color: var(--ink-3); text-decoration: none; display: inline-block; margin-bottom: 8px; }
   .homelink:hover { color: var(--ink-1); }
   .kicker {
@@ -101,6 +104,10 @@
 <div class="wrap">
   <header>
     <button class="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    <nav class="topnav">
+      <a href="/stack/">View our tech stack →</a>
+      <a href="https://github.com/opencolin/brewvenue" target="_blank" rel="noopener">Star our GitHub →</a>
+    </nav>
     <a class="homelink" href="/">← ComputeCafe</a>
     <div class="kicker">Global Hackathon Tour · H2 2026</div>
     <h1>Upcoming events</h1>
@@ -120,19 +127,19 @@
 // sort: YYYYMMDD of the (first) event day. rsvp = registration link; cafe = the city's ComputeCafe lineup.
 const EVENTS = [
   { sort: 20260909, date: "Sep 9",       city: "Tokyo",         region: "Asia-Pacific",         rsvp: null, cafe: "/tokyo/" },
-  { sort: 20260909, date: "Sep 9–11",    city: "Stockholm",     region: "Europe & Middle East", rsvp: null, cafe: null },
-  { sort: 20260910, date: "Sep 10·17·24", city: "Berlin",       region: "Europe & Middle East", rsvp: null, cafe: null },
-  { sort: 20260911, date: "Sep 11",      city: "Seoul",         region: "Asia-Pacific",         rsvp: null, cafe: null },
-  { sort: 20260912, date: "Sep 12",      city: "Kuala Lumpur",  region: "Asia-Pacific",         rsvp: null, cafe: null },
-  { sort: 20260914, date: "Sep 14",      city: "Singapore",     region: "Asia-Pacific",         rsvp: null, cafe: null },
-  { sort: 20260915, date: "Sep 15",      city: "London",        region: "Europe & Middle East", rsvp: null, cafe: null },
-  { sort: 20260916, date: "Sep 16",      city: "Tel Aviv",      region: "Europe & Middle East", rsvp: null, cafe: null },
-  { sort: 20260916, date: "Sep 16",      city: "Zurich",        region: "Europe & Middle East", rsvp: null, cafe: null },
-  { sort: 20260918, date: "Sep 18",      city: "Paris",         region: "Europe & Middle East", rsvp: null, cafe: null },
-  { sort: 20260921, date: "Sep 21",      city: "Barcelona",     region: "Europe & Middle East", rsvp: null, cafe: null },
+  { sort: 20260909, date: "Sep 9–11",    city: "Stockholm",     region: "Europe & Middle East", rsvp: null, cafe: "/stockholm/" },
+  { sort: 20260910, date: "Sep 10·17·24", city: "Berlin",       region: "Europe & Middle East", rsvp: null, cafe: "/berlin/" },
+  { sort: 20260911, date: "Sep 11",      city: "Seoul",         region: "Asia-Pacific",         rsvp: null, cafe: "/seoul/" },
+  { sort: 20260912, date: "Sep 12",      city: "Kuala Lumpur",  region: "Asia-Pacific",         rsvp: null, cafe: "/kuala-lumpur/" },
+  { sort: 20260914, date: "Sep 14",      city: "Singapore",     region: "Asia-Pacific",         rsvp: null, cafe: "/singapore/" },
+  { sort: 20260915, date: "Sep 15",      city: "London",        region: "Europe & Middle East", rsvp: null, cafe: "/london/" },
+  { sort: 20260916, date: "Sep 16",      city: "Tel Aviv",      region: "Europe & Middle East", rsvp: null, cafe: "/tel-aviv/" },
+  { sort: 20260916, date: "Sep 16",      city: "Zurich",        region: "Europe & Middle East", rsvp: null, cafe: "/zurich/" },
+  { sort: 20260918, date: "Sep 18",      city: "Paris",         region: "Europe & Middle East", rsvp: null, cafe: "/paris/" },
+  { sort: 20260921, date: "Sep 21",      city: "Barcelona",     region: "Europe & Middle East", rsvp: null, cafe: "/barcelona/" },
   { sort: 20260925, date: "Sep 25",      city: "New York City", region: "North America",        rsvp: "https://luma.com/tavily-nnzl", cafe: "/new-york/" },
   { sort: 20260925, date: "Sep 25",      city: "Amsterdam",     region: "Europe & Middle East", rsvp: null, cafe: null },
-  { sort: 20260929, date: "Sep 29",      city: "Toronto",       region: "North America",        rsvp: null, cafe: null },
+  { sort: 20260929, date: "Sep 29",      city: "Toronto",       region: "North America",        rsvp: null, cafe: "/toronto/" },
   { sort: 20261002, date: "Oct 2",       city: "Boston",        region: "North America",        rsvp: "https://luma.com/emee7xtr", cafe: "/boston/" },
   { sort: 20261005, date: "Oct 5–11",    city: "San Francisco", region: "North America",        rsvp: null, cafe: "/san-francisco/" },
   { sort: 20261012, date: "Oct 12–18",   city: "Los Angeles",   region: "North America",        rsvp: null, cafe: "/los-angeles/" },
