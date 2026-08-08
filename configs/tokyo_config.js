@@ -65,8 +65,8 @@ const VENUES = [
     "linkText": "Official rental + events page (cafe / coworking / event space under one roof)",
     "email": "rental@8sp.jp",
     "note": "Startup-incubation cafe that already runs monthly pitch nights and hands-on AI workshops for 20–40 pax, so the tech-week format is native. Wi-Fi + power at all seats, 100-inch projector + 5.1ch audio + streaming gear + kitchen, cafe space ¥19,800/h and event space listed for up to 60 with revenue-share sponsorship option.",
-    "img": null,
-    "alt": "Eight space coworking cafe interior",
+    "img": "https://8sp.jp/img/hero-cafe.webp",
+    "alt": "Eight space cafe and coworking lounge interior with communal tables",
     "top": false,
     "lat": 35.6731903,
     "lng": 139.7084267
@@ -83,8 +83,8 @@ const VENUES = [
     "linkText": "GOBLIN. official space page (5 CROSSTIES COFFEE) with spec + access",
     "email": null,
     "note": "Working Scramble Square 17F coffee hall configured as a rental floor — glass-walled with direct skyline views over the crossing, elevator-accessible, barrier-free, with 2 free mic/PA/projector units on 3F policies documented. Direct station access is the best logistics in this set for a Sept tech-week shuttle.",
-    "img": null,
-    "alt": "GOBLIN Scramble Square cafe interior",
+    "img": "https://goblinspace.jp/wp-content/uploads/2019/10/space_5cc_230418_15.jpg",
+    "alt": "GOBLIN Scramble Square 17F lounge interior with skyline windows",
     "top": false,
     "lat": 35.6583792,
     "lng": 139.7022161
@@ -101,8 +101,8 @@ const VENUES = [
     "linkText": "GOBLIN. official space page (渋谷CAFE&HOTEL) with full spec + 料金 table",
     "email": null,
     "note": "Hotel/penthouse-style cafe event house sized for the full 50–200 band: take just the 3F (120, fully AV-equipped) or stack floors toward 220 with catering at ¥5,500/person on-site. Whole-building buyout from ¥110,000/hour inc-tax, and the operator supplies staff on the day.",
-    "img": null,
-    "alt": "GOBLIN CAFE & HOTEL penthouse floor",
+    "img": "https://goblinspace.jp/wp-content/uploads/2025/04/space_shibuya-cafe-and-hotel_250424_55.jpg",
+    "alt": "GOBLIN CAFE & HOTEL bright event floor with rows of tables",
     "top": false
   },
   {
@@ -363,8 +363,8 @@ const VENUES = [
     "linkText": "Top page with facilities, event rental terms and 'EVENT' contact section",
     "email": null,
     "note": "Run by Tokyo Tatemono with on-site VC (XTech Ventures). Explicitly marketed for evening pitch events, networking and study sessions — bilingual staff accustomed to global startup community (the xBridge-Global sister site has an English café, GOOD COFFEE FARMS, run by Guatemalan founder Carlos Melen). 3 min from Nihonbashi Station A3/B3 (Metro Ginza/Tozai/Asakusa), 3 min from Tokyo Station Yaesu north. Sized for the small end (50-60) but the most 'tech-week' vibe per square meter, with a real coffee bar at the entrance.",
-    "img": null,
-    "alt": "xBridge-Yaesu open lounge",
+    "img": "https://xbridge.tokyo/WP/wp-content/uploads/2026/01/features_office_space_yaesu.jpg",
+    "alt": "xBridge-Yaesu coworking work space with long shared table",
     "top": false,
     "lat": 35.6808,
     "lng": 139.7712
@@ -451,8 +451,8 @@ const VENUES = [
     "linkText": "会場ベストサーチ (kaijosearch) — dedicated KAFLI rental listing with Sept-2026 availability calendar, plan inquiry form, capacity table",
     "email": null,
     "note": "Café-lounge styled single-floor rental space between Roppongi and Nogizaka with an ivory interior, atrium, and classic chandeliers — more 'stylish café lounge' than bar-club, and it has DJ booth, sound/vision kit and a small stage that doubles well for talks. Operator works with both JP corporate parties and music/culture events, accustomed to international crowds in this district. Booking via kaijosearch form (JP) — venue staff reachable through the form for both JP and EN inquiries.",
-    "img": null,
-    "alt": "Atrium café-lounge interior at KAFLI Roppongi",
+    "img": "https://s3.ap-northeast-1.amazonaws.com/facility-image/facility_image/large_3ohbAd65WVCMrof1.JPG",
+    "alt": "KAFLI Roppongi atrium cafe-lounge interior with chandelier and DJ booth",
     "top": false,
     "lat": 35.66346521447368,
     "lng": 139.7330041618421
