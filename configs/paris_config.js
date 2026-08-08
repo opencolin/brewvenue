@@ -408,8 +408,8 @@ const VENUES = [
     "linkText": "Privatisation",
     "email": null,
     "note": "Community-built 'tiers-lieu' café whose brand DNA is hosting: afterworks, talks and weekly creative workshops; its dedicated privatisation page invites meetings, conferences, ateliers and afterworks with breakfast/coffee breaks included. Luminous, laptop-friendly room inside the Lumière office ecosystem, which adds a bookable 40-seat event room and stepped atrium for plenaries. Listed on Kactus for corporate evenings, confirming event operations.",
-    "img": null,
-    "alt": "High-ceilinged café interior with ping-pong table and laptop work zones",
+    "img": "https://lumiere.kawaa.co/wp-content/uploads/sites/21/2026/06/45a0185-2048x1366.jpg",
+    "alt": "High-ceilinged café interior with shared tables and laptop work zones",
     "top": false,
     "lat": 48.8314729,
     "lng": 2.3886399

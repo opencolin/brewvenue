@@ -444,8 +444,8 @@ const VENUES = [
     "linkText": "CONVENDUM Conference Stockholm — Birger Jarlsgatan 57",
     "email": "info@convendum.se",
     "note": "Same Spårvagnshallarna tram-depot block as Norrsken; grand-lounge conference centre with an auditorium for ~110 and CONVENDUM Coffee café on the ground floor — reliable daytime infrastructure for a coffee/hack day of 50–110 participants, two minutes from Stureplan.",
-    "img": null,
-    "alt": "CONVENDUM Birger Jarlsgatan 57 conference lounge",
+    "img": "https://cdn.sanity.io/images/cjfl0cyg/production/5ea64cae6545369acc29507d52e0acf0cb66b390-2560x1707.jpg?fit=max&auto=format",
+    "alt": "CONVENDUM conference lounge in the Spårvagnshallarna building",
     "top": false,
     "lat": 59.3414768,
     "lng": 18.064424

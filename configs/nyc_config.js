@@ -602,8 +602,8 @@ const VENUES = [
     "linkText": "littlefield home",
     "email": "booking@littlefieldnyc.com",
     "note": "Converted 6,200 sq ft Gowanus warehouse with stage, EAW A/V, gallery/bar front room; 300-capacity performance room or movable-partition 100-cap gallery + bar. Day-time coffee-hack friendly industrial shape in the heart of the target zone.",
-    "img": null,
-    "alt": "littlefield Gowanus industrial performance room with stage",
+    "img": "https://littlefieldnyc.com/wp-content/uploads/2021/02/Exterior_mural-scaled.jpg",
+    "alt": "littlefield's iconic Gowanus warehouse exterior with its large mural (venue photo)",
     "top": false,
     "lat": 40.6784807,
     "lng": -73.9833773
