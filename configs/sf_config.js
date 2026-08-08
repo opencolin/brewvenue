@@ -69,7 +69,7 @@ const VENUES = [
 
   // ---------- FIDI / JACKSON SQUARE ----------
   {k:"corgi", name:"Corgi Cafe", area:"FiDi / Jackson Square", type:"coffee", top:true,
-   addr:"9 Claude Ln, San Francisco", lat:-18.3148652, lng:-63.1937065, cap:"Café ~<b>50</b>; form takes <b>100+</b> (uses their upstairs) · FREE hosting",
+   addr:"9 Claude Ln, San Francisco", lat:37.7584, lng:-122.4131, cap:"Café ~<b>50</b>; form takes <b>100+</b> (uses their upstairs) · FREE hosting",
    flag:"dedicated", link:"https://www.corgicafe.com/host", linkText:"Host with us", email:"cafe@corgi.insure",
    note:"SF's first 24/7 café, built for founders — no venue fee (attendees buy café items or you set an F&B budget), <12hr response. The only all-night option in town; pressure-test real headcount.",
    img:"https://mma.prnewswire.com/media/2905117/Corgi_24_7_Cafe.jpg", alt:"Corgi Cafe on Claude Lane"},
@@ -101,7 +101,7 @@ const VENUES = [
    note:"Nonprofit art×tech gallery (opened Nov 2025) that actively solicits event proposals — salons, demos, performances. Best evening-format room on this list; note it's Union Square, not SoMa.",
    img:"https://cdn.sfstation.com/wp-content/uploads/2025/11/IMG_2859.jpg", alt:"TIAT gallery interior"},
   {k:"convene", name:"Convene — 100 Stockton", area:"Union Sq / Mid-Market", type:"event",
-   addr:"100 Stockton, San Francisco", lat:40.7676283, lng:-111.9002446, cap:"Up to <b>468</b> · 53k sq ft, 7 rooms, turnkey AV + catering",
+   addr:"100 Stockton, San Francisco", lat:37.7875, lng:-122.4067, cap:"Up to <b>468</b> · 53k sq ft, 7 rooms, turnkey AV + catering",
    flag:"dedicated", link:"https://convene.com/locations/san-francisco/100-stockton/", linkText:"Venue page", email:null,
    note:"The plug-and-play conference option: staffing, AV, and catering in-house. The most polished (and priced-accordingly) way to run an all-day 100–300 program.",
    img:"https://images.ctfassets.net/rpinqlxtcitg/1Dz77MyvthFXwYGejOwVLA/6fe1bba7270367a0ab766cea61e87a78/100-stockton-4th-floor-gallery.webp", alt:"Convene 100 Stockton gallery space"},

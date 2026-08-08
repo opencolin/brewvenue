@@ -65,7 +65,7 @@ const VENUES = [
    note:"The old Cross Campus flagship — the most Tech Week-storied room in SM. Enclosed event space with breakouts, own entrance, and an adjoining kitchen (ideal for coffee service). ☎ 323-330-9505",
    img:"https://images.squarespace-cdn.com/content/v1/6934b6171c384816b5c7df24/d54521d5-8c0a-4a39-864c-74001fb6375d/54734671496_c6b5c0efd7_k.jpg", alt:"BLANKSPACES Santa Monica interior"},
   {k:"wework", name:"WeWork 520 Broadway", area:"Santa Monica", type:"cowork",
-   addr:"520 Broadway, Santa Monica", lat:33.7400602, lng:-117.8700535, cap:"<b>Flexible</b> · 40k sq ft over 2 floors",
+   addr:"520 Broadway, Santa Monica", lat:34.0171, lng:-118.4943, cap:"<b>Flexible</b> · 40k sq ft over 2 floors",
    flag:"contact", link:"https://www.wework.com/buildings/520-broadway--los-angeles--CA", linkText:"Building page", email:null,
    note:"Building page advertises event spaces, offsites, and film-shoot rentals, indoor + outdoor — booked through the WeWork sales team.",
    img:"https://cdn-images.wework.com/images/E3C9F5DC-9028-11ED-9BE5-0ADB0235F9EB/e3c9f5dc-9028-11ed-9be5-0adb0235f9eb_0.jpg?width=800", alt:"WeWork 520 Broadway coworking floor"},

@@ -366,8 +366,8 @@ const VENUES = [
     "img": null,
     "alt": "xBridge-Yaesu open lounge",
     "top": false,
-    "lat": 36.2881671,
-    "lng": 138.4651608
+    "lat": 35.6808,
+    "lng": 139.7712
   },
   {
     "k": "hills_cafspace_roppongi",
