@@ -323,6 +323,27 @@
   window.__syncMapTheme = function () { applyBase(window.__map); };
 
 
+  function fitView(map, lls) {
+    const L = window.L;
+    if (!lls.length) { map.setView([20, 0], 2); return; }
+    if (lls.length === 1) map.setView(lls[0], 12);
+    else map.fitBounds(L.latLngBounds(lls), { padding: [30, 30] });
+  }
+  function addMarker(map, it) {
+    const L = window.L;
+    const isCity = !!it.kind && it.kind === "city";
+    const color = isCity ? (ACCENT[it.status] || ACCENT.soon) : ACCENT.live;
+    const m = L.circleMarker([it.lat, it.lng], {
+      radius: isCity ? 7 : 6, color, weight: 2, fillColor: color, fillOpacity: 0.55,
+    });
+    const href = it.href;
+    const sub = it.area || it.date || "";
+    m.bindPopup(`<div style="max-width:220px"><b>${it.name}</b><div style="font-size:12px;color:#666">${sub}</div>${href ? `<div style="margin-top:6px"><a href="${href}" ${href.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>Open →</a></div>` : ""}</div>`);
+    m.addTo(map);
+    if (href) m.on("click", () => m.openPopup());
+    return m;
+  }
+
   window.initMap = function (container, data) {
     const L = window.L;
     if (!L) return null;
@@ -332,27 +353,14 @@
     const pts = [];
     (data.venues || []).forEach(v => pts.push(v));
     (data.cities || []).forEach(c => pts.push(c));
+    map.__marks = [];
     const latLngs = [];
     pts.forEach(it => {
-      const isCity = !!it.kind && it.kind === "city";
-      const color = isCity ? (ACCENT[it.status] || ACCENT.soon) : ACCENT.live;
-      const m = L.circleMarker([it.lat, it.lng], {
-        radius: isCity ? 7 : 6, color, weight: 2, fillColor: color, fillOpacity: 0.55,
-      });
-      const href = it.href;
-      const label = it.name;
-      const sub = it.area || it.date || "";
-      const popup = `<div style="max-width:220px"><b>${label}</b><div style="font-size:12px;color:#666">${sub}</div>${href ? `<div style="margin-top:6px"><a href="${href}" ${href.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>Open →</a></div>` : ""}</div>`;
-      m.bindPopup(popup);
-      m.addTo(map);
-      if (href) m.on("click", () => m.openPopup());
+      const m = addMarker(map, it);
+      map.__marks.push({ it, m });
       latLngs.push(m.getLatLng());
     });
-    const fit = () => {
-      if (latLngs.length === 1) map.setView(latLngs[0], 12);
-      else if (latLngs.length > 1) map.fitBounds(L.latLngBounds(latLngs), { padding: [30, 30] });
-      else map.setView([0, 0], 2);
-    };
+    const fit = () => fitView(map, latLngs);
     fit();
     // if the panel mounted at zero size (hidden parent, background tab), refit
     // once it gets real dimensions — otherwise the view stays at max zoom
@@ -399,16 +407,34 @@
   };
 
   // Venues carry build-time lat/lng (scripts/geocode_configs.py) — no client geocoding.
-  window.toggleCityMap = function () {
-    const el = document.getElementById("mapbox");
-    const pts = (typeof VENUES !== "undefined" ? VENUES : [])
+  function venuePts(list) {
+    return (typeof list !== "undefined" ? list : [])
       .filter(v => v.lat && v.lng)
       .map(v => ({ name: v.name, area: v.area, href: v.link, lat: v.lat, lng: v.lng }));
-    const open = window.toggleMap(el, { venues: pts });
+  }
+  // Re-point the open map at a new venue set (filter chips / flag toggle).
+  window.syncMapFilters = function (list) {
+    const map = window.__map;
+    if (!map) return;
+    (map.__marks || []).forEach(({ m }) => { try { map.removeLayer(m); } catch (e) {} });
+    const lls = [];
+    map.__marks = venuePts(list).map(it => {
+      const m = addMarker(map, it);
+      lls.push(m.getLatLng());
+      return { it, m };
+    });
+    fitView(map, lls);
+  };
+  window.toggleCityMap = function () {
+    const el = document.getElementById("mapbox");
+    const openList = (typeof filteredVenues === "function") ? filteredVenues()
+      : (typeof VENUES !== "undefined" ? VENUES : []);
+    const open = window.toggleMap(el, { venues: venuePts(openList) });
     const btn = document.getElementById("mapbtn");
     btn.textContent = open ? "🗺️ Hide Map" : "🗺️ View Map";
     btn.classList.toggle("open", !!open);
     btn.setAttribute("aria-pressed", String(!!open));
+    if (open) window.syncMapFilters(openList);
   };
 })();
 
@@ -963,12 +989,14 @@ function card(v){
     </div>
   </div>`;
 }
-function render(){
-  const match = v =>
+function filteredVenues(){
+  return VENUES.filter(v =>
     (state.area === "all" || v.area === state.area) &&
     (state.type === "all" || v.type === state.type) &&
-    (!state.dedicatedOnly || v.flag === "dedicated");
-  const shown = VENUES.filter(match);
+    (!state.dedicatedOnly || v.flag === "dedicated"));
+}
+function render(){
+  const shown = filteredVenues();
   const areas = AREAS.filter(a => state.area === "all" || a === state.area);
   let html = "";
   for (const a of areas){
@@ -983,6 +1011,10 @@ function render(){
   }
   document.getElementById("content").innerHTML = html || '<div class="empty">No venues match these filters.</div>';
   document.getElementById("count").textContent = `Showing ${shown.length} of ${VENUES.length} venues`;
+  // keep an open map in lockstep with the chips
+  if (window.syncMapFilters && document.getElementById("mapbox")?.style.display === "block") {
+    window.syncMapFilters(shown);
+  }
 }
 function buildChips(el, values, key){
   el.innerHTML = `<button class="chip on" data-v="all">All ${key === "area" ? "areas" : "types"}</button>` +
