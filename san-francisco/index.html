@@ -88,19 +88,16 @@
   .statrow { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 16px; }
   .stat .n { font-size: 22px; font-weight: 700; }
   .stat .l { font-size: 12px; color: var(--ink-3); }
-  .themebtn {
-    float: right; margin-top: -2px; font-size: 12px; color: var(--ink-2);
-    background: var(--surface); border: 1px solid var(--hairline);
-    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  .hdrbtns {
+    float: right; display: flex; flex-wrap: wrap; justify-content: flex-end;
+    gap: 8px; margin: -2px 0 8px 14px; position: relative; z-index: 11;
   }
-  .themebtn:hover { color: var(--ink-1); }
-  .mapbtn {
-    position: absolute; top: 34px; right: 20px; z-index: 11; float: none;
+  .themebtn, .mapbtn, .submitbtn {
     font-size: 12px; color: var(--ink-2); background: var(--surface);
-    border: 1px solid var(--hairline); border-radius: 999px; padding: 6px 12px;
-    cursor: pointer;
+    border: 1px solid var(--hairline); border-radius: 999px;
+    padding: 6px 12px; cursor: pointer; white-space: nowrap;
   }
-  .mapbtn:hover { color: var(--ink-1); }
+  .themebtn:hover, .mapbtn:hover { color: var(--ink-1); }
   .mapbtn.open { color: var(--accent-a); border-color: var(--accent-a); }
   .starh { display: inline-flex; align-items: center; gap: 4px; font-size: 13px;
     border: 1px solid var(--hairline); background: var(--surface);
@@ -111,11 +108,8 @@
   .starh.on .cnt { color: var(--ink-1); font-weight: 600; }
 
   .submitbtn {
-    position: absolute; top: 34px; right: 130px; z-index: 11; float: none;
-    font-size: 12px; font-weight: 600; color: var(--accent-b);
-    background: var(--accent-b-soft);
-    border: 1px solid var(--accent-b); border-radius: 999px; padding: 6px 12px;
-    cursor: pointer;
+    font-weight: 600; color: var(--accent-b);
+    background: var(--accent-b-soft); border-color: var(--accent-b);
   }
   .submitbtn:hover { color: var(--ink-1); }
   .submission-modal {
@@ -150,7 +144,6 @@
   #mapbox .leaflet-container { height: 100%; }
   @media (max-width: 860px) {
     #mapbox { width: 100vw; }
-    .mapbtn { top: 108px; }
   }
   .filters {
     position: sticky; top: 0; z-index: 5; background: var(--page);
@@ -244,9 +237,11 @@
 <body>
 <div class="wrap">
   <header class="hero">
-    <button class="themebtn" id="themebtn" onclick="cycleTheme()">◐ Theme</button>
-    <button class="mapbtn" id="mapbtn" onclick="toggleCityMap()">🗺️ View Map</button>
-    <button class="submitbtn" id="submitbtn" onclick="toggleSubmitModal(true)">＋ Submit Venue</button>
+    <div class="hdrbtns">
+      <button class="submitbtn" id="submitbtn" onclick="toggleSubmitModal(true)">＋ Submit Venue</button>
+      <button class="mapbtn" id="mapbtn" onclick="toggleCityMap()">🗺️ View Map</button>
+      <button class="themebtn" id="themebtn" onclick="cycleTheme()">◐ Theme</button>
+    </div>
     <a class="homelink" href="/">← ComputeCafe</a>
     <div class="kicker" id="kicker"></div>
     <h1 id="title"></h1>
@@ -303,20 +298,29 @@
         maxZoom: 19,
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }),
-      dark: L.tileLayer("https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Black_Marble/default/2016-01-01/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg", {
+      // Earth at night for world/regional zoom; native imagery stops at z8
+      darkNight: L.tileLayer("https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_CityLights_2012/default/2012-01-01/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg", {
         maxZoom: 19, maxNativeZoom: 8,
-        attribution: "NASA Earth at Night (VIIRS Black Marble) · EOSDIS GIBS",
+        attribution: "NASA Earth at Night (VIIRS) · EOSDIS GIBS",
+      }),
+      // closer than z8 the night imagery is a blur — dark streets instead
+      darkStreet: L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png", {
+        maxZoom: 19, subdomains: "abcd",
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a>',
       }),
     };
   }
-  window.__syncMapTheme = function () {
-    const map = window.__map;
-    if (!map || !map.__layers) return;
-    const want = isDark() ? map.__layers.dark : map.__layers.light;
-    const other = isDark() ? map.__layers.light : map.__layers.dark;
-    if (!map.hasLayer(want)) map.addLayer(want);
-    if (map.hasLayer(other)) map.removeLayer(other);
-  };
+  function applyBase(map) {
+    map = map || window.__map;
+    if (!map || !map.__layers || !map._loaded) return;  // no view yet: initMap set the default
+    const L2 = map.__layers;
+    const want = !isDark() ? L2.light : (map.getZoom() > 8 ? L2.darkStreet : L2.darkNight);
+    if (!map.hasLayer(want)) map.addLayer(want);        // add before remove: no basemap flash
+    [L2.light, L2.darkNight, L2.darkStreet].forEach(l => {
+      if (l !== want && map.hasLayer(l)) { try { map.removeLayer(l); } catch (e) {} }
+    });
+  }
+  window.__syncMapTheme = function () { applyBase(window.__map); };
 
 
   window.initMap = function (container, data) {
@@ -325,8 +329,6 @@
     const el = container;
     el.innerHTML = "";
     const map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
-    map.__layers = baseLayers(L);
-    (isDark() ? map.__layers.dark : map.__layers.light).addTo(map);
     const pts = [];
     (data.venues || []).forEach(v => pts.push(v));
     (data.cities || []).forEach(c => pts.push(c));
@@ -346,9 +348,30 @@
       if (href) m.on("click", () => m.openPopup());
       latLngs.push(m.getLatLng());
     });
-    if (latLngs.length === 1) map.setView(latLngs[0], 12);
-    else if (latLngs.length > 1) { map.__bounds = L.latLngBounds(latLngs); map.fitBounds(map.__bounds, { padding: [30, 30] }); }
-    else map.setView([0, 0], 2);
+    const fit = () => {
+      if (latLngs.length === 1) map.setView(latLngs[0], 12);
+      else if (latLngs.length > 1) map.fitBounds(L.latLngBounds(latLngs), { padding: [30, 30] });
+      else map.setView([0, 0], 2);
+    };
+    fit();
+    // if the panel mounted at zero size (hidden parent, background tab), refit
+    // once it gets real dimensions — otherwise the view stays at max zoom
+    if (window.ResizeObserver) {
+      let settled = map.getSize().x > 0;
+      const ro = new ResizeObserver(() => {
+        if (settled || el.clientWidth === 0) return;
+        settled = true;
+        map.invalidateSize();
+        fit();
+        applyBase(map);
+      });
+      ro.observe(el);
+    }
+    // basemap last: the view (and therefore the zoom) is settled, so the
+    // night/street choice is right on the first paint — no double layer
+    map.__layers = baseLayers(L);
+    applyBase(map);
+    map.on("zoomend", () => applyBase(map));
     return map;
   };
 
@@ -365,11 +388,12 @@
     document.body.classList.add("map-open");
     if (!el.dataset.mounted) {
       el.dataset.mounted = "1";
+      // force a synchronous reflow so the panel has real dimensions before the
+      // map reads them (rAF would not fire in a background tab)
+      void el.offsetHeight;
       window.__map = window.initMap(el, data);
-      requestAnimationFrame(() => {
-        window.__map.invalidateSize();
-        if (window.__map.__bounds) window.__map.fitBounds(window.__map.__bounds, { padding: [30, 30] });
-      });
+    } else if (window.__map) {
+      window.__map.invalidateSize();
     }
     return true;
   };

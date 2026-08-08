@@ -272,20 +272,29 @@ init();
         maxZoom: 19,
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }),
-      dark: L.tileLayer("https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Black_Marble/default/2016-01-01/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg", {
+      // Earth at night for world/regional zoom; native imagery stops at z8
+      darkNight: L.tileLayer("https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_CityLights_2012/default/2012-01-01/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg", {
         maxZoom: 19, maxNativeZoom: 8,
-        attribution: "NASA Earth at Night (VIIRS Black Marble) · EOSDIS GIBS",
+        attribution: "NASA Earth at Night (VIIRS) · EOSDIS GIBS",
+      }),
+      // closer than z8 the night imagery is a blur — dark streets instead
+      darkStreet: L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png", {
+        maxZoom: 19, subdomains: "abcd",
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a>',
       }),
     };
   }
-  window.__syncMapTheme = function () {
-    const map = window.__map;
-    if (!map || !map.__layers) return;
-    const want = isDark() ? map.__layers.dark : map.__layers.light;
-    const other = isDark() ? map.__layers.light : map.__layers.dark;
-    if (!map.hasLayer(want)) map.addLayer(want);
-    if (map.hasLayer(other)) map.removeLayer(other);
-  };
+  function applyBase(map) {
+    map = map || window.__map;
+    if (!map || !map.__layers || !map._loaded) return;  // no view yet: initMap set the default
+    const L2 = map.__layers;
+    const want = !isDark() ? L2.light : (map.getZoom() > 8 ? L2.darkStreet : L2.darkNight);
+    if (!map.hasLayer(want)) map.addLayer(want);        // add before remove: no basemap flash
+    [L2.light, L2.darkNight, L2.darkStreet].forEach(l => {
+      if (l !== want && map.hasLayer(l)) { try { map.removeLayer(l); } catch (e) {} }
+    });
+  }
+  window.__syncMapTheme = function () { applyBase(window.__map); };
 
   function initMap(container, data, opts) {
     opts = Object.assign({ zoom: 10 }, opts || {});
@@ -294,8 +303,6 @@ init();
     const el = container;
     el.innerHTML = "";
     const map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
-    map.__layers = baseLayers(L);
-    (isDark() ? map.__layers.dark : map.__layers.light).addTo(map);
 
     const markers = [];
     (data.cities || []).forEach(c => markers.push(c));
@@ -315,9 +322,30 @@ init();
       if (href) m.on("click", () => m.openPopup());
       bounds.push(m.getLatLng());
     });
-    if (bounds.length === 1) map.setView(bounds[0], 12);
-    else if (bounds.length > 1) { map.__bounds = L.latLngBounds(bounds); map.fitBounds(map.__bounds, { padding: [30, 30] }); }
-    else map.setView([0, 0], 2);
+    const fit = () => {
+      if (bounds.length === 1) map.setView(bounds[0], 12);
+      else if (bounds.length > 1) map.fitBounds(L.latLngBounds(bounds), { padding: [30, 30] });
+      else map.setView([0, 0], 2);
+    };
+    fit();
+    // if the panel mounted at zero size (hidden parent, background tab), refit
+    // once it gets real dimensions — otherwise the view stays at max zoom
+    if (window.ResizeObserver) {
+      let settled = map.getSize().x > 0;
+      const ro = new ResizeObserver(() => {
+        if (settled || el.clientWidth === 0) return;
+        settled = true;
+        map.invalidateSize();
+        fit();
+        applyBase(map);
+      });
+      ro.observe(el);
+    }
+    // basemap last: the view (and therefore the zoom) is settled, so the
+    // night/street choice is right on the first paint — no double layer
+    map.__layers = baseLayers(L);
+    applyBase(map);
+    map.on("zoomend", () => applyBase(map));
     return map;
   }
   function toggleMap(container, data, opts) {
@@ -333,11 +361,12 @@ init();
     document.body.classList.add("map-open");
     if (!el.dataset.mounted) {
       el.dataset.mounted = "1";
+      // force a synchronous reflow so the panel has real dimensions before the
+      // map reads them (rAF would not fire in a background tab)
+      void el.offsetHeight;
       window.__map = initMap(el, data, opts);
-      requestAnimationFrame(() => {
-        window.__map.invalidateSize();
-        if (window.__map.__bounds) window.__map.fitBounds(window.__map.__bounds, { padding: [30, 30] });
-      });
+    } else if (window.__map) {
+      window.__map.invalidateSize();
     }
     return true;
   }
