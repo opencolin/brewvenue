@@ -32,7 +32,9 @@ const VENUES = [
     "note": "1층 책방+베이커리 카페와 2층 100명 메인홀이 붙어 있는 복합문화공간이라, 커피 브레이크+해커톤+키노트를 한 건물에서 이어가기 좋다. 빔프로젝터·대형스크린·피아노·음향장비가 대관료에 포함이고 오전/저녁 타임이 따로 책정돼 있어 반일형 이벤트에 유리.",
     "img": "https://cdn.imweb.me/thumbnail/20220905/534d3f061bc5c.jpg",
     "alt": "북쌔즈 메인홀 - 토속 서가와 무대가 결합된 100석 규모 강연장",
-    "top": true
+    "top": true,
+    "lat": 37.5037491,
+    "lng": 127.0448199
   },
   {
     "k": "ground_b",
@@ -66,7 +68,9 @@ const VENUES = [
     "note": "역삼역 3번출구 도보 2분, 인더스트리얼 라운지 무드의 독채형 대관홀. 커피 브레이크·케이터링을 인하우스 패키지처럼 주문할 수 있어 50-100명 기술 워크숍/해커데이에 적합. 2022년 오픈, 프로젝터·150인치 스크린·4채널 스피커+무선마이크 2대 기본 제공.",
     "img": "https://cdn.weebur.com/images/DAYVKZ91A8ZGL3AAGUXR.jpg",
     "alt": "모드라운지 역삼점 홀 - 바 스타일 카운터와 라운지 테이블이 섞인 모던 인더스트리얼 인테리어",
-    "top": false
+    "top": false,
+    "lat": 37.4957042,
+    "lng": 127.0349584
   },
   {
     "k": "mmc",
@@ -82,7 +86,9 @@ const VENUES = [
     "note": "역삼역과 선릉역 사이 언주로 골목의 아늑한 디저트·스페셜티 카페. 마이크/음악재생/와이파이 이용 가능하고 30명 규모 소규모 워크숍이나 사이드 이벤트에 적합. 대관은 스페이스클라우드 채널톡/호스트 연락(0507-1354-2761)으로 진행.",
     "img": "https://formeqly4682.edge.naverncp.com/service/171733229_28cc1d2449a32c5eec07192a6192bb30.jpg?type=m&w=900&h=900&autorotate=true&quality=90",
     "alt": "MMC 카페 내부 - 통창 앞 윈도우 바와 우드 톤 테이블이 있는 아늑한 공간",
-    "top": false
+    "top": false,
+    "lat": 37.5027901,
+    "lng": 127.0538324
   },
   {
     "k": "twoshot_coffee",
@@ -98,7 +104,9 @@ const VENUES = [
     "note": "역삼동 뱅뱅사거리 유니온센터 지하에 있는 순수 커피바. 평일 저녁(월-목 17-24시, 금 17시 이후 익일)·주말 종일 전체대관 전문으로, 8인 미팅실 별도 보유. 무료 wifi/빔프로젝터/대형보드판 제공이고 음료는 별도 주문 가능 — 47명 상한이라 50-200명 규모에는 다소 빠듯하지만 보조 공간으로는 적합.",
     "img": "https://img.shareit.kr/tempspaceauth/img/2023-09-19/d3d6dd19-7df2-4e9e-b63c-537ec591079a.jpg",
     "alt": "카페 투샷 내부 - 유니온센터 화이트톤 대관 공간",
-    "top": false
+    "top": false,
+    "lat": 37.49099,
+    "lng": 127.0315
   },
   {
     "k": "maru180_180_asan",
@@ -150,7 +158,9 @@ const VENUES = [
     "note": "Purpose-built conference floor with a 170-seat auditorium plus 30/54-seat breakout rooms — ideal for hack-day plenary plus side tracks. Per-hour pricing published (₩363,000/hr). Phones: 02-523-0303. KakaoTalk booking channel offered via MyWorkspace parent site.",
     "img": "https://www.cococ.kr/wp-content/uploads/2021/04/sel_STF6172-600x401.jpg",
     "alt": "COCOC auditorium stage with 250-inch screen, ceiling monitors, 170-seat theater layout",
-    "top": false
+    "top": false,
+    "lat": 37.4941299,
+    "lng": 127.0274305
   },
   {
     "k": "it_square_oakwood",
@@ -184,7 +194,9 @@ const VENUES = [
     "note": "Dedicated rental-only venue buffer south of the corridor (Sinnonhyeon, one stop south of Gangnam/신논현역). Largest hall fits 200; multiple mid-sized rooms useful for parallel hack-day tracks. Direct phones: 010-3262-7977 / 010-3256-7977.",
     "img": "https://spaceshare.co.kr/data/upload/MDAy.jpg",
     "alt": "SPACESHARE Gangnam 3F main room, 200-person classroom-style layout, modern lighting",
-    "top": false
+    "top": false,
+    "lat": 37.4835,
+    "lng": 127.0322
   },
   {
     "k": "dcamp_banks_foundation",
@@ -218,7 +230,9 @@ const VENUES = [
     "note": "4-floor complex steps from Seoul Forest Gate (Bundang Line Seoul Forest exit 5, ~290 m) with 1F/2F as a large cafe and a dedicated 4F workshop/party floor, so multi-track hack sessions and break-outs fit naturally. Wheelchair-accessible, two disabled parking bays; booking is via Naver / Kakao channel + 070-4156-7500 (Korean-only).",
     "img": "https://www.seouldanurim.net/comm/getImage?srvcId=MEDIA&parentSn=59181&fileTy=MEDIA&fileNo=1",
     "alt": "Wide interior shot of the Seongsu Jiang cafe floor on seouldanurim.net (official city accessibility listing)",
-    "top": true
+    "top": true,
+    "lat": 37.561196,
+    "lng": 127.0371344
   },
   {
     "k": "cafe_onion_seongsu",
@@ -324,7 +338,9 @@ const VENUES = [
     "note": "Seoul's largest cafe complex — eight themed floors already wired for sound/LP/projection, so a bilingual hack day can split 50-200 across stage, gallery and rooftop without renting additional A/V. Visit Seoul tourism page and official Instagram @hongdae.cafe publish a rental phone line (010-8877-5497) separate from the cafe's main line.",
     "img": "https://korean.visitseoul.net/comm/getImage?srvcId=MEDIA&parentSn=71987&fileTy=MEDIA&fileNo=1&thumbTy=L",
     "alt": "HD Cafe (ㅎㄷ카페 / Hongdae Cafe) interior",
-    "top": true
+    "top": true,
+    "lat": 37.551114,
+    "lng": 126.921501
   },
   {
     "k": "teamplace_hongdae",
@@ -340,7 +356,9 @@ const VENUES = [
     "note": "Purpose-built for workshops and hack events — beam projector, sound, printing, free WiFi, and 8 curtained rooms around a big central lounge so one 100-person hack day can split into tracks; cafe on-site covers coffee. Phone 070-7797-7979, booking via Naver or Spacecloud.",
     "img": "https://mblogthumb-phinf.pstatic.net/MjAyMjAxMjBfMjA5/MDAxNjQyNjg5MzE2NDg4.gLetoFyu8ukrR1VXvyPmNKCY_7P5oHoMwZKq3PSo_3Ag.RXn3Qbf1smLgHEMW6UPzmTciMULLlxykKMzZGM_8GD8g.JPEG.xcocoa815/IMG_3150.jpg?type=w800",
     "alt": "Wide TeamPlace Hongdae lounge with 8 breakout rooms around common area, beam projector",
-    "top": false
+    "top": false,
+    "lat": 37.5569655,
+    "lng": 126.9207408
   },
   {
     "k": "catch_cafe_sinchon",
@@ -392,7 +410,9 @@ const VENUES = [
     "note": "Working souffle-pancake cafe with a 120평 lawn inside Gyeongui Line Forest Park — a PopUpKorea listing for the same venue block (서강로13길 22) explicitly offers day-rate buy-out including F&B service and alcohol license, so a coffee hack day can spill onto the lawn. Chain head office handles bookings via picniqcafe@gmail.com.",
     "img": "https://mblogthumb-phinf.pstatic.net/MjAyNDEyMTdfMTU5/MDAxNzM0MzgzNzY1OTk2.AbooGb9Af3jpfpz4zdmq5j4OV0cmx95SEF7yRxqZjfog.kyJ7rDhlogL8iffSU1chhjvaVtunVUeWhUQ6wis6ynMg.JPEG/SE-AD83E7A9-A66C-4F33-AE00-BFE106FAD4B7.jpg",
     "alt": "Piknic Hongdae Gyeongui Line Forest (피크니크 홍대 경의선숲길점) interior",
-    "top": false
+    "top": false,
+    "lat": 37.5542856,
+    "lng": 126.9320429
   },
   {
     "k": "ryse_autograph_collection",

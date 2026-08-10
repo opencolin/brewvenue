@@ -104,7 +104,9 @@ const VENUES = [
     "note": "Coworking space with on-site cafe and free-flow coffee in the pantry; full event space listed with capacities, projector, sound, and 1 free setup hour. Reliable for a 50-60 pax hack/coffee day; phone bookings via +603-2242 0321 work well in KL.",
     "img": "https://images.squarespace-cdn.com/content/v1/5c2d7579cc8fed1226da576f/1553759927825-A0R5GLCZI8GQG8BT4LJY/Komune-Events-Header.png",
     "alt": "Komune events space header interior",
-    "top": false
+    "top": false,
+    "lat": 3.11193,
+    "lng": 101.66594
   },
   {
     "k": "connexionconferenceeventcentreccecnexusthevertic",
@@ -156,7 +158,9 @@ const VENUES = [
     "note": "High-floor (Level 28) dedicated event space with projector, PA, complimentary coffee and published rates — good for the 50-80 person maker/talk portion of the day with city views. Contact connect@hspace.co, +603 8800 8822, or the mobile +6012 937 7882 (WhatsApp-first replies, as is standard in KL).",
     "img": "https://hspace.co/wp-content/uploads/2026/05/WhatsApp-Image-2026-05-08-at-2.22.19-PM-1536x1536.jpeg",
     "alt": "H Space Bangsar South event space with projector and seating",
-    "top": false
+    "top": false,
+    "lat": 3.10994,
+    "lng": 101.66508
   },
   {
     "k": "common_ground_bangsar",
@@ -172,7 +176,9 @@ const VENUES = [
     "note": "Malaysia's largest coworking brand with a ground-floor event space in Menara BT, 5 min from Kerinchi LRT, next to The Sphere's cafes — natural fit for a coffee/hack format. Venue-dedicated email bangsarsouth@commonground.work; WhatsApp +60 11 5631 9888 is published and typically answers before email.",
     "img": "https://www.commonground.work/wp-content/uploads/2022/03/DYP_CommonGround_MenaraBT_01-min.jpg",
     "alt": "Common Ground Bangsar South lounge and event area, Menara BT",
-    "top": false
+    "top": false,
+    "lat": 3.11138,
+    "lng": 101.66588
   },
   {
     "k": "komune_coworking_space",
@@ -188,7 +194,9 @@ const VENUES = [
     "note": "Coffeehouse-styled coworking hub whose event area doubles as the hot-desk lounge — it has hosted Google and Sony PlayStation corporate events, proving tech-crowd fit for a ~50-60 person session. Onsite cafe, in-house catering partner, and a dedicated event-space enquiry page; book via hello@komunecowork.com or +603 2242 0321.",
     "img": "https://images.squarespace-cdn.com/content/v1/5c2d7579cc8fed1226da576f/1548863069089-DU5E3L1POVWD02OPG35O/Komune-Co-Working-Space-BangsarSouth-Event-Google.jpg",
     "alt": "Komune Co-Working Bangsar South event space during a corporate talk",
-    "top": false
+    "top": false,
+    "lat": 3.11193,
+    "lng": 101.66594
   },
   {
     "k": "infinity8_reserve_trx",
@@ -240,7 +248,9 @@ const VENUES = [
     "note": "Best documented capacity in the set: the skylit Glass Box rooftop ballroom holds 200 classroom-style, so the full 50-200 range is covered; every Colony location runs an in-house cafe, and their events team answers on WhatsApp +60 17-471 7823 as well as email — strong KL event-booking record.",
     "img": "https://colony.work/wp-content/uploads/Colony-TheMET-GlassBox-slider-02-desktop.jpg",
     "alt": "Wide interior of the Glass Box rooftop event ballroom at Colony The MET",
-    "top": false
+    "top": false,
+    "lat": 3.18078,
+    "lng": 101.66471
   },
   {
     "k": "common_ground_klcc",
@@ -256,7 +266,9 @@ const VENUES = [
     "note": "Coworking venue with a named event space ('The Grounds'), an in-house cafe powered by Grand Hyatt KL, and optional Grand Hyatt banquet catering — coffee and halal catering both solved; about 2 km from TRX with direct community-manager contact (03-2779 1388).",
     "img": "https://www.commonground.work/wp-content/uploads/2025/04/DYP_CGKLCC_049-scaled.jpg",
     "alt": "Wide interior of Common Ground KLCC lounge and cafe area",
-    "top": false
+    "top": false,
+    "lat": 3.15797,
+    "lng": 101.7112
   },
   {
     "k": "craft_cafe_by",
@@ -506,7 +518,9 @@ const VENUES = [
     "note": "Bangsar South is the natural western flank of the Bukit Jalil node (straight down the Federal Highway from APU) and the page lists a venue-specific community email bangsarsouth@commonground.work, phone 03-2711 2736 and a named Assistant Community Manager (Dinie Aqilah); Common Ground's event-space platform is bilingual-friendly and used to handling corporate + tech community events.",
     "img": "https://www.commonground.work/wp-content/uploads/2022/03/DYP_CommonGround_MenaraBT_01-min.jpg",
     "alt": "Interior lounge / event area at Common Ground Menara BT Bangsar South",
-    "top": false
+    "top": false,
+    "lat": 3.11138,
+    "lng": 101.66588
   },
   {
     "k": "spaces_aurora_place",
