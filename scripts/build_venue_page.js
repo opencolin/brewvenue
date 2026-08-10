@@ -282,6 +282,43 @@ function desc(v){
   const frag = (cap + ". " + note).slice(0,140);
   return frag + (frag.length >= 140 ? "…" : "");
 }
+/* Derive a short, area-scoped neighborhood note from the venues that share this
+   venue's `area`. Uses only data on this venue's own cluster — never city-wide
+   share stats — so a venue outside the core never inherits the core's analysis. */
+function neighborhoodNote(v, VENUES, TYPE_META){
+  const peers = VENUES.filter(x => x.area === v.area);
+  if (!peers.length || !v.area) return "";
+  const counts = {};
+  peers.forEach(p => { counts[p.type] = (counts[p.type] || 0) + 1; });
+  const typeList = Object.entries(counts)
+    .sort((a,b) => b[1]-a[1])
+    .map(([t,n]) => {
+      const lab = (TYPE_META[t]?.label || t).toLowerCase();
+      return n > 1 ? `${lab}s` : lab;
+    });
+  const joinList = arr => arr.length <= 1 ? (arr[0]||"") : arr.length === 2 ? arr.join(" and ") : arr.slice(0,-1).join(", ") + ", and " + arr[arr.length-1];
+  const n = peers.length;
+  const scope = n === 1
+    ? `${v.name} is the only listed venue we track in <b>${v.area}</b> right now.`
+    : `<b>${v.area}</b> has <b>${n}</b> listed venue${n>1?"s":""} — ${joinList(typeList)}.`;
+  // What the mix + bookability imply. `flag:dedicated` means the venue runs a
+  // real rental program, so an all-dedicated cluster is a bookable-event area
+  // even if several venues are typed as cafés.
+  const dedicated = peers.filter(p => p.flag === "dedicated").length;
+  const dom = Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];
+  let angle = "";
+  if (n > 1) {
+    const dlab = (TYPE_META[dom[0]]?.label || dom[0]).toLowerCase();
+    if (dedicated === n) angle = `Every spot here runs a bookable events program — a cluster for hostable formats, not just drop-in tables.`;
+    else if (dedicated / n >= 0.5) angle = `Most venues here are bookable, so this area suits hosting as much as casual working.`;
+    else if (dom[0] === "coffee" || /coffee|café|cafe/.test(dlab)) angle = `The cluster leans toward drop-in, caffeinated work rather than bookable event floors.`;
+    else if (/cowork/.test(dlab)) angle = `The cluster is coworking-weighted — reliable for structured work and small meetings.`;
+    else if (/event/.test(dlab)) angle = `This cluster skews to bookable event formats — good if you need a program venue, less so for a quiet solo table.`;
+  }
+  const bits = [scope, angle].filter(Boolean).join(" ");
+  return `<div class="fnote">${bits}</div>`;
+}
+
 function parseAddr(addr){
   const parts = addr.split(",").map(s=>s.trim()).filter(Boolean);
   const street = parts[0] || ""; const city = parts[parts.length-1] || "";
@@ -411,11 +448,11 @@ function build(cfgPath, citySlug, venueK, siteUrl){
   html = html.replace(/{{EMAIL_BTN}}/g, emailBtn);
   html = html.replace(/{{SIBLINGS}}/g, siblingHtml);
   html = html.replace(/{{GALLERY}}/g, galleryHtml);
-  /* venue pages carry reader-facing context only — internal scouting notes
-     (closed/non-bookable lists, seed-data corrections) stay on the city page */
-  const INTERNAL_FNOTE = /(\bgone or not bookable\b|\bseed[- ]venue corrections?\b)/i;
-  const publicNotes = (CONFIG.footnotes || []).filter(f => !INTERNAL_FNOTE.test(f.replace(/<[^>]+>/g, "")));
-  html = html.replace(/{{FOOTNOTES}}/g, publicNotes.map(f=>`<div class="fnote">${f}</div>`).join(""));
+  /* A venue page shows only venue-scoped context. City-level footnotes
+     (SoMa share stats, seed corrections, gone-bookable lists) stay on the
+     city page. Instead we derive a fresh neighborhood note from this venue's
+     own area + capacity mix so it never describes the wrong district. */
+  html = html.replace(/{{FOOTNOTES}}/g, neighborhoodNote(v, VENUES, TYPE_META));
   html = html.replace(/{{PROVENANCE}}/g, CONFIG.provenance || "");
 
   html = html.replace("</head>", `<script type="application/ld+json">${jsonLd}</script>\n</head>`);
