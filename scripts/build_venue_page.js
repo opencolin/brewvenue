@@ -26,6 +26,9 @@ const SKELETON = `<!doctype html>
 <meta name="twitter:description" content="{{DESC}}">
 <meta name="twitter:image" content="{{OG_IMG}}">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZzrRCfZznMq3QhTRM=" crossorigin="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root { color-scheme: light;
  --page: #f9f9f7; --surface: #fcfcfb; --ink-1: #0b0b0b; --ink-2: #52514e; --ink-3: #898781;
@@ -65,125 +68,152 @@ const SKELETON = `<!doctype html>
  --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--page);color:var(--ink-1);line-height:1.45;padding-bottom:40px}
-.wrap{max-width:900px;margin:0 auto;padding:24px 20px}
-header{display:flex;align-items:center;gap:10px;margin-bottom:18px}
-.crumbs a{color:var(--ink-3);text-decoration:none;font-size:12.5px;font-weight:600}
+body{font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--page);color:var(--ink-1);line-height:1.5;padding-bottom:48px}
+.wrap{max-width:880px;margin:0 auto;padding:28px 24px 0}
+.kicker{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.crumbs{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);display:flex;gap:8px;align-items:center}
+.crumbs a{color:var(--ink-3);text-decoration:none}
 .crumbs a:hover{color:var(--ink-1)}
-.crumbs span{color:var(--ink-3);font-size:12.5px}
-.thbtn{font-size:12.5px;font-weight:600;color:var(--ink-3);background:var(--surface);border:1px solid var(--hairline);border-radius:8px;padding:6px 10px;cursor:pointer;margin-left:auto}
-.thbtn:hover{color:var(--ink-1);border-color:var(--ink-3)}
-.hero{position:relative;border-radius:16px;overflow:hidden;background:var(--surface);border:1px solid var(--hairline);box-shadow:var(--shadow);margin-bottom:22px}
+.crumbs .sep{opacity:.5;font-weight:400}
+.thbtn{margin-left:auto;font-size:11.5px;font-weight:600;color:var(--ink-2);background:none;border:1px solid transparent;border-radius:999px;padding:6px 14px;cursor:pointer;transition:border-color .15s,color .15s}
+.thbtn:hover{color:var(--ink-1);border-color:var(--hairline)}
+.hero{position:relative;border-radius:14px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
 .hero-imgbox{position:relative;aspect-ratio:16/9;overflow:hidden}
 .hero-imgbox img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
-.ph{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px}
+.hero-imgbox::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(9,8,7,.58) 0%,rgba(9,8,7,0) 52%)}
+.ph{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
 .ph.t0{background:linear-gradient(135deg,var(--ph-a),var(--ph-b))}
 .ph.t1{background:linear-gradient(135deg,var(--ph-c),var(--ph-d))}
 .ph.t2{background:linear-gradient(135deg,var(--ph-e),var(--ph-f))}
-.ph .mono{font-size:3.2rem;font-weight:700;letter-spacing:.04em;color:var(--ink-2);opacity:.85}
-.ph .icn{font-size:2rem}
-.toppick{position:absolute;top:10px;left:10px;z-index:3;font-size:11px;font-weight:700;background:rgba(11,11,11,.78);color:#fff;padding:4px 9px;border-radius:999px;backdrop-filter:blur(4px)}
-.areatag{position:absolute;bottom:10px;left:10px;z-index:3;font-size:11px;font-weight:600;background:rgba(11,11,11,.62);color:#fff;padding:3px 9px;border-radius:999px;backdrop-filter:blur(4px)}
-.title-block{padding:18px 20px 14px}
-.vrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-.vname{font-size:1.65rem;font-weight:700;letter-spacing:-.02em}
-.typechip{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;flex:none}
+.ph .mono{font-family:"Playfair Display",Georgia,serif;font-size:3.6rem;font-weight:600;letter-spacing:.06em;color:var(--ink-2);opacity:.9}
+.ph .icn{font-size:1.9rem}
+.toppick{position:absolute;top:14px;left:14px;z-index:4;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:rgba(9,8,7,.72);color:#fff;padding:6px 12px;border-radius:999px;backdrop-filter:blur(6px)}
+.hero-meta{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:22px 28px 18px;display:flex;flex-direction:column;gap:10px}
+.arealine{font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.arealine .sep{opacity:.55;margin:0 .45em;font-weight:400}
+.title-block{display:flex;flex-direction:column;gap:16px;padding:20px 28px 24px}
+.lede{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.vname{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-size:clamp(2.1rem,4.6vw,3.15rem);font-weight:600;letter-spacing:-.015em;line-height:1.06;color:#fff}
+.typechip{font-size:11px;font-weight:600;padding:4px 11px;border-radius:999px;flex:none;letter-spacing:.02em}
+.typechip.onhero{color:#fff;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(6px)}
 .typechip.t0{color:var(--accent-a);background:var(--accent-a-soft)}
 .typechip.t1{color:var(--accent-b);background:var(--accent-b-soft)}
 .typechip.t2{color:var(--accent-c);background:var(--accent-c-soft)}
-.flag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:7px;align-self:flex-start}
-.flag.dedicated{color:var(--good);background:var(--good-soft)}
-.flag.contact{color:var(--ink-2);background:var(--page);border:1px solid var(--hairline)}
-.facts{padding:0 20px 18px;display:flex;flex-direction:column;gap:8px}
-.facts .addr{font-size:13px}
-.facts .addr a{color:var(--ink-3);text-decoration:none}
-.facts .addr a:hover{color:var(--ink-1);text-decoration:underline}
-.facts .cap{font-size:13px;color:var(--ink-2)}
-.facts .cap b{color:var(--ink-1);font-weight:600}
-.about{padding:14px 20px 16px;border-top:1px solid var(--grid)}
-.about .note{font-size:14px;color:var(--ink-2);max-width:80ch}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 20px;width:100%}
+.facts .fact{min-width:0}
+.flabel{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}
+.facts .fact p{font-size:13.5px;line-height:1.5;margin:0}
+.facts .fact p b{font-weight:600}
+.facts .addr a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hairline)}
+.facts .addr a:hover{border-bottom-color:var(--ink-1)}
+.pulse{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--good);margin-right:6px}
+.act{display:inline-flex;align-items:center;gap:0;padding:14px 0;border-top:1px solid var(--grid);width:100%}
+.btn{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;padding:10px 0;margin-right:26px;text-decoration:none;color:var(--ink-1);transition:opacity .15s}
+.btn .arr{transition:transform .15s}
+.btn:hover .arr{transform:translate(2px,-2px)}
+.btn.pri{border-bottom:2px solid var(--ink-1)}
+.btn.sec{color:var(--ink-2)}
+.btn.sec:hover{color:var(--ink-1)}
+.starh{margin-left:auto;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--hairline);border-radius:999px;background:none;cursor:pointer;color:var(--ink-2);padding:8px 16px;font-size:13px;transition:border-color .15s,color .15s}
+.starh:hover{border-color:var(--ink-3);color:var(--ink-1)}
+.starh .star{font-size:15px;line-height:1}
+.starh.on{color:var(--good);border-color:var(--good)}
+.starh .cnt{font-size:12.5px;font-weight:600}
+main section{padding:30px 0;border-top:1px solid var(--grid)}
+.slabel{font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.slabel::after{content:"";flex:1;height:1px;background:var(--grid)}
+.about .note{font-size:15.5px;line-height:1.8;color:var(--ink-2);max-width:70ch}
+.about .note>b:first-child,.about .note>b:first-of-type{color:var(--ink-1);font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:1.06em}
 .about .note b{color:var(--ink-1)}
-.bar{position:sticky;bottom:0;background:rgba(var(--page),.95);backdrop-filter:blur(8px);border-top:1px solid var(--grid);padding:12px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;z-index:10}
-.bar .btn{font-size:12.5px;font-weight:600;text-decoration:none;padding:8px 14px;border-radius:8px;display:inline-flex;align-items:center;gap:4px}
-.bar .btn.pri{background:var(--ink-1);color:var(--page)}
-.bar .btn.pri:hover{opacity:.85}
-.bar .btn.sec{color:var(--ink-2);border:1px solid var(--hairline)}
-.bar .btn.sec:hover{color:var(--ink-1);border-color:var(--ink-3)}
-.bar .starh{display:inline-flex;align-items:center;gap:4px;font-size:13px;border:none;background:transparent;cursor:pointer;color:var(--ink-3)}
-.bar .starh .star{font-size:16px}
-.bar .starh.on{color:var(--good)}
-.bar .starh .cnt{font-size:12.5px;font-weight:600}
-.mini-map{margin-top:16px;padding:0 20px 20px}
-.map-label{font-size:12.5px;font-weight:600;color:var(--ink-2);margin-bottom:6px}
-.map-frame{border-radius:12px;overflow:hidden;border:1px solid var(--hairline);background:var(--surface)}
-.map-frame img{width:100%;display:block}
-.map-caption{font-size:12px;color:var(--ink-3);padding:8px 10px;text-align:center}
-.sibs{margin-top:16px;padding:0 20px 20px}
-.sibs h3{font-size:14px;font-weight:700;margin-bottom:10px;color:var(--ink-2)}
-.sibling{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;border:1px solid var(--hairline);text-decoration:none;color:var(--ink-1);background:var(--surface);margin-bottom:8px}
-.sibling:hover{border-color:var(--ink-3)}
-.sibling .thumb{width:56px;height:40px;border-radius:8px;overflow:hidden;flex:none;background:var(--grid)}
-.sibling .thumb img{width:100%;height:100%;object-fit:cover}
-.sibling .mono{font-size:20px;font-weight:700;letter-spacing:.04em;color:var(--ink-2);opacity:.85;display:flex;align-items:center;justify-content:center;height:100%}
-.sibling .stxt{flex:1}
-.sibling .sname{font-size:14px;font-weight:700}
-.sibling .sarea{font-size:12px;color:var(--ink-3)}
-footer{margin-top:34px;border-top:1px solid var(--grid);padding:18px 0 0;display:flex;flex-direction:column;gap:12px}
-.fnote{font-size:13px;color:var(--ink-2);max-width:90ch}
-.prov{font-size:11.5px;color:var(--ink-3)}
+.map-track{max-width:340px}
+.map-frame{border-radius:10px;overflow:hidden;border:1px solid var(--hairline);background:var(--surface)}
+@media (prefers-color-scheme: dark){ :root:where(:not([data-theme="light"])) .map-frame .leaflet-tile{filter:brightness(.62) contrast(.92) saturate(.8)} }
+:root[data-theme="dark"] .map-frame .leaflet-tile{filter:brightness(.62) contrast(.92) saturate(.8)}
+.map-caption{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--ink-3);padding:9px 12px}
+.map-caption a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hairline)}
+.map-caption a:hover{color:var(--ink-1);border-bottom-color:var(--ink-1)}
+.sibs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.sibling{display:block;text-decoration:none;color:var(--ink-1);padding:0 0 14px;border-bottom:1px solid var(--hairline);transition:opacity .15s}
+.sibling:hover{opacity:.75}
+.sibling .thumb{position:relative;aspect-ratio:16/10;border-radius:8px;overflow:hidden;margin-bottom:10px}
+.sibling .thumb img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+.sibling .thumb .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.sibling .thumb .ph .mono{font-size:1.7rem}
+.sibling .sname{font-family:"Playfair Display",Georgia,serif;font-size:1.02rem;font-weight:600}
+.sibling .sarea{font-size:12px;color:var(--ink-3);margin-top:3px}
+footer{margin-top:8px;padding:26px 0 6px}
+.fnote{font-size:13px;line-height:1.75;color:var(--ink-2);max-width:72ch;margin-bottom:12px}
+.fnote b{color:var(--ink-1);font-weight:600}
+.prov{font-size:11px;letter-spacing:.08em;color:var(--ink-3);margin-top:6px}
 @media (max-width:680px){
-  .wrap{padding:14px 12px}
-  .vname{font-size:1.35rem}
-  .bar{padding:10px 12px}
-  .ph .mono{font-size:2rem}
+  .wrap{padding:18px 14px 0}
+  .kicker{margin-bottom:14px}
+  .hero{border-radius:12px}
+  .hero-imgbox{aspect-ratio:4/3}
+  .hero-meta{padding:16px 18px 14px}
+  .title-block{padding:16px 18px 20px}
+  .vname{font-size:1.9rem}
+  .facts{grid-template-columns:1fr 1fr;gap:16px 14px}
+  .act{flex-wrap:wrap;gap:4px 0}
+  .btn{margin-right:22px}
+  .starh{margin-left:0;margin-top:8px}
+  .ph .mono{font-size:2.2rem}
+  .map-track{max-width:none}
 }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header class="crumbs">
-    <a href="/">Home</a> <span>/</span>
-    <a href="{{CITY_HREF}}">{{CITY_NAME}}</a> <span>/</span>
-    <span style="color:var(--ink-2)">{{VNAME}}</span>
+  <div class="kicker">
+    <nav class="crumbs">
+      <a href="/">ComputeCafe</a><span class="sep">/</span><a href="{{CITY_HREF}}">{{CITY_NAME}}</a>
+    </nav>
     <button class="thbtn" id="themebtn" onclick="cycleTheme()">◐ Theme</button>
-  </header>
+  </div>
 
   <div class="hero">
     {{HERO_IMG}}
     {{TOP_PICK}}
-    <div class="areatag">{{AREA}}</div>
-  </div>
-
-  <div class="title-block">
-    <div class="vrow">
-      <h1 class="vname">{{VNAME}}</h1>
-      <span class="typechip {{TCLS}}">{{TYPE_ICON}} {{TYPE_LABEL}}</span>
-      {{FLAG_HTML}}
+    <div class="hero-meta">
+      <div class="arealine">{{AREA}}<span class="sep">·</span>{{TYPE_LABEL}}</div>
+      <div class="lede">
+        <h1 class="vname">{{VNAME}}</h1>
+        <span class="typechip {{TCLS}} onhero">{{TYPE_ICON}} {{TYPE_LABEL}}</span>
+      </div>
+      <div class="title-block">
+        <div class="facts">
+          <div class="fact"><span class="flabel">Address</span><p class="addr"><a href="{{GMAPS_URL}}" target="_blank" rel="noopener">{{ADDR}}</a></p></div>
+          <div class="fact"><span class="flabel">Capacity</span><p>{{CAP}}</p></div>
+          <div class="fact"><span class="flabel">Access</span><p>{{FLAG_ACCESS}}</p></div>
+          <div class="fact"><span class="flabel">Status</span><p class="status">{{FLAG_STATUS}}</p></div>
+        </div>
+        <div class="act">
+          <a class="btn pri" href="{{LINK}}" target="_blank" rel="noopener">{{LINK_TEXT}} <span class="arr">↗</span></a>
+          {{EMAIL_BTN}}
+          <button class="starh" data-k="{{VK}}" data-city="{{CITY_SLUG}}" id="starbtn"><span class="star">☆</span><span class="cnt"></span></button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="facts">
-    <div class="addr">📍 <a href="{{GMAPS_URL}}" target="_blank" rel="noopener">{{ADDR}}</a></div>
-    <div class="cap">{{CAP}}</div>
-  </div>
+  <main>
+    <section class="about">
+      <div class="slabel">Why it works</div>
+      <div class="note">{{NOTE}}</div>
+    </section>
 
-  <div class="about"><div class="note">{{NOTE}}</div></div>
+    <section>
+      <div class="slabel">Location</div>
+      <div class="map-track">
+        <div class="map-frame">
+          <div id="minimap" style="height:190px;pointer-events:none"></div>
+          <div class="map-caption"><span>{{ADDR}}</span><a href="{{GMAPS_URL}}" target="_blank" rel="noopener">Directions ↗</a></div>
+        </div>
+      </div>
+    </section>
 
-  <div class="bar" id="actionbar">
-    <a class="btn pri" href="{{LINK}}" target="_blank" rel="noopener">{{LINK_TEXT}} ↗</a>
-    {{EMAIL_BTN}}
-    <button class="starh" data-k="{{VK}}" data-city="{{CITY_SLUG}}" id="starbtn"><span class="star">☆</span><span class="cnt"></span></button>
-  </div>
-
-  <div class="mini-map">
-    <div class="map-label">📍 Location</div>
-    <div class="map-frame">
-      <div id="minimap" style="height:220px;pointer-events:none"></div>
-      <div class="map-caption"><a href="{{GMAPS_URL}}" target="_blank" rel="noopener" style="color:var(--accent-b)">Open in Google Maps ↗</a></div>
-    </div>
-  </div>
-
-  {{SIBLINGS}}
+    {{SIBLINGS}}
+  </main>
 
   <footer>
     {{FOOTNOTES}}
@@ -286,12 +316,15 @@ function build(cfgPath, citySlug, venueK, siteUrl){
   const heroImg = v.img
     ? `<div class="hero-imgbox"><img src="${v.img}" alt="${v.alt||''}" loading="eager" referrerpolicy="no-referrer"></div>`
     : `<div class="hero-imgbox"><div class="ph ${tcls}"><span class="icn">${tmeta.icon}</span><span class="mono">${initialStr}</span></div></div>`;
-  const topPick = v.top ? '<div class="toppick">★ Top pick</div>' : "";
-  const flagHtml = v.flag === "dedicated"
-    ? '<span class="flag dedicated">✓ Dedicated events page</span>'
-    : '<span class="flag contact">✉ Events contact only</span>';
+  const topPick = v.top ? '<div class="toppick">Top pick</div>' : "";
+  const flagAccess = v.flag === "dedicated"
+    ? 'Dedicated events page'
+    : '! Events contact only';
+  const flagStatus = v.flag === "dedicated"
+    ? '<i class="pulse"></i>Open to bookings'
+    : 'Contact before planning';
   const emailBtn = v.email
-    ? `<a class="btn sec" href="mailto:${v.email}">${v.email}</a>` : "";
+    ? `<a class="btn sec" href="mailto:${v.email}">✉ ${v.email}</a>` : "";
 
   /* interactive Leaflet mini-map injected before </body> */
 
@@ -306,7 +339,7 @@ function build(cfgPath, citySlug, venueK, siteUrl){
 
   let siblingHtml = "";
   if (siblings.length) {
-    siblingHtml = '<div class="sibs"><h3>More in ' + v.area + '</h3>' +
+    siblingHtml = '<section class="sibs"><div class="slabel">More in ' + v.area + '</div><div class="sibs-grid">' +
       siblings.map(s => {
         const stmeta = TYPE_META[s.type] || { label: s.type, icon: "📍" };
         const stcls = "t" + (typeKeys.indexOf(s.type) % 3);
@@ -317,9 +350,10 @@ function build(cfgPath, citySlug, venueK, siteUrl){
         const sph = `<div class="ph ${stcls}"><span class="mono">${smstrt}</span></div>`;
         return `<a class="sibling" href="../${s.k}/">
           <div class="thumb">${simg}${sph}</div>
-          <div class="stxt"><div class="sname">${s.name}</div><div class="sarea">${stmeta.icon} ${stmeta.label}</div></div>
+          <div class="sname">${s.name}</div>
+          <div class="sarea">${stmeta.icon} ${stmeta.label} · ${s.area}</div>
         </a>`;
-      }).join("") + '</div>';
+      }).join("") + '</div></section>';
   }
 
   const title = `${v.name} — ${cityName} · ComputeCafe`;
@@ -343,7 +377,8 @@ function build(cfgPath, citySlug, venueK, siteUrl){
   html = html.replace(/{{TYPE_ICON}}/g, tmeta.icon);
   html = html.replace(/{{TYPE_LABEL}}/g, tmeta.label);
   html = html.replace(/{{TCLS}}/g, tcls);
-  html = html.replace(/{{FLAG_HTML}}/g, flagHtml);
+  html = html.replace(/{{FLAG_ACCESS}}/g, flagAccess);
+  html = html.replace(/{{FLAG_STATUS}}/g, flagStatus);
   html = html.replace(/{{ADDR}}/g, v.addr);
   html = html.replace(/{{GMAPS_URL}}/g, mapsUrl(v));
   html = html.replace(/{{CAP}}/g, v.cap || "");
@@ -352,7 +387,11 @@ function build(cfgPath, citySlug, venueK, siteUrl){
   html = html.replace(/{{LINK_TEXT}}/g, v.linkText);
   html = html.replace(/{{EMAIL_BTN}}/g, emailBtn);
   html = html.replace(/{{SIBLINGS}}/g, siblingHtml);
-  html = html.replace(/{{FOOTNOTES}}/g, (CONFIG.footnotes || []).map(f=>`<div class="fnote">${f}</div>`).join(""));
+  /* venue pages carry reader-facing context only — internal scouting notes
+     (closed/non-bookable lists, seed-data corrections) stay on the city page */
+  const INTERNAL_FNOTE = /(\bgone or not bookable\b|\bseed[- ]venue corrections?\b)/i;
+  const publicNotes = (CONFIG.footnotes || []).filter(f => !INTERNAL_FNOTE.test(f.replace(/<[^>]+>/g, "")));
+  html = html.replace(/{{FOOTNOTES}}/g, publicNotes.map(f=>`<div class="fnote">${f}</div>`).join(""));
   html = html.replace(/{{PROVENANCE}}/g, CONFIG.provenance || "");
 
   html = html.replace("</head>", `<script type="application/ld+json">${jsonLd}</script>\n</head>`);
@@ -364,7 +403,8 @@ function build(cfgPath, citySlug, venueK, siteUrl){
 const mmap = L.map('minimap', { zoomControl:false, attributionControl:false, dragging:false, scrollWheelZoom:false, doubleClickZoom:false, boxZoom:false, keyboard:false, tap:false });
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:19}).addTo(mmap);
 mmap.setView([${v.lat}, ${v.lng}], 15);
-L.marker([${v.lat}, ${v.lng}]).addTo(mmap);
+const dot = L.divIcon({ className:'', html:'<div style="width:10px;height:10px;border-radius:50%;background:var(--accent-a);box-shadow:0 0 0 2.5px var(--page),0 1px 4px rgba(0,0,0,.35)"></div>', iconSize:[10,10], iconAnchor:[5,5] });
+L.marker([${v.lat}, ${v.lng}], {icon:dot}).addTo(mmap);
 document.getElementById('minimap').addEventListener('click', () => window.open(${JSON.stringify(mapsUrl(v))}, '_blank'));
 </script>`;
   html = html.replace("</body>", minimapScript + "\n</body>");
