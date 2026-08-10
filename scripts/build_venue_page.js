@@ -25,7 +25,7 @@ const SKELETON = `<!doctype html>
 <meta name="twitter:title" content="{{TITLE}}">
 <meta name="twitter:description" content="{{DESC}}">
 <meta name="twitter:image" content="{{OG_IMG}}">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZzrRCfZznMq3QhTRM=" crossorigin="">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -69,7 +69,7 @@ const SKELETON = `<!doctype html>
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--page);color:var(--ink-1);line-height:1.5;padding-bottom:48px}
-.wrap{max-width:880px;margin:0 auto;padding:28px 24px 0}
+.wrap{max-width:1020px;margin:0 auto;padding:28px 24px 0}
 .kicker{display:flex;align-items:center;gap:10px;margin-bottom:20px}
 .crumbs{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);display:flex;gap:8px;align-items:center}
 .crumbs a{color:var(--ink-3);text-decoration:none}
@@ -77,10 +77,10 @@ body{font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;backgroun
 .crumbs .sep{opacity:.5;font-weight:400}
 .thbtn{margin-left:auto;font-size:11.5px;font-weight:600;color:var(--ink-2);background:none;border:1px solid transparent;border-radius:999px;padding:6px 14px;cursor:pointer;transition:border-color .15s,color .15s}
 .thbtn:hover{color:var(--ink-1);border-color:var(--hairline)}
-.hero{position:relative;border-radius:14px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
-.hero-imgbox{position:relative;aspect-ratio:16/9;overflow:hidden}
+.hero{display:grid;grid-template-columns:5fr 6fr;border-radius:14px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+.hero-media{position:relative}
+.hero-imgbox{position:relative;aspect-ratio:4/3;height:100%;overflow:hidden}
 .hero-imgbox img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
-.hero-imgbox::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(9,8,7,.58) 0%,rgba(9,8,7,0) 52%)}
 .ph{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
 .ph.t0{background:linear-gradient(135deg,var(--ph-a),var(--ph-b))}
 .ph.t1{background:linear-gradient(135deg,var(--ph-c),var(--ph-d))}
@@ -88,17 +88,20 @@ body{font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;backgroun
 .ph .mono{font-family:"Playfair Display",Georgia,serif;font-size:3.6rem;font-weight:600;letter-spacing:.06em;color:var(--ink-2);opacity:.9}
 .ph .icn{font-size:1.9rem}
 .toppick{position:absolute;top:14px;left:14px;z-index:4;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:rgba(9,8,7,.72);color:#fff;padding:6px 12px;border-radius:999px;backdrop-filter:blur(6px)}
-.hero-meta{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:22px 28px 18px;display:flex;flex-direction:column;gap:10px}
-.arealine{font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.hero-meta{display:flex;flex-direction:column;gap:14px;padding:28px 30px;background:var(--surface)}
+.arealine{font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3)}
 .arealine .sep{opacity:.55;margin:0 .45em;font-weight:400}
-.title-block{display:flex;flex-direction:column;gap:16px;padding:20px 28px 24px}
-.lede{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.vname{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-size:clamp(2.1rem,4.6vw,3.15rem);font-weight:600;letter-spacing:-.015em;line-height:1.06;color:#fff}
+.title-block{display:flex;flex-direction:column;gap:16px}
+.lede{display:flex;flex-direction:column;gap:12px}
+.vname{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-size:clamp(1.95rem,3.6vw,2.6rem);font-weight:600;letter-spacing:-.015em;line-height:1.08;color:var(--ink-1);overflow-wrap:break-word;hyphens:none}
+.vname.long{font-size:clamp(1.5rem,2.9vw,2.05rem)}
 .typechip{font-size:11px;font-weight:600;padding:4px 11px;border-radius:999px;flex:none;letter-spacing:.02em}
-.typechip.onhero{color:#fff;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(6px)}
 .typechip.t0{color:var(--accent-a);background:var(--accent-a-soft)}
 .typechip.t1{color:var(--accent-b);background:var(--accent-b-soft)}
 .typechip.t2{color:var(--accent-c);background:var(--accent-c-soft)}
+/* on hero photos the tX accent tints are unreadable — override with a solid dark-glass pill */
+.typechip.onhero,.typechip.onhero.t0,.typechip.onhero.t1,.typechip.onhero.t2{
+  color:#fff;background:rgba(9,8,7,.62);border:1px solid rgba(255,255,255,.34);backdrop-filter:blur(6px)}
 .facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 20px;width:100%}
 .facts .fact{min-width:0}
 .flabel{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}
@@ -107,7 +110,7 @@ body{font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;backgroun
 .facts .addr a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hairline)}
 .facts .addr a:hover{border-bottom-color:var(--ink-1)}
 .pulse{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--good);margin-right:6px}
-.act{display:inline-flex;align-items:center;gap:0;padding:14px 0;border-top:1px solid var(--grid);width:100%}
+.act{display:inline-flex;align-items:center;gap:0;padding:16px 0 4px;border-top:1px solid var(--grid);width:100%;margin-top:auto}
 .btn{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;padding:10px 0;margin-right:26px;text-decoration:none;color:var(--ink-1);transition:opacity .15s}
 .btn .arr{transition:transform .15s}
 .btn:hover .arr{transform:translate(2px,-2px)}
@@ -132,6 +135,10 @@ main section{padding:30px 0;border-top:1px solid var(--grid)}
 .map-caption{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--ink-3);padding:9px 12px}
 .map-caption a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hairline)}
 .map-caption a:hover{color:var(--ink-1);border-bottom-color:var(--ink-1)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.gallery .gimg{position:relative;aspect-ratio:16/10;border-radius:8px;overflow:hidden;border:1px solid var(--hairline);background:var(--grid)}
+.gallery .gimg img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.gallery .gimg:hover img{transform:scale(1.03)}
 .sibs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
 .sibling{display:block;text-decoration:none;color:var(--ink-1);padding:0 0 14px;border-bottom:1px solid var(--hairline);transition:opacity .15s}
 .sibling:hover{opacity:.75}
@@ -148,11 +155,10 @@ footer{margin-top:8px;padding:26px 0 6px}
 @media (max-width:680px){
   .wrap{padding:18px 14px 0}
   .kicker{margin-bottom:14px}
-  .hero{border-radius:12px}
-  .hero-imgbox{aspect-ratio:4/3}
-  .hero-meta{padding:16px 18px 14px}
-  .title-block{padding:16px 18px 20px}
-  .vname{font-size:1.9rem}
+  .hero{grid-template-columns:1fr;border-radius:12px}
+  .hero-imgbox{aspect-ratio:16/9;height:auto}
+  .hero-meta{padding:18px 18px 20px}
+  .vname{font-size:1.75rem}
   .facts{grid-template-columns:1fr 1fr;gap:16px 14px}
   .act{flex-wrap:wrap;gap:4px 0}
   .btn{margin-right:22px}
@@ -172,13 +178,15 @@ footer{margin-top:8px;padding:26px 0 6px}
   </div>
 
   <div class="hero">
-    {{HERO_IMG}}
-    {{TOP_PICK}}
+    <div class="hero-media">
+      {{HERO_IMG}}
+      {{TOP_PICK}}
+    </div>
     <div class="hero-meta">
-      <div class="arealine">{{AREA}}<span class="sep">·</span>{{TYPE_LABEL}}</div>
       <div class="lede">
-        <h1 class="vname">{{VNAME}}</h1>
-        <span class="typechip {{TCLS}} onhero">{{TYPE_ICON}} {{TYPE_LABEL}}</span>
+        <div class="arealine">{{AREA}}<span class="sep">·</span>{{TYPE_LABEL}}</div>
+        <h1 class="vname{{VNAME_LONG}}">{{VNAME}}</h1>
+        <div><span class="typechip {{TCLS}}">{{TYPE_ICON}} {{TYPE_LABEL}}</span></div>
       </div>
       <div class="title-block">
         <div class="facts">
@@ -201,6 +209,8 @@ footer{margin-top:8px;padding:26px 0 6px}
       <div class="slabel">Why it works</div>
       <div class="note">{{NOTE}}</div>
     </section>
+
+    {{GALLERY}}
 
     <section>
       <div class="slabel">Location</div>
@@ -356,6 +366,18 @@ function build(cfgPath, citySlug, venueK, siteUrl){
       }).join("") + '</div></section>';
   }
 
+  /* optional photo gallery: every image beyond the primary `img` */
+  let galleryHtml = "";
+  const galleryImgs = Array.isArray(v.gallery) ? v.gallery.filter(Boolean) : [];
+  if (galleryImgs.length) {
+    galleryHtml = '<section><div class="slabel">Photos</div><div class="gallery">' +
+      galleryImgs.map(g => {
+        const gurl = typeof g === "string" ? g : g.src;
+        const galt = (typeof g === "object" && g.alt) ? g.alt : (v.alt || v.name);
+        return `<a class="gimg" href="${gurl}" target="_blank" rel="noopener"><img src="${gurl}" alt="${String(galt).replace(/"/g,'&quot;')}" loading="lazy" referrerpolicy="no-referrer"></a>`;
+      }).join("") + '</div></section>';
+  }
+
   const title = `${v.name} — ${cityName} · ComputeCafe`;
   const canon = `${siteUrl}/${citySlug}/${v.k}/`;
   const ogImg = v.img || `${siteUrl}/og-default.png`;
@@ -366,6 +388,7 @@ function build(cfgPath, citySlug, venueK, siteUrl){
   html = html.replace(/{{CANONICAL}}/g, canon);
   html = html.replace(/{{OG_IMG}}/g, ogImg);
   html = html.replace(/{{ALT}}/g, (v.alt || (v.name + " location")).replace(/"/g,"&quot;"));
+  html = html.replace(/{{VNAME_LONG}}/g, v.name.length > 24 ? " long" : "");
   html = html.replace(/{{VNAME}}/g, v.name);
   html = html.replace(/{{VK}}/g, v.k);
   html = html.replace(/{{CITY_SLUG}}/g, citySlug);
@@ -387,6 +410,7 @@ function build(cfgPath, citySlug, venueK, siteUrl){
   html = html.replace(/{{LINK_TEXT}}/g, v.linkText);
   html = html.replace(/{{EMAIL_BTN}}/g, emailBtn);
   html = html.replace(/{{SIBLINGS}}/g, siblingHtml);
+  html = html.replace(/{{GALLERY}}/g, galleryHtml);
   /* venue pages carry reader-facing context only — internal scouting notes
      (closed/non-bookable lists, seed-data corrections) stay on the city page */
   const INTERNAL_FNOTE = /(\bgone or not bookable\b|\bseed[- ]venue corrections?\b)/i;
@@ -398,7 +422,7 @@ function build(cfgPath, citySlug, venueK, siteUrl){
 
   /* interactive Leaflet mini-map */
   const minimapScript = `
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9OBZuCHqkPKPSkYyP0nwU=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 const mmap = L.map('minimap', { zoomControl:false, attributionControl:false, dragging:false, scrollWheelZoom:false, doubleClickZoom:false, boxZoom:false, keyboard:false, tap:false });
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:19}).addTo(mmap);
