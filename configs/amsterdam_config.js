@@ -196,7 +196,7 @@ const VENUES = [
     "lng": 4.8951228
   },
   {
-    "k": "the_coffee_virus",
+    "k": "the_coffee_virus_noord",
     "name": "The Coffee Virus @ A Lab",
     "area": "Amsterdam-Noord / NDSM-werf",
     "type": "coffee",
@@ -358,7 +358,7 @@ const VENUES = [
     "lng": 4.9562998
   },
   {
-    "k": "the_coffee_virus",
+    "k": "the_coffee_virus_oost",
     "name": "The Coffee Virus — A Lab locations & Startup Village",
     "area": "Amsterdam-Oost / Science Park",
     "type": "coffee",
