@@ -169,7 +169,7 @@
     border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
     display: flex; flex-direction: column;
   }
-  .imgbox { position: relative; aspect-ratio: 16/9.5; overflow: hidden; }
+  .imgbox { position: relative; aspect-ratio: 16/9.5; overflow: hidden; display: block; }
   .imgbox img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
   .ph {
     position: absolute; inset: 0; z-index: 0; display: flex;
@@ -193,7 +193,8 @@
   }
   .body { padding: 14px 16px 15px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
   .titlerow { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-  .vname { font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .vname { font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; color: inherit; text-decoration: none; }
+  .vname:hover { text-decoration: underline; }
   .typechip { flex: none; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; margin-top: 1px; }
   .typechip.t0 { color: var(--accent-a); background: var(--accent-a-soft); }
   .typechip.t1 { color: var(--accent-b); background: var(--accent-b-soft); }
@@ -919,14 +920,14 @@ function card(v){
     : "";
   const emailBtn = v.email ? `<a class="btn sec" href="mailto:${v.email}">${v.email}</a>` : "";
   return `<div class="card${v.img ? "" : " noimg"}">
-    <div class="imgbox">
+    <a class="imgbox" href="/${CITY_SLUG}/${v.k}/" title="Open ${v.name} detail page">
       ${imgHtml}
       <div class="ph ${tcls(v.type)}"><span class="icn">${t.icon}</span><span class="mono">${initials(v.name)}</span></div>
       ${v.top ? '<div class="toppick">★ Top pick</div>' : ""}
       <div class="areatag">${v.area}</div>
-    </div>
+    </a>
     <div class="body">
-      <div class="titlerow"><div class="vname">${v.name}</div><span class="typechip ${tcls(v.type)}">${t.icon} ${t.label}</span></div>
+      <div class="titlerow"><a class="vname" href="/${CITY_SLUG}/${v.k}/">${v.name}</a><span class="typechip ${tcls(v.type)}">${t.icon} ${t.label}</span></div>
       <div class="addr"><a href="${mapsUrl(v)}" target="_blank" rel="noopener">📍 ${v.addr}</a></div>
       <div class="cap">${v.cap}</div>
       ${flagHtml}

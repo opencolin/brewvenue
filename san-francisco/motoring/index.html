@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motoring Coffee / The Motoring Club — SF Tech Week · ComputeCafe</title>
+<meta name="description" content="150 · 7,000 sq ft art-deco warehouse. Café up front, car-club warehouse behind — rotating car displays, 20-ft bar, conference room. A memora…">
+<link rel="canonical" href="https://brewvenue.vercel.app/san-francisco/motoring/">
+<!-- Open Graph / Twitter -->
+<meta property="og:title" content="Motoring Coffee / The Motoring Club — SF Tech Week · ComputeCafe">
+<meta property="og:description" content="150 · 7,000 sq ft art-deco warehouse. Café up front, car-club warehouse behind — rotating car displays, 20-ft bar, conference room. A memora…">
+<meta property="og:url" content="https://brewvenue.vercel.app/san-francisco/motoring/">
+<meta property="og:type" content="place">
+<meta property="og:image" content="https://images.squarespace-cdn.com/content/v1/59b08988b07869a1bea88310/63d66b94-8d01-4332-ad58-01d305309950/Motoring+Coffee+Club+House_026.jpg">
+<meta property="og:image:alt" content="The Motoring Club clubhouse with cars">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Motoring Coffee / The Motoring Club — SF Tech Week · ComputeCafe">
+<meta name="twitter:description" content="150 · 7,000 sq ft art-deco warehouse. Café up front, car-club warehouse behind — rotating car displays, 20-ft bar, conference room. A memora…">
+<meta name="twitter:image" content="https://images.squarespace-cdn.com/content/v1/59b08988b07869a1bea88310/63d66b94-8d01-4332-ad58-01d305309950/Motoring+Coffee+Club+House_026.jpg">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZzrRCfZznMq3QhTRM=" crossorigin="">
+<style>
+:root { color-scheme: light;
+ --page: #f9f9f7; --surface: #fcfcfb; --ink-1: #0b0b0b; --ink-2: #52514e; --ink-3: #898781;
+ --hairline: rgba(11,11,11,0.10); --grid: #e1e0d9;
+ --accent-a: #eb6834; --accent-a-soft: rgba(235,104,52,0.12);
+ --accent-b: #2a78d6; --accent-b-soft: rgba(42,120,214,0.12);
+ --accent-c: #6f4fce; --accent-c-soft: rgba(111,79,206,0.12);
+ --good: #0ca30c; --good-soft: rgba(12,163,12,0.10);
+ --chip-on: #0b0b0b; --chip-on-ink: #fcfcfb;
+ --ph-a: #f3e7dc; --ph-b: #e8d5c2; --ph-c: #dde8f3; --ph-d: #c9d9ec; --ph-e: #e7ddf3; --ph-f: #d6c8ec;
+ --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+    --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+    --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+    --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+    --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+    --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+    --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+    --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e; --ph-e: #291f38; --ph-f: #382a4e;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+  }
+}
+:root[data-theme="dark"] {
+ color-scheme: dark;
+ --page: #0d0d0d; --surface: #1a1a19; --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+ --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
+ --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
+ --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
+ --accent-c: #8f6ee8; --accent-c-soft: rgba(143,110,232,0.18);
+ --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
+ --chip-on: #ffffff; --chip-on-ink: #0d0d0d;
+ --ph-a: #33281f; --ph-b: #453425; --ph-c: #1f2a38; --ph-d: #2a3a4e; --ph-e: #291f38; --ph-f: #382a4e;
+ --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--page);color:var(--ink-1);line-height:1.45;padding-bottom:40px}
+.wrap{max-width:900px;margin:0 auto;padding:24px 20px}
+header{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.crumbs a{color:var(--ink-3);text-decoration:none;font-size:12.5px;font-weight:600}
+.crumbs a:hover{color:var(--ink-1)}
+.crumbs span{color:var(--ink-3);font-size:12.5px}
+.thbtn{font-size:12.5px;font-weight:600;color:var(--ink-3);background:var(--surface);border:1px solid var(--hairline);border-radius:8px;padding:6px 10px;cursor:pointer;margin-left:auto}
+.thbtn:hover{color:var(--ink-1);border-color:var(--ink-3)}
+.hero{position:relative;border-radius:16px;overflow:hidden;background:var(--surface);border:1px solid var(--hairline);box-shadow:var(--shadow);margin-bottom:22px}
+.hero-imgbox{position:relative;aspect-ratio:16/9;overflow:hidden}
+.hero-imgbox img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.ph{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px}
+.ph.t0{background:linear-gradient(135deg,var(--ph-a),var(--ph-b))}
+.ph.t1{background:linear-gradient(135deg,var(--ph-c),var(--ph-d))}
+.ph.t2{background:linear-gradient(135deg,var(--ph-e),var(--ph-f))}
+.ph .mono{font-size:3.2rem;font-weight:700;letter-spacing:.04em;color:var(--ink-2);opacity:.85}
+.ph .icn{font-size:2rem}
+.toppick{position:absolute;top:10px;left:10px;z-index:3;font-size:11px;font-weight:700;background:rgba(11,11,11,.78);color:#fff;padding:4px 9px;border-radius:999px;backdrop-filter:blur(4px)}
+.areatag{position:absolute;bottom:10px;left:10px;z-index:3;font-size:11px;font-weight:600;background:rgba(11,11,11,.62);color:#fff;padding:3px 9px;border-radius:999px;backdrop-filter:blur(4px)}
+.title-block{padding:18px 20px 14px}
+.vrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.vname{font-size:1.65rem;font-weight:700;letter-spacing:-.02em}
+.typechip{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;flex:none}
+.typechip.t0{color:var(--accent-a);background:var(--accent-a-soft)}
+.typechip.t1{color:var(--accent-b);background:var(--accent-b-soft)}
+.typechip.t2{color:var(--accent-c);background:var(--accent-c-soft)}
+.flag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:7px;align-self:flex-start}
+.flag.dedicated{color:var(--good);background:var(--good-soft)}
+.flag.contact{color:var(--ink-2);background:var(--page);border:1px solid var(--hairline)}
+.facts{padding:0 20px 18px;display:flex;flex-direction:column;gap:8px}
+.facts .addr{font-size:13px}
+.facts .addr a{color:var(--ink-3);text-decoration:none}
+.facts .addr a:hover{color:var(--ink-1);text-decoration:underline}
+.facts .cap{font-size:13px;color:var(--ink-2)}
+.facts .cap b{color:var(--ink-1);font-weight:600}
+.about{padding:14px 20px 16px;border-top:1px solid var(--grid)}
+.about .note{font-size:14px;color:var(--ink-2);max-width:80ch}
+.about .note b{color:var(--ink-1)}
+.bar{position:sticky;bottom:0;background:rgba(var(--page),.95);backdrop-filter:blur(8px);border-top:1px solid var(--grid);padding:12px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;z-index:10}
+.bar .btn{font-size:12.5px;font-weight:600;text-decoration:none;padding:8px 14px;border-radius:8px;display:inline-flex;align-items:center;gap:4px}
+.bar .btn.pri{background:var(--ink-1);color:var(--page)}
+.bar .btn.pri:hover{opacity:.85}
+.bar .btn.sec{color:var(--ink-2);border:1px solid var(--hairline)}
+.bar .btn.sec:hover{color:var(--ink-1);border-color:var(--ink-3)}
+.bar .starh{display:inline-flex;align-items:center;gap:4px;font-size:13px;border:none;background:transparent;cursor:pointer;color:var(--ink-3)}
+.bar .starh .star{font-size:16px}
+.bar .starh.on{color:var(--good)}
+.bar .starh .cnt{font-size:12.5px;font-weight:600}
+.mini-map{margin-top:16px;padding:0 20px 20px}
+.map-label{font-size:12.5px;font-weight:600;color:var(--ink-2);margin-bottom:6px}
+.map-frame{border-radius:12px;overflow:hidden;border:1px solid var(--hairline);background:var(--surface)}
+.map-frame img{width:100%;display:block}
+.map-caption{font-size:12px;color:var(--ink-3);padding:8px 10px;text-align:center}
+.sibs{margin-top:16px;padding:0 20px 20px}
+.sibs h3{font-size:14px;font-weight:700;margin-bottom:10px;color:var(--ink-2)}
+.sibling{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;border:1px solid var(--hairline);text-decoration:none;color:var(--ink-1);background:var(--surface);margin-bottom:8px}
+.sibling:hover{border-color:var(--ink-3)}
+.sibling .thumb{width:56px;height:40px;border-radius:8px;overflow:hidden;flex:none;background:var(--grid)}
+.sibling .thumb img{width:100%;height:100%;object-fit:cover}
+.sibling .mono{font-size:20px;font-weight:700;letter-spacing:.04em;color:var(--ink-2);opacity:.85;display:flex;align-items:center;justify-content:center;height:100%}
+.sibling .stxt{flex:1}
+.sibling .sname{font-size:14px;font-weight:700}
+.sibling .sarea{font-size:12px;color:var(--ink-3)}
+footer{margin-top:34px;border-top:1px solid var(--grid);padding:18px 0 0;display:flex;flex-direction:column;gap:12px}
+.fnote{font-size:13px;color:var(--ink-2);max-width:90ch}
+.prov{font-size:11.5px;color:var(--ink-3)}
+@media (max-width:680px){
+  .wrap{padding:14px 12px}
+  .vname{font-size:1.35rem}
+  .bar{padding:10px 12px}
+  .ph .mono{font-size:2rem}
+}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"EventVenue","name":"Motoring Coffee / The Motoring Club","image":"https://images.squarespace-cdn.com/content/v1/59b08988b07869a1bea88310/63d66b94-8d01-4332-ad58-01d305309950/Motoring+Coffee+Club+House_026.jpg","address":{"@type":"PostalAddress","streetAddress":"1525 Union St","addressLocality":"San Francisco (Cow Hollow)","addressRegion":"","addressCountry":""},"geo":{"@type":"GeoCoordinates","latitude":37.7981829,"longitude":-122.4245651},"url":"https://themotoringclub.com/host-an-event"}</script>
+</head>
+<body>
+<div class="wrap">
+  <header class="crumbs">
+    <a href="/">Home</a> <span>/</span>
+    <a href="/san-francisco/">SF Tech Week</a> <span>/</span>
+    <span style="color:var(--ink-2)">Motoring Coffee / The Motoring Club</span>
+    <button class="thbtn" id="themebtn" onclick="cycleTheme()">◐ Theme</button>
+  </header>
+
+  <div class="hero">
+    <div class="hero-imgbox"><img src="https://images.squarespace-cdn.com/content/v1/59b08988b07869a1bea88310/63d66b94-8d01-4332-ad58-01d305309950/Motoring+Coffee+Club+House_026.jpg" alt="The Motoring Club clubhouse with cars" loading="eager" referrerpolicy="no-referrer"></div>
+    
+    <div class="areatag">Beyond the core</div>
+  </div>
+
+  <div class="title-block">
+    <div class="vrow">
+      <h1 class="vname">Motoring Coffee / The Motoring Club</h1>
+      <span class="typechip t0">☕ Coffee & café</span>
+      <span class="flag dedicated">✓ Dedicated events page</span>
+    </div>
+  </div>
+
+  <div class="facts">
+    <div class="addr">📍 <a href="https://www.google.com/maps/search/?api=1&query=Motoring%20Coffee%20%2F%20The%20Motoring%20Club%201525%20Union%20St%2C%20San%20Francisco%20(Cow%20Hollow)" target="_blank" rel="noopener">1525 Union St, San Francisco (Cow Hollow)</a></div>
+    <div class="cap"><b>150</b> · 7,000 sq ft art-deco warehouse</div>
+  </div>
+
+  <div class="about"><div class="note">Café up front, car-club warehouse behind — rotating car displays, 20-ft bar, conference room. A memorable buyout with a built-in demo-floor vibe; books via TripleSeat.</div></div>
+
+  <div class="bar" id="actionbar">
+    <a class="btn pri" href="https://themotoringclub.com/host-an-event" target="_blank" rel="noopener">Host an event ↗</a>
+    <a class="btn sec" href="mailto:hello@themotoringclub.com">hello@themotoringclub.com</a>
+    <button class="starh" data-k="motoring" data-city="san-francisco" id="starbtn"><span class="star">☆</span><span class="cnt"></span></button>
+  </div>
+
+  <div class="mini-map">
+    <div class="map-label">📍 Location</div>
+    <div class="map-frame">
+      <div id="minimap" style="height:220px;pointer-events:none"></div>
+      <div class="map-caption"><a href="https://www.google.com/maps/search/?api=1&query=Motoring%20Coffee%20%2F%20The%20Motoring%20Club%201525%20Union%20St%2C%20San%20Francisco%20(Cow%20Hollow)" target="_blank" rel="noopener" style="color:var(--accent-b)">Open in Google Maps ↗</a></div>
+    </div>
+  </div>
+
+  <div class="sibs"><h3>More in Beyond the core</h3><a class="sibling" href="../sohn/">
+          <div class="thumb"><img src="https://images.squarespace-cdn.com/content/v1/684047fe6e7f3956c21a071e/2e27a206-75ef-4399-89fb-d20e2e2a369e/Sohn+%26+TAAF-61.jpg" alt="Event inside SOHN" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="ph t0"><span class="mono">S</span></div></div>
+          <div class="stxt"><div class="sname">SOHN</div><div class="sarea">☕ Coffee & café</div></div>
+        </a><a class="sibling" href="../grayarea/">
+          <div class="thumb"><img src="https://grayarea.org/wp-content/uploads/2023/06/endofyou-openingnight.jpg" alt="Opening night inside Gray Area's theater" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="ph t2"><span class="mono">GA</span></div></div>
+          <div class="stxt"><div class="sname">Gray Area (Grand Theater)</div><div class="sarea">✨ Event space</div></div>
+        </a><a class="sibling" href="../pearl/">
+          <div class="thumb"><img src="https://cdn.prod.website-files.com/65a4812aa633aa799a12bd1e/65d436eefb16aa901ae5584c_10740_MP_-12.jpg" alt="The Pearl main floor" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="ph t2"><span class="mono">TP</span></div></div>
+          <div class="stxt"><div class="sname">The Pearl</div><div class="sarea">✨ Event space</div></div>
+        </a></div>
+
+  <footer>
+    <div class="fnote"><b>Neighborhood analysis (SFTW 2025 data):</b> SoMa — including the 2nd St / South Park corridor and East Cut — hosted ~40% of last year's events, roughly 2× FiDi (#2). The "SoMa near 2nd Street" hypothesis is confirmed: a16z sits at 2nd & Townsend, South Park is VC row, Anthropic is at 500 Howard. Watch Jackson Square/FiDi — the fastest-rising cluster for VC dinner formats.</div><div class="fnote"><b>Gone or not bookable — don't route inquiries here:</b> Bespoke (Westfield) and Galvanize (44 Tehama) are closed; so are Blue Bottle Mint Plaza, Vega Coffee (Folsom St), and Bluestone Lane 685 Market. WeWork and Industrious SF locations have no public event-rental program, and South Park Commons is members-only — a partnership ask, not a rental.</div><div class="fnote"><b>Seed-venue corrections:</b> Motoring Coffee is at 1525 Union St (Cow Hollow), not Russian Hill. SOHN is in Dogpatch (2535 3rd St). TIAT is at 151 Powell (Union Square), not SoMa. Bluestone Lane has no 101 California or Levi's Plaza café — its real downtown trio is 55 2nd St, 227 Front St, and 420 Folsom. Corgi Cafe hosting is free (attendees buy café items, or you set an F&B budget).</div>
+    <div class="prov">Researched & links verified Aug 6, 2026 · SF Tech Week 2026: Oct 5–11 (LA Tech Week follows Oct 12–18) · Photos load from each venue's own website; a placeholder appears where no photo was published. Capacities are published or estimated figures — confirm when booking.</div>
+  </footer>
+</div>
+
+<script>
+function cycleTheme(){
+  const r=document.documentElement,
+    c=r.getAttribute("data-theme"),
+    n=c==="dark"?"light":c==="light"?"dark":(matchMedia("(prefers-color-scheme:dark)").matches?"light":"dark");
+  r.setAttribute("data-theme",n);
+}
+/* star hydration */
+const STAR_KEY=(c,k)=>'starred:'+c+':'+k;
+(async()=>{
+  const b=document.getElementById('starbtn'); if(!b)return;
+  const k=b.dataset.k, city=b.dataset.city;
+  try{localStorage.getItem(STAR_KEY(city,k))==='1' && b.classList.add('on');}catch(e){}
+  try{
+    const r=await fetch('/api/star-venue/'+encodeURIComponent(city)+'/'+encodeURIComponent(k));
+    if(r.ok){
+      const j=await r.json();
+      b.querySelector('.cnt').textContent=j.newCount||j.count||0;
+    }
+  }catch(e){
+    try{const c=(await(await fetch('/api/stars?city='+encodeURIComponent(city))).json()).find(x=>x.k===k)?.count||0;b.querySelector('.cnt').textContent=c;}catch(e2){}
+  }
+  b.addEventListener('click',async()=>{
+    const key=STAR_KEY(city,k); let saved=false;
+    try{saved=localStorage.getItem(key)==='1';}catch(e){}
+    if(saved)return;
+    try{localStorage.setItem(key,'1');saved=true;}catch(e){}
+    b.classList.add('on');
+    try{
+      const r=await fetch('/api/star-venue',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({k,city})});
+      const j=await r.json();
+      if(j.ok&&j.newCount!=null)b.querySelector('.cnt').textContent=j.newCount;
+    }catch(e){}
+  });
+})();
+</script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9OBZuCHqkPKPSkYyP0nwU=" crossorigin=""></script>
+<script>
+const mmap = L.map('minimap', { zoomControl:false, attributionControl:false, dragging:false, scrollWheelZoom:false, doubleClickZoom:false, boxZoom:false, keyboard:false, tap:false });
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:19}).addTo(mmap);
+mmap.setView([37.7981829, -122.4245651], 15);
+L.marker([37.7981829, -122.4245651]).addTo(mmap);
+document.getElementById('minimap').addEventListener('click', () => window.open("https://www.google.com/maps/search/?api=1&query=Motoring%20Coffee%20%2F%20The%20Motoring%20Club%201525%20Union%20St%2C%20San%20Francisco%20(Cow%20Hollow)", '_blank'));
+</script>
+</body>
+</html>
