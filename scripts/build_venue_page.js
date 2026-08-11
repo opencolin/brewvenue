@@ -142,10 +142,10 @@ main section{padding:30px 0;border-top:1px solid var(--grid)}
 .sibs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
 .sibling{display:block;text-decoration:none;color:var(--ink-1);padding:0 0 14px;border-bottom:1px solid var(--hairline);transition:opacity .15s}
 .sibling:hover{opacity:.75}
-.sibling .thumb{position:relative;aspect-ratio:16/10;border-radius:8px;overflow:hidden;margin-bottom:10px}
-.sibling .thumb img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
-.sibling .thumb .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.sibling .thumb{position:relative;aspect-ratio:16/10;border-radius:8px;overflow:hidden;margin-bottom:10px;background:var(--grid)}
+.sibling .thumb .ph{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center}
 .sibling .thumb .ph .mono{font-size:1.7rem}
+.sibling .thumb img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;display:block}
 .sibling .sname{font-family:"Playfair Display",Georgia,serif;font-size:1.02rem;font-weight:600}
 .sibling .sarea{font-size:12px;color:var(--ink-3);margin-top:3px}
 footer{margin-top:8px;padding:26px 0 6px}
