@@ -10,7 +10,7 @@ const CONFIG = {
     "<b>Gone since last Tech Week — don't route inquiries here:</b> Rose Café (closed Dec 2024), NeueHouse Venice Beach (closed Sept 2025), Cross Campus (closed — its 929 Colorado space is now BLANKSPACES), Philz Santa Monica, and Interstellar. Groundwork's remaining SM/Venice shops and Menotti's are too small to host.",
     "<b>Pairing tip:</b> going with a coworking venue? goodboybob, Intelligentsia, and Menotti's all run mobile espresso / coffee-truck service you can bring in-house.",
   ],
-  provenance: "Researched & links verified Aug 6, 2026 · LA Tech Week 2026: Oct 12–18 (SF Tech Week runs Oct 5–11) · " +
+  provenance: "Researched & links verified Aug 6, 2026 · LA Tech Week 2026: Oct 12–18 (SF Tech Week runs Oct 9–15) · " +
               "Photos load from each venue's own website; a placeholder appears where no photo was published. " +
               "Capacities are published or estimated figures — confirm when booking.",
 };
