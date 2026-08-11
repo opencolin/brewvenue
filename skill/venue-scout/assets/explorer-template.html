@@ -408,7 +408,7 @@
   function venuePts(list) {
     return (typeof list !== "undefined" ? list : [])
       .filter(v => v.lat && v.lng)
-      .map(v => ({ name: v.name, area: v.area, href: v.link, lat: v.lat, lng: v.lng }));
+      .map(v => ({ name: v.name, area: v.area, href: "/" + CITY_SLUG + "/" + v.k + "/", lat: v.lat, lng: v.lng }));
   }
   // Re-point the open map at a new venue set (filter chips / flag toggle).
   window.syncMapFilters = function (list) {
