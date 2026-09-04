@@ -162,7 +162,7 @@ footer{margin-top:8px;padding:26px 0 6px}
   .map-track{max-width:none}
 }
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"EventVenue","name":"Andytown Coffee — 66 Kearny","image":"https://andytownsf.com/cdn/shop/files/IMG_0457_reduced.png?v=1779123111","address":{"@type":"PostalAddress","streetAddress":"66 Kearny St","addressLocality":"San Francisco","addressRegion":"","addressCountry":""},"geo":{"@type":"GeoCoordinates","latitude":37.795144,"longitude":-122.404306},"url":"https://andytownsf.com/pages/events"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"EventVenue","name":"Andytown Coffee — 66 Kearny","image":"https://andytownsf.com/cdn/shop/files/IMG_0457_reduced.png?v=1779123111","address":{"@type":"PostalAddress","streetAddress":"66 Kearny St","addressLocality":"San Francisco","addressRegion":"","addressCountry":""},"geo":{"@type":"GeoCoordinates","latitude":37.7886774,"longitude":-122.4037284},"url":"https://andytownsf.com/pages/events"}</script>
 </head>
 <body>
 <div class="wrap">
@@ -280,9 +280,9 @@ const STAR_KEY=(c,k)=>'starred:'+c+':'+k;
 <script>
 const mmap = L.map('minimap', { zoomControl:false, attributionControl:false, dragging:false, scrollWheelZoom:false, doubleClickZoom:false, boxZoom:false, keyboard:false, tap:false });
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:19}).addTo(mmap);
-mmap.setView([37.795144, -122.404306], 15);
+mmap.setView([37.7886774, -122.4037284], 15);
 const dot = L.divIcon({ className:'', html:'<div style="width:10px;height:10px;border-radius:50%;background:var(--accent-a);box-shadow:0 0 0 2.5px var(--page),0 1px 4px rgba(0,0,0,.35)"></div>', iconSize:[10,10], iconAnchor:[5,5] });
-L.marker([37.795144, -122.404306], {icon:dot}).addTo(mmap);
+L.marker([37.7886774, -122.4037284], {icon:dot}).addTo(mmap);
 document.getElementById('minimap').addEventListener('click', () => window.open("https://www.google.com/maps/search/?api=1&query=Andytown%20Coffee%20%E2%80%94%2066%20Kearny%2066%20Kearny%20St%2C%20San%20Francisco", '_blank'));
 </script>
 </body>

@@ -162,7 +162,7 @@ footer{margin-top:8px;padding:26px 0 6px}
   .map-track{max-width:none}
 }
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"EventVenue","name":"Corgi Cafe","image":"https://mma.prnewswire.com/media/2905117/Corgi_24_7_Cafe.jpg","address":{"@type":"PostalAddress","streetAddress":"9 Claude Ln","addressLocality":"San Francisco","addressRegion":"","addressCountry":""},"geo":{"@type":"GeoCoordinates","latitude":37.7584,"longitude":-122.4131},"url":"https://www.corgicafe.com/host"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"EventVenue","name":"Corgi Cafe","image":"https://mma.prnewswire.com/media/2905117/Corgi_24_7_Cafe.jpg","address":{"@type":"PostalAddress","streetAddress":"9 Claude Ln","addressLocality":"San Francisco","addressRegion":"","addressCountry":""},"geo":{"@type":"GeoCoordinates","latitude":37.7902533,"longitude":-122.4043282},"url":"https://www.corgicafe.com/host"}</script>
 </head>
 <body>
 <div class="wrap">
@@ -280,9 +280,9 @@ const STAR_KEY=(c,k)=>'starred:'+c+':'+k;
 <script>
 const mmap = L.map('minimap', { zoomControl:false, attributionControl:false, dragging:false, scrollWheelZoom:false, doubleClickZoom:false, boxZoom:false, keyboard:false, tap:false });
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:19}).addTo(mmap);
-mmap.setView([37.7584, -122.4131], 15);
+mmap.setView([37.7902533, -122.4043282], 15);
 const dot = L.divIcon({ className:'', html:'<div style="width:10px;height:10px;border-radius:50%;background:var(--accent-a);box-shadow:0 0 0 2.5px var(--page),0 1px 4px rgba(0,0,0,.35)"></div>', iconSize:[10,10], iconAnchor:[5,5] });
-L.marker([37.7584, -122.4131], {icon:dot}).addTo(mmap);
+L.marker([37.7902533, -122.4043282], {icon:dot}).addTo(mmap);
 document.getElementById('minimap').addEventListener('click', () => window.open("https://www.google.com/maps/search/?api=1&query=Corgi%20Cafe%209%20Claude%20Ln%2C%20San%20Francisco", '_blank'));
 </script>
 </body>
