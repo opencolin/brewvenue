@@ -11,7 +11,7 @@ spaces with capacities, photos, and **verified** private-events/booking links.
 | Route | Page |
 |---|---|
 | `/` | City grid (tour dates, statuses, RSVP links) |
-| `/san-francisco/` | SF Tech Week venue scout — 20 venues, SoMa/2nd St analysis |
+| `/san-francisco/` | SF Tech Week venue scout — 21 venues, SoMa/2nd St analysis |
 | `/los-angeles/` | LA Tech Week venue scout — 19 venues, Santa Monica + Venice |
 
 ## Repo layout

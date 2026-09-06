@@ -15,9 +15,9 @@ TEMPLATE = os.path.join(REPO_ROOT, "skill", "venue-scout", "assets", "explorer-t
 START = "/* ============================ EDIT BELOW ============================ */"
 END = "/* ============================ EDIT ABOVE ============================ */"
 HOMELINK_CSS = (
-    "  .homelink { font-size: 12.5px; font-weight: 600; color: var(--ink-3); "
-    "text-decoration: none; display: inline-block; margin-bottom: 8px; }\n"
-    "  .homelink:hover { color: var(--ink-1); }\n"
+    "  .homelink { font-family: \"DM Mono\", monospace; font-size: 12.5px; font-weight: 500; "
+    "color: var(--ink-1); text-decoration: none; display: inline-block; margin-bottom: 8px; }\n"
+    "  .homelink:hover { text-decoration: underline; }\n"
 )
 HOMELINK_A = '<a class="homelink" href="/">← ComputeCafe</a>\n    '
 

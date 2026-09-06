@@ -5,67 +5,78 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ComputeCafe — Venue HQ for the Global Hackathon Tour</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400..800;1,400..800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <meta property="og:title" content="ComputeCafe ☕ — Venue HQ for the Global Hackathon Tour">
 <meta property="og:description" content="ComputeCafe — venue HQ for the global hackathon tour: 17 cities, 3 regions, Sep–Oct 2026. Pick a city to see its vetted venues.">
 <style>
+  /* Dabl Club brand system — lavender field, cream surfaces, hard black
+     shadows, DM Mono voice (dablclub.com / github.com/opencolin/dablclub) */
   :root {
     color-scheme: light;
-    --page: #f9f9f7; --surface: #fcfcfb;
-    --ink-1: #0b0b0b; --ink-2: #52514e; --ink-3: #898781;
-    --hairline: rgba(11,11,11,0.10); --grid: #e1e0d9;
-    --accent-a: #eb6834; --accent-a-soft: rgba(235,104,52,0.12);
-    --accent-b: #2a78d6; --accent-b-soft: rgba(42,120,214,0.12);
-    --good: #0ca30c; --good-soft: rgba(12,163,12,0.10);
-    --ph-a: #f3e7dc; --ph-b: #e8d5c2;
-    --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
-    --shadow-hover: 0 2px 4px rgba(11,11,11,0.08), 0 10px 28px rgba(11,11,11,0.12);
+    --page: #d896ff; --surface: #ede1d0;
+    --ink-1: #1a1b1f; --ink-2: #43464d; --ink-3: #6e675c;
+    --hairline: rgba(26,27,31,0.35); --grid: rgba(26,27,31,0.22);
+    --accent-a: #a8281f; --accent-a-soft: rgba(255,127,127,0.30);
+    --accent-b: #0050bd; --accent-b-soft: rgba(0,80,189,0.12);
+    --good: #3c7c43; --good-soft: rgba(60,124,67,0.14);
+    --chip-on: #1a1b1f; --chip-on-ink: #fcdc5f;
+    --cta: #fcdc5f; --cta-ink: #1a1b1f;
+    --ph-a: #f6ead8; --ph-b: #ecd7ba;
+    --shadow: 4px 4px 0 0 #1a1b1f;
+    --shadow-hover: 7px 7px 0 0 #1a1b1f;
   }
   @media (prefers-color-scheme: dark) {
     :root:where(:not([data-theme="light"])) {
       color-scheme: dark;
-      --page: #0d0d0d; --surface: #1a1a19;
-      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
-      --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
-      --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
-      --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
-      --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
-      --ph-a: #33281f; --ph-b: #453425;
-      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
-      --shadow-hover: 0 2px 4px rgba(0,0,0,0.5), 0 10px 28px rgba(0,0,0,0.5);
+      --page: #17141c; --surface: #241e2c;
+      --ink-1: #f4ede1; --ink-2: #cfc6b8; --ink-3: #97907f;
+      --hairline: rgba(244,237,225,0.30); --grid: rgba(244,237,225,0.16);
+      --accent-a: #ff8d8d; --accent-a-soft: rgba(255,127,127,0.20);
+      --accent-b: #85b5ff; --accent-b-soft: rgba(94,157,255,0.22);
+      --good: #8fd096; --good-soft: rgba(96,190,110,0.16);
+      --chip-on: #fcdc5f; --chip-on-ink: #1a1b1f;
+      --cta: #fcdc5f; --cta-ink: #1a1b1f;
+      --ph-a: #3a3040; --ph-b: #2b2333;
+      --shadow: 4px 4px 0 0 #000000;
+      --shadow-hover: 7px 7px 0 0 #000000;
     }
   }
   :root[data-theme="dark"] {
     color-scheme: dark;
-    --page: #0d0d0d; --surface: #1a1a19;
-    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
-    --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
-    --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
-    --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
-    --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
-    --ph-a: #33281f; --ph-b: #453425;
-    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
-    --shadow-hover: 0 2px 4px rgba(0,0,0,0.5), 0 10px 28px rgba(0,0,0,0.5);
+    --page: #17141c; --surface: #241e2c;
+    --ink-1: #f4ede1; --ink-2: #cfc6b8; --ink-3: #97907f;
+    --hairline: rgba(244,237,225,0.30); --grid: rgba(244,237,225,0.16);
+    --accent-a: #ff8d8d; --accent-a-soft: rgba(255,127,127,0.20);
+    --accent-b: #85b5ff; --accent-b-soft: rgba(94,157,255,0.22);
+    --good: #8fd096; --good-soft: rgba(96,190,110,0.16);
+    --chip-on: #fcdc5f; --chip-on-ink: #1a1b1f;
+    --cta: #fcdc5f; --cta-ink: #1a1b1f;
+    --ph-a: #3a3040; --ph-b: #2b2333;
+    --shadow: 4px 4px 0 0 #000000;
+    --shadow-hover: 7px 7px 0 0 #000000;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
     background: var(--page); color: var(--ink-1);
     line-height: 1.45; padding: 34px 20px 44px;
   }
   .wrap { max-width: 1180px; margin: 0 auto; }
   .themebtn {
-    float: right; font-size: 12px; color: var(--ink-2);
-    background: var(--surface); border: 1px solid var(--hairline);
-    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+    float: right; font-family: "DM Mono", monospace; font-size: 12px; color: var(--ink-1);
+    background: var(--surface); border: 1.5px solid var(--ink-1);
+    border-radius: 999px; padding: 6px 13px; cursor: pointer;
   }
-  .themebtn:hover { color: var(--ink-1); }
+  .themebtn:hover { background: var(--chip-on); color: var(--chip-on-ink); }
   .mapbtn {
-    float: right; margin-right: 8px; font-size: 12px; color: var(--ink-2);
-    background: var(--surface); border: 1px solid var(--hairline);
-    border-radius: 999px; padding: 6px 12px; cursor: pointer;
+    float: right; margin-right: 8px; font-family: "DM Mono", monospace; font-size: 12px; color: var(--ink-1);
+    background: var(--surface); border: 1.5px solid var(--ink-1);
+    border-radius: 999px; padding: 6px 13px; cursor: pointer;
   }
-  .mapbtn:hover { color: var(--ink-1); }
-  .mapbtn.open { color: var(--accent-a); border-color: var(--accent-a); }
+  .mapbtn:hover { background: var(--chip-on); color: var(--chip-on-ink); }
+  .mapbtn.open { background: var(--chip-on); color: var(--chip-on-ink); }
   #mapbox {
     display: none; position: fixed; top: 0; right: 0;
     width: 50vw; height: 100vh; z-index: 10;
@@ -76,30 +87,31 @@
   #mapbox .leaflet-container { height: 100%; }
   @media (max-width: 900px) { #mapbox { width: 100vw; } }
   .topnav { float: right; display: flex; gap: 16px; margin: 4px 18px 0 0; flex-wrap: wrap; }
-  .topnav a { font-size: 12.5px; font-weight: 600; color: var(--ink-2); text-decoration: none; }
-  .topnav a:hover { color: var(--ink-1); text-decoration: underline; text-underline-offset: 2px; }
+  .topnav a { font-family: "DM Mono", monospace; font-size: 12.5px; font-weight: 500; color: var(--ink-1); text-decoration: none; }
+  .topnav a:hover { text-decoration: underline; text-underline-offset: 2px; }
   .kicker {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--accent-a); margin-bottom: 8px;
+    font-family: "DM Mono", monospace;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-1); margin-bottom: 8px;
   }
-  h1 { font-size: 34px; font-weight: 800; letter-spacing: -0.03em; }
-  h1 .cup { font-size: 26px; }
-  .sub { color: var(--ink-2); font-size: 14.5px; margin-top: 8px; max-width: 72ch; }
-  .sub a { color: var(--ink-1); font-weight: 600; }
-  .statrow { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 18px; padding-bottom: 22px; border-bottom: 1px solid var(--grid); }
-  .stat .n { font-size: 22px; font-weight: 700; }
-  .stat .l { font-size: 12px; color: var(--ink-3); }
+  h1 { font-family: "DM Mono", monospace; font-style: italic; font-size: 38px; font-weight: 500; letter-spacing: -0.06em; }
+  h1 .cup { font-size: 28px; }
+  .sub { color: var(--ink-2); font-size: 14.5px; font-weight: 500; margin-top: 8px; max-width: 72ch; }
+  .sub a { color: var(--ink-1); font-weight: 700; }
+  .statrow { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 18px; padding-bottom: 22px; border-bottom: 2px solid var(--ink-1); }
+  .stat .n { font-family: "DM Mono", monospace; font-size: 22px; font-weight: 500; }
+  .stat .l { font-size: 12px; font-weight: 600; color: var(--ink-2); }
   .region-h { display: flex; align-items: baseline; gap: 10px; margin: 30px 2px 14px; }
-  .region-h h2 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
-  .region-h .hint { font-size: 12px; color: var(--ink-3); }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+  .region-h h2 { font-family: "DM Mono", monospace; font-style: italic; font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
+  .region-h .hint { font-family: "DM Mono", monospace; font-size: 12px; color: var(--ink-2); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px; }
   .citycard {
     display: block; text-decoration: none; color: inherit;
-    background: var(--surface); border: 1px solid var(--hairline);
+    background: var(--surface); border: 2px solid var(--ink-1);
     border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
     transition: transform .15s ease, box-shadow .15s ease;
   }
-  a.citycard:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  a.citycard:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-hover); }
   .imgbox { position: relative; aspect-ratio: 16/10; overflow: hidden; }
   .imgbox img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
   .ph {
@@ -107,26 +119,28 @@
     align-items: center; justify-content: center; flex-direction: column; gap: 6px;
     background: linear-gradient(135deg, var(--ph-a), var(--ph-b));
   }
-  .ph .mono { font-size: 28px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-2); opacity: 0.85; }
+  .ph .mono { font-family: "DM Mono", monospace; font-size: 28px; font-weight: 500; letter-spacing: 0.04em; color: var(--ink-2); opacity: 0.85; }
   .citycard.noimg img { display: none; }
   .datechip {
     position: absolute; top: 10px; left: 10px; z-index: 2;
-    font-size: 11px; font-weight: 700; background: rgba(11,11,11,0.78); color: #fff;
-    padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+    font-family: "DM Mono", monospace;
+    font-size: 11px; font-weight: 500; background: var(--cta); color: var(--cta-ink);
+    border: 1.5px solid #1a1b1f;
+    padding: 3px 9px; border-radius: 999px;
   }
   .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; }
   .cname { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
-  .status { font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+  .status { font-family: "DM Mono", monospace; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
   .status.live { color: var(--good); }
   .status.rsvp { color: var(--accent-b); }
-  .status.soon { color: var(--ink-3); font-weight: 500; }
+  .status.soon { color: var(--ink-3); font-weight: 400; }
   .cta { font-size: 12.5px; color: var(--ink-2); }
   a.citycard .cta { color: var(--ink-1); font-weight: 600; }
-  footer { margin-top: 36px; border-top: 1px solid var(--grid); padding-top: 18px; display: grid; gap: 12px; }
+  footer { margin-top: 36px; border-top: 2px solid var(--ink-1); padding-top: 18px; display: grid; gap: 12px; }
   .fnote { font-size: 13px; color: var(--ink-2); max-width: 90ch; }
   .fnote b { color: var(--ink-1); }
-  .prov { font-size: 11.5px; color: var(--ink-3); }
-  .prov a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 2px; }
+  .prov { font-family: "DM Mono", monospace; font-size: 11.5px; color: var(--ink-2); }
+  .prov a { color: var(--ink-1); text-decoration: underline; text-underline-offset: 2px; }
   @media (max-width: 640px) {
     body { padding: 22px 12px 32px; }
     h1 { font-size: 27px; }
@@ -261,7 +275,7 @@ init();
 
 /* compute-cafe-map.js — Leaflet helpers for View Map toggle */
 (function () {
-  const ACCENT = { live: "#0ca30c", rsvp: "#2a78d6", soon: "#898781" };
+  const ACCENT = { live: "#3c7c43", rsvp: "#0050bd", soon: "#6e675c" };
   const isDark = () => {
     const t = document.documentElement.getAttribute("data-theme");
     return t === "dark" || (t !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
