@@ -27,7 +27,7 @@ const VENUES = [
   {k:"computecafe", name:"ComputeCafe", area:"SoMa / 2nd St", type:"cowork",
    addr:"590 Howard St, San Francisco", lat:37.786966, lng:-122.398168, cap:"~<b>40–60</b> standing (est) · ~1,700 sq ft ground floor · conference room seats <b>8</b>",
    flag:"contact", link:"https://luxor-office--irtbn5.us.sb.tenki.sh/computecafe.html", linkText:"Venue page + inquiry", email:"events@tenki.cloud",
-   note:"The house venue — ComputeCafe's own ground-floor brick loft at Howard & 2nd: café-furnished lounge, full kitchen, glass conference room (seats 8 under a wall display), studio, and three phone booths. The open floor re-hangs as an art gallery for launches; offsites, dinners, and workshops book by email. Room dimensions are from the leasing plan.",
+   note:"ComputeCafe's own ground-floor brick loft at Howard & 2nd: café-furnished lounge, full kitchen, glass conference room (seats 8 under a wall display), studio, and three phone booths. The open floor re-hangs as an art gallery for launches; offsites, dinners, and workshops book by email. Room dimensions are from the leasing plan.",
    img:"/san-francisco/computecafe/photos/web/IMG_1704.JPG", alt:"Exposed-brick lounge and glass conference room at ComputeCafe"},
   {k:"sightglass", name:"Sightglass Coffee", area:"SoMa / 2nd St", type:"coffee",
    addr:"270 7th St, San Francisco", lat:37.7770339, lng:-122.4084399, cap:"~<b>50–150</b> · two-story roastery (SF caps unpublished)",
