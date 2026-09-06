@@ -1,6 +1,6 @@
 # BrewVenue ☕
 
-Venue scouting HQ for the **Builders & Brews: Hack Edition** global hackathon tour (H2 2026).
+Venue scouting HQ for **Builders & Brews: Hack Edition** (H2 2026).
 
 **Live:** https://brewvenue.vercel.app
 
