@@ -4,7 +4,7 @@ Venue scouting HQ for the **Builders & Brews: Hack Edition** global hackathon to
 
 **Live:** https://brewvenue.vercel.app
 
-The front page shows all 17 tour cities across three regions. Cities with a completed
+The front page shows the 16 featured tour cities across three regions (Toronto is scouted but hidden from the front page). Cities with a completed
 venue scout link to a filterable explorer of vetted venues — cafes, coworking, and event
 spaces with capacities, photos, and **verified** private-events/booking links.
 
