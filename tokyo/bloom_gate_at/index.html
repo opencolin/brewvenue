@@ -144,9 +144,15 @@ main section{padding:30px 0;border-top:1px solid var(--grid)}
 .figrid .fimg:hover img{transform:scale(1.03)}
 .figrid figure.wide{grid-column:1/-1}
 .figrid figure.wide .fimg{aspect-ratio:16/9}
-.figrid figure.plan .fimg{aspect-ratio:auto;background:#fff}
-.figrid figure.plan img{object-fit:contain;height:auto}
 .figrid figcaption{font-family:"DM Mono",monospace;font-size:11.5px;line-height:1.5;color:var(--ink-2)}
+.plan-row{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start}
+.plan-row figure.plan{flex:0 1 340px;min-width:250px;margin:0;display:flex;flex-direction:column;gap:8px}
+.plan-row figure.plan .fimg{display:block;border-radius:10px;overflow:hidden;border:2px solid var(--ink-1);background:#fff}
+.plan-row figure.plan img{width:100%;height:auto;display:block}
+.plan-row figure.plan figcaption{font-family:"DM Mono",monospace;font-size:11.5px;line-height:1.5;color:var(--ink-2)}
+.plan-row .plan-dims{flex:1 1 300px;max-width:460px}
+.plan-row .plan-dims .slabel{margin-bottom:4px}
+.plan-row .dims{margin-top:0}
 .modeswitch{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
 .modeswitch .mgroup{display:flex;gap:4px;background:var(--surface);border:1.5px solid var(--ink-1);border-radius:20px;padding:3px}
 .modeswitch button{font-family:"DM Mono",monospace;font-size:12px;color:var(--ink-2);padding:5px 12px;border-radius:999px;border:none;background:transparent;cursor:pointer}
