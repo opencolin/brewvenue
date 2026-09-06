@@ -6,42 +6,45 @@
 <title>Upcoming Events · ComputeCafe</title>
 <meta property="og:title" content="ComputeCafe ☕ — Upcoming Events">
 <meta property="og:description" content="Every stop on the global hackathon tour, Sep 9 – Oct 18, 2026 — RSVP where registration is open, and browse each city's ComputeCafe venue lineup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400..800;1,400..800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
     color-scheme: light;
-    --page: #f9f9f7; --surface: #fcfcfb;
-    --ink-1: #0b0b0b; --ink-2: #52514e; --ink-3: #716f68;
-    --hairline: rgba(11,11,11,0.10); --grid: #e1e0d9;
-    --accent-a: #c5481a; --accent-a-soft: rgba(197,72,26,0.12);
-    --accent-b: #1c5db2; --accent-b-soft: rgba(28,93,178,0.12);
-    --good: #0ca30c; --good-soft: rgba(12,163,12,0.10);
-    --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 4px 14px rgba(11,11,11,0.06);
+    --page: #d896ff; --surface: #ede1d0;
+    --ink-1: #1a1b1f; --ink-2: #43464d; --ink-3: #6e675c;
+    --hairline: rgba(26,27,31,0.35); --grid: rgba(26,27,31,0.22);
+    --accent-a: #a8281f; --accent-a-soft: rgba(255,127,127,0.30);
+    --accent-b: #0050bd; --accent-b-soft: rgba(0,80,189,0.12);
+    --good: #3c7c43; --good-soft: rgba(60,124,67,0.14);
+    --shadow: 4px 4px 0 0 #1a1b1f;
   }
   @media (prefers-color-scheme: dark) {
     :root:where(:not([data-theme="light"])) {
       color-scheme: dark;
-      --page: #0d0d0d; --surface: #1a1a19;
-      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
-      --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
-      --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
-      --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
-      --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
-      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+      --page: #17141c; --surface: #241e2c;
+      --ink-1: #f4ede1; --ink-2: #cfc6b8; --ink-3: #97907f;
+      --hairline: rgba(244,237,225,0.30); --grid: rgba(244,237,225,0.16);
+      --accent-a: #ff8d8d; --accent-a-soft: rgba(255,127,127,0.20);
+      --accent-b: #85b5ff; --accent-b-soft: rgba(94,157,255,0.22);
+      --good: #8fd096; --good-soft: rgba(96,190,110,0.16);
+      --shadow: 4px 4px 0 0 #000000;
     }
   }
   :root[data-theme="dark"] {
     color-scheme: dark;
-    --page: #0d0d0d; --surface: #1a1a19;
-    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
-    --hairline: rgba(255,255,255,0.10); --grid: #2c2c2a;
-    --accent-a: #d95926; --accent-a-soft: rgba(217,89,38,0.18);
-    --accent-b: #3987e5; --accent-b-soft: rgba(57,135,229,0.18);
-    --good: #0ca30c; --good-soft: rgba(12,163,12,0.16);
-    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.35);
+    --page: #17141c; --surface: #241e2c;
+    --ink-1: #f4ede1; --ink-2: #cfc6b8; --ink-3: #97907f;
+    --hairline: rgba(244,237,225,0.30); --grid: rgba(244,237,225,0.16);
+    --accent-a: #ff8d8d; --accent-a-soft: rgba(255,127,127,0.20);
+    --accent-b: #85b5ff; --accent-b-soft: rgba(94,157,255,0.22);
+    --good: #8fd096; --good-soft: rgba(96,190,110,0.16);
+    --shadow: 4px 4px 0 0 #000000;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
     background: var(--page); color: var(--ink-1);
     line-height: 1.5; padding: 34px 20px 44px;
   }
@@ -116,6 +119,12 @@
     .ev .date { width: auto; }
     .ev .links { flex-direction: row; width: 100%; justify-content: flex-start; }
   }
+
+  /* Dabl Club brand typography overrides */
+  h1, h2 { font-family: "DM Mono", monospace; font-style: italic; font-weight: 500; letter-spacing: -0.04em; }
+  .kicker { font-family: "DM Mono", monospace; color: var(--ink-1); }
+  .stat .n { font-family: "DM Mono", monospace; font-weight: 500; }
+  .prov { font-family: "DM Mono", monospace; }
 </style>
 </head>
 <body>
